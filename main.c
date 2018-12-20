@@ -104,11 +104,14 @@
 #define UART_TX_BUF_SIZE                256                                         /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE                256                                         /**< UART RX buffer size. */
 
+#define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(2000)                             /**< Main loop interval (ticks). */
 
 BLE_NUS_DEF(m_nus, NRF_SDH_BLE_TOTAL_LINK_COUNT);                                   /**< BLE NUS service instance. */
 NRF_BLE_GATT_DEF(m_gatt);                                                           /**< GATT module instance. */
 NRF_BLE_QWR_DEF(m_qwr);                                                             /**< Context for the Queued Write module.*/
 BLE_ADVERTISING_DEF(m_advertising);                                                 /**< Advertising module instance. */
+
+APP_TIMER_DEF(main_loop_id);
 
 static uint16_t   m_conn_handle          = BLE_CONN_HANDLE_INVALID;                 /**< Handle of the current connection. */
 static uint16_t   m_ble_nus_max_data_len = BLE_GATT_ATT_MTU_DEFAULT - 3;            /**< Maximum length of data (in bytes) that can be transmitted to the peer by the Nordic UART service module. */
@@ -117,6 +120,14 @@ static ble_uuid_t m_adv_uuids[]          =                                      
     {BLE_UUID_NUS_SERVICE, NUS_SERVICE_UUID_TYPE}
 };
 
+static void main_loop_timeout_handler(void * p_context)
+{
+    UNUSED_PARAMETER(p_context);
+    int err_code = 0;
+        uint8_t data = 0x42;
+        uint16_t length = 1;
+        err_code = ble_nus_data_send(&m_nus, &data, &length, m_conn_handle);
+}
 
 /**@brief Function for assert macro callback.
  *
@@ -139,6 +150,12 @@ void assert_nrf_callback(uint16_t line_num, const uint8_t * p_file_name)
 static void timers_init(void)
 {
     ret_code_t err_code = app_timer_init();
+    APP_ERROR_CHECK(err_code);
+
+    // Create timers.
+    err_code = app_timer_create(&main_loop_id,
+                                APP_TIMER_MODE_REPEATED,
+                                main_loop_timeout_handler);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -602,6 +619,15 @@ static void uart_init(void)
 }
 /**@snippet [UART Initialization] */
 
+static void application_timers_start(void)
+{
+    ret_code_t err_code;
+
+    // Start application timers.
+    err_code = app_timer_start(main_loop_id, MAIN_LOOP_INTERVAL, NULL);
+    APP_ERROR_CHECK(err_code);
+}
+
 
 /**@brief Function for initializing the Advertising functionality.
  */
@@ -713,7 +739,7 @@ int main(void)
     printf("\r\nUART started.\r\n");
     NRF_LOG_INFO("Debug logging for UART over RTT started.");
     advertising_start();
-
+    application_timers_start();
     // Enter main loop.
     for (;;)
     {
