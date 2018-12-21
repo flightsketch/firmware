@@ -83,6 +83,9 @@
       <file file_name="../../../../../../modules/nrfx/drivers/src/nrfx_power_clock.c" />
       <file file_name="../../../../../../modules/nrfx/drivers/src/prs/nrfx_prs.c" />
       <file file_name="../../../../../../modules/nrfx/drivers/src/nrfx_uarte.c" />
+      <file file_name="../../../../../../modules/nrfx/drivers/src/nrfx_spim.c" />
+      <file file_name="../../../../../../modules/nrfx/drivers/src/nrfx_spi.c" />
+      <file file_name="../../../../../../integration/nrfx/legacy/nrf_drv_spi.c" />
     </folder>
     <folder Name="Board Support">
       <file file_name="../../../../../../components/libraries/bsp/bsp.c" />
