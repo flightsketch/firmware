@@ -90,7 +90,7 @@
 
 #define APP_BLE_CONN_CFG_TAG            1                                           /**< A tag identifying the SoftDevice BLE configuration. */
 
-#define DEVICE_NAME                     "Nordic_UART"                               /**< Name of device. Will be included in the advertising data. */
+#define DEVICE_NAME                     "FlightSketch"                               /**< Name of device. Will be included in the advertising data. */
 #define NUS_SERVICE_UUID_TYPE           BLE_UUID_TYPE_VENDOR_BEGIN                  /**< UUID type for the Nordic UART Service (vendor specific). */
 
 #define APP_BLE_OBSERVER_PRIO           3                                           /**< Application's BLE observer priority. You shouldn't need to modify this value. */
@@ -112,7 +112,7 @@
 #define UART_TX_BUF_SIZE                256                                         /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE                256                                         /**< UART RX buffer size. */
 
-#define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(2000)                             /**< Main loop interval (ticks). */
+#define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(500)                             /**< Main loop interval (ticks). */
 
 BLE_NUS_DEF(m_nus, NRF_SDH_BLE_TOTAL_LINK_COUNT);                                   /**< BLE NUS service instance. */
 NRF_BLE_GATT_DEF(m_gatt);                                                           /**< GATT module instance. */
@@ -142,6 +142,15 @@ static ble_uuid_t m_adv_uuids[]          =                                      
 
 bool main_loop_update = false;
 int send_update = 0;
+int send_update_int = 0;
+
+void parsePacket_typeF1(void);
+
+void parsePacket_typeF2(void);
+
+void parsePacket_typeF3(void);
+
+void parsePacket_typeF4(void);
 
 static void main_loop_timeout_handler(void * p_context)
 {
@@ -149,6 +158,19 @@ static void main_loop_timeout_handler(void * p_context)
     main_loop_update = true;
     
 }
+
+struct state {
+  float ref_pressure;
+  float pressure;
+  float altitude;
+  float raw_altitude;
+  float max_altitude;
+  float velocity;
+  float max_velocity;
+  float temp;
+};
+
+struct state vehicle_state;
 
 /**@brief Function for assert macro callback.
  *
@@ -236,27 +258,50 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
 
     if (p_evt->type == BLE_NUS_EVT_RX_DATA)
     {
-        uint32_t err_code;
+          NRF_LOG_DEBUG("Rx Data");
+          vehicle_state.ref_pressure = 105.0;
+          if (p_evt->params.rx_data.length == 4 && p_evt->params.rx_data.p_data[2] == 0){  //check if valid command packet
+              //check checksum
+              unsigned char chk = 0;
+              chk = p_evt->params.rx_data.p_data[0] + p_evt->params.rx_data.p_data[1];
+              if (chk == p_evt->params.rx_data.p_data[3]){
+                  //valid command packet
+                  unsigned char packet_type = p_evt->params.rx_data.p_data[1];
+                  switch (packet_type){
+                    case 0xF1: parsePacket_typeF1();
+                    break;
+                    case 0xF2: parsePacket_typeF2();
+                    break;
+                    case 0xF3: parsePacket_typeF3();
+                    break;
+                    case 0xF4: parsePacket_typeF4();
+                    break;
+                    }
+              }
+          }
+        
 
-        NRF_LOG_DEBUG("Received data from BLE NUS. Writing data on UART.");
-        NRF_LOG_HEXDUMP_DEBUG(p_evt->params.rx_data.p_data, p_evt->params.rx_data.length);
-
-        for (uint32_t i = 0; i < p_evt->params.rx_data.length; i++)
-        {
-            do
-            {
-                err_code = app_uart_put(p_evt->params.rx_data.p_data[i]);
-                if ((err_code != NRF_SUCCESS) && (err_code != NRF_ERROR_BUSY))
-                {
-                    NRF_LOG_ERROR("Failed receiving NUS message. Error 0x%x. ", err_code);
-                    APP_ERROR_CHECK(err_code);
-                }
-            } while (err_code == NRF_ERROR_BUSY);
-        }
-        if (p_evt->params.rx_data.p_data[p_evt->params.rx_data.length - 1] == '\r')
-        {
-            while (app_uart_put('\n') == NRF_ERROR_BUSY);
-        }
+//        uint32_t err_code;
+//
+//        NRF_LOG_DEBUG("Received data from BLE NUS. Writing data on UART.");
+//        NRF_LOG_HEXDUMP_DEBUG(p_evt->params.rx_data.p_data, p_evt->params.rx_data.length);
+//
+//        for (uint32_t i = 0; i < p_evt->params.rx_data.length; i++)
+//        {
+//            do
+//            {
+//                err_code = app_uart_put(p_evt->params.rx_data.p_data[i]);
+//                if ((err_code != NRF_SUCCESS) && (err_code != NRF_ERROR_BUSY))
+//                {
+//                    NRF_LOG_ERROR("Failed receiving NUS message. Error 0x%x. ", err_code);
+//                    APP_ERROR_CHECK(err_code);
+//                }
+//            } while (err_code == NRF_ERROR_BUSY);
+//        }
+//        if (p_evt->params.rx_data.p_data[p_evt->params.rx_data.length - 1] == '\r')
+//        {
+//            while (app_uart_put('\n') == NRF_ERROR_BUSY);
+//        }
     }
 
 }
@@ -736,7 +781,7 @@ static void advertising_start(void)
     APP_ERROR_CHECK(err_code);
 }
 
-struct state vehicle_state;
+
 
 
 void spi_event_handler(nrf_drv_spi_evt_t const * p_event,
@@ -865,15 +910,6 @@ struct bmp280_data {
  float temp;
 };
 
-struct state {
-  float ref_pressure;
-  float pressure;
-  float altitude;
-  float raw_altitude;
-  float max_altitude;
-  float velocity;
-  float temp;
-};
 
 struct bmp280_data bmp280_read(){
 
@@ -930,11 +966,68 @@ void vehicle_init(void){
     vehicle_state.max_altitude = 0.0;
     vehicle_state.raw_altitude = 0.0;
     vehicle_state.velocity = 0.0;
+    vehicle_state.max_velocity = 0.0;
     vehicle_state.temp = 59.0;
 }
 
+union data_packet1 {
+    unsigned char data_string[17];
+    struct data_struct {
+        unsigned char start;
+        unsigned char type;
+        unsigned char data_length;
+        unsigned char head_chk;
+        float temp;
+        float alt;
+        float maxAlt;
+        unsigned char data_chk;
+    }data;
+};
 
+void send_update_packet(void){
 
+    union data_packet1 data_packet;
+
+    data_packet.data.start =        0xf5;
+    data_packet.data.type =         0x01;
+    data_packet.data.data_length =  0x0c;
+    data_packet.data.head_chk =     0x02;
+
+    data_packet.data.alt = vehicle_state.altitude;
+    data_packet.data.maxAlt = vehicle_state.max_altitude;
+    data_packet.data.temp = vehicle_state.temp;
+
+    data_packet.data.data_chk = 0;
+
+    int i;
+
+    for (i=4; i<16; i++){
+    
+        data_packet.data.data_chk = data_packet.data.data_chk + data_packet.data_string[i];
+
+    }
+
+    int err_code = 0;
+    uint16_t length = 17;
+    err_code = ble_nus_data_send(&m_nus, &data_packet.data_string[0], &length, m_conn_handle);
+}
+
+void parsePacket_typeF1(void){
+    vehicle_state.ref_pressure = vehicle_state.pressure;
+    vehicle_state.max_altitude = 0.0;
+}
+
+void parsePacket_typeF2(void){
+
+}
+
+void parsePacket_typeF3(void){
+
+}
+
+void parsePacket_typeF4(void){
+
+}
 /**@brief Application main function.
  */
 int main(void)
@@ -978,7 +1071,13 @@ int main(void)
             send_update++;
             read_baro();
             update_state();
-            
+
+            if (send_update > send_update_int){
+                send_update = 0;
+                send_update_packet();
+
+
+            }
         }
 
 
