@@ -71,6 +71,10 @@
 
 #include "nrf_drv_spi.h"
 #include "nrf_gpio.h"
+#include "nrf_delay.h"
+
+#include "bmp280_driver/bmp280.h"
+#include "bmp280_config.h"
 
 #if defined (UART_PRESENT)
 #include "nrf_uart.h"
@@ -125,6 +129,9 @@ static uint8_t       m_tx_buf[] = TEST_STRING;           /**< TX buffer. */
 static uint8_t       m_rx_buf[sizeof(TEST_STRING) + 1];    /**< RX buffer. */
 static const uint8_t m_length = sizeof(m_tx_buf)-1;        /**< Transfer length. */
 
+#define	SPI_READ	0x80
+#define SPI_WRITE	0x7F
+
 static uint16_t   m_conn_handle          = BLE_CONN_HANDLE_INVALID;                 /**< Handle of the current connection. */
 static uint16_t   m_ble_nus_max_data_len = BLE_GATT_ATT_MTU_DEFAULT - 3;            /**< Maximum length of data (in bytes) that can be transmitted to the peer by the Nordic UART service module. */
 static ble_uuid_t m_adv_uuids[]          =                                          /**< Universally unique service identifier. */
@@ -132,13 +139,14 @@ static ble_uuid_t m_adv_uuids[]          =                                      
     {BLE_UUID_NUS_SERVICE, NUS_SERVICE_UUID_TYPE}
 };
 
+bool main_loop_update = false;
+int send_update = 0;
+
 static void main_loop_timeout_handler(void * p_context)
 {
     UNUSED_PARAMETER(p_context);
-    int err_code = 0;
-        uint8_t data = 0x42;
-        uint16_t length = 1;
-        err_code = ble_nus_data_send(&m_nus, &data, &length, m_conn_handle);
+    main_loop_update = true;
+    
 }
 
 /**@brief Function for assert macro callback.
@@ -740,6 +748,156 @@ void spi_event_handler(nrf_drv_spi_evt_t const * p_event,
     }
 }
 
+void spi_init(void){
+    nrf_drv_spi_config_t spi_config = NRF_DRV_SPI_DEFAULT_CONFIG;
+    spi_config.ss_pin   = SPI_SS_PIN;
+    spi_config.miso_pin = SPI_MISO_PIN;
+    spi_config.mosi_pin = SPI_MOSI_PIN;
+    spi_config.sck_pin  = SPI_SCK_PIN;
+    spi_config.frequency = NRF_DRV_SPI_FREQ_4M;
+    APP_ERROR_CHECK(nrf_drv_spi_init(&spi, &spi_config, spi_event_handler, NULL));
+    NRF_LOG_INFO("SPI example started.");
+}
+
+int8_t BMP_280_read(uint8_t dev_id, uint8_t reg_addr, uint8_t *data, uint16_t len){
+    //NRF_LOG_INFO("read");
+    spi_xfer_done = false;
+    uint8_t tx_buffer[30] = {0};
+    uint8_t rx_buffer[30] = {0};
+    uint8_t rx_buffer_out[30];
+    tx_buffer[0] = reg_addr|SPI_READ;
+    uint8_t i;
+    
+
+    nrf_drv_spi_transfer(&spi, tx_buffer, len+1, rx_buffer, len+1);
+
+    while (!spi_xfer_done){
+        __WFE();
+    }
+
+    for(i=0; i<len; i++){
+        *(data+i) = rx_buffer[i+1];
+    }
+
+    return (int8_t)BMP280_OK;
+}
+
+int8_t BMP_280_write(uint8_t dev_id, uint8_t reg_addr, uint8_t *data, uint16_t len){
+    //NRF_LOG_INFO("write");
+    spi_xfer_done = false;
+    uint8_t tx_buffer[30] = {0};
+    tx_buffer[0] = reg_addr;
+    uint8_t i;
+
+    for(i=0; i<len; i++){
+        tx_buffer[i+1] = *(data+i);
+    }
+
+    nrf_drv_spi_transfer(&spi, tx_buffer, len+1, NULL, len+1);
+
+    while (!spi_xfer_done){
+        __WFE();
+    }
+
+    return BMP280_OK;
+}
+
+
+int8_t rslt;
+struct bmp280_dev bmp;
+
+void bmp280_config(void){
+
+        /* Sensor interface over SPI with native chip select line */
+    bmp.dev_id  =  0;
+    bmp.intf = BMP280_SPI_INTF;
+    bmp.read = BMP_280_read;
+    bmp.write = BMP_280_write;
+    bmp.delay_ms = nrf_delay_ms;
+
+    rslt = bmp280_init(&bmp);
+    NRF_LOG_INFO("Device found with chip id 0x%x", bmp.chip_id);
+    if (rslt == BMP280_OK) {
+      /* Sensor chip ID will be printed if initialization was successful */
+      NRF_LOG_INFO("Device found with chip id 0x%x", bmp.chip_id);
+    }
+
+    struct bmp280_config conf;
+
+    /* Always read the current settings before writing, especially when
+     * all the configuration is not modified 
+     */
+    rslt = bmp280_get_config(&conf, &bmp);
+    /* Check if rslt == BMP280_OK, if not, then handle accordingly */
+
+    /* Overwrite the desired settings */
+    conf.filter = BMP280_FILTER_COEFF_2;
+    conf.os_pres = BMP280_OS_8X;
+    conf.os_temp = BMP280_OS_1X;
+    conf.odr = BMP280_ODR_0_5_MS;
+
+    rslt = bmp280_set_config(&conf, &bmp);
+    /* Check if rslt == BMP280_OK, if not, then handle accordingly */
+
+    /* Always set the power mode after setting the configuration */
+    rslt = bmp280_set_power_mode(BMP280_NORMAL_MODE, &bmp);
+    /* Check if rslt == BMP280_OK, if not, then handle accordingly */
+
+    rslt = bmp280_get_config(&conf, &bmp);
+    /* Check if rslt == BMP280_OK, if not, then handle accordingly */
+
+
+    struct bmp280_uncomp_data ucomp_data;
+    uint8_t meas_dur = bmp280_compute_meas_time(&bmp);
+
+    NRF_LOG_INFO("Measurement duration: %dms\r\n", meas_dur);
+    
+    /* Check if rslt == BMP280_OK, if not, then handle accordingly */
+
+
+}
+
+struct bmp280_data {    
+ float pressure;
+ float temp;
+};
+
+struct state {
+  float ref_pressure;
+  float pressure;
+  float altitude;
+  float raw_altitude;
+  float velocity;
+};
+
+struct bmp280_data bmp280_read(){
+
+    struct bmp280_data data;
+    struct bmp280_uncomp_data ucomp_data;
+
+    rslt = bmp280_get_uncomp_data(&ucomp_data, &bmp);
+
+    
+    double temp = bmp280_comp_temp_double(ucomp_data.uncomp_temp, &bmp);
+    double pres = bmp280_comp_pres_double(ucomp_data.uncomp_press, &bmp);
+
+    data.temp = (float) temp;
+    data.pressure = (float) pres;
+
+    return data;
+
+
+}
+
+void read_baro(void){
+
+}
+
+void update_state(void){
+
+
+}
+
 /**@brief Application main function.
  */
 int main(void)
@@ -747,7 +905,7 @@ int main(void)
     bool erase_bonds;
 
     // Initialize.
-    uart_init();
+//    uart_init();
     log_init();
     timers_init();
     buttons_leds_init(&erase_bonds);
@@ -760,23 +918,39 @@ int main(void)
     conn_params_init();
 
     // Start execution.
-    printf("\r\nUART started.\r\n");
-    NRF_LOG_INFO("Debug logging for UART over RTT started.");
+//    printf("\r\nUART started.\r\n");
+//    NRF_LOG_INFO("Debug logging for UART over RTT started.");
     advertising_start();
+    
+    spi_init();
+    bmp280_config();
 
-    nrf_drv_spi_config_t spi_config = NRF_DRV_SPI_DEFAULT_CONFIG;
-    spi_config.ss_pin   = SPI_SS_PIN;
-    spi_config.miso_pin = SPI_MISO_PIN;
-    spi_config.mosi_pin = SPI_MOSI_PIN;
-    spi_config.sck_pin  = SPI_SCK_PIN;
-    spi_config.frequency = NRF_DRV_SPI_FREQ_4M;
-    APP_ERROR_CHECK(nrf_drv_spi_init(&spi, &spi_config, spi_event_handler, NULL));
-    NRF_LOG_INFO("SPI example started.");
+    
+
+
 
     application_timers_start();
     // Enter main loop.
     for (;;)
-    {
+    {   
+
+        if (main_loop_update){
+            main_loop_update = false;
+            send_update++;
+            read_baro();
+            update_state();
+
+
+        }
+
+
+
+
+
+
+
+
+
         idle_state_handle();
     }
 }
