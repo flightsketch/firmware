@@ -51,6 +51,7 @@
 
 #include <stdint.h>
 #include <string.h>
+#include <math.h>
 #include "nordic_common.h"
 #include "nrf.h"
 #include "ble_hci.h"
@@ -735,6 +736,8 @@ static void advertising_start(void)
     APP_ERROR_CHECK(err_code);
 }
 
+struct state vehicle_state;
+
 
 void spi_event_handler(nrf_drv_spi_evt_t const * p_event,
                        void *                    p_context)
@@ -867,7 +870,9 @@ struct state {
   float pressure;
   float altitude;
   float raw_altitude;
+  float max_altitude;
   float velocity;
+  float temp;
 };
 
 struct bmp280_data bmp280_read(){
@@ -882,7 +887,7 @@ struct bmp280_data bmp280_read(){
     double pres = bmp280_comp_pres_double(ucomp_data.uncomp_press, &bmp);
 
     data.temp = (float) temp;
-    data.pressure = (float) pres;
+    data.pressure = (float) pres/1000.0;
 
     return data;
 
@@ -891,12 +896,44 @@ struct bmp280_data bmp280_read(){
 
 void read_baro(void){
 
+  struct bmp280_data data;
+  data = bmp280_read();
+  vehicle_state.pressure = data.pressure;
+  vehicle_state.temp = data.temp;
+
+  float raw_alt = 0.0;
+
+  raw_alt = data.pressure/vehicle_state.ref_pressure;
+  raw_alt = pow(raw_alt,0.190284);
+  raw_alt = 1.0 - raw_alt;
+  raw_alt = raw_alt * 145366.45;
+
+  vehicle_state.raw_altitude = raw_alt;
 }
 
 void update_state(void){
 
 
+    vehicle_state.altitude = vehicle_state.raw_altitude;
+    
+    
+    if (vehicle_state.altitude > vehicle_state.max_altitude){
+        vehicle_state.max_altitude = vehicle_state.altitude;
+    }
+
 }
+
+void vehicle_init(void){
+    vehicle_state.pressure = 101.325;
+    vehicle_state.ref_pressure = 101.325;
+    vehicle_state.altitude = 0.0;
+    vehicle_state.max_altitude = 0.0;
+    vehicle_state.raw_altitude = 0.0;
+    vehicle_state.velocity = 0.0;
+    vehicle_state.temp = 59.0;
+}
+
+
 
 /**@brief Application main function.
  */
@@ -925,6 +962,8 @@ int main(void)
     spi_init();
     bmp280_config();
 
+    vehicle_init();
+    
     
 
 
@@ -939,8 +978,7 @@ int main(void)
             send_update++;
             read_baro();
             update_state();
-
-
+            
         }
 
 
