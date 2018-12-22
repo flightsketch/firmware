@@ -112,7 +112,7 @@
 #define UART_TX_BUF_SIZE                256                                         /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE                256                                         /**< UART RX buffer size. */
 
-#define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(500)                             /**< Main loop interval (ticks). */
+#define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(20)                             /**< Main loop interval (ticks). */
 
 BLE_NUS_DEF(m_nus, NRF_SDH_BLE_TOTAL_LINK_COUNT);                                   /**< BLE NUS service instance. */
 NRF_BLE_GATT_DEF(m_gatt);                                                           /**< GATT module instance. */
@@ -142,7 +142,7 @@ static ble_uuid_t m_adv_uuids[]          =                                      
 
 bool main_loop_update = false;
 int send_update = 0;
-int send_update_int = 0;
+int send_update_int = 5;
 
 void parsePacket_typeF1(void);
 
@@ -259,7 +259,6 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
     if (p_evt->type == BLE_NUS_EVT_RX_DATA)
     {
           NRF_LOG_DEBUG("Rx Data");
-          vehicle_state.ref_pressure = 105.0;
           if (p_evt->params.rx_data.length == 4 && p_evt->params.rx_data.p_data[2] == 0){  //check if valid command packet
               //check checksum
               unsigned char chk = 0;
@@ -1056,6 +1055,9 @@ int main(void)
     bmp280_config();
 
     vehicle_init();
+    nrf_delay_ms(100);
+    read_baro();
+    vehicle_state.ref_pressure = vehicle_state.pressure;
     
     
 
