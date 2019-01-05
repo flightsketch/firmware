@@ -3021,7 +3021,7 @@
 // <4294967295=> Not connected 
 
 #ifndef SPI_SS_PIN
-#define SPI_SS_PIN 29
+#define SPI_SS_PIN NRFX_SPIM_PIN_NOT_USED
 #endif
 
 // </h> 

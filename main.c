@@ -143,6 +143,13 @@ static ble_uuid_t m_adv_uuids[]          =                                      
 bool main_loop_update = false;
 int send_update = 0;
 int send_update_int = 5;
+int save_update = 0;
+int save_update_int = 0;
+
+bool record_data = false;
+bool download_request = false;
+unsigned int file_length = 0;
+float data_time = 0;
 
 void parsePacket_typeF1(void);
 
@@ -158,6 +165,16 @@ static void main_loop_timeout_handler(void * p_context)
     main_loop_update = true;
     
 }
+
+union data_address {
+    unsigned char address_string[4];
+    unsigned int  address_int;
+};
+
+union float_bytes {
+    unsigned char float_string[4];
+    float data;
+};
 
 struct state {
   float ref_pressure;
@@ -273,7 +290,7 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
                     break;
                     case 0xF3: parsePacket_typeF3();
                     break;
-                    case 0xF4: parsePacket_typeF4();
+                    case 0xF4: download_request = true;
                     break;
                     }
               }
@@ -815,13 +832,13 @@ int8_t BMP_280_read(uint8_t dev_id, uint8_t reg_addr, uint8_t *data, uint16_t le
     tx_buffer[0] = reg_addr|SPI_READ;
     uint8_t i;
     
-
+    nrf_gpio_pin_clear(29);
     nrf_drv_spi_transfer(&spi, tx_buffer, len+1, rx_buffer, len+1);
-
+    
     while (!spi_xfer_done){
         __WFE();
     }
-
+    nrf_gpio_pin_set(29);
     for(i=0; i<len; i++){
         *(data+i) = rx_buffer[i+1];
     }
@@ -839,14 +856,135 @@ int8_t BMP_280_write(uint8_t dev_id, uint8_t reg_addr, uint8_t *data, uint16_t l
     for(i=0; i<len; i++){
         tx_buffer[i+1] = *(data+i);
     }
-
+    nrf_gpio_pin_clear(29);
     nrf_drv_spi_transfer(&spi, tx_buffer, len+1, NULL, len+1);
-
+    
     while (!spi_xfer_done){
         __WFE();
     }
-
+    nrf_gpio_pin_set(29);
     return BMP280_OK;
+}
+
+
+void write_data(unsigned int address){
+
+    spi_xfer_done = false;
+    uint8_t tx_buffer[20] = {0}; //write cmd, 3 byte address, 16 bytes data
+    uint8_t rx_buffer[20] = {0};
+    tx_buffer[0] = 0x06;
+
+    uint8_t i;
+    
+    nrf_gpio_pin_clear(9);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 1, rx_buffer, 1);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(9);
+
+    union data_address address_bytes;
+    address_bytes.address_int = address;
+
+    union float_bytes time_bytes;
+    time_bytes.data = data_time;
+    union float_bytes press_bytes;
+    press_bytes.data = vehicle_state.pressure;
+    union float_bytes alt_bytes;
+    alt_bytes.data = vehicle_state.altitude;
+    union float_bytes vel_bytes;
+    vel_bytes.data = vehicle_state.velocity;
+
+    tx_buffer[0] = 0x02;
+
+    tx_buffer[1] = address_bytes.address_string[2];
+    tx_buffer[2] = address_bytes.address_string[1];
+    tx_buffer[3] = address_bytes.address_string[0];
+
+    for (i=0; i<4; i++){
+        tx_buffer[4+i] = time_bytes.float_string[i];
+    }
+
+    for (i=0; i<4; i++){
+        tx_buffer[8+i] = press_bytes.float_string[i];
+    }
+
+    for (i=0; i<4; i++){
+        tx_buffer[12+i] = alt_bytes.float_string[i];
+    }
+
+    for (i=0; i<4; i++){
+        tx_buffer[16+i] = vel_bytes.float_string[i];
+    }
+
+    spi_xfer_done = false;
+    nrf_gpio_pin_clear(9);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 20, rx_buffer, 20);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(9);
+
+
+    file_length = file_length + 16;
+
+}
+
+float read_float(unsigned int address){
+
+    spi_xfer_done = false;
+    uint8_t tx_buffer[8] = {0}; //read cmd, 3 byte address, 4 bytes data
+    uint8_t rx_buffer[8] = {0};
+    tx_buffer[0] = 0x03;
+
+    union data_address address_bytes;
+    address_bytes.address_int = address;
+
+    union float_bytes read_bytes;
+
+    tx_buffer[1] = address_bytes.address_string[2];
+    tx_buffer[2] = address_bytes.address_string[1];
+    tx_buffer[3] = address_bytes.address_string[0];
+
+    nrf_gpio_pin_clear(9);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 8, rx_buffer, 8);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(9);
+
+    read_bytes.float_string[0] = rx_buffer[4];
+    read_bytes.float_string[1] = rx_buffer[5];
+    read_bytes.float_string[2] = rx_buffer[6];
+    read_bytes.float_string[3] = rx_buffer[7];
+
+    return read_bytes.data;
+
+}
+
+unsigned char check_flash(void){
+
+    spi_xfer_done = false;
+    uint8_t tx_buffer[6] = {0}; //read cmd, 3 byte address, 4 bytes data
+    uint8_t rx_buffer[6] = {0};
+    tx_buffer[0] = 0x90;
+
+
+    nrf_gpio_pin_clear(9);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 6, rx_buffer, 6);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(9);
+
+    return rx_buffer[4];
+
+
+
 }
 
 
@@ -969,6 +1107,55 @@ void vehicle_init(void){
     vehicle_state.temp = 59.0;
 }
 
+void send_file_header(void){
+
+    
+    unsigned char packet[9] = {0};
+    unsigned char chk = 0;
+
+    packet[0] = 0xf5;
+    packet[1] = 0x03;
+    packet[2] = 0x04;
+    packet[3] = 0xfc;
+
+    union data_address file_length_tx;
+    file_length_tx.address_int = file_length;
+
+    packet[4] = file_length_tx.address_string[0];
+    chk = packet[4];
+    packet[5] = file_length_tx.address_string[1];
+    chk = chk + packet[5];
+    packet[6] = file_length_tx.address_string[2];
+    chk = chk + packet[6];
+    packet[7] = file_length_tx.address_string[3];
+    chk = chk + packet[7];
+
+    packet[8] = chk;
+
+
+    int err_code = 0;
+    uint16_t length = 9;
+    err_code = ble_nus_data_send(&m_nus, &packet[0], &length, m_conn_handle);
+
+}
+
+void send_file_eof(void){
+
+    
+    unsigned char packet[4] = {0};
+    unsigned char chk = 0;
+
+    packet[0] = 0xf5;
+    packet[1] = 0x05;
+    packet[2] = 0x00;
+    packet[3] = 0xfa;
+
+    int err_code = 0;
+    uint16_t length = 4;
+    err_code = ble_nus_data_send(&m_nus, &packet[0], &length, m_conn_handle);
+
+}
+
 union data_packet1 {
     unsigned char data_string[17];
     struct data_struct {
@@ -1011,22 +1198,106 @@ void send_update_packet(void){
     err_code = ble_nus_data_send(&m_nus, &data_packet.data_string[0], &length, m_conn_handle);
 }
 
-void parsePacket_typeF1(void){
+void parsePacket_typeF1(void){ // set zero alt
     vehicle_state.ref_pressure = vehicle_state.pressure;
     vehicle_state.max_altitude = 0.0;
 }
 
-void parsePacket_typeF2(void){
-
+void parsePacket_typeF2(void){ // start data record
+    record_data = true;
+    file_length = 0;
+    data_time = 0.0;
 }
 
 void parsePacket_typeF3(void){
 
 }
 
-void parsePacket_typeF4(void){
+void parsePacket_typeF4(void){ // download data
+
+    send_file_header();
+
+    int num_packets = file_length / 4;
+    unsigned int i = 0;
+    unsigned char packet[9] = {0};
+    unsigned char chk = 0;
+
+    packet[0] = 0xf5;
+    packet[1] = 0x04;
+    packet[2] = 0x04;
+    packet[3] = 0xfd;
+
+    union float_bytes data;
+
+    for (i=0; i<num_packets; i++){
+        
+        
+        data.data = read_float(i*4);
+
+        packet[4] = data.float_string[0];
+        chk = packet[4];
+        packet[5] = data.float_string[1];
+        chk = chk + packet[5];
+        packet[6] = data.float_string[2];
+        chk = chk + packet[6];
+        packet[7] = data.float_string[3];
+        chk = chk + packet[7];
+
+        packet[8] = chk;
+
+
+        int err_code = 0;
+        uint16_t length = 9;
+        err_code = ble_nus_data_send(&m_nus, &packet[0], &length, m_conn_handle);
+        //APP_ERROR_CHECK(err_code);
+
+        if (err_code != NRF_SUCCESS){
+            while (err_code != NRF_SUCCESS){
+                nrf_delay_ms(5);
+                err_code = ble_nus_data_send(&m_nus, &packet[0], &length, m_conn_handle);
+                //APP_ERROR_CHECK(err_code);
+
+            }
+
+        }
+
+
+    }
+
+    send_file_eof();
 
 }
+
+void erase_data(void){
+
+    spi_xfer_done = false;
+    uint8_t tx_buffer[1] = {0};
+    uint8_t rx_buffer[1] = {0};
+    tx_buffer[0] = 0x06;
+
+    nrf_gpio_pin_clear(9);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 1, rx_buffer, 1);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(9);
+
+    tx_buffer[0] = 0xc7;
+
+
+    spi_xfer_done = false;
+    nrf_gpio_pin_clear(9);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 1, rx_buffer, 1);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(9);
+
+}
+
+
 /**@brief Application main function.
  */
 int main(void)
@@ -1037,6 +1308,8 @@ int main(void)
 //    uart_init();
     log_init();
     timers_init();
+
+
     buttons_leds_init(&erase_bonds);
     power_management_init();
     ble_stack_init();
@@ -1050,36 +1323,57 @@ int main(void)
 //    printf("\r\nUART started.\r\n");
 //    NRF_LOG_INFO("Debug logging for UART over RTT started.");
     advertising_start();
-    
+
+
+
+
+    nrf_gpio_cfg_output(29);
+    nrf_gpio_pin_set(29);
+    nrf_gpio_cfg_output(9);
+    nrf_gpio_pin_set(9);
     spi_init();
     bmp280_config();
-
+    erase_data();
     vehicle_init();
-    nrf_delay_ms(100);
+    nrf_delay_ms(20);
     read_baro();
     vehicle_state.ref_pressure = vehicle_state.pressure;
     
     
-
-
-
     application_timers_start();
+
+
+
     // Enter main loop.
-    for (;;)
-    {   
+    while(1){   
+
+        if (download_request){
+            download_request = false;
+            parsePacket_typeF4();
+        }
 
         if (main_loop_update){
             main_loop_update = false;
             send_update++;
+            save_update++;
             read_baro();
             update_state();
 
             if (send_update > send_update_int){
+                NRF_LOG_INFO("send update");
                 send_update = 0;
                 send_update_packet();
+            }
 
+
+            if (record_data){
+                if (save_update > save_update_int){
+                    save_update = 0;
+                    write_data(file_length);
+                }
 
             }
+
         }
 
 
