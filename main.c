@@ -112,7 +112,11 @@
 #define UART_TX_BUF_SIZE                256                                         /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE                256                                         /**< UART RX buffer size. */
 
-#define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(20)                             /**< Main loop interval (ticks). */
+#define MAIN_LOOP_PERIOD                20
+
+#define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(MAIN_LOOP_PERIOD)                /**< Main loop interval (ticks). */
+
+float dt = MAIN_LOOP_PERIOD/1000.0;
 
 BLE_NUS_DEF(m_nus, NRF_SDH_BLE_TOTAL_LINK_COUNT);                                   /**< BLE NUS service instance. */
 NRF_BLE_GATT_DEF(m_gatt);                                                           /**< GATT module instance. */
@@ -145,6 +149,19 @@ int send_update = 0;
 int send_update_int = 5;
 int save_update = 0;
 int save_update_int = 0;
+float log_dt = 0.0;
+
+float E = 0.0;
+
+float K1 = 0.097128094515918;
+float K2 = 0.248046634941573;
+float K3 = 0.316731906522445;
+
+float t1;
+float t2;
+
+
+
 
 bool record_data = false;
 bool download_request = false;
@@ -184,6 +201,7 @@ struct state {
   float max_altitude;
   float velocity;
   float max_velocity;
+  float acceleration;
   float temp;
 };
 
@@ -929,6 +947,7 @@ void write_data(unsigned int address){
 
 
     file_length = file_length + 16;
+    data_time = data_time + log_dt;
 
 }
 
@@ -1086,8 +1105,16 @@ void read_baro(void){
 
 void update_state(void){
 
+    
 
-    vehicle_state.altitude = vehicle_state.raw_altitude;
+    vehicle_state.altitude = vehicle_state.altitude + t1*vehicle_state.velocity + t2*vehicle_state.acceleration;
+    vehicle_state.velocity = vehicle_state.velocity + t1*vehicle_state.acceleration;
+    
+    E = vehicle_state.raw_altitude - vehicle_state.altitude;
+    
+    vehicle_state.altitude = vehicle_state.altitude + K1 * E;
+    vehicle_state.velocity = vehicle_state.velocity + K2 * E;
+    vehicle_state.acceleration = vehicle_state.acceleration + K3 * E;
     
     
     if (vehicle_state.altitude > vehicle_state.max_altitude){
@@ -1104,6 +1131,7 @@ void vehicle_init(void){
     vehicle_state.raw_altitude = 0.0;
     vehicle_state.velocity = 0.0;
     vehicle_state.max_velocity = 0.0;
+    vehicle_state.acceleration = 0.0;
     vehicle_state.temp = 59.0;
 }
 
@@ -1338,6 +1366,9 @@ int main(void)
     nrf_delay_ms(20);
     read_baro();
     vehicle_state.ref_pressure = vehicle_state.pressure;
+    log_dt = dt*((float) (save_update_int + 1));
+    t1 = dt;
+    t2 = 0.5*dt*dt;
     
     
     application_timers_start();
