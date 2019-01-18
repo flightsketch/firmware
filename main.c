@@ -161,7 +161,7 @@ float t1;
 float t2;
 
 
-
+bool arm_request = false;
 
 bool record_data = false;
 bool download_request = false;
@@ -1006,6 +1006,35 @@ unsigned char check_flash(void){
 
 }
 
+void erase_data(void){
+
+    spi_xfer_done = false;
+    uint8_t tx_buffer[1] = {0};
+    uint8_t rx_buffer[1] = {0};
+    tx_buffer[0] = 0x06;
+
+    nrf_gpio_pin_clear(9);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 1, rx_buffer, 1);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(9);
+
+    tx_buffer[0] = 0xc7;
+
+
+    spi_xfer_done = false;
+    nrf_gpio_pin_clear(9);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 1, rx_buffer, 1);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(9);
+
+}
+
 
 int8_t rslt;
 struct bmp280_dev bmp;
@@ -1227,15 +1256,27 @@ void send_update_packet(void){
 }
 
 void parsePacket_typeF1(void){ // set zero alt
-    vehicle_state.ref_pressure = vehicle_state.pressure;
-    vehicle_state.max_altitude = 0.0;
+    arm_request = true;
+
+    
+    
 }
 
-void parsePacket_typeF2(void){ // start data record
+
+void start_data_recording(void){
+
     record_data = true;
     file_length = 0;
     data_time = 0.0;
+
 }
+
+
+void parsePacket_typeF2(void){ // start data record
+    start_data_recording();
+}
+
+
 
 void parsePacket_typeF3(void){
 
@@ -1296,34 +1337,20 @@ void parsePacket_typeF4(void){ // download data
 
 }
 
-void erase_data(void){
+void arm_system(void){
+    record_data = false;
+    erase_data();
+    vehicle_init();
+    nrf_delay_ms(20);
+    read_baro();
+    vehicle_state.ref_pressure = vehicle_state.pressure;
+    file_length = 0;
+    data_time = 0.0;
 
-    spi_xfer_done = false;
-    uint8_t tx_buffer[1] = {0};
-    uint8_t rx_buffer[1] = {0};
-    tx_buffer[0] = 0x06;
-
-    nrf_gpio_pin_clear(9);
-    nrf_drv_spi_transfer(&spi, tx_buffer, 1, rx_buffer, 1);
-    
-    while (!spi_xfer_done){
-        __WFE();
-    }
-    nrf_gpio_pin_set(9);
-
-    tx_buffer[0] = 0xc7;
-
-
-    spi_xfer_done = false;
-    nrf_gpio_pin_clear(9);
-    nrf_drv_spi_transfer(&spi, tx_buffer, 1, rx_buffer, 1);
-    
-    while (!spi_xfer_done){
-        __WFE();
-    }
-    nrf_gpio_pin_set(9);
 
 }
+
+
 
 
 /**@brief Application main function.
@@ -1351,7 +1378,8 @@ int main(void)
 //    printf("\r\nUART started.\r\n");
 //    NRF_LOG_INFO("Debug logging for UART over RTT started.");
     advertising_start();
-
+    uint32_t result = 0;
+    result = sd_ble_gap_tx_power_set(BLE_GAP_TX_POWER_ROLE_ADV,0,4);
 
 
 
@@ -1383,8 +1411,22 @@ int main(void)
             parsePacket_typeF4();
         }
 
+        if (arm_request){
+            arm_request = false;
+            arm_system();
+        }
+
         if (main_loop_update){
             main_loop_update = false;
+
+            if ((vehicle_state.velocity > 5.0) && (!record_data) && (file_length == 0)){
+                start_data_recording();
+            }
+
+            if (data_time > 120.0){
+                record_data = false;
+            }
+
             send_update++;
             save_update++;
             read_baro();
