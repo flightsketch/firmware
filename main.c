@@ -74,6 +74,8 @@
 #include "nrf_gpio.h"
 #include "nrf_delay.h"
 
+#include "nrf_drv_saadc.h"
+
 #include "bmp280_driver/bmp280.h"
 #include "bmp280_config.h"
 
@@ -90,12 +92,12 @@
 
 #define APP_BLE_CONN_CFG_TAG            1                                           /**< A tag identifying the SoftDevice BLE configuration. */
 
-#define DEVICE_NAME                     "FlightSketch"                               /**< Name of device. Will be included in the advertising data. */
+//#define DEVICE_NAME                     "FlightSketch"                               /**< Name of device. Will be included in the advertising data. */
 #define NUS_SERVICE_UUID_TYPE           BLE_UUID_TYPE_VENDOR_BEGIN                  /**< UUID type for the Nordic UART Service (vendor specific). */
 
 #define APP_BLE_OBSERVER_PRIO           3                                           /**< Application's BLE observer priority. You shouldn't need to modify this value. */
 
-#define APP_ADV_INTERVAL                64                                          /**< The advertising interval (in units of 0.625 ms. This value corresponds to 40 ms). */
+#define APP_ADV_INTERVAL                320                                          /**< The advertising interval (in units of 0.625 ms. This value corresponds to 40 ms). */
 
 #define APP_ADV_DURATION                0                                       /**< The advertising duration (180 seconds) in units of 10 milliseconds. */
 
@@ -143,6 +145,8 @@ static ble_uuid_t m_adv_uuids[]          =                                      
 {
     {BLE_UUID_NUS_SERVICE, NUS_SERVICE_UUID_TYPE}
 };
+
+char DEVICE_NAME[24];
 
 bool main_loop_update = false;
 int send_update = 0;
@@ -817,6 +821,81 @@ static void advertising_start(void)
     APP_ERROR_CHECK(err_code);
 }
 
+// Input range of internal Vdd measurement = (0.6 V)/(1/6) = 3.6 V
+// 3.0 volts -> 14486 ADC counts with 14-bit sampling: 4828.8 counts per volt
+#define ADC12_COUNTS_PER_VOLT 4551
+
+/**
+ * @brief Function for 14-bit adc init in polled mode
+ */
+void Adc12bitPolledInitialise(void)
+{
+    uint32_t timeout = 10;
+    nrf_saadc_channel_config_t myConfig =
+    {
+        .resistor_p = NRF_SAADC_RESISTOR_DISABLED,
+        .resistor_n = NRF_SAADC_RESISTOR_DISABLED,
+        .gain       = NRF_SAADC_GAIN1_6,
+        .reference  = NRF_SAADC_REFERENCE_INTERNAL,
+        .acq_time   = NRF_SAADC_ACQTIME_40US,
+        .mode       = NRF_SAADC_MODE_SINGLE_ENDED,
+        .burst      = NRF_SAADC_BURST_ENABLED,
+        .pin_p      = NRF_SAADC_INPUT_VDD,
+        .pin_n      = NRF_SAADC_INPUT_DISABLED
+    };
+
+    nrf_saadc_resolution_set((nrf_saadc_resolution_t) 3);   // 3 is 14-bit
+    nrf_saadc_oversample_set((nrf_saadc_oversample_t) 2);   // 2 is 4x, about 150uSecs total
+    nrf_saadc_int_disable(NRF_SAADC_INT_ALL);
+    nrf_saadc_event_clear(NRF_SAADC_EVENT_END);
+    nrf_saadc_event_clear(NRF_SAADC_EVENT_STARTED);
+    nrf_saadc_enable();
+
+    NRF_SAADC->CH[1].CONFIG =
+              ((myConfig.resistor_p << SAADC_CH_CONFIG_RESP_Pos)   & SAADC_CH_CONFIG_RESP_Msk)
+            | ((myConfig.resistor_n << SAADC_CH_CONFIG_RESN_Pos)   & SAADC_CH_CONFIG_RESN_Msk)
+            | ((myConfig.gain       << SAADC_CH_CONFIG_GAIN_Pos)   & SAADC_CH_CONFIG_GAIN_Msk)
+            | ((myConfig.reference  << SAADC_CH_CONFIG_REFSEL_Pos) & SAADC_CH_CONFIG_REFSEL_Msk)
+            | ((myConfig.acq_time   << SAADC_CH_CONFIG_TACQ_Pos)   & SAADC_CH_CONFIG_TACQ_Msk)
+            | ((myConfig.mode       << SAADC_CH_CONFIG_MODE_Pos)   & SAADC_CH_CONFIG_MODE_Msk)
+            | ((myConfig.burst      << SAADC_CH_CONFIG_BURST_Pos)  & SAADC_CH_CONFIG_BURST_Msk);
+
+    NRF_SAADC->CH[1].PSELN = myConfig.pin_n;
+    NRF_SAADC->CH[1].PSELP = myConfig.pin_p;
+}
+
+/**
+ * @brief Function for 14-bit adc battery voltage by direct blocking reading
+ */
+uint16_t GetBatteryVoltage1(void)
+{
+    uint16_t result = 9999;         // Some recognisable dummy value
+    uint32_t timeout = 10000;       // Trial and error
+    volatile int16_t buffer[8];
+    // Enable command
+    nrf_saadc_enable();
+    NRF_SAADC->RESULT.PTR = (uint32_t)buffer;
+    NRF_SAADC->RESULT.MAXCNT = 1;
+    nrf_saadc_event_clear(NRF_SAADC_EVENT_END);
+    nrf_saadc_task_trigger(NRF_SAADC_TASK_START);
+    nrf_saadc_task_trigger(NRF_SAADC_TASK_SAMPLE);
+
+    while (0 == nrf_saadc_event_check(NRF_SAADC_EVENT_END) && timeout > 0)
+    {
+        timeout--;
+    }
+    nrf_saadc_task_trigger(NRF_SAADC_TASK_STOP);
+    nrf_saadc_event_clear(NRF_SAADC_EVENT_STARTED);
+    nrf_saadc_event_clear(NRF_SAADC_EVENT_END);
+    // Disable command to reduce power consumption
+    nrf_saadc_disable();
+    if (timeout != 0)
+    {
+        result = ((buffer[0] * 1000L)+(ADC12_COUNTS_PER_VOLT/2)) / ADC12_COUNTS_PER_VOLT;
+    }
+    return result;
+}
+
 
 
 
@@ -1399,6 +1478,29 @@ int main(void)
     log_init();
     timers_init();
 
+    uint64_t dev_id = *((uint64_t*) NRF_FICR->DEVICEADDR);
+    char dev_str[10];
+    sprintf(dev_str, "%d", dev_id);
+
+    strncpy(DEVICE_NAME, "FlightSketch--", 14);
+    DEVICE_NAME[14] = dev_str[0];
+    DEVICE_NAME[15] = dev_str[1];
+    DEVICE_NAME[16] = dev_str[2];
+    DEVICE_NAME[17] = dev_str[3];
+    DEVICE_NAME[18] = dev_str[4];
+    DEVICE_NAME[19] = dev_str[5];
+    DEVICE_NAME[20] = dev_str[6];
+    DEVICE_NAME[21] = dev_str[7];
+    DEVICE_NAME[22] = dev_str[8];
+    DEVICE_NAME[23] = dev_str[9];
+    DEVICE_NAME[24] = dev_str[10];
+
+
+    Adc12bitPolledInitialise();
+    uint16_t batt_v;
+    bool batt_read = false;
+    batt_v = GetBatteryVoltage1();
+    batt_read = true;
 
     buttons_leds_init(&erase_bonds);
     power_management_init();
