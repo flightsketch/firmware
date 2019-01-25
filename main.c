@@ -168,6 +168,8 @@ bool download_request = false;
 unsigned int file_length = 0;
 float data_time = 0;
 
+bool baro_error = false;
+
 void parsePacket_typeF1(void);
 
 void parsePacket_typeF2(void);
@@ -1101,14 +1103,45 @@ struct bmp280_data bmp280_read(){
     struct bmp280_data data;
     struct bmp280_uncomp_data ucomp_data;
 
-    rslt = bmp280_get_uncomp_data(&ucomp_data, &bmp);
-
+    spi_xfer_done = false;
+    uint8_t tx_buffer[2] = {0};
+    uint8_t rx_buffer[2] = {0};
+    tx_buffer[0] = 0xD0;
+    tx_buffer[1] = 0xF5;
     
-    double temp = bmp280_comp_temp_double(ucomp_data.uncomp_temp, &bmp);
-    double pres = bmp280_comp_pres_double(ucomp_data.uncomp_press, &bmp);
+    nrf_gpio_pin_clear(29);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 2, rx_buffer, 2);
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(29);
 
-    data.temp = (float) temp;
-    data.pressure = (float) pres/1000.0;
+    if (rx_buffer[1] == 0x58){
+
+        rslt = bmp280_get_uncomp_data(&ucomp_data, &bmp);
+        
+        double temp = bmp280_comp_temp_double(ucomp_data.uncomp_temp, &bmp);
+        double pres = bmp280_comp_pres_double(ucomp_data.uncomp_press, &bmp);
+
+        data.temp = (float) temp;
+        data.pressure = (float) pres/1000.0;
+    }
+    else {
+        spi_xfer_done = false;
+        tx_buffer[0] = 0x60;
+        tx_buffer[1] = 0xB6;
+
+        nrf_gpio_pin_clear(29);
+        nrf_drv_spi_transfer(&spi, tx_buffer, 2, rx_buffer, 2);
+        while (!spi_xfer_done){
+            __WFE();
+        }
+        nrf_gpio_pin_set(29);
+
+        baro_error = true;
+        data.temp = -999.999;
+        data.pressure = -999.999;
+    }
 
     return data;
 
@@ -1139,15 +1172,17 @@ void update_state(void){
     vehicle_state.altitude = vehicle_state.altitude + t1*vehicle_state.velocity + t2*vehicle_state.acceleration;
     vehicle_state.velocity = vehicle_state.velocity + t1*vehicle_state.acceleration;
     
-    E = vehicle_state.raw_altitude - vehicle_state.altitude;
+    if (!baro_error){
+        E = vehicle_state.raw_altitude - vehicle_state.altitude;
     
-    vehicle_state.altitude = vehicle_state.altitude + K1 * E;
-    vehicle_state.velocity = vehicle_state.velocity + K2 * E;
-    vehicle_state.acceleration = vehicle_state.acceleration + K3 * E;
+        vehicle_state.altitude = vehicle_state.altitude + K1 * E;
+        vehicle_state.velocity = vehicle_state.velocity + K2 * E;
+        vehicle_state.acceleration = vehicle_state.acceleration + K3 * E;
     
     
-    if (vehicle_state.altitude > vehicle_state.max_altitude){
-        vehicle_state.max_altitude = vehicle_state.altitude;
+        if (vehicle_state.altitude > vehicle_state.max_altitude){
+            vehicle_state.max_altitude = vehicle_state.altitude;
+        }
     }
 
 }
@@ -1381,6 +1416,7 @@ int main(void)
     uint32_t result = 0;
     result = sd_ble_gap_tx_power_set(BLE_GAP_TX_POWER_ROLE_ADV,0,4);
 
+    
 
 
     nrf_gpio_cfg_output(29);
@@ -1391,6 +1427,7 @@ int main(void)
     bmp280_config();
     erase_data();
     vehicle_init();
+    vehicle_state.max_altitude = 9900.0;
     nrf_delay_ms(20);
     read_baro();
     vehicle_state.ref_pressure = vehicle_state.pressure;
@@ -1430,6 +1467,9 @@ int main(void)
             send_update++;
             save_update++;
             read_baro();
+            if (baro_error){
+                vehicle_state.max_altitude = vehicle_state.max_altitude + 1.0;
+            }
             update_state();
 
             if (send_update > send_update_int){
