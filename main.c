@@ -1408,6 +1408,7 @@ void start_data_recording(void){
 
 void parsePacket_typeF2(void){ // start data record
     start_data_recording();
+    armedForLaunch = false;
 }
 
 
