@@ -150,9 +150,11 @@ char DEVICE_NAME[24];
 
 bool main_loop_update = false;
 int send_update = 0;
-int send_update_int = 5;
+int send_update_int = 10;
 int save_update = 0;
 int save_update_int = 0;
+int batt_update = 0;
+int batt_update_int = 250;
 float log_dt = 0.0;
 
 float E = 0.0;
@@ -166,6 +168,7 @@ float t2;
 
 
 bool arm_request = false;
+bool armedForLaunch = false;
 
 bool record_data = false;
 bool download_request = false;
@@ -210,6 +213,23 @@ struct state {
   float acceleration;
   float temp;
 };
+
+struct status {
+  bool isArmedForLaunch: 1;
+  bool isRecording: 1;
+
+
+};
+
+
+union status_bytes {
+
+  struct status status;
+  unsigned char   bytes[1];
+
+};
+
+
 
 struct state vehicle_state;
 
@@ -1449,6 +1469,8 @@ void parsePacket_typeF4(void){ // download data
 
     send_file_eof();
 
+    
+
 }
 
 void arm_system(void){
@@ -1460,7 +1482,63 @@ void arm_system(void){
     vehicle_state.ref_pressure = vehicle_state.pressure;
     file_length = 0;
     data_time = 0.0;
+    armedForLaunch = true;
 
+
+}
+
+void update_batt(void){
+    unsigned char packet[7] = {0};
+    unsigned char chk = 0;
+
+    packet[0] = 0xf5;
+    packet[1] = 0x02;
+    packet[2] = 0x02;
+    packet[3] = 0xf9;
+
+    uint16_t batt_v;
+    batt_v = GetBatteryVoltage1();
+
+    packet[5] = batt_v >> 8;
+    packet[4] = batt_v;
+
+    chk = packet[4];
+    chk = chk + packet[5];
+
+    packet[6] = chk;
+
+    int err_code = 0;
+    uint16_t length = 7;
+    err_code = ble_nus_data_send(&m_nus, &packet[0], &length, m_conn_handle);
+
+
+
+}
+
+void send_status_packet(){
+
+    struct status status;
+    status.isRecording = record_data;
+    status.isArmedForLaunch = armedForLaunch;
+
+    union status_bytes status_bytes;
+
+    status_bytes.status = status;
+
+    unsigned char packet[6] = {0};
+    unsigned char chk = 0;
+
+    packet[0] = 0xf5;
+    packet[1] = 0x06;
+    packet[2] = 0x01;
+    packet[3] = 0xfc;
+
+    packet[4] = status_bytes.bytes[0];
+    packet[5] = status_bytes.bytes[0];
+
+    int err_code = 0;
+    uint16_t length = 6;
+    err_code = ble_nus_data_send(&m_nus, &packet[0], &length, m_conn_handle);
 
 }
 
@@ -1559,6 +1637,7 @@ int main(void)
             main_loop_update = false;
 
             if ((vehicle_state.velocity > 5.0) && (!record_data) && (file_length == 0)){
+                armedForLaunch = false;
                 start_data_recording();
             }
 
@@ -1568,6 +1647,7 @@ int main(void)
 
             send_update++;
             save_update++;
+            batt_update++;
             read_baro();
             if (baro_error){
                 vehicle_state.max_altitude = vehicle_state.max_altitude + 1.0;
@@ -1578,6 +1658,7 @@ int main(void)
                 NRF_LOG_INFO("send update");
                 send_update = 0;
                 send_update_packet();
+                send_status_packet();
             }
 
 
@@ -1587,6 +1668,11 @@ int main(void)
                     write_data(file_length);
                 }
 
+            }
+
+            if (batt_update > batt_update_int){
+                batt_update = 0;
+                update_batt();
             }
 
         }
