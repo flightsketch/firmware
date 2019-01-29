@@ -114,7 +114,7 @@
 #define UART_TX_BUF_SIZE                256                                         /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE                256                                         /**< UART RX buffer size. */
 
-#define MAIN_LOOP_PERIOD                20
+#define MAIN_LOOP_PERIOD                50
 
 #define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(MAIN_LOOP_PERIOD)                /**< Main loop interval (ticks). */
 
@@ -150,7 +150,7 @@ char DEVICE_NAME[24];
 
 bool main_loop_update = false;
 int send_update = 0;
-int send_update_int = 10;
+int send_update_int = 5;
 int save_update = 0;
 int save_update_int = 0;
 int batt_update = 0;
@@ -159,9 +159,9 @@ float log_dt = 0.0;
 
 float E = 0.0;
 
-float K1 = 0.097128094515918;
-float K2 = 0.248046634941573;
-float K3 = 0.316731906522445;
+float K1 = 0.333342717642739;
+float K2 = 1.347024557082872;
+float K3 = 2.721636114050315;
 
 float t1;
 float t2;
@@ -1166,15 +1166,15 @@ void bmp280_config(void){
 
     /* Overwrite the desired settings */
     conf.filter = BMP280_FILTER_COEFF_2;
-    conf.os_pres = BMP280_OS_8X;
-    conf.os_temp = BMP280_OS_1X;
+    conf.os_pres = BMP280_OS_16X;
+    conf.os_temp = BMP280_OS_2X;
     conf.odr = BMP280_ODR_0_5_MS;
 
     rslt = bmp280_set_config(&conf, &bmp);
     /* Check if rslt == BMP280_OK, if not, then handle accordingly */
 
     /* Always set the power mode after setting the configuration */
-    rslt = bmp280_set_power_mode(BMP280_NORMAL_MODE, &bmp);
+    rslt = bmp280_set_power_mode(BMP280_FORCED_MODE, &bmp);
     /* Check if rslt == BMP280_OK, if not, then handle accordingly */
 
     rslt = bmp280_get_config(&conf, &bmp);
@@ -1242,6 +1242,9 @@ struct bmp280_data bmp280_read(){
         data.pressure = -999.999;
     }
 
+    rslt = bmp280_set_power_mode(BMP280_FORCED_MODE, &bmp);
+    /* Check if rslt == BMP280_OK, if not, then handle accordingly */
+
     return data;
 
 
@@ -1296,6 +1299,15 @@ void vehicle_init(void){
     vehicle_state.max_velocity = 0.0;
     vehicle_state.acceleration = 0.0;
     vehicle_state.temp = 59.0;
+}
+
+void vehicle_reset(void){
+    vehicle_state.altitude = 0.0;
+    vehicle_state.max_altitude = 0.0;
+    vehicle_state.raw_altitude = 0.0;
+    vehicle_state.velocity = 0.0;
+    vehicle_state.max_velocity = 0.0;
+    vehicle_state.acceleration = 0.0;
 }
 
 void send_file_header(void){
@@ -1475,15 +1487,21 @@ void parsePacket_typeF4(void){ // download data
 }
 
 void arm_system(void){
+
+    float currentP = vehicle_state.pressure;
     record_data = false;
     erase_data();
-    vehicle_init();
-    nrf_delay_ms(20);
-    read_baro();
-    vehicle_state.ref_pressure = vehicle_state.pressure;
+//    nrf_delay_ms(MAIN_LOOP_PERIOD);
+//    read_baro();
+    vehicle_reset();
+//    nrf_delay_ms(MAIN_LOOP_PERIOD);
+//    read_baro();
+    vehicle_state.ref_pressure = currentP;
+//    vehicle_state.raw_altitude = 0.0;
     file_length = 0;
     data_time = 0.0;
     armedForLaunch = true;
+//    nrf_delay_ms(MAIN_LOOP_PERIOD);
 
 
 }
@@ -1559,7 +1577,7 @@ int main(void)
 
     uint64_t dev_id = *((uint64_t*) NRF_FICR->DEVICEADDR);
     char dev_str[10];
-    sprintf(dev_str, "%d", dev_id);
+    sprintf(dev_str, "%i", dev_id);
 
     strncpy(DEVICE_NAME, "FlightSketch--", 14);
     DEVICE_NAME[14] = dev_str[0];
@@ -1609,8 +1627,9 @@ int main(void)
     erase_data();
     vehicle_init();
     vehicle_state.max_altitude = 9900.0;
-    nrf_delay_ms(20);
+    nrf_delay_ms(100);
     read_baro();
+    nrf_delay_ms(100);
     vehicle_state.ref_pressure = vehicle_state.pressure;
     log_dt = dt*((float) (save_update_int + 1));
     t1 = dt;
