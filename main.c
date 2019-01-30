@@ -1690,7 +1690,7 @@ int main(void)
         if (main_loop_update){
             main_loop_update = false;
 
-            if ((vehicle_state.velocity > 5.0) && (!record_data) && (file_length == 0)){
+            if ((vehicle_state.velocity > 30.0) && (vehicle_state.altitude > 10.0) && (!record_data) && (file_length == 0)){
                 armedForLaunch = false;
                 start_data_recording();
             }
