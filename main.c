@@ -176,6 +176,7 @@ bool arm_request = false;
 bool armedForLaunch = false;
 
 bool armedForLanding = false;
+float minLandingTime = 30.0;
 bool landed = false;
 
 bool record_data = false;
@@ -1306,9 +1307,10 @@ void update_state(void){
 
     if (!armedForLanding && (vehicle_state.velocity_filt < -2.0)) {
         armedForLanding = true;
+        minLandingTime = data_time + 15.0;
     }
 
-    if (armedForLanding && (vehicle_state.velocity_filt > -2.0)) {
+    if (armedForLanding && (vehicle_state.velocity_filt > -2.0) && (data_time > minLandingTime)) {
         landed = true;
     }
         
