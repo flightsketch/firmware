@@ -159,16 +159,24 @@ float log_dt = 0.0;
 
 float E = 0.0;
 
-float K1 = 0.333342717642739;
-float K2 = 1.347024557082872;
-float K3 = 2.721636114050315;
+float K1 = 0.582527652274102;
+float K2 = 5.009213841872159;
+float K3 = 21.537366694651560;
 
 float t1;
 float t2;
 
+float araw_last = 0.0;
+float vinst = 0.0;
+float vinst_last = 0.0;
+float ainst = 0.0;
+
 
 bool arm_request = false;
 bool armedForLaunch = false;
+
+bool armedForLanding = false;
+bool landed = false;
 
 bool record_data = false;
 bool download_request = false;
@@ -209,6 +217,7 @@ struct state {
   float raw_altitude;
   float max_altitude;
   float velocity;
+  float velocity_filt;
   float max_velocity;
   float acceleration;
   float temp;
@@ -1273,8 +1282,14 @@ void update_state(void){
 
     vehicle_state.altitude = vehicle_state.altitude + t1*vehicle_state.velocity + t2*vehicle_state.acceleration;
     vehicle_state.velocity = vehicle_state.velocity + t1*vehicle_state.acceleration;
+
+    vinst = (vehicle_state.raw_altitude - araw_last) / dt;
+    ainst = (vinst - vinst_last) / dt;
+
+    vinst_last = vinst;
+    araw_last = vehicle_state.raw_altitude;
     
-    if (!baro_error){
+    if (!baro_error && (abs(ainst) < 3200.0)){
         E = vehicle_state.raw_altitude - vehicle_state.altitude;
     
         vehicle_state.altitude = vehicle_state.altitude + K1 * E;
@@ -1287,6 +1302,17 @@ void update_state(void){
         }
     }
 
+    vehicle_state.velocity_filt = (vehicle_state.velocity_filt * (20.0 - 1.0) + vehicle_state.velocity) / 20.0;
+
+    if (!armedForLanding && (vehicle_state.velocity_filt < -2.0)) {
+        armedForLanding = true;
+    }
+
+    if (armedForLanding && (vehicle_state.velocity_filt > -2.0)) {
+        landed = true;
+    }
+        
+
 }
 
 void vehicle_init(void){
@@ -1296,6 +1322,7 @@ void vehicle_init(void){
     vehicle_state.max_altitude = 0.0;
     vehicle_state.raw_altitude = 0.0;
     vehicle_state.velocity = 0.0;
+    vehicle_state.velocity_filt = 0.0;
     vehicle_state.max_velocity = 0.0;
     vehicle_state.acceleration = 0.0;
     vehicle_state.temp = 59.0;
@@ -1306,6 +1333,7 @@ void vehicle_reset(void){
     vehicle_state.max_altitude = 0.0;
     vehicle_state.raw_altitude = 0.0;
     vehicle_state.velocity = 0.0;
+    vehicle_state.velocity_filt = 0.0;
     vehicle_state.max_velocity = 0.0;
     vehicle_state.acceleration = 0.0;
 }
@@ -1501,6 +1529,8 @@ void arm_system(void){
     file_length = 0;
     data_time = 0.0;
     armedForLaunch = true;
+    armedForLanding = false;
+    landed = false;
 //    nrf_delay_ms(MAIN_LOOP_PERIOD);
 
 
@@ -1634,6 +1664,8 @@ int main(void)
     log_dt = dt*((float) (save_update_int + 1));
     t1 = dt;
     t2 = 0.5*dt*dt;
+
+    
     
     
     application_timers_start();
@@ -1662,6 +1694,10 @@ int main(void)
             }
 
             if (data_time > 120.0){
+                record_data = false;
+            }
+
+            if (landed) {
                 record_data = false;
             }
 
