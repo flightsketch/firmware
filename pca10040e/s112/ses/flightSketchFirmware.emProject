@@ -97,6 +97,7 @@
       <file file_name="../config/sdk_config.h" />
       <file file_name="../../../bmp280_driver/bmp280.c" />
       <file file_name="../../../bmp280_config.c" />
+      <file file_name="../../../bmp388_driver/bmp3.c" />
     </folder>
     <folder Name="nRF_Segger_RTT">
       <file file_name="../../../../../../external/segger_rtt/SEGGER_RTT.c" />

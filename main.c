@@ -79,6 +79,10 @@
 #include "bmp280_driver/bmp280.h"
 #include "bmp280_config.h"
 
+#include "bmp388_driver/bmp3.h"
+
+
+
 #if defined (UART_PRESENT)
 #include "nrf_uart.h"
 #endif
@@ -114,9 +118,11 @@
 #define UART_TX_BUF_SIZE                256                                         /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE                256                                         /**< UART RX buffer size. */
 
-#define MAIN_LOOP_PERIOD                50
+#define MAIN_LOOP_PERIOD                20
 
 #define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(MAIN_LOOP_PERIOD)                /**< Main loop interval (ticks). */
+
+
 
 float dt = MAIN_LOOP_PERIOD/1000.0;
 
@@ -159,9 +165,9 @@ float log_dt = 0.0;
 
 float E = 0.0;
 
-float K1 = 0.582527652274102;
-float K2 = 5.009213841872159;
-float K3 = 21.537366694651560;
+float K1 = 0.184822298668755;
+float K2 = 0.943386420345901;
+float K3 = 2.407658449503717;
 
 float t1;
 float t2;
@@ -1150,6 +1156,8 @@ void erase_data(void){
 int8_t rslt;
 struct bmp280_dev bmp;
 
+struct bmp3_dev bmp388;
+
 void bmp280_config(void){
 
         /* Sensor interface over SPI with native chip select line */
@@ -1175,9 +1183,9 @@ void bmp280_config(void){
     /* Check if rslt == BMP280_OK, if not, then handle accordingly */
 
     /* Overwrite the desired settings */
-    conf.filter = BMP280_FILTER_COEFF_2;
-    conf.os_pres = BMP280_OS_16X;
-    conf.os_temp = BMP280_OS_2X;
+    conf.filter = BMP280_FILTER_OFF;
+    conf.os_pres = BMP280_OS_8X;
+    conf.os_temp = BMP280_OS_1X;
     conf.odr = BMP280_ODR_0_5_MS;
 
     rslt = bmp280_set_config(&conf, &bmp);
@@ -1206,6 +1214,10 @@ struct bmp280_data {
  float temp;
 };
 
+struct bmp388_data {    
+ float pressure;
+ float temp;
+};
 
 struct bmp280_data bmp280_read(){
 
@@ -1260,10 +1272,42 @@ struct bmp280_data bmp280_read(){
 
 }
 
+
+struct bmp388_data bmp388_read()
+{
+    struct bmp388_data data;
+
+    int8_t rslt;
+    /* Variable used to select the sensor component */
+    uint8_t sensor_comp;
+    /* Variable used to store the compensated data */
+    struct bmp3_data data_read;
+
+    /* Sensor component selection */
+    sensor_comp = BMP3_PRESS | BMP3_TEMP;
+    /* Temperature and Pressure data are read and stored in the bmp3_data instance */
+    rslt = bmp3_get_sensor_data(sensor_comp, &data_read, &bmp388);
+
+    /* Print the temperature and pressure data */
+    //NRF_LOG_INFO("Temperature\t Pressure\t\n");
+    //NRF_LOG_INFO("%0.2f\t\t %0.2f\t\t\n",data.temperature, data.pressure);
+
+    data.pressure = (float) data_read.pressure/1000.0;
+    data.temp = (float) data_read.temperature;
+
+    rslt = bmp3_set_op_mode(&bmp388);
+
+    return data;
+}
+
 void read_baro(void){
 
-  struct bmp280_data data;
-  data = bmp280_read();
+  //struct bmp280_data data;
+  //data = bmp280_read();
+
+  struct bmp388_data data;
+  data = bmp388_read();
+
   vehicle_state.pressure = data.pressure;
   vehicle_state.temp = data.temp;
 
@@ -1593,6 +1637,32 @@ void send_status_packet(){
 
 }
 
+int8_t bmp388_set_forced_mode_with_osr(struct bmp3_dev *dev)
+{
+    int8_t rslt;
+    /* Used to select the settings user needs to change */
+    uint16_t settings_sel;
+
+    /* Select the pressure and temperature sensor to be enabled */
+    dev->settings.press_en = BMP3_ENABLE;
+    dev->settings.temp_en = BMP3_ENABLE;
+    /* Select the oversampling settings for pressure and temperature */
+    dev->settings.odr_filter.press_os = BMP3_OVERSAMPLING_8X;
+    dev->settings.odr_filter.temp_os = BMP3_NO_OVERSAMPLING;
+    /* Assign the settings which needs to be set in the sensor */
+    settings_sel = BMP3_PRESS_EN_SEL | BMP3_TEMP_EN_SEL | BMP3_PRESS_OS_SEL | BMP3_TEMP_OS_SEL;
+    /* Write the settings in the sensor */
+    rslt = bmp3_set_sensor_settings(settings_sel, dev);
+
+    /* Select the power mode */
+    dev->settings.op_mode = BMP3_FORCED_MODE;
+    /* Set the power mode in the sensor */
+    rslt = bmp3_set_op_mode(dev);
+
+    return rslt;
+}
+
+
 
 
 
@@ -1656,6 +1726,20 @@ int main(void)
     nrf_gpio_pin_set(9);
     spi_init();
     bmp280_config();
+
+    bmp388.dev_id = 0;
+    bmp388.intf = BMP3_SPI_INTF;
+    bmp388.read = BMP_280_read;
+    bmp388.write = BMP_280_write;
+    bmp388.delay_ms = nrf_delay_ms;
+
+    rslt = bmp3_init(&bmp388);
+
+
+    rslt = bmp388_set_forced_mode_with_osr(&bmp388);
+    nrf_delay_ms(100);
+    bmp388_read();
+
     erase_data();
     vehicle_init();
     vehicle_state.max_altitude = 9900.0;
