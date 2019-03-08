@@ -165,9 +165,9 @@ float log_dt = 0.0;
 
 float E = 0.0;
 
-float K1 = 0.184822298668755;
-float K2 = 0.943386420345901;
-float K3 = 2.407658449503717;
+float K1 = 0.197584269677409;
+float K2 = 1.086251556999431;
+float K3 = 2.985922024587661;
 
 float t1;
 float t2;
@@ -221,6 +221,7 @@ struct state {
   float ref_pressure;
   float pressure;
   float altitude;
+  float ref_altitude;
   float raw_altitude;
   float max_altitude;
   float velocity;
@@ -1313,12 +1314,12 @@ void read_baro(void){
 
   float raw_alt = 0.0;
 
-  raw_alt = data.pressure/vehicle_state.ref_pressure;
+  raw_alt = data.pressure/101.325;
   raw_alt = pow(raw_alt,0.190284);
   raw_alt = 1.0 - raw_alt;
   raw_alt = raw_alt * 145366.45;
 
-  vehicle_state.raw_altitude = raw_alt;
+  vehicle_state.raw_altitude = raw_alt - vehicle_state.ref_altitude;
 }
 
 void update_state(void){
@@ -1334,7 +1335,7 @@ void update_state(void){
     vinst_last = vinst;
     araw_last = vehicle_state.raw_altitude;
     
-    if (!baro_error && (abs(ainst) < 3200.0)){
+    if (!baro_error && (abs(ainst) < 32000.0)){
         E = vehicle_state.raw_altitude - vehicle_state.altitude;
     
         vehicle_state.altitude = vehicle_state.altitude + K1 * E;
@@ -1365,6 +1366,7 @@ void vehicle_init(void){
     vehicle_state.pressure = 101.325;
     vehicle_state.ref_pressure = 101.325;
     vehicle_state.altitude = 0.0;
+    vehicle_state.ref_altitude = 0.0;
     vehicle_state.max_altitude = 0.0;
     vehicle_state.raw_altitude = 0.0;
     vehicle_state.velocity = 0.0;
@@ -1430,6 +1432,16 @@ void send_file_eof(void){
     int err_code = 0;
     uint16_t length = 4;
     err_code = ble_nus_data_send(&m_nus, &packet[0], &length, m_conn_handle);
+
+    if (err_code != NRF_SUCCESS){
+        while (err_code != NRF_SUCCESS){
+            nrf_delay_ms(5);
+            err_code = ble_nus_data_send(&m_nus, &packet[0], &length, m_conn_handle);
+            //APP_ERROR_CHECK(err_code);
+
+        }
+
+    }
 
 }
 
@@ -1571,6 +1583,12 @@ void arm_system(void){
 //    nrf_delay_ms(MAIN_LOOP_PERIOD);
 //    read_baro();
     vehicle_state.ref_pressure = currentP;
+
+    vehicle_state.ref_altitude = vehicle_state.ref_pressure/101.325;
+    vehicle_state.ref_altitude = pow(vehicle_state.ref_altitude,0.190284);
+    vehicle_state.ref_altitude = 1.0 - vehicle_state.ref_altitude;
+    vehicle_state.ref_altitude = vehicle_state.ref_altitude * 145366.45;
+
 //    vehicle_state.raw_altitude = 0.0;
     file_length = 0;
     data_time = 0.0;
@@ -1649,6 +1667,7 @@ int8_t bmp388_set_forced_mode_with_osr(struct bmp3_dev *dev)
     /* Select the oversampling settings for pressure and temperature */
     dev->settings.odr_filter.press_os = BMP3_OVERSAMPLING_8X;
     dev->settings.odr_filter.temp_os = BMP3_NO_OVERSAMPLING;
+    dev->settings.odr_filter.iir_filter = BMP3_IIR_FILTER_DISABLE;
     /* Assign the settings which needs to be set in the sensor */
     settings_sel = BMP3_PRESS_EN_SEL | BMP3_TEMP_EN_SEL | BMP3_PRESS_OS_SEL | BMP3_TEMP_OS_SEL;
     /* Write the settings in the sensor */
@@ -1742,11 +1761,24 @@ int main(void)
 
     erase_data();
     vehicle_init();
-    vehicle_state.max_altitude = 9900.0;
+    vehicle_state.max_altitude = 0.0;
     nrf_delay_ms(100);
     read_baro();
     nrf_delay_ms(100);
     vehicle_state.ref_pressure = vehicle_state.pressure;
+
+    vehicle_state.ref_altitude = vehicle_state.ref_pressure/101.325;
+    vehicle_state.ref_altitude = pow(vehicle_state.ref_altitude,0.190284);
+    vehicle_state.ref_altitude = 1.0 - vehicle_state.ref_altitude;
+    vehicle_state.ref_altitude = vehicle_state.ref_altitude * 145366.45;
+
+    
+
+
+
+
+
+
     log_dt = dt*((float) (save_update_int + 1));
     t1 = dt;
     t2 = 0.5*dt*dt;
