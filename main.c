@@ -165,9 +165,19 @@ float log_dt = 0.0;
 
 float E = 0.0;
 
-float K1 = 0.197584269677409;
-float K2 = 1.086251556999431;
-float K3 = 2.985922024587661;
+float K1_boost = 0.377648583409722;
+float K2_boost = 4.45663658431515;
+float K3_boost = 26.2964175124521;
+
+float K1_coast = 0.077894859154768;
+float K2_coast = 0.157902454768786;
+float K3_coast = 0.160043843024796;
+
+float K1 = 0.0;
+float K2 = 0.0;
+float K3 = 0.0;
+
+
 
 float t1;
 float t2;
@@ -180,6 +190,10 @@ float ainst = 0.0;
 
 bool arm_request = false;
 bool armedForLaunch = false;
+bool launchDetect = false;
+bool boost = false;
+
+float timeToBurnout = 0.0;
 
 bool armedForLanding = false;
 float minLandingTime = 30.0;
@@ -234,9 +248,16 @@ struct state {
 struct status {
   bool isArmedForLaunch: 1;
   bool isRecording: 1;
-
-
 };
+
+struct dataPt {
+  float pressure;
+  float altitude;
+  float velocity;
+};
+
+struct dataPt buffer[64];
+int bufferStart = 0;
 
 
 union status_bytes {
@@ -1003,6 +1024,132 @@ int8_t BMP_280_write(uint8_t dev_id, uint8_t reg_addr, uint8_t *data, uint16_t l
 }
 
 
+void store_recording_started(void){
+
+    spi_xfer_done = false;
+    uint8_t tx_buffer[20] = {0}; //write cmd, 3 byte address, 16 bytes data
+    uint8_t rx_buffer[20] = {0};
+    tx_buffer[0] = 0x06;
+
+    uint8_t i;
+    
+    nrf_gpio_pin_clear(9);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 1, rx_buffer, 1);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(9);
+
+    union data_address address_bytes;
+    address_bytes.address_int = 0x008000;
+
+    tx_buffer[0] = 0x02;
+
+    tx_buffer[1] = address_bytes.address_string[2];
+    tx_buffer[2] = address_bytes.address_string[1];
+    tx_buffer[3] = address_bytes.address_string[0];
+
+    tx_buffer[4] = 0x01;
+
+
+    spi_xfer_done = false;
+    nrf_gpio_pin_clear(9);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 5, rx_buffer, 5);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(9);
+}
+
+void store_recording_finished(void){
+
+    spi_xfer_done = false;
+    uint8_t tx_buffer[20] = {0}; //write cmd, 3 byte address, 16 bytes data
+    uint8_t rx_buffer[20] = {0};
+    tx_buffer[0] = 0x06;
+
+    uint8_t i;
+    
+    nrf_gpio_pin_clear(9);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 1, rx_buffer, 1);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(9);
+
+    union data_address address_bytes;
+    address_bytes.address_int = 0x008002;
+
+    tx_buffer[0] = 0x02;
+
+    tx_buffer[1] = address_bytes.address_string[2];
+    tx_buffer[2] = address_bytes.address_string[1];
+    tx_buffer[3] = address_bytes.address_string[0];
+
+    tx_buffer[4] = 0x01;
+
+
+    spi_xfer_done = false;
+    nrf_gpio_pin_clear(9);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 5, rx_buffer, 5);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(9);
+}
+
+void store_file_length(void){
+
+    spi_xfer_done = false;
+    uint8_t tx_buffer[20] = {0}; //write cmd, 3 byte address, 16 bytes data
+    uint8_t rx_buffer[20] = {0};
+    tx_buffer[0] = 0x06;
+
+    uint8_t i;
+    
+    nrf_gpio_pin_clear(9);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 1, rx_buffer, 1);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(9);
+
+    union data_address address_bytes;
+    address_bytes.address_int = 0x008003;
+
+    union data_address file_length_write;
+    file_length_write.address_int = file_length;
+
+
+
+    tx_buffer[0] = 0x02;
+
+    tx_buffer[1] = address_bytes.address_string[2];
+    tx_buffer[2] = address_bytes.address_string[1];
+    tx_buffer[3] = address_bytes.address_string[0];
+
+    tx_buffer[4] = file_length_write.address_string[2];
+    tx_buffer[5] = file_length_write.address_string[1];
+    tx_buffer[6] = file_length_write.address_string[0];
+
+    spi_xfer_done = false;
+    nrf_gpio_pin_clear(9);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 7, rx_buffer, 7);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(9);
+
+
+}
+
+
 void write_data(unsigned int address){
 
     spi_xfer_done = false;
@@ -1021,7 +1168,7 @@ void write_data(unsigned int address){
     nrf_gpio_pin_set(9);
 
     union data_address address_bytes;
-    address_bytes.address_int = address;
+    address_bytes.address_int = address + 0x008100;
 
     union float_bytes time_bytes;
     time_bytes.data = data_time;
@@ -1069,6 +1216,89 @@ void write_data(unsigned int address){
 
 }
 
+void write_buffer(void){
+
+    int j = 0;
+    int k = 0;
+    int buffer_position;
+
+    
+    uint8_t tx_buffer[132] = {0}; //write cmd, 3 byte address, 16 bytes data
+    uint8_t rx_buffer[132] = {0};
+    
+
+    int i;
+    
+    
+
+    union float_bytes time_bytes;
+    union float_bytes press_bytes;
+    union float_bytes alt_bytes;
+    union float_bytes vel_bytes;
+
+    for (k=0; k<8; k++){
+      spi_xfer_done = false;
+      tx_buffer[0] = 0x06;
+      nrf_gpio_pin_clear(9);
+      nrf_drv_spi_transfer(&spi, tx_buffer, 1, rx_buffer, 1);
+    
+      while (!spi_xfer_done){
+          __WFE();
+      }
+      nrf_gpio_pin_set(9);
+
+      tx_buffer[0] = 0x02;
+      union data_address address_bytes;
+      address_bytes.address_int = file_length + 0x008100;
+      tx_buffer[1] = address_bytes.address_string[2];
+      tx_buffer[2] = address_bytes.address_string[1];
+      tx_buffer[3] = address_bytes.address_string[0];
+
+      spi_xfer_done = false;
+      nrf_gpio_pin_clear(9);
+
+      for (j=0; j<8; j++){
+        buffer_position = bufferStart + 8*k+j;
+        if (buffer_position >= 64){
+          buffer_position = buffer_position - 64;
+        }
+        time_bytes.data = data_time;
+        press_bytes.data = buffer[buffer_position].pressure;
+        alt_bytes.data = buffer[buffer_position].altitude;
+        vel_bytes.data = buffer[buffer_position].velocity;
+
+        for (i=0; i<4; i++){
+            tx_buffer[j*16+4+i] = time_bytes.float_string[i];
+        }
+
+        for (i=0; i<4; i++){
+            tx_buffer[j*16+8+i] = press_bytes.float_string[i];
+        }
+
+        for (i=0; i<4; i++){
+            tx_buffer[j*16+12+i] = alt_bytes.float_string[i];
+        }
+
+        for (i=0; i<4; i++){
+            tx_buffer[j*16+16+i] = vel_bytes.float_string[i];
+        }
+      
+        data_time = data_time + log_dt;
+      }
+
+      nrf_drv_spi_transfer(&spi, tx_buffer, 132, rx_buffer, 132);
+    
+      while (!spi_xfer_done){
+          __WFE();
+      }
+      nrf_gpio_pin_set(9);
+
+      file_length = file_length + 128;
+      nrf_delay_us(700);
+    }
+
+}
+
 float read_float(unsigned int address){
 
     spi_xfer_done = false;
@@ -1077,7 +1307,7 @@ float read_float(unsigned int address){
     tx_buffer[0] = 0x03;
 
     union data_address address_bytes;
-    address_bytes.address_int = address;
+    address_bytes.address_int = address + 0x008100;
 
     union float_bytes read_bytes;
 
@@ -1099,6 +1329,44 @@ float read_float(unsigned int address){
     read_bytes.float_string[3] = rx_buffer[7];
 
     return read_bytes.data;
+
+}
+
+void read_file_length(void){
+
+    spi_xfer_done = false;
+    uint8_t tx_buffer[8] = {0}; //read cmd, 3 byte address, 4 bytes data
+    uint8_t rx_buffer[8] = {0};
+    tx_buffer[0] = 0x03;
+
+    union data_address address_bytes;
+    address_bytes.address_int = 0x008003;
+
+    union data_address read_file_length;
+    
+
+    tx_buffer[1] = address_bytes.address_string[2];
+    tx_buffer[2] = address_bytes.address_string[1];
+    tx_buffer[3] = address_bytes.address_string[0];
+
+    nrf_gpio_pin_clear(9);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 7, rx_buffer, 7);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(9);
+
+    read_file_length.address_string[2] = rx_buffer[4];
+    read_file_length.address_string[1] = rx_buffer[5];
+    read_file_length.address_string[0] = rx_buffer[6];
+
+    if (read_file_length.address_int < 0xFFFFFF){
+        file_length = read_file_length.address_int;
+    }
+    else {
+        file_length = 0;
+    }
 
 }
 
@@ -1324,7 +1592,7 @@ void read_baro(void){
 
 void update_state(void){
 
-    
+    float accelLimit = 5.0*32.2;
 
     vehicle_state.altitude = vehicle_state.altitude + t1*vehicle_state.velocity + t2*vehicle_state.acceleration;
     vehicle_state.velocity = vehicle_state.velocity + t1*vehicle_state.acceleration;
@@ -1346,6 +1614,25 @@ void update_state(void){
         if (vehicle_state.altitude > vehicle_state.max_altitude){
             vehicle_state.max_altitude = vehicle_state.altitude;
         }
+    }
+
+    if (vehicle_state.acceleration > accelLimit){
+      vehicle_state.acceleration = accelLimit;
+    }
+
+    if (vehicle_state.acceleration < -accelLimit){
+      vehicle_state.acceleration = -accelLimit;
+    }
+
+
+    if (launchDetect && boost) {
+      if (vehicle_state.velocity > 50.0 && vehicle_state.acceleration < -32.2){
+        boost = false;
+        timeToBurnout = data_time;
+        K1 = K1_coast;
+        K2 = K2_coast;
+        K3 = K3_coast;
+      }
     }
 
     vehicle_state.velocity_filt = (vehicle_state.velocity_filt * (20.0 - 1.0) + vehicle_state.velocity) / 20.0;
@@ -1470,7 +1757,7 @@ void send_update_packet(void){
 
     data_packet.data.alt = vehicle_state.altitude;
     data_packet.data.maxAlt = vehicle_state.max_altitude;
-    data_packet.data.temp = vehicle_state.temp;
+    data_packet.data.temp = timeToBurnout; //vehicle_state.temp;
 
     data_packet.data.data_chk = 0;
 
@@ -1592,9 +1879,15 @@ void arm_system(void){
 //    vehicle_state.raw_altitude = 0.0;
     file_length = 0;
     data_time = 0.0;
+    timeToBurnout = 0.0;
     armedForLaunch = true;
+    launchDetect = false;
     armedForLanding = false;
     landed = false;
+
+    K1 = K1_boost;
+    K2 = K2_boost;
+    K3 = K3_boost;
 //    nrf_delay_ms(MAIN_LOOP_PERIOD);
 
 
@@ -1681,6 +1974,18 @@ int8_t bmp388_set_forced_mode_with_osr(struct bmp3_dev *dev)
     return rslt;
 }
 
+void buffer_data(void){
+    buffer[bufferStart].pressure = vehicle_state.pressure;
+    buffer[bufferStart].altitude = vehicle_state.altitude;
+    buffer[bufferStart].velocity = vehicle_state.velocity;
+
+    bufferStart = bufferStart + 1;
+
+    if (bufferStart == 64){
+      bufferStart = 0;
+    }
+}
+
 
 
 
@@ -1699,6 +2004,10 @@ int main(void)
     uint64_t dev_id = *((uint64_t*) NRF_FICR->DEVICEADDR);
     char dev_str[10];
     sprintf(dev_str, "%i", dev_id);
+
+
+    
+
 
     strncpy(DEVICE_NAME, "FlightSketch--", 14);
     DEVICE_NAME[14] = dev_str[0];
@@ -1759,7 +2068,14 @@ int main(void)
     nrf_delay_ms(100);
     bmp388_read();
 
-    erase_data();
+
+    // read rec start
+    // read rec finished
+    // if start but not finished, scan for end of data, else{
+
+    read_file_length();
+
+    
     vehicle_init();
     vehicle_state.max_altitude = 0.0;
     nrf_delay_ms(100);
@@ -1772,12 +2088,10 @@ int main(void)
     vehicle_state.ref_altitude = 1.0 - vehicle_state.ref_altitude;
     vehicle_state.ref_altitude = vehicle_state.ref_altitude * 145366.45;
 
-    
 
-
-
-
-
+    K1 = K1_boost;
+    K2 = K2_boost;
+    K3 = K3_boost;
 
     log_dt = dt*((float) (save_update_int + 1));
     t1 = dt;
@@ -1808,15 +2122,20 @@ int main(void)
 
             if ((vehicle_state.velocity > 30.0) && (vehicle_state.altitude > 10.0) && (!record_data) && (file_length == 0)){
                 armedForLaunch = false;
+                launchDetect = true;
+                boost = true;
                 start_data_recording();
+                write_buffer();
             }
 
-            if (data_time > 120.0){
+            if (data_time > 540.0){
                 record_data = false;
             }
 
             if (landed) {
                 record_data = false;
+                landed = false;
+                store_file_length();
             }
 
             send_update++;
@@ -1834,14 +2153,15 @@ int main(void)
                 send_update_packet();
                 send_status_packet();
             }
-
-
-            if (record_data){
-                if (save_update > save_update_int){
-                    save_update = 0;
+            
+            if (save_update > save_update_int){
+                save_update = 0;
+                if (record_data){
                     write_data(file_length);
                 }
-
+                else{
+                    buffer_data();
+                }
             }
 
             if (batt_update > batt_update_int){
@@ -1850,13 +2170,6 @@ int main(void)
             }
 
         }
-
-
-
-
-
-
-
 
 
         idle_state_handle();
