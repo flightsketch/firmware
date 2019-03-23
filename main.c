@@ -1709,13 +1709,13 @@ void update_state(void){
         }
     }
 
-    if (vehicle_state.acceleration > accelLimit){
-      vehicle_state.acceleration = accelLimit;
-    }
-
-    if (vehicle_state.acceleration < -accelLimit){
-      vehicle_state.acceleration = -accelLimit;
-    }
+//    if (vehicle_state.acceleration > accelLimit){
+//      vehicle_state.acceleration = accelLimit;
+//    }
+//
+//    if (vehicle_state.acceleration < -accelLimit){
+//      vehicle_state.acceleration = -accelLimit;
+//    }
 
 
     if (launchDetect && boost) {
@@ -1850,7 +1850,7 @@ void send_update_packet(void){
 
     data_packet.data.alt = vehicle_state.altitude;
     data_packet.data.maxAlt = vehicle_state.max_altitude;
-    data_packet.data.temp = timeToBurnout; //vehicle_state.temp;
+    data_packet.data.temp = vehicle_state.temp;
 
     data_packet.data.data_chk = 0;
 
