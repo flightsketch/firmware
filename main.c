@@ -1236,7 +1236,7 @@ void write_buffer(void){
     union float_bytes press_bytes;
     union float_bytes alt_bytes;
     union float_bytes vel_bytes;
-
+    nrf_delay_us(700);
     for (k=0; k<8; k++){
       spi_xfer_done = false;
       tx_buffer[0] = 0x06;
@@ -1255,10 +1255,13 @@ void write_buffer(void){
       tx_buffer[2] = address_bytes.address_string[1];
       tx_buffer[3] = address_bytes.address_string[0];
 
+
+      
       spi_xfer_done = false;
       nrf_gpio_pin_clear(9);
 
       for (j=0; j<8; j++){
+        
         buffer_position = bufferStart + 8*k+j;
         if (buffer_position >= 64){
           buffer_position = buffer_position - 64;
@@ -1422,6 +1425,42 @@ uint8_t read_rec_finished(void){
 
     return rx_buffer[4];
 
+}
+
+void scan_for_eof(void){
+
+    uint8_t tx_buffer[8] = {0}; //read cmd, 3 byte address, 4 bytes data
+    uint8_t rx_buffer[8] = {0};
+    tx_buffer[0] = 0x03;
+
+    union data_address address_bytes;
+
+    bool in_file = true;
+
+    while (in_file){
+        address_bytes.address_int = file_length + 0x008100;
+
+        tx_buffer[1] = address_bytes.address_string[2];
+        tx_buffer[2] = address_bytes.address_string[1];
+        tx_buffer[3] = address_bytes.address_string[0];
+
+        nrf_gpio_pin_clear(9);
+
+        spi_xfer_done = false;
+        nrf_drv_spi_transfer(&spi, tx_buffer, 8, rx_buffer, 8);
+    
+        while (!spi_xfer_done){
+            __WFE();
+        }
+        nrf_gpio_pin_set(9);
+
+        if (rx_buffer[4] == 0xFF && rx_buffer[5] == 0xFF && rx_buffer[6] == 0xFF && rx_buffer[7] == 0xFF){
+          in_file = false;
+        }
+        else{
+          file_length = file_length + 16;
+        }
+    }
 }
 
 unsigned char check_flash(void){
@@ -1973,8 +2012,6 @@ void update_batt(void){
     uint16_t length = 7;
     err_code = ble_nus_data_send(&m_nus, &packet[0], &length, m_conn_handle);
 
-
-
 }
 
 void send_status_packet(){
@@ -2043,14 +2080,13 @@ void buffer_data(void){
 }
 
 
-
-
-
 /**@brief Application main function.
  */
 int main(void)
 {
     bool erase_bonds;
+
+
 
     // Initialize.
 //    uart_init();
@@ -2060,10 +2096,6 @@ int main(void)
     uint64_t dev_id = *((uint64_t*) NRF_FICR->DEVICEADDR);
     char dev_str[10];
     sprintf(dev_str, "%i", dev_id);
-
-
-    
-
 
     strncpy(DEVICE_NAME, "FlightSketch--", 14);
     DEVICE_NAME[14] = dev_str[0];
@@ -2077,7 +2109,6 @@ int main(void)
     DEVICE_NAME[22] = dev_str[8];
     DEVICE_NAME[23] = dev_str[9];
     DEVICE_NAME[24] = dev_str[10];
-
 
     Adc12bitPolledInitialise();
     uint16_t batt_v;
@@ -2102,15 +2133,13 @@ int main(void)
     uint32_t result = 0;
     result = sd_ble_gap_tx_power_set(BLE_GAP_TX_POWER_ROLE_ADV,0,4);
 
-    
-
-
     nrf_gpio_cfg_output(29);
     nrf_gpio_pin_set(29);
     nrf_gpio_cfg_output(9);
     nrf_gpio_pin_set(9);
     spi_init();
-    bmp280_config();
+
+    //bmp280_config();
 
     bmp388.dev_id = 0;
     bmp388.intf = BMP3_SPI_INTF;
@@ -2119,16 +2148,10 @@ int main(void)
     bmp388.delay_ms = nrf_delay_ms;
 
     rslt = bmp3_init(&bmp388);
-
-
     rslt = bmp388_set_forced_mode_with_osr(&bmp388);
     nrf_delay_ms(100);
     bmp388_read();
 
-
-    
-
-    
     vehicle_init();
     vehicle_state.max_altitude = 0.0;
     nrf_delay_ms(100);
@@ -2141,7 +2164,6 @@ int main(void)
     vehicle_state.ref_altitude = 1.0 - vehicle_state.ref_altitude;
     vehicle_state.ref_altitude = vehicle_state.ref_altitude * 145366.45;
 
-
     K1 = K1_boost;
     K2 = K2_boost;
     K3 = K3_boost;
@@ -2151,17 +2173,21 @@ int main(void)
     t2 = 0.5*dt*dt;
 
     isIdle = true;
-    
-//    if (read_rec_start() == 0x01){
-//        //scan_for_eof();
-//        vehicle_state.temp = 999.999;
-//    }
-//    else {
-//        read_file_length();
-//    }
-    
-    
-    
+
+    uint8_t started;
+    uint8_t finished;
+    unsigned int tmp_file_length;
+
+    started = read_rec_start();
+    finished = read_rec_finished();
+
+    if (started == 0x01 && finished == 0xFF){
+      scan_for_eof();
+    }
+    else {
+        read_file_length();
+    }
+
     application_timers_start();
 
     idle_state_handle();
@@ -2199,6 +2225,8 @@ int main(void)
                 record_data = false;
                 landed = false;
                 store_file_length();
+                nrf_delay_us(700);
+                store_recording_finished();
             }
 
             send_update++;
