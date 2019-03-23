@@ -165,9 +165,9 @@ float log_dt = 0.0;
 
 float E = 0.0;
 
-float K1_boost = 0.377648583409722;
-float K2_boost = 4.45663658431515;
-float K3_boost = 26.2964175124521;
+float K1_boost = 0.197584269677409;
+float K2_boost = 1.086251556999431;
+float K3_boost = 2.985922024587661;
 
 float K1_coast = 0.077894859154768;
 float K2_coast = 0.157902454768786;
@@ -187,6 +187,7 @@ float vinst = 0.0;
 float vinst_last = 0.0;
 float ainst = 0.0;
 
+bool isIdle = false;
 
 bool arm_request = false;
 bool armedForLaunch = false;
@@ -1884,6 +1885,7 @@ void arm_system(void){
     launchDetect = false;
     armedForLanding = false;
     landed = false;
+    isIdle = false;
 
     K1 = K1_boost;
     K2 = K2_boost;
@@ -1998,7 +2000,7 @@ int main(void)
 
     // Initialize.
 //    uart_init();
-    log_init();
+//    log_init();
     timers_init();
 
     uint64_t dev_id = *((uint64_t*) NRF_FICR->DEVICEADDR);
@@ -2029,9 +2031,10 @@ int main(void)
     batt_v = GetBatteryVoltage1();
     batt_read = true;
 
-    buttons_leds_init(&erase_bonds);
+//    buttons_leds_init(&erase_bonds);
     power_management_init();
     ble_stack_init();
+    sd_power_dcdc_mode_set(NRF_POWER_DCDC_ENABLE);
     gap_params_init();
     gatt_init();
     services_init();
@@ -2097,12 +2100,15 @@ int main(void)
     t1 = dt;
     t2 = 0.5*dt*dt;
 
+    isIdle = true;
+    
+
     
     
     
     application_timers_start();
 
-
+    idle_state_handle();
 
     // Enter main loop.
     while(1){   
@@ -2133,6 +2139,7 @@ int main(void)
             }
 
             if (landed) {
+                isIdle = true;
                 record_data = false;
                 landed = false;
                 store_file_length();
@@ -2141,11 +2148,14 @@ int main(void)
             send_update++;
             save_update++;
             batt_update++;
-            read_baro();
-            if (baro_error){
-                vehicle_state.max_altitude = vehicle_state.max_altitude + 1.0;
+
+            if (!isIdle){
+                read_baro();
+                if (baro_error){
+                    vehicle_state.max_altitude = vehicle_state.max_altitude + 1.0;
+                }
+                update_state();
             }
-            update_state();
 
             if (send_update > send_update_int){
                 NRF_LOG_INFO("send update");
@@ -2170,7 +2180,6 @@ int main(void)
             }
 
         }
-
 
         idle_state_handle();
     }
