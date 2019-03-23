@@ -1082,7 +1082,7 @@ void store_recording_finished(void){
     nrf_gpio_pin_set(9);
 
     union data_address address_bytes;
-    address_bytes.address_int = 0x008002;
+    address_bytes.address_int = 0x008001;
 
     tx_buffer[0] = 0x02;
 
@@ -1368,6 +1368,59 @@ void read_file_length(void){
     else {
         file_length = 0;
     }
+
+}
+
+    // read rec start
+uint8_t read_rec_start(void){
+
+    spi_xfer_done = false;
+    uint8_t tx_buffer[8] = {0}; //read cmd, 3 byte address, 4 bytes data
+    uint8_t rx_buffer[8] = {0};
+    tx_buffer[0] = 0x03;
+
+    union data_address address_bytes;
+    address_bytes.address_int = 0x008000;
+
+    tx_buffer[1] = address_bytes.address_string[2];
+    tx_buffer[2] = address_bytes.address_string[1];
+    tx_buffer[3] = address_bytes.address_string[0];
+
+    nrf_gpio_pin_clear(9);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 5, rx_buffer, 5);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(9);
+
+    return rx_buffer[4];
+
+}
+    // read rec finished
+uint8_t read_rec_finished(void){
+
+    spi_xfer_done = false;
+    uint8_t tx_buffer[8] = {0}; //read cmd, 3 byte address, 4 bytes data
+    uint8_t rx_buffer[8] = {0};
+    tx_buffer[0] = 0x03;
+
+    union data_address address_bytes;
+    address_bytes.address_int = 0x008001;
+
+    tx_buffer[1] = address_bytes.address_string[2];
+    tx_buffer[2] = address_bytes.address_string[1];
+    tx_buffer[3] = address_bytes.address_string[0];
+
+    nrf_gpio_pin_clear(9);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 5, rx_buffer, 5);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(9);
+
+    return rx_buffer[4];
 
 }
 
@@ -1788,6 +1841,7 @@ void start_data_recording(void){
     record_data = true;
     file_length = 0;
     data_time = 0.0;
+    store_recording_started();
 
 }
 
@@ -2072,11 +2126,7 @@ int main(void)
     bmp388_read();
 
 
-    // read rec start
-    // read rec finished
-    // if start but not finished, scan for end of data, else{
-
-    read_file_length();
+    
 
     
     vehicle_init();
@@ -2102,7 +2152,13 @@ int main(void)
 
     isIdle = true;
     
-
+//    if (read_rec_start() == 0x01){
+//        //scan_for_eof();
+//        vehicle_state.temp = 999.999;
+//    }
+//    else {
+//        read_file_length();
+//    }
     
     
     
