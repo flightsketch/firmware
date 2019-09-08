@@ -2084,6 +2084,8 @@ void buffer_data(void){
  */
 int main(void)
 {
+    
+
     bool erase_bonds;
 
 
@@ -2190,6 +2192,17 @@ int main(void)
 
     application_timers_start();
 
+    nrf_gpio_cfg_output(17);
+    nrf_gpio_pin_clear(17);
+
+    nrf_delay_ms(2000);
+
+    nrf_gpio_pin_set(17);
+
+    nrf_gpio_cfg_output(8);
+    nrf_gpio_cfg_output(7);
+    
+
     idle_state_handle();
 
     // Enter main loop.
@@ -2203,6 +2216,9 @@ int main(void)
         if (arm_request){
             arm_request = false;
             arm_system();
+            nrf_gpio_pin_clear(17);
+            
+
         }
 
         if (main_loop_update){
@@ -2210,6 +2226,7 @@ int main(void)
 
             if ((vehicle_state.velocity > 30.0) && (vehicle_state.altitude > 10.0) && (!record_data) && (file_length == 0)){
                 armedForLaunch = false;
+                nrf_gpio_pin_set(17);
                 launchDetect = true;
                 boost = true;
                 start_data_recording();
