@@ -192,6 +192,8 @@ bool isIdle = false;
 bool arm_request = false;
 bool armedForLaunch = false;
 bool launchDetect = false;
+bool apogeeDetect = false;
+bool mainFired = false;
 bool boost = false;
 
 float timeToBurnout = 0.0;
@@ -204,6 +206,8 @@ bool record_data = false;
 bool download_request = false;
 unsigned int file_length = 0;
 float data_time = 0;
+float apogeeTime = 0;
+float mainTime = 0;
 
 bool baro_error = false;
 
@@ -1735,7 +1739,27 @@ void update_state(void){
         minLandingTime = data_time + 15.0;
     }
 
-    if (armedForLanding && (vehicle_state.velocity_filt > -2.0) && (data_time > minLandingTime)) {
+    if (!apogeeDetect && launchDetect && (vehicle_state.velocity < 0.0) && (vehicle_state.max_altitude > 100.0)){
+        nrf_gpio_pin_set(8);
+        apogeeDetect = true;
+        apogeeTime = data_time;
+    }
+
+    if (!mainFired && apogeeDetect && (vehicle_state.altitude < 350.0) && (vehicle_state.max_altitude > 100.0)){
+        nrf_gpio_pin_set(7);
+        mainFired = true;
+        mainTime = data_time;
+    }
+
+    if ((data_time > apogeeTime + 2.0) || landed) {
+        nrf_gpio_pin_clear(8);
+    }
+
+    if ((data_time > mainTime + 2.0) || landed) {
+        nrf_gpio_pin_clear(7);
+    }
+
+    if (armedForLanding && (vehicle_state.velocity_filt > -2.0) && (data_time > minLandingTime) && (vehicle_state.altitude < 50.0)) {
         landed = true;
     }
         
@@ -1955,34 +1979,51 @@ void parsePacket_typeF4(void){ // download data
 
 void arm_system(void){
 
-    float currentP = vehicle_state.pressure;
-    record_data = false;
-    erase_data();
-//    nrf_delay_ms(MAIN_LOOP_PERIOD);
-//    read_baro();
-    vehicle_reset();
-//    nrf_delay_ms(MAIN_LOOP_PERIOD);
-//    read_baro();
-    vehicle_state.ref_pressure = currentP;
+    if (armedForLaunch){
 
-    vehicle_state.ref_altitude = vehicle_state.ref_pressure/101.325;
-    vehicle_state.ref_altitude = pow(vehicle_state.ref_altitude,0.190284);
-    vehicle_state.ref_altitude = 1.0 - vehicle_state.ref_altitude;
-    vehicle_state.ref_altitude = vehicle_state.ref_altitude * 145366.45;
+        armedForLaunch = false;
+        nrf_gpio_pin_clear(7);
+        nrf_gpio_pin_clear(8);
+        nrf_gpio_pin_set(17);
+    
 
-//    vehicle_state.raw_altitude = 0.0;
-    file_length = 0;
-    data_time = 0.0;
-    timeToBurnout = 0.0;
-    armedForLaunch = true;
-    launchDetect = false;
-    armedForLanding = false;
-    landed = false;
-    isIdle = false;
+    }
+    else {
 
-    K1 = K1_boost;
-    K2 = K2_boost;
-    K3 = K3_boost;
+        float currentP = vehicle_state.pressure;
+        record_data = false;
+        erase_data();
+    //    nrf_delay_ms(MAIN_LOOP_PERIOD);
+    //    read_baro();
+        vehicle_reset();
+    //    nrf_delay_ms(MAIN_LOOP_PERIOD);
+    //    read_baro();
+        vehicle_state.ref_pressure = currentP;
+
+        vehicle_state.ref_altitude = vehicle_state.ref_pressure/101.325;
+        vehicle_state.ref_altitude = pow(vehicle_state.ref_altitude,0.190284);
+        vehicle_state.ref_altitude = 1.0 - vehicle_state.ref_altitude;
+        vehicle_state.ref_altitude = vehicle_state.ref_altitude * 145366.45;
+
+    //    vehicle_state.raw_altitude = 0.0;
+        file_length = 0;
+        data_time = 0.0;
+        timeToBurnout = 0.0;
+        armedForLaunch = true;
+        launchDetect = false;
+        armedForLanding = false;
+        landed = false;
+        isIdle = false;
+
+        apogeeDetect = false;
+        mainFired = false;
+
+        K1 = K1_boost;
+        K2 = K2_boost;
+        K3 = K3_boost;
+
+        nrf_gpio_pin_clear(17);
+    }
 //    nrf_delay_ms(MAIN_LOOP_PERIOD);
 
 
@@ -2216,15 +2257,15 @@ int main(void)
         if (arm_request){
             arm_request = false;
             arm_system();
-            nrf_gpio_pin_clear(17);
             
+                       
 
         }
 
         if (main_loop_update){
             main_loop_update = false;
 
-            if ((vehicle_state.velocity > 30.0) && (vehicle_state.altitude > 10.0) && (!record_data) && (file_length == 0)){
+            if (armedForLaunch && (vehicle_state.velocity > 30.0) && (vehicle_state.altitude > 10.0) && (!record_data) && (file_length == 0)){
                 armedForLaunch = false;
                 nrf_gpio_pin_set(17);
                 launchDetect = true;
