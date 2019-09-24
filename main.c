@@ -1735,7 +1735,7 @@ void update_state(void){
         minLandingTime = data_time + 15.0;
     }
 
-    if (armedForLanding && (vehicle_state.velocity_filt > -2.0) && (data_time > minLandingTime)) {
+    if (armedForLanding && (vehicle_state.velocity_filt > -2.0) && (data_time > minLandingTime) && (vehicle_state.altitude < 50.0)) {
         landed = true;
     }
         
@@ -2206,6 +2206,13 @@ int main(void)
     idle_state_handle();
 
     // Enter main loop.
+
+    uint8_t led1_period = 200;
+    uint8_t led1_dc = 5;
+    uint8_t led1_counter = 0;
+    bool led1_on = false;
+
+
     while(1){   
 
         if (download_request){
@@ -2217,6 +2224,7 @@ int main(void)
             arm_request = false;
             arm_system();
             nrf_gpio_pin_clear(17);
+            led1_on = true;
             
 
         }
@@ -2224,9 +2232,34 @@ int main(void)
         if (main_loop_update){
             main_loop_update = false;
 
+            if (armedForLaunch) {
+                uint8_t index = 0;
+                uint8_t buffer_address;
+
+                vehicle_state.ref_pressure = 0;
+
+                for (index=0; index<10; index++){
+                    buffer_address = bufferStart + 1 + index;
+                    if (buffer_address > 63) {
+                        buffer_address = 0;
+                    }
+                    vehicle_state.ref_pressure = vehicle_state.ref_pressure + buffer[buffer_address].pressure;
+                }
+
+                vehicle_state.ref_pressure = vehicle_state.ref_pressure * 0.1;
+
+
+                vehicle_state.ref_pressure = buffer[buffer_address].pressure;
+                vehicle_state.ref_altitude = vehicle_state.ref_pressure/101.325;
+                vehicle_state.ref_altitude = pow(vehicle_state.ref_altitude,0.190284);
+                vehicle_state.ref_altitude = 1.0 - vehicle_state.ref_altitude;
+                vehicle_state.ref_altitude = vehicle_state.ref_altitude * 145366.45;
+            }
+
             if ((vehicle_state.velocity > 30.0) && (vehicle_state.altitude > 10.0) && (!record_data) && (file_length == 0)){
                 armedForLaunch = false;
                 nrf_gpio_pin_set(17);
+                led1_on = false;
                 launchDetect = true;
                 boost = true;
                 start_data_recording();
@@ -2278,6 +2311,17 @@ int main(void)
             if (batt_update > batt_update_int){
                 batt_update = 0;
                 update_batt();
+            }
+
+            if (led1_on) {
+                led1_counter = led1_counter + 1;
+                if (led1_counter > led1_dc){
+                    nrf_gpio_pin_set(17);
+                }
+                if (led1_counter > led1_period) {
+                    led1_counter = 0;
+                    nrf_gpio_pin_clear(17);
+                }
             }
 
         }
