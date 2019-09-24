@@ -1955,20 +1955,29 @@ void parsePacket_typeF4(void){ // download data
 
 void arm_system(void){
 
-    float currentP = vehicle_state.pressure;
+
     record_data = false;
     erase_data();
-//    nrf_delay_ms(MAIN_LOOP_PERIOD);
-//    read_baro();
-    vehicle_reset();
-//    nrf_delay_ms(MAIN_LOOP_PERIOD);
-//    read_baro();
-    vehicle_state.ref_pressure = currentP;
+    nrf_delay_ms(100);
+    read_baro();
+    vehicle_init();
+    nrf_delay_ms(100);
+    read_baro();
+    vehicle_state.ref_pressure = vehicle_state.pressure;
 
     vehicle_state.ref_altitude = vehicle_state.ref_pressure/101.325;
     vehicle_state.ref_altitude = pow(vehicle_state.ref_altitude,0.190284);
     vehicle_state.ref_altitude = 1.0 - vehicle_state.ref_altitude;
     vehicle_state.ref_altitude = vehicle_state.ref_altitude * 145366.45;
+
+    uint8_t index = 0;
+
+    for (index=0; index<64; index++){
+        buffer[index].altitude = vehicle_state.altitude;
+        buffer[index].pressure = vehicle_state.pressure;
+        buffer[index].velocity = 0;
+    }
+    bufferStart = 0;
 
 //    vehicle_state.raw_altitude = 0.0;
     file_length = 0;
