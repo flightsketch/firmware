@@ -81,6 +81,13 @@
 
 #include "bmp388_driver/bmp3.h"
 
+#define REGION_US915
+#define ISP4520_US
+
+// LoRa
+#include "radio.h"
+#include "board.h"
+
 
 
 #if defined (UART_PRESENT)
@@ -124,6 +131,56 @@
 
 
 
+#if defined( REGION_AS923 )
+#define RF_FREQUENCY                                923000000 // Hz
+#elif defined( REGION_AU915 )
+#define RF_FREQUENCY                                915000000 // Hz
+#elif defined( REGION_CN779 )
+#define RF_FREQUENCY                                779000000 // Hz
+#elif defined( REGION_EU868 )
+#define RF_FREQUENCY                                868000000 // Hz
+#elif defined( REGION_KR920 )
+#define RF_FREQUENCY                                920000000 // Hz
+#elif defined( REGION_IN865 )
+#define RF_FREQUENCY                                865000000 // Hz
+#elif defined( REGION_US915 )
+#define RF_FREQUENCY                                915000000 // Hz
+#elif defined( REGION_US915_HYBRID )
+#define RF_FREQUENCY                                915000000 // Hz
+#else
+    #error "Please define a frequency band in the compiler options."
+#endif
+
+#if defined(ISP4520_EU) || defined(ISP4520_JP) 
+#define TX_OUTPUT_POWER                             14      // 14 dBm
+#elif defined(ISP4520_US)
+#define TX_OUTPUT_POWER                             22      // 22 dBm
+#else
+    #error "Please define a ISP4520 configuration"
+#endif
+
+#define LORA_BANDWIDTH                              0       // [0: 125 kHz,
+                                                            //  1: 250 kHz,
+                                                            //  2: 500 kHz,
+                                                            //  3: Reserved]
+#define LORA_SPREADING_FACTOR                       7       // [SF7..SF12]
+#define LORA_CODINGRATE                             1       // [1: 4/5,
+                                                            //  2: 4/6,
+                                                            //  3: 4/7,
+                                                            //  4: 4/8]
+#define LORA_PREAMBLE_LENGTH                        8       // Same for Tx and Rx
+#define LORA_SYMBOL_TIMEOUT                         0       // Symbols
+#define LORA_FIX_LENGTH_PAYLOAD_ON                  false
+#define LORA_IQ_INVERSION_ON                        false
+
+#define SCHED_MAX_EVENT_DATA_SIZE                   APP_TIMER_SCHED_EVENT_DATA_SIZE     ///< Maximum size of scheduler events. 
+#define SCHED_QUEUE_SIZE                            60                                  ///< Maximum number of events in the scheduler queue.
+
+
+APP_TIMER_DEF(lora_tx_timer_id);                                        ///< LoRa tranfer timer instance.
+static RadioEvents_t RadioEvents;                                       ///< LoRa driver instance.
+
+
 float dt = MAIN_LOOP_PERIOD/1000.0;
 
 BLE_NUS_DEF(m_nus, NRF_SDH_BLE_TOTAL_LINK_COUNT);                                   /**< BLE NUS service instance. */
@@ -133,8 +190,8 @@ BLE_ADVERTISING_DEF(m_advertising);                                             
 
 APP_TIMER_DEF(main_loop_id);
 
-#define SPI_INSTANCE  0 /**< SPI instance index. */
-static const nrf_drv_spi_t spi = NRF_DRV_SPI_INSTANCE(SPI_INSTANCE);  /**< SPI instance. */
+#define SENSE_SPI_INSTANCE  1 /**< SPI instance index. */
+static const nrf_drv_spi_t spi = NRF_DRV_SPI_INSTANCE(SENSE_SPI_INSTANCE);  /**< SPI instance. */
 static volatile bool spi_xfer_done;  /**< Flag used to indicate that SPI instance completed the transfer. */
 
 #define TEST_STRING "FlightSketch!!!"
@@ -972,10 +1029,10 @@ void spi_event_handler(nrf_drv_spi_evt_t const * p_event,
 
 void spi_init(void){
     nrf_drv_spi_config_t spi_config = NRF_DRV_SPI_DEFAULT_CONFIG;
-    spi_config.ss_pin   = SPI_SS_PIN;
-    spi_config.miso_pin = SPI_MISO_PIN;
-    spi_config.mosi_pin = SPI_MOSI_PIN;
-    spi_config.sck_pin  = SPI_SCK_PIN;
+    spi_config.ss_pin   = NRFX_SPIM_PIN_NOT_USED;
+    spi_config.miso_pin = 28;
+    spi_config.mosi_pin = 4;
+    spi_config.sck_pin  = 3;
     spi_config.frequency = NRF_DRV_SPI_FREQ_4M;
     APP_ERROR_CHECK(nrf_drv_spi_init(&spi, &spi_config, spi_event_handler, NULL));
     NRF_LOG_INFO("SPI example started.");
@@ -2193,6 +2250,47 @@ void buffer_data(void){
     }
 }
 
+/**@brief Function executed on Radio Rx Timeout event
+ */
+void OnRadioRxTimeout (void)
+{
+    // Should never be called
+}
+
+ /**@brief Function executed on Radio Rx Error event
+ */
+void OnRadioRxError (void)
+{
+    // Restart Rx
+    Radio.Rx(0);
+}
+
+ /**@brief Function executed on Radio Rx Done event
+ */
+void OnRadioRxdone (uint8_t *payload, uint16_t size, int16_t rssi, int8_t snr)
+{
+    uint8_t frame_counter;
+    int32_t temperature_reg = 0;
+    float temperature;
+
+    if (size == 6 && payload[0] == 'T')
+    {
+        frame_counter   = payload[1];
+        temperature_reg |= payload[2] << 24;
+        temperature_reg |= payload[3] << 16;
+        temperature_reg |= payload[4] << 8;
+        temperature_reg |= payload[5] << 0;
+         
+         // Temperature in ∞C (0.25∞ steps)
+        temperature = temperature_reg * 0.25;
+        NRF_LOG_INFO("LoRa frame %d received with RSSI: %d dBm.\r\nRemote temperature = "NRF_LOG_FLOAT_MARKER " \∞C", frame_counter, rssi, NRF_LOG_FLOAT(temperature));
+    }
+
+    // Restart Rx
+    Radio.Rx(0);
+}
+
+
 
 /**@brief Application main function.
  */
@@ -2329,6 +2427,24 @@ int main(void)
     nrf_gpio_cfg_input(16, NRF_GPIO_PIN_PULLUP);
     nrf_gpio_cfg_sense_input(16, BUTTON_PULL, NRF_GPIO_PIN_SENSE_LOW);
 
+    // Initialize LoRa chip.
+    lora_hardware_init();
+
+    // Initialize LoRa driver.
+    RadioEvents.RxDone      = OnRadioRxdone;
+    RadioEvents.RxError     = OnRadioRxError;
+    RadioEvents.RxTimeout   = OnRadioRxTimeout;
+    Radio.Init(&RadioEvents);
+    Radio.SetRxConfig(MODEM_LORA, LORA_BANDWIDTH, LORA_SPREADING_FACTOR,
+                      LORA_CODINGRATE, 0, LORA_PREAMBLE_LENGTH,
+                      LORA_SYMBOL_TIMEOUT, LORA_FIX_LENGTH_PAYLOAD_ON,
+                      0, true, 0, 0, LORA_IQ_INVERSION_ON, true);
+
+    // start Rx
+    Radio.Rx(0);
+    nrf_gpio_pin_write(13, 0);
+    nrf_gpio_cfg_output(13);
+
 
     while(1){   
 
@@ -2372,6 +2488,9 @@ int main(void)
         }
 
         if (main_loop_update){
+          
+            Radio.IrqProcess();
+
             main_loop_update = false;
 
             if (armedForLaunch) {

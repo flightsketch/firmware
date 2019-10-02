@@ -3035,6 +3035,10 @@
 // <q> NRFX_SPIM0_ENABLED  - Enable SPIM0 instance
  
 
+#ifndef NRFX_SPIM1_ENABLED
+#define NRFX_SPIM1_ENABLED 1
+#endif
+
 #ifndef NRFX_SPIM0_ENABLED
 #define NRFX_SPIM0_ENABLED 1
 #endif

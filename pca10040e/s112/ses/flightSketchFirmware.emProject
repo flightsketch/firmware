@@ -125,6 +125,15 @@
       <file file_name="../../../../../../components/softdevice/common/nrf_sdh_ble.c" />
       <file file_name="../../../../../../components/softdevice/common/nrf_sdh_soc.c" />
     </folder>
+    <configuration
+      Name="Release"
+      c_user_include_directories=".;/Users/russ/nRF5_SDK_15.2.0_9412b96/examples/ble_peripheral/flightSketch/lora;/Users/russ/nRF5_SDK_15.2.0_9412b96/examples/ble_peripheral/flightSketch/lora/radio;/Users/russ/nRF5_SDK_15.2.0_9412b96/examples/ble_peripheral/flightSketch/lora/boards/isp4520;/Users/russ/nRF5_SDK_15.2.0_9412b96/examples/ble_peripheral/flightSketch/lora/boards/mcu/nrf52832;/Users/russ/nRF5_SDK_15.2.0_9412b96/examples/ble_peripheral/flightSketch/lora/system" />
+    <folder
+      Name="LoRa"
+      exclude=""
+      filter="*.c"
+      path="../../../lora"
+      recurse="Yes" />
   </project>
   <configuration
     Name="Release"
