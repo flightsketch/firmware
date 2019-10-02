@@ -1953,6 +1953,111 @@ void parsePacket_typeF4(void){ // download data
 
 }
 
+void send_data(void){ // download data
+
+    send_file_header();
+
+    int num_vals = file_length / 4;
+    unsigned int i = 0;
+    unsigned int data_length = floor(m_ble_nus_max_data_len/4 - 5);
+    unsigned char packet[532] = {0};
+    unsigned char chk = 0;
+
+    if (data_length >= 128){
+        data_length = 128;
+    }
+    else if (data_length >= 64){
+        data_length = 64;
+    }
+    else if (data_length >= 32){
+        data_length = 32;
+    }
+    else if (data_length >= 16){
+        data_length = 16;
+    }
+    else if (data_length >= 8){
+        data_length = 8;
+    }
+    else if (data_length >= 4){
+        data_length = 4;
+    }
+    else if (data_length >= 2){
+        data_length = 2;
+    }
+    else {
+        data_length = 1;
+    }
+    
+
+
+    packet[0] = 0xf5;
+    packet[1] = 0x07;
+    packet[2] = data_length + 1;
+    packet[3] = 0xf5 + 0x07 + data_length + 1;
+
+
+
+    int num_packets = ceil(num_vals/data_length);
+    int j = 0;
+    int index = 0;
+    int remainder = 0;
+
+    union float_bytes data;
+
+
+
+    for (i=0; i<num_packets; i++){
+      packet[4] = i;
+      chk = packet[4];
+      remainder = num_vals - i*data_length;
+      if (remainder < data_length){
+        //data_length = remainder;
+      }
+      for (j=0; j<data_length; j++){
+        data.data = read_float(index*4);
+
+        packet[5+j*4] = data.float_string[0];
+        chk = chk + packet[5+j*4];
+        packet[6+j*4] = data.float_string[1];
+        chk = chk + packet[6+j*4];
+        packet[7+j*4] = data.float_string[2];
+        chk = chk + packet[7+j*4];
+        packet[8+j*4] = data.float_string[3];
+        chk = chk + packet[8+j*4];
+
+        index = index + 1;
+
+
+      }
+
+        packet[5+4*data_length] = chk;
+
+
+        int err_code = 0;
+        uint16_t length = 6+4*data_length;
+        err_code = ble_nus_data_send(&m_nus, &packet[0], &length, m_conn_handle);
+        //APP_ERROR_CHECK(err_code);
+
+        if (err_code != NRF_SUCCESS){
+            while (err_code != NRF_SUCCESS){
+                nrf_delay_ms(5);
+                err_code = ble_nus_data_send(&m_nus, &packet[0], &length, m_conn_handle);
+                //APP_ERROR_CHECK(err_code);
+
+            }
+
+        }
+
+
+    }
+
+    send_file_eof();
+
+    
+
+}
+
+
 void arm_system(void){
 
 
@@ -2221,12 +2326,40 @@ int main(void)
     uint8_t led1_counter = 0;
     bool led1_on = false;
 
+    nrf_gpio_cfg_input(16, NRF_GPIO_PIN_PULLUP);
+    nrf_gpio_cfg_sense_input(16, BUTTON_PULL, NRF_GPIO_PIN_SENSE_LOW);
+
 
     while(1){   
 
+        if(nrf_gpio_pin_read(16) == 0)
+        {
+            int count = 0;
+            while (!nrf_gpio_pin_read(16)){
+                nrf_delay_ms(1);
+                count++;
+                if (count == 3000){
+                    nrf_gpio_pin_clear(17);
+                    nrf_delay_ms(50);
+                    nrf_gpio_pin_set(17);
+                    nrf_delay_ms(50);
+                    nrf_gpio_pin_clear(17);
+                    nrf_delay_ms(50);
+                    nrf_gpio_pin_set(17);
+                    nrf_delay_ms(50);
+                    nrf_gpio_pin_clear(17);
+                    nrf_delay_ms(50);
+                    nrf_gpio_pin_set(17);
+                }
+            }
+            if (count >= 3000){
+                sd_power_system_off();
+            }
+        }
+
         if (download_request){
             download_request = false;
-            parsePacket_typeF4();
+            send_data();
         }
 
         if (arm_request){
