@@ -29,6 +29,11 @@
 #include "sx126x-board.h"
 #include "board.h"
 
+
+#include "nrf_log.h"
+#include "nrf_log_ctrl.h"
+#include "nrf_log_default_backends.h"
+
 /*!
  * \brief Initializes the radio
  *
@@ -862,6 +867,7 @@ uint32_t RadioTimeOnAir( RadioModems_t modem, uint8_t pktLen )
 
 void RadioSend( uint8_t *buffer, uint8_t size )
 {
+    NRF_LOG_INFO("Sending...");
     SX126xSetDioIrqParams( IRQ_TX_DONE | IRQ_RX_TX_TIMEOUT,
                            IRQ_TX_DONE | IRQ_RX_TX_TIMEOUT,
                            IRQ_RADIO_NONE,
@@ -869,6 +875,7 @@ void RadioSend( uint8_t *buffer, uint8_t size )
 
     if( SX126xGetPacketType( ) == PACKET_TYPE_LORA )
     {
+        NRF_LOG_INFO("Set LoRa Type");
         SX126x.PacketParams.Params.LoRa.PayloadLength = size;
     }
     else
@@ -880,6 +887,7 @@ void RadioSend( uint8_t *buffer, uint8_t size )
     SX126xSendPayload( buffer, size, 0 );
     TimerSetValue( &TxTimeoutTimer, TxTimeout );
     TimerStart( &TxTimeoutTimer );
+    NRF_LOG_INFO("End Send");
 }
 
 void RadioSleep( void )
@@ -899,6 +907,7 @@ void RadioStandby( void )
 
 void RadioRx( uint32_t timeout )
 {
+    
     SX126xSetDioIrqParams( IRQ_RADIO_ALL, //IRQ_RX_DONE | IRQ_RX_TX_TIMEOUT,
                            IRQ_RADIO_ALL, //IRQ_RX_DONE | IRQ_RX_TX_TIMEOUT,
                            IRQ_RADIO_NONE,
@@ -1067,6 +1076,7 @@ void RadioOnDioIrq( void )
 
 void RadioIrqProcess( void )
 {
+    //NRF_LOG_INFO("IRQ");
     if( IrqFired == true )
     {
         BoardDisableIrq( );
@@ -1077,7 +1087,7 @@ void RadioIrqProcess( void )
         SX126xClearIrqStatus( IRQ_RADIO_ALL );
 
         if( ( irqRegs & IRQ_TX_DONE ) == IRQ_TX_DONE )
-        {
+        {   
             TimerStop( &TxTimeoutTimer );
             if( ( RadioEvents != NULL ) && ( RadioEvents->TxDone != NULL ) )
             {
@@ -1088,7 +1098,7 @@ void RadioIrqProcess( void )
         if( ( irqRegs & IRQ_RX_DONE ) == IRQ_RX_DONE )
         {
             uint8_t size;
-
+            NRF_LOG_INFO("Rx done");
             TimerStop( &RxTimeoutTimer );
             SX126xGetPayload( RadioRxPayload, &size , 255 );
             SX126xGetPacketStatus( &RadioPktStatus );
@@ -1100,6 +1110,7 @@ void RadioIrqProcess( void )
 
         if( ( irqRegs & IRQ_CRC_ERROR ) == IRQ_CRC_ERROR )
         {
+            NRF_LOG_INFO("CRC Error");
             if( ( RadioEvents != NULL ) && ( RadioEvents->RxError ) )
             {
                 RadioEvents->RxError( );

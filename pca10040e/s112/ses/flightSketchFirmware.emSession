@@ -22,21 +22,8 @@
   <ProjectSessionItem path="flightSketchFirmware"/>
   <ProjectSessionItem path="flightSketchFirmware;flightSketchFirmware"/>
   <ProjectSessionItem path="flightSketchFirmware;flightSketchFirmware;Application"/>
-  <ProjectSessionItem path="flightSketchFirmware;flightSketchFirmware;Board Definition"/>
-  <ProjectSessionItem path="flightSketchFirmware;flightSketchFirmware;Board Support"/>
-  <ProjectSessionItem path="flightSketchFirmware;flightSketchFirmware;LoRa"/>
-  <ProjectSessionItem path="flightSketchFirmware;flightSketchFirmware;LoRa;boards"/>
-  <ProjectSessionItem path="flightSketchFirmware;flightSketchFirmware;LoRa;boards;isp4520"/>
-  <ProjectSessionItem path="flightSketchFirmware;flightSketchFirmware;LoRa;radio"/>
-  <ProjectSessionItem path="flightSketchFirmware;flightSketchFirmware;LoRa;system"/>
-  <ProjectSessionItem path="flightSketchFirmware;flightSketchFirmware;None"/>
-  <ProjectSessionItem path="flightSketchFirmware;flightSketchFirmware;nRF_BLE"/>
-  <ProjectSessionItem path="flightSketchFirmware;flightSketchFirmware;nRF_BLE_Services"/>
   <ProjectSessionItem path="flightSketchFirmware;flightSketchFirmware;nRF_Drivers"/>
   <ProjectSessionItem path="flightSketchFirmware;flightSketchFirmware;nRF_Libraries"/>
-  <ProjectSessionItem path="flightSketchFirmware;flightSketchFirmware;nRF_Log"/>
-  <ProjectSessionItem path="flightSketchFirmware;flightSketchFirmware;nRF_Segger_RTT"/>
-  <ProjectSessionItem path="flightSketchFirmware;flightSketchFirmware;nRF_SoftDevice"/>
   <ProjectSessionItem path="flightSketchFirmware;flightSketchFirmware;Segger Startup Files"/>
   <SourceCodeControlLogin password="F9BB6682F5D56822" user="Russ &lt;dev@flightsketch.com>"/>
  </Project>
@@ -71,19 +58,10 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="16" y="1175" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="0" top="345" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="31" y="2355" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="2345" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="49" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../bmp388_driver/bmp3.c" selected="0" top="36" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="220" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../bmp388_driver/bmp3_defs.h" selected="0" top="194" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="70" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../lora/boards/isp4520/board.h" selected="0" top="43" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="7" y="47" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../lora/boards/isp4520/board.c" selected="0" top="35" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="230" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../lora/boards/isp4520/sx126x-board.c" selected="0" top="220" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="371" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../lora/system/timer.c" selected="0" top="338" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="17" y="3034" useTextEdit="1" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="3018" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="36" y="119" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../integration/nrfx/legacy/nrf_drv_spi.h" selected="0" top="101" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="40" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../lora/boards/isp4520/spi-board.c" selected="0" top="31" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="74" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../modules/nrfx/drivers/src/nrfx_spim.c" selected="0" top="58" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/boards/boards.c" selected="0" top="136" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/libraries/bsp/bsp.c" selected="1" top="209" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="2903" useTextEdit="1" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="2879" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="flightSketchFirmware" fileDialogDefaultFilter="*.h" autoConnectTarget="J-Link" buildConfiguration="Release" debugSearchFileMap="" fileDialogInitialDirectory="/Users/russ/nRF5_SDK_15.2.0_9412b96/examples/ble_peripheral/flightSketch/bmp388_driver" debugSearchPath="" autoConnectCapabilities="3199"/>
+ <ARMCrossStudioWindow activeProject="flightSketchFirmware" fileDialogDefaultFilter="*.h" autoConnectTarget="J-Link" buildConfiguration="Release" debugSearchFileMap="" fileDialogInitialDirectory="/Users/russ/nRF5_SDK_15.2.0_9412b96/examples/ble_peripheral/flightSketch/bmp388_driver" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>

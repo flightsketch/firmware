@@ -37,9 +37,6 @@ Maintainer: Miguel Luis and Gregory Cristian
 #ifndef __BOARD_H__
 #define __BOARD_H__
 
-#define REGION_US915
-#define ISP4520_US
-
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>

@@ -131,6 +131,9 @@
     <folder Name="BMP388">
       <file file_name="../../../bmp388_driver/bmp3.c" />
     </folder>
+    <configuration
+      Name="Release"
+      c_preprocessor_definitions="REGION_US915;ISP4520_US;CONFIG_GPIO_AS_PINRESET;FLOAT_ABI_HARD;INITIALIZE_USER_SECTIONS;NO_VTOR_CONFIG;NRF52;NRF52832_XXAA;NRF52_PAN_74;SWI_DISABLE0" />
   </project>
   <configuration
     Name="Release"

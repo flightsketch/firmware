@@ -220,6 +220,7 @@ void SX126xSetRfTxPower (int8_t power)
 {
     SX126xSetTxParams(power, RADIO_RAMP_40_US);
 }
+#define ISP4520_US
 
 uint8_t SX126xGetPaSelect (uint32_t channel)
 {

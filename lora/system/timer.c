@@ -86,7 +86,7 @@ static uint32_t RTC2_GetMinimumTimeout (void)
  */
 static uint32_t RTC2_GetTimerElapsedTime (void)
 {
-    TimerTime_t now_in_ticks = NRF_RTC0->COUNTER;
+    TimerTime_t now_in_ticks = NRF_RTC2->COUNTER;
     return (now_in_ticks - m_rtc_reference_time);
 }
 
@@ -96,7 +96,7 @@ static uint32_t RTC2_GetTimerElapsedTime (void)
  */
 static uint32_t RTC2_GetCounterReg (void)
 {
-    return NRF_RTC0->COUNTER;
+    return NRF_RTC2->COUNTER;
 }
 
 /**@brief Set value in the CC[0] register
@@ -108,8 +108,8 @@ static uint32_t RTC2_GetCounterReg (void)
  */
 static void RTC2_SetCompareReg (uint32_t timeout)
 {
-    TimerTime_t now = NRF_RTC0->COUNTER;
-    NRF_RTC0->CC[0] = now + timeout;
+    TimerTime_t now = NRF_RTC2->COUNTER;
+    NRF_RTC2->CC[0] = now + timeout;
 }
 
 /**@brief Check if the input timer object exists
@@ -206,12 +206,12 @@ static void TimerInsertTimer (TimerEvent_t *obj)
 void RTC2_IRQHandler(void)
 {	
     // Clear all events (also unexpected ones)
-    NRF_RTC0->EVENTS_COMPARE[0] = 0;
-    NRF_RTC0->EVENTS_COMPARE[1] = 0;
-    NRF_RTC0->EVENTS_COMPARE[2] = 0;
-    NRF_RTC0->EVENTS_COMPARE[3] = 0;
-    NRF_RTC0->EVENTS_TICK       = 0;
-    NRF_RTC0->EVENTS_OVRFLW     = 0;
+    NRF_RTC2->EVENTS_COMPARE[0] = 0;
+    NRF_RTC2->EVENTS_COMPARE[1] = 0;
+    NRF_RTC2->EVENTS_COMPARE[2] = 0;
+    NRF_RTC2->EVENTS_COMPARE[3] = 0;
+    NRF_RTC2->EVENTS_TICK       = 0;
+    NRF_RTC2->EVENTS_OVRFLW     = 0;
 	
     TimerEvent_t* cur;
     TimerEvent_t* next;
@@ -272,16 +272,16 @@ void RTC2_IRQHandler(void)
 
 void TimerConfig (void)
 {
-    NRF_RTC0->PRESCALER = TIMER_RTC2_PRESCALER;
-    NVIC_SetPriority(RTC1_IRQn, 5);
+    NRF_RTC2->PRESCALER = TIMER_RTC2_PRESCALER;
+    NVIC_SetPriority(RTC2_IRQn, 5);
 	    
-    NRF_RTC0->EVTENSET = RTC_EVTEN_COMPARE0_Disabled;
-    NRF_RTC0->INTENSET = RTC_INTENSET_COMPARE0_Disabled;
+    NRF_RTC2->EVTENSET = RTC_EVTEN_COMPARE0_Disabled;
+    NRF_RTC2->INTENSET = RTC_INTENSET_COMPARE0_Disabled;
 
-    NVIC_ClearPendingIRQ(RTC1_IRQn);
-    NVIC_EnableIRQ(RTC1_IRQn);
+    NVIC_ClearPendingIRQ(RTC2_IRQn);
+    NVIC_EnableIRQ(RTC2_IRQn);
 
-    NRF_RTC0->TASKS_START = 1;
+    NRF_RTC2->TASKS_START = 1;
 }
 
 void TimerInit (TimerEvent_t *obj, void (*callback)(void))
@@ -311,8 +311,8 @@ void TimerStart (TimerEvent_t *obj)
     if (TimerListHead == NULL)
     {
         // enable RTC2 CC[0] interrupts
-        NRF_RTC0->EVTENSET = RTC_EVTEN_COMPARE0_Msk;
-        NRF_RTC0->INTENSET = RTC_INTENSET_COMPARE0_Msk;
+        NRF_RTC2->EVTENSET = RTC_EVTEN_COMPARE0_Msk;
+        NRF_RTC2->INTENSET = RTC_INTENSET_COMPARE0_Msk;
         // Get reference time
         m_rtc_reference_time = RTC2_GetCounterReg();
 		
@@ -368,8 +368,8 @@ void TimerStop (TimerEvent_t *obj)
             else
             {
                 // Disable RTC2 CC[0] interrupt
-                NRF_RTC0->EVTENSET = RTC_EVTEN_COMPARE0_Disabled;
-                NRF_RTC0->INTENSET = RTC_INTENSET_COMPARE0_Disabled;
+                NRF_RTC2->EVTENSET = RTC_EVTEN_COMPARE0_Disabled;
+                NRF_RTC2->INTENSET = RTC_INTENSET_COMPARE0_Disabled;
                 TimerListHead = NULL;
             }
         }

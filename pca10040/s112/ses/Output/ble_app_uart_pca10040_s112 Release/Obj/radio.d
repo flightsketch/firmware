@@ -72,4 +72,21 @@ Output/ble_app_uart_pca10040_s112\ Release/Obj/radio.o: \
  ../../../../../../modules/nrfx/hal/nrf_gpio.h \
  /Users/russ/nRF5_SDK_15.2.0_9412b96/examples/ble_peripheral/flightSketch/lora/boards/mcu/nrf52832/utilities.h \
  /Users/russ/nRF5_SDK_15.2.0_9412b96/examples/ble_peripheral/flightSketch/lora/radio/sx126x/sx126x.h \
- /Users/russ/nRF5_SDK_15.2.0_9412b96/examples/ble_peripheral/flightSketch/lora/boards/isp4520/sx126x-board.h
+ /Users/russ/nRF5_SDK_15.2.0_9412b96/examples/ble_peripheral/flightSketch/lora/boards/isp4520/sx126x-board.h \
+ ../../../../../../components/libraries/log/nrf_log.h \
+ ../../../../../../components/libraries/util/sdk_common.h \
+ ../../../../../../components/libraries/util/sdk_os.h \
+ ../../../../../../components/libraries/util/app_util.h \
+ ../../../../../../components/libraries/util/sdk_macros.h \
+ ../../../../../../components/libraries/experimental_section_vars/nrf_section.h \
+ ../../../../../../components/libraries/strerror/nrf_strerror.h \
+ ../../../../../../components/libraries/log/src/nrf_log_internal.h \
+ ../../../../../../components/libraries/log/nrf_log_instance.h \
+ ../../../../../../components/libraries/log/nrf_log_types.h \
+ ../../../../../../components/libraries/log/nrf_log_types.h \
+ ../../../../../../components/libraries/log/nrf_log_ctrl.h \
+ ../../../../../../components/libraries/log/src/nrf_log_ctrl_internal.h \
+ ../../../../../../components/libraries/log/nrf_log_backend_interface.h \
+ ../../../../../../components/libraries/memobj/nrf_memobj.h \
+ ../../../../../../components/libraries/balloc/nrf_balloc.h \
+ ../../../../../../components/libraries/log/nrf_log_default_backends.h

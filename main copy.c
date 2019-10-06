@@ -81,7 +81,8 @@
 
 #include "bmp388_driver/bmp3.h"
 
-
+#define REGION_US915
+#define ISP4520_US
 
 // LoRa
 #include "radio.h"
@@ -143,7 +144,7 @@
 #elif defined( REGION_IN865 )
 #define RF_FREQUENCY                                865000000 // Hz
 #elif defined( REGION_US915 )
-#define RF_FREQUENCY                                906200000 // Hz
+#define RF_FREQUENCY                                915000000 // Hz
 #elif defined( REGION_US915_HYBRID )
 #define RF_FREQUENCY                                915000000 // Hz
 #else
@@ -158,11 +159,11 @@
     #error "Please define a ISP4520 configuration"
 #endif
 
-#define LORA_BANDWIDTH                              1       // [0: 125 kHz,
+#define LORA_BANDWIDTH                              2       // [0: 125 kHz,
                                                             //  1: 250 kHz,
                                                             //  2: 500 kHz,
                                                             //  3: Reserved]
-#define LORA_SPREADING_FACTOR                       12       // [SF7..SF12]
+#define LORA_SPREADING_FACTOR                       7       // [SF7..SF12]
 #define LORA_CODINGRATE                             1       // [1: 4/5,
                                                             //  2: 4/6,
                                                             //  3: 4/7,
@@ -2275,7 +2276,7 @@ void OnRadioRxdone (uint8_t *payload, uint16_t size, int16_t rssi, int8_t snr)
     int32_t temperature_reg = 0;
     float temperature;
 
-
+    vehicle_state.temp = 42;
 
     if (size == 6 && payload[0] == 'T')
     {
@@ -2287,8 +2288,6 @@ void OnRadioRxdone (uint8_t *payload, uint16_t size, int16_t rssi, int8_t snr)
          
          // Temperature in ∞C (0.25∞ steps)
         temperature = temperature_reg * 0.25;
-        vehicle_state.altitude = rssi;
-        vehicle_state.max_altitude = snr;
         vehicle_state.temp = temperature;
         NRF_LOG_INFO("LoRa frame %d received with RSSI: %d dBm.\r\nRemote temperature = "NRF_LOG_FLOAT_MARKER " C", frame_counter, rssi, NRF_LOG_FLOAT(temperature));
     }
@@ -2359,7 +2358,7 @@ int main(void)
 
     // Initialize.
 //    uart_init();
-    log_init();
+//    log_init();
     timers_init();
 
     uint64_t dev_id = *((uint64_t*) NRF_FICR->DEVICEADDR);
@@ -2498,7 +2497,7 @@ int main(void)
 
     // start Rx
 
-    bool rx = true;
+    bool rx = false;
 
     if (rx){
 

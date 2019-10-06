@@ -45,7 +45,7 @@ uint32_t lora_hardware_init (void)
 {
     TimerConfig();
 
-    SpiInit(&SX126x.Spi, PIN_LORA_MOSI, PIN_LORA_MISO, PIN_LORA_SCLK, NRF_SPIM_PIN_NOT_CONNECTED);
+    SpiInit(&SX126x.Spi, PIN_LORA_MOSI, PIN_LORA_MISO, PIN_LORA_SCLK, NRF_SPI_PIN_NOT_CONNECTED);
     SX126xIoInit();
 
     return NRF_SUCCESS;
