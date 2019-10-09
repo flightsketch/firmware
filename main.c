@@ -123,9 +123,9 @@
 
 #define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(MAIN_LOOP_PERIOD)                /**< Main loop interval (ticks). */
 
-#define CS_BARO   29
-#define CS_FLASH  9
-#define CS_ACC    10
+#define CS_BARO   20
+#define CS_FLASH  5
+#define CS_ACC    12
 
 float dt = MAIN_LOOP_PERIOD/1000.0;
 
@@ -2337,9 +2337,9 @@ void read_accel(void){
 
     com_rslt += bma2x2_read_accel_x(&accel_x_s16);
 
-    vehicle_state.temp = accel_x_s16;
+    //vehicle_state.temp = accel_x_s16;
     NRF_LOG_INFO("Accel: %d", accel_x_s16);
-    vehicle_state.acceleration = accel_x_s16;
+    //vehicle_state.acceleration = accel_x_s16;
 }
 
 void readAccID(void){
@@ -2601,7 +2601,7 @@ int main(void)
         if (main_loop_update){
             main_loop_update = false;
 
-            read_accel();
+            //read_accel();
 
             if (armedForLaunch) {
                 uint8_t index = 0;
