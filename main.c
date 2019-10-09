@@ -78,8 +78,9 @@
 
 #include "bmp280_driver/bmp280.h"
 #include "bmp280_config.h"
-
 #include "bmp388_driver/bmp3.h"
+
+#include "BMA2x2_driver/bma2x2.h"
 
 
 
@@ -122,8 +123,9 @@
 
 #define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(MAIN_LOOP_PERIOD)                /**< Main loop interval (ticks). */
 
-#define CS_BARO   20
-#define CS_FLASH  5
+#define CS_BARO   29
+#define CS_FLASH  9
+#define CS_ACC    10
 
 float dt = MAIN_LOOP_PERIOD/1000.0;
 
@@ -1024,6 +1026,135 @@ int8_t BMP_280_write(uint8_t dev_id, uint8_t reg_addr, uint8_t *data, uint16_t l
     nrf_gpio_pin_set(CS_BARO);
     return BMP280_OK;
 }
+
+
+/************** I2C/SPI buffer length ******/
+#define	I2C_BUFFER_LEN 8
+#define SPI_BUFFER_LEN 5
+#define BMA2x2_BUS_READ_WRITE_ARRAY_INDEX	1
+#define BMA2x2_SPI_BUS_WRITE_CONTROL_BYTE	0x7F
+#define BMA2x2_SPI_BUS_READ_CONTROL_BYTE	0x80
+
+/* \Brief: The function is used as SPI bus write
+ * \Return : Status of the SPI write
+ * \param dev_addr : The device address of the sensor
+ * \param reg_addr : Address of the first register,
+ *      will data is going to be written
+ * \param reg_data : It is a value hold in the array,
+ *	will be used for write the value into the register
+ * \param cnt : The no of byte of data to be write
+ */
+s8 BMA2x2_SPI_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt){
+    spi_xfer_done = false;
+    uint8_t tx_buffer[30] = {0};
+
+    u8 stringpos = BMA2x2_INIT_VALUE;
+
+    for (stringpos = BMA2x2_INIT_VALUE; stringpos < cnt; stringpos++) {
+	/* the operation of (reg_addr++)&0x7F done:
+	because it ensure the
+	0 and 1 of the given value
+	It is done only for 8bit operation*/
+	tx_buffer[stringpos * 2] = (reg_addr++) & BMA2x2_SPI_BUS_WRITE_CONTROL_BYTE;
+	tx_buffer[stringpos * 2 + BMA2x2_BUS_READ_WRITE_ARRAY_INDEX] = *(reg_data + stringpos);
+	}
+
+    uint8_t i;
+
+    nrf_gpio_pin_clear(CS_ACC);
+    nrf_drv_spi_transfer(&spi, tx_buffer, cnt*2, NULL, cnt*2);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(CS_ACC);
+    return 0;
+
+}
+
+void bma2x2_reset(void){
+
+    spi_xfer_done = false;
+    uint8_t tx_buffer[30] = {0};
+
+    tx_buffer[0] = 0xB6;
+    tx_buffer[1] = 0x14;
+
+    nrf_gpio_pin_clear(CS_ACC);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 2, NULL, 2);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(CS_ACC);
+
+    nrf_delay_ms(10);
+
+}
+
+
+/* \Brief: The function is used as SPI bus read
+ * \Return : Status of the SPI read
+ * \param dev_addr : The device address of the sensor
+ * \param reg_addr : Address of the first register,
+ *   will data is going to be read
+ * \param reg_data : This data read from the sensor, which is hold in an array
+ * \param cnt : The no of byte of data to be read */
+s8 BMA2x2_SPI_bus_read(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt){
+    spi_xfer_done = false;
+    uint8_t tx_buffer[30] = {0xFF};
+    uint8_t rx_buffer[30] = {0xFF};
+    uint8_t rx_buffer_out[30];
+    tx_buffer[0] = reg_addr|BMA2x2_SPI_BUS_READ_CONTROL_BYTE;
+    //tx_buffer[0] = 0x00|BMA2x2_SPI_BUS_READ_CONTROL_BYTE;
+
+
+
+
+    uint8_t i;
+    
+    nrf_gpio_pin_clear(CS_ACC);
+    nrf_drv_spi_transfer(&spi, tx_buffer, cnt+1, rx_buffer, cnt+1);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(CS_ACC);
+    for(i=0; i<cnt; i++){
+        *(reg_data+i) = rx_buffer[i+BMA2x2_BUS_READ_WRITE_ARRAY_INDEX];
+    }
+
+    return 0;
+
+}
+
+void BMA2x2_delay_msek(u32 msek){
+
+    nrf_delay_ms(msek);
+
+}
+
+s32 bma2x2_data_readout_template(void);
+struct bma2x2_t bma2x2;
+extern u8 V_BMA2x2RESOLUTION_u8R;
+
+s8 SPI_routine(void)
+{
+/*--------------------------------------------------------------------------*
+ *  By using bma2x2 the following structure parameter can be accessed
+ *	Bus write function pointer: BMA2x2_WR_FUNC_PTR
+ *	Bus read function pointer: BMA2x2_RD_FUNC_PTR
+ *	Delay function pointer: delay_msec
+ *--------------------------------------------------------------------------*/
+
+	bma2x2.bus_write = BMA2x2_SPI_bus_write;
+	bma2x2.bus_read = BMA2x2_SPI_bus_read;
+	bma2x2.delay_msec = BMA2x2_delay_msek;
+
+	return BMA2x2_INIT_VALUE;
+}
+
+
 
 
 void store_recording_started(void){
@@ -2194,6 +2325,51 @@ void buffer_data(void){
     }
 }
 
+void read_accel(void){
+    s32 com_rslt;
+    s16	accel_x_s16, accel_y_s16, accel_z_s16 = BMA2x2_INIT_VALUE;
+
+	/* bma2x2acc_data structure used to read accel xyz data*/
+    struct bma2x2_accel_data sample_xyz;
+	/* bma2x2acc_data_temp structure used to read
+		accel xyz and temperature data*/
+    struct bma2x2_accel_data_temp sample_xyzt;
+
+    com_rslt += bma2x2_read_accel_x(&accel_x_s16);
+
+    vehicle_state.temp = accel_x_s16;
+    NRF_LOG_INFO("Accel: %d", accel_x_s16);
+    vehicle_state.acceleration = accel_x_s16;
+}
+
+void readAccID(void){
+
+    spi_xfer_done = false;
+    uint8_t tx_buffer[2] = {0b10000000};
+    uint8_t rx_buffer[2] = {0xFF};
+    uint8_t rx_buffer_out[2];
+    //tx_buffer[0] = reg_addr|BMA2x2_SPI_BUS_READ_CONTROL_BYTE;
+    //tx_buffer[0] = 0x00|BMA2x2_SPI_BUS_READ_CONTROL_BYTE;
+
+
+
+
+    uint8_t i;
+    
+    nrf_gpio_pin_clear(CS_ACC);
+    nrf_delay_us(50);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 2, rx_buffer, 2);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(CS_ACC);
+    NRF_LOG_INFO("read ID: %d",rx_buffer[1]);
+
+
+
+}
+
 
 /**@brief Application main function.
  */
@@ -2207,7 +2383,7 @@ int main(void)
 
     // Initialize.
 //    uart_init();
-//    log_init();
+    log_init();
     timers_init();
 
     uint64_t dev_id = *((uint64_t*) NRF_FICR->DEVICEADDR);
@@ -2250,10 +2426,16 @@ int main(void)
     uint32_t result = 0;
     result = sd_ble_gap_tx_power_set(BLE_GAP_TX_POWER_ROLE_ADV,0,4);
 
+
+    nrf_gpio_cfg_output(15);
+    nrf_gpio_pin_clear(15);
+    nrf_delay_ms(500);
     nrf_gpio_cfg_output(CS_BARO);
     nrf_gpio_pin_set(CS_BARO);
     nrf_gpio_cfg_output(CS_FLASH);
     nrf_gpio_pin_set(CS_FLASH);
+    nrf_gpio_cfg_output(CS_ACC);
+    nrf_gpio_pin_set(CS_ACC);
     spi_init();
 
     //bmp280_config();
@@ -2268,6 +2450,26 @@ int main(void)
     rslt = bmp388_set_forced_mode_with_osr(&bmp388);
     nrf_delay_ms(100);
     bmp388_read();
+
+    SPI_routine();
+    nrf_delay_ms(100);
+    bma2x2_reset();
+    readAccID();
+
+    rslt = bma2x2_init(&bma2x2);
+    NRF_LOG_INFO("Result: %d", rslt);
+    rslt += bma2x2_set_power_mode(BMA2x2_MODE_NORMAL);
+    NRF_LOG_INFO("Result: %d", rslt);
+    u8 bw_value_u8 = BMA2x2_INIT_VALUE;
+    bw_value_u8 = 0x08;/* set bandwidth of 7.81Hz*/
+    rslt += bma2x2_set_bw(bw_value_u8);
+    NRF_LOG_INFO("Result: %d", rslt);
+
+    u8 banwid = BMA2x2_INIT_VALUE;
+    rslt += bma2x2_get_bw(&banwid);
+    NRF_LOG_INFO("Result: %d", rslt);
+
+    NRF_LOG_INFO("BW: %d", banwid);
 
     vehicle_init();
     vehicle_state.max_altitude = 0.0;
@@ -2327,17 +2529,41 @@ int main(void)
     uint8_t led1_counter = 0;
     bool led1_on = false;
 
-    nrf_gpio_cfg_input(16, NRF_GPIO_PIN_PULLUP);
-    nrf_gpio_cfg_sense_input(16, BUTTON_PULL, NRF_GPIO_PIN_SENSE_LOW);
+    nrf_gpio_cfg_input(14, NRF_GPIO_PIN_PULLDOWN);
+    nrf_gpio_cfg_sense_input(14, NRF_GPIO_PIN_PULLDOWN, NRF_GPIO_PIN_SENSE_HIGH);
 
 
     while(1){   
 
-        if(nrf_gpio_pin_read(16) == 0)
+        if(nrf_gpio_pin_read(14) == 1)
         {
             int count = 0;
-            while (!nrf_gpio_pin_read(16)){
+            while (nrf_gpio_pin_read(14)){
                 nrf_delay_ms(1);
+                nrf_drv_spi_uninit(&spi);
+                nrf_gpio_cfg_input(CS_BARO,NRF_GPIO_PIN_PULLDOWN);
+                nrf_gpio_cfg_input(CS_FLASH,NRF_GPIO_PIN_PULLDOWN);
+                nrf_gpio_cfg_input(CS_ACC,NRF_GPIO_PIN_PULLDOWN);
+                nrf_gpio_cfg_input(3,NRF_GPIO_PIN_PULLDOWN);
+                nrf_gpio_cfg_input(4,NRF_GPIO_PIN_PULLDOWN);
+                nrf_gpio_cfg_input(28,NRF_GPIO_PIN_PULLDOWN);
+                
+                
+                nrf_gpio_pin_set(15);
+
+//                nrf_gpio_pin_clear(CS_BARO);
+//                nrf_gpio_pin_clear(CS_FLASH);
+//                nrf_gpio_pin_clear(CS_ACC);
+
+//                NRF_SPIM0->ENABLE = (SPIM_ENABLE_ENABLE_Disabled << SPIM_ENABLE_ENABLE_Pos);
+//                nrf_gpio_cfg_output(3);
+//                nrf_gpio_cfg_output(4);
+//                nrf_gpio_cfg_output(28);
+
+//                nrf_gpio_pin_clear(3);
+//                nrf_gpio_pin_clear(4);
+//                nrf_gpio_pin_clear(28);
+
                 count++;
                 if (count == 3000){
                     nrf_gpio_pin_clear(17);
@@ -2374,6 +2600,8 @@ int main(void)
 
         if (main_loop_update){
             main_loop_update = false;
+
+            read_accel();
 
             if (armedForLaunch) {
                 uint8_t index = 0;
@@ -2431,6 +2659,7 @@ int main(void)
                 if (baro_error){
                     vehicle_state.max_altitude = vehicle_state.max_altitude + 1.0;
                 }
+                
                 update_state();
             }
 
