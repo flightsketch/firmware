@@ -124,10 +124,11 @@
 #define UART_TX_BUF_SIZE                256                                         /**< UART TX buffer size. */
 #define UART_RX_BUF_SIZE                256                                         /**< UART RX buffer size. */
 
-#define MAIN_LOOP_PERIOD                1000
+#define MAIN_LOOP_PERIOD                2000
 
 #define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(MAIN_LOOP_PERIOD)                /**< Main loop interval (ticks). */
 
+#define CS_GPS  10
 
 
 #if defined( REGION_AS923 )
@@ -158,11 +159,11 @@
     #error "Please define a ISP4520 configuration"
 #endif
 
-#define LORA_BANDWIDTH                              1       // [0: 125 kHz,
+#define LORA_BANDWIDTH                              0       // [0: 125 kHz,
                                                             //  1: 250 kHz,
                                                             //  2: 500 kHz,
                                                             //  3: Reserved]
-#define LORA_SPREADING_FACTOR                       12       // [SF7..SF12]
+#define LORA_SPREADING_FACTOR                       11       // [SF7..SF12]
 #define LORA_CODINGRATE                             1       // [1: 4/5,
                                                             //  2: 4/6,
                                                             //  3: 4/7,
@@ -302,6 +303,26 @@ struct state {
   float temp;
 };
 
+struct gps_state {
+  uint16_t  device_id;
+  uint8_t   fix_type;
+  uint8_t   num_sats;
+  uint32_t  time;
+  uint16_t  batt_v;
+  uint16_t  status;
+  int32_t   lat;
+  int32_t   lon;
+  int32_t   alt;
+  int16_t  gnd_spd;
+  int16_t  vert_spd;
+  int16_t  heading;
+};
+
+union gps_bytes {
+  struct gps_state state;
+  unsigned char   bytes[30];
+};
+
 struct status {
   bool isArmedForLaunch: 1;
   bool isRecording: 1;
@@ -324,9 +345,15 @@ union status_bytes {
 
 };
 
+union i32 {
 
+  int32_t        integer;
+  unsigned char   bytes[4];
+
+};
 
 struct state vehicle_state;
+struct gps_state gps;
 
 /**@brief Function for assert macro callback.
  *
@@ -1923,6 +1950,40 @@ void send_update_packet(void){
     err_code = ble_nus_data_send(&m_nus, &data_packet.data_string[0], &length, m_conn_handle);
 }
 
+void send_gps_packet(void){
+
+    unsigned char packet[37];
+    union gps_bytes gps_string;
+
+    gps_string.state = gps;
+
+    packet[0] = 0xf5;
+    packet[1] = 0x08;
+    packet[2] = 0x20;
+    packet[3] = 0x1D;
+
+    int i;
+    char check = 0;
+
+
+    for (i=0; i<30; i++){
+        packet[i+4] = gps_string.bytes[i];
+        check = check + packet[i+4];
+    }
+
+    packet[34] = 0; //RSSI
+    packet[35] = 0; //SNR
+
+    check = check + packet[34] + packet[35];
+    packet[36] = check;
+
+    int err_code = 0;
+    uint16_t length = 37;
+    err_code = ble_nus_data_send(&m_nus, &packet[0], &length, m_conn_handle);
+}
+
+
+
 void parsePacket_typeF1(void){ // set zero alt
     arm_request = true;
 
@@ -2264,37 +2325,31 @@ void OnRadioRxError (void)
 {
     // Restart Rx
     vehicle_state.temp = -40.0;
-    Radio.Rx(0);
+    Radio.RxBoosted(0);
 }
 
  /**@brief Function executed on Radio Rx Done event
  */
 void OnRadioRxdone (uint8_t *payload, uint16_t size, int16_t rssi, int8_t snr)
 {
-    uint8_t frame_counter;
-    int32_t temperature_reg = 0;
-    float temperature;
+    union gps_bytes gps_packet;
+    char i;
 
 
 
-    if (size == 6 && payload[0] == 'T')
+
+    if (size == 30)
     {
-        frame_counter   = payload[1];
-        temperature_reg |= payload[2] << 24;
-        temperature_reg |= payload[3] << 16;
-        temperature_reg |= payload[4] << 8;
-        temperature_reg |= payload[5] << 0;
-         
-         // Temperature in ∞C (0.25∞ steps)
-        temperature = temperature_reg * 0.25;
-        vehicle_state.altitude = rssi;
-        vehicle_state.max_altitude = snr;
-        vehicle_state.temp = temperature;
-        NRF_LOG_INFO("LoRa frame %d received with RSSI: %d dBm.\r\nRemote temperature = "NRF_LOG_FLOAT_MARKER " C", frame_counter, rssi, NRF_LOG_FLOAT(temperature));
+        for (i=0; i<30; i++){
+            gps_packet.bytes[i] = payload[i];
+        }
+        gps = gps_packet.state;
     }
+    vehicle_state.altitude = rssi;
+    vehicle_state.max_altitude = snr;
 
     // Restart Rx
-    Radio.Rx(0);
+    Radio.RxBoosted(0);
 }
 
  /**@brief Function executed on Radio Tx Timeout event
@@ -2344,6 +2399,375 @@ static void tx_lora_periodic_handler (void * unused)
     Radio.Send(buffer, sizeof(buffer));
 }
 
+void ubx_chk(uint8_t *buffer, uint8_t payload_length){
+
+    uint8_t i;
+    uint8_t chkA=0, chkB=0;
+
+    for (i=0; i<payload_length+4; i++){
+      chkA = buffer[i+2] + chkA;
+      chkB = chkB + chkA;
+    }
+
+    buffer[payload_length + 6] = chkA;
+    buffer[payload_length + 7] = chkB;
+
+
+}
+
+void gps_init(void){
+
+    
+    uint8_t rx_buffer[255] = {0x00};
+    uint8_t tx_buffer[255] = {0x00};
+
+    int i=0;
+    
+    for (i=0; i<255; i++){
+     tx_buffer[i] = 0xFF;
+    }
+    
+    spi_xfer_done = false;
+    tx_buffer[0] = 0xB5;
+    tx_buffer[1] = 0x62;
+    tx_buffer[2] = 0x06;
+    tx_buffer[3] = 0x01;
+    tx_buffer[4] = 0x08;
+    tx_buffer[5] = 0x00;
+    tx_buffer[6] = 0xF0;
+    tx_buffer[7] = 0x00;
+    tx_buffer[8] = 0x00;
+    tx_buffer[9] = 0x00;
+    tx_buffer[10] = 0x00;
+    tx_buffer[11] = 0x00;
+    tx_buffer[12] = 0x00;
+    tx_buffer[13] = 0x00;
+    ubx_chk(tx_buffer, 8);
+    nrf_gpio_pin_clear(CS_GPS);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 255, rx_buffer, 255);
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(CS_GPS);
+
+
+    nrf_delay_us(10);
+
+    spi_xfer_done = false;
+    tx_buffer[7] = 0x01;
+    ubx_chk(tx_buffer, 8);
+    nrf_gpio_pin_clear(CS_GPS);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 255, rx_buffer, 255);
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(CS_GPS);
+
+    nrf_delay_us(10);
+
+    spi_xfer_done = false;
+    tx_buffer[7] = 0x02;
+    ubx_chk(tx_buffer, 8);
+    nrf_gpio_pin_clear(CS_GPS);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 255, rx_buffer, 255);
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(CS_GPS);
+
+    nrf_delay_us(10);
+
+    spi_xfer_done = false;
+    tx_buffer[7] = 0x03;
+    ubx_chk(tx_buffer, 8);
+    nrf_gpio_pin_clear(CS_GPS);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 255, rx_buffer, 255);
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(CS_GPS);
+
+    nrf_delay_us(10);
+
+    spi_xfer_done = false;
+    tx_buffer[7] = 0x04;
+    ubx_chk(tx_buffer, 8);
+    nrf_gpio_pin_clear(CS_GPS);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 255, rx_buffer, 255);
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(CS_GPS);
+
+    nrf_delay_us(10);
+
+    spi_xfer_done = false;
+    tx_buffer[7] = 0x05;
+    ubx_chk(tx_buffer, 8);
+    nrf_gpio_pin_clear(CS_GPS);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 255, rx_buffer, 255);
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(CS_GPS);
+
+    nrf_delay_us(10);
+
+    spi_xfer_done = false;
+    tx_buffer[7] = 0x41;
+    ubx_chk(tx_buffer, 8);
+    nrf_gpio_pin_clear(CS_GPS);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 255, rx_buffer, 255);
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(CS_GPS);
+
+    nrf_delay_us(10);
+
+    spi_xfer_done = false;
+    tx_buffer[6] = 0x01;
+    tx_buffer[7] = 0x07;
+    tx_buffer[12] = 0x01;
+    ubx_chk(tx_buffer, 8);
+    nrf_gpio_pin_clear(CS_GPS);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 255, rx_buffer, 255);
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(CS_GPS);
+
+    
+    for (i=0; i<255; i++){
+     tx_buffer[i] = 0xFF;
+    }
+
+
+    tx_buffer[0] = 0xB5; 
+    tx_buffer[1] = 0x62;
+    tx_buffer[2] = 0x06;
+    tx_buffer[3] = 0x3E;  //GNSS config
+    tx_buffer[4] = 0;
+    tx_buffer[5] = 0;
+
+    tx_buffer[6] = 0;
+    tx_buffer[7] = 0;
+    tx_buffer[8] = 0;
+    tx_buffer[9] = 0;
+    
+    tx_buffer[10] = 0;
+    tx_buffer[11] = 0;
+    tx_buffer[12] = 0;
+    tx_buffer[13] = 0x00;
+
+    tx_buffer[14] = 0x00;
+    tx_buffer[15] = 0x00;
+    tx_buffer[16] = 0x00;
+    tx_buffer[17] = 0x00;
+
+    nrf_delay_us(100);
+
+    spi_xfer_done = false;
+    ubx_chk(tx_buffer, 0);
+    nrf_gpio_pin_clear(CS_GPS);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 255, rx_buffer, 255);
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(CS_GPS);
+
+    for (i=0; i<255; i++){
+     tx_buffer[i] = 0xFF;
+    }
+
+
+    tx_buffer[0] = 0xB5; 
+    tx_buffer[1] = 0x62;
+    tx_buffer[2] = 0x06;
+    tx_buffer[3] = 0x3E;  //GNSS config
+    tx_buffer[4] = 12;
+    tx_buffer[5] = 0;
+
+    tx_buffer[6] = 0;
+    tx_buffer[7] = 0;
+    tx_buffer[8] = 0xFF;
+    tx_buffer[9] = 1;
+    
+    tx_buffer[10] = 2;
+    tx_buffer[11] = 3;
+    tx_buffer[12] = 8;
+    tx_buffer[13] = 0x00;
+
+    tx_buffer[14] = 0x01;
+    tx_buffer[15] = 0x00;
+    tx_buffer[16] = 0x01;
+    tx_buffer[17] = 0x00;
+
+    nrf_delay_us(10);
+
+    spi_xfer_done = false;
+    ubx_chk(tx_buffer, 12);
+    nrf_gpio_pin_clear(CS_GPS);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 255, rx_buffer, 255);
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(CS_GPS);
+
+    for (i=0; i<255; i++){
+     tx_buffer[i] = 0xFF;
+    }
+
+
+    tx_buffer[0] = 0xB5; 
+    tx_buffer[1] = 0x62;
+    tx_buffer[2] = 0x06;
+    tx_buffer[3] = 0x1E;  // Low speed filters
+    tx_buffer[4] = 20;
+    tx_buffer[5] = 0;
+
+    tx_buffer[6] = 0;
+    
+    tx_buffer[7] = 0;
+    tx_buffer[8] = 0;
+    tx_buffer[9] = 0;
+    
+    tx_buffer[10] = 0b1110;
+    tx_buffer[11] = 0b0000;
+
+    tx_buffer[12] = 0x00;
+    tx_buffer[13] = 0x00;
+    tx_buffer[14] = 0x00;
+    tx_buffer[15] = 0x00;
+    tx_buffer[16] = 0x00;
+    tx_buffer[17] = 0x00;
+
+    tx_buffer[18] = 50;
+    tx_buffer[19] = 255;
+
+    tx_buffer[20] = 0x00;
+    tx_buffer[21] = 0x00;
+
+    tx_buffer[22] = 128;
+    tx_buffer[23] = 128;
+
+    tx_buffer[24] = 0x00;
+    tx_buffer[25] = 0x00;
+
+    nrf_delay_us(10);
+
+    spi_xfer_done = false;
+    ubx_chk(tx_buffer, 20);
+    nrf_gpio_pin_clear(CS_GPS);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 255, rx_buffer, 255);
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(CS_GPS);
+
+    for (i=0; i<255; i++){
+     tx_buffer[i] = 0xFF;
+    }
+
+
+    tx_buffer[0] = 0xB5; 
+    tx_buffer[1] = 0x62;
+    tx_buffer[2] = 0x06;
+    tx_buffer[3] = 0x24; // Dyn Model
+    tx_buffer[4] = 36;
+    tx_buffer[5] = 0;
+
+    tx_buffer[6] = 1;
+
+
+    
+    for (i=7; i<44; i++){
+     tx_buffer[i] = 0;
+    }
+
+
+    nrf_delay_us(10);
+
+    spi_xfer_done = false;
+    ubx_chk(tx_buffer, 36);
+    nrf_gpio_pin_clear(CS_GPS);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 255, rx_buffer, 255);
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(CS_GPS);
+    nrf_delay_us(10);
+
+}
+
+
+void read_gps(void){
+
+    spi_xfer_done = false;
+    uint8_t tx_buffer[255] = {0xff};
+    uint8_t rx_buffer[255] = {0xff};
+    
+    nrf_gpio_pin_clear(CS_GPS);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 255, rx_buffer, 255);
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(CS_GPS);
+
+    union i32 i32_bytes;
+
+    gps.fix_type = rx_buffer[26];
+    gps.num_sats = rx_buffer[29];
+
+    i32_bytes.bytes[0] = rx_buffer[30];
+    i32_bytes.bytes[1] = rx_buffer[31];
+    i32_bytes.bytes[2] = rx_buffer[32];
+    i32_bytes.bytes[3] = rx_buffer[33];
+    gps.lon = i32_bytes.integer;
+
+    i32_bytes.bytes[0] = rx_buffer[34];
+    i32_bytes.bytes[1] = rx_buffer[35];
+    i32_bytes.bytes[2] = rx_buffer[36];
+    i32_bytes.bytes[3] = rx_buffer[37];
+    gps.lat = i32_bytes.integer;
+
+    i32_bytes.bytes[0] = rx_buffer[42];
+    i32_bytes.bytes[1] = rx_buffer[43];
+    i32_bytes.bytes[2] = rx_buffer[44];
+    i32_bytes.bytes[3] = rx_buffer[45];
+    gps.alt = i32_bytes.integer;
+
+    i32_bytes.bytes[0] = rx_buffer[62];
+    i32_bytes.bytes[1] = rx_buffer[63];
+    i32_bytes.bytes[2] = rx_buffer[64];
+    i32_bytes.bytes[3] = rx_buffer[65];
+    gps.vert_spd = i32_bytes.integer * 0.032808333;
+
+    i32_bytes.bytes[0] = rx_buffer[66];
+    i32_bytes.bytes[1] = rx_buffer[67];
+    i32_bytes.bytes[2] = rx_buffer[68];
+    i32_bytes.bytes[3] = rx_buffer[69];
+    gps.gnd_spd = i32_bytes.integer * 0.032808333;
+
+
+    i32_bytes.bytes[0] = rx_buffer[70];
+    i32_bytes.bytes[1] = rx_buffer[71];
+    i32_bytes.bytes[2] = rx_buffer[72];
+    i32_bytes.bytes[3] = rx_buffer[73];
+    gps.heading = i32_bytes.integer/10000;
+    
+
+    //vehicle_state.altitude = gps.lat * 0.0000001;
+    vehicle_state.altitude = ((float)gps.alt)*39.37/12000.0;
+    vehicle_state.max_altitude = gps.lon * 0.0000001;
+    vehicle_state.temp = (5.0/9.0) * (gps.num_sats - 32.0);
+
+    NRF_LOG_INFO("read %d, %d, %d", rx_buffer[16], rx_buffer[26], rx_buffer[29]);
+
+
+
+}
+
 
 
 
@@ -2351,6 +2775,8 @@ static void tx_lora_periodic_handler (void * unused)
  */
 int main(void)
 {
+
+
     
 
     bool erase_bonds;
@@ -2398,7 +2824,7 @@ int main(void)
     // Start execution.
 //    printf("\r\nUART started.\r\n");
 //    NRF_LOG_INFO("Debug logging for UART over RTT started.");
-    advertising_start();
+    //advertising_start();
     uint32_t result = 0;
     result = sd_ble_gap_tx_power_set(BLE_GAP_TX_POWER_ROLE_ADV,0,4);
 
@@ -2406,7 +2832,11 @@ int main(void)
     nrf_gpio_pin_set(29);
     nrf_gpio_cfg_output(9);
     nrf_gpio_pin_set(9);
+    nrf_gpio_cfg_output(10);
+    nrf_gpio_pin_set(10);
     spi_init();
+
+    gps_init();
 
     //bmp280_config();
 
@@ -2459,8 +2889,7 @@ int main(void)
 
     application_timers_start();
 
-    nrf_gpio_cfg_output(17);
-    nrf_gpio_pin_clear(17);
+    
 
     nrf_delay_ms(2000);
 
@@ -2498,7 +2927,7 @@ int main(void)
 
     // start Rx
 
-    bool rx = true;
+    bool rx = false;
 
     if (rx){
 
@@ -2507,9 +2936,8 @@ int main(void)
                       LORA_SYMBOL_TIMEOUT, LORA_FIX_LENGTH_PAYLOAD_ON,
                       0, true, 0, 0, LORA_IQ_INVERSION_ON, true);
 
-      Radio.Rx(0);
-      nrf_gpio_pin_write(13, 0);
-      nrf_gpio_cfg_output(13);
+      Radio.RxBoosted(0);
+      
     }
     else {
 
@@ -2523,7 +2951,7 @@ int main(void)
 
     while(1){   
 
-        if(nrf_gpio_pin_read(16) == 0)
+        if(0)
         {
             int count = 0;
             while (!nrf_gpio_pin_read(16)){
@@ -2563,39 +2991,16 @@ int main(void)
         }
 
         if (main_loop_update){
-          
+
+
             if (rx){
-                Radio.Rx(0);
+                Radio.RxBoosted(0);
             }
             else {
-                int32_t temperature_reg;
-                float temperature;
-                uint8_t buffer[6];
-
-                // Start temperature measurement
-                NRF_TEMP->EVENTS_DATARDY = 0;
-                NRF_TEMP->TASKS_START = 1;
-
-                // Wait for the measurement to complete
-                while (NRF_TEMP->EVENTS_DATARDY == 0) {}
-                NRF_TEMP->EVENTS_DATARDY = 0;
-
-                // Read data
-                temperature_reg = NRF_TEMP->TEMP;
-                vehicle_state.temp = temperature_reg;
-
-                // Temperature in ∞C (0.25∞ steps)
-                temperature = temperature_reg * 0.25;
-                NRF_LOG_INFO("Local temperature = "NRF_LOG_FLOAT_MARKER " ∞C", NRF_LOG_FLOAT(temperature));
-
-                // Send temperature_reg via LoRa
-                buffer[0] = 'T';
-                buffer[1] = 0;
-                buffer[2] = (temperature_reg >> 24) & 0xFF;
-                buffer[3] = (temperature_reg >> 16) & 0xFF;
-                buffer[4] = (temperature_reg >> 8 ) & 0xFF;
-                buffer[5] = (temperature_reg >> 0 ) & 0xFF;
-                Radio.Send(buffer, sizeof(buffer));
+                union gps_bytes gps_packet;
+                read_gps();
+                gps_packet.state = gps;
+                Radio.Send(gps_packet.bytes, sizeof(gps_packet.bytes));
             }
 
 
@@ -2669,6 +3074,7 @@ int main(void)
                 send_update = 0;
                 send_update_packet();
                 send_status_packet();
+                send_gps_packet();
             }
             
             if (save_update > save_update_int){

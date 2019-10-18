@@ -8319,25 +8319,25 @@ LoRaMacMaxEirpTable:
 	.4byte	.Ldebug_abbrev0
 	.byte	0x4
 	.uleb128 0x1
-	.4byte	.LASF1433
-	.byte	0xc
 	.4byte	.LASF1434
+	.byte	0xc
 	.4byte	.LASF1435
+	.4byte	.LASF1436
 	.4byte	.Ldebug_ranges0+0x238
 	.4byte	0
 	.4byte	.Ldebug_line0
 	.4byte	.Ldebug_macro0
 	.uleb128 0x2
-	.4byte	.LASF656
+	.4byte	.LASF657
 	.byte	0x2
 	.byte	0x2f
 	.4byte	0x34
 	.uleb128 0x3
 	.byte	0x1
 	.byte	0x6
-	.4byte	.LASF658
+	.4byte	.LASF659
 	.uleb128 0x2
-	.4byte	.LASF657
+	.4byte	.LASF658
 	.byte	0x2
 	.byte	0x30
 	.4byte	0x4b
@@ -8346,29 +8346,29 @@ LoRaMacMaxEirpTable:
 	.uleb128 0x3
 	.byte	0x1
 	.byte	0x8
-	.4byte	.LASF659
+	.4byte	.LASF660
 	.uleb128 0x4
 	.4byte	0x4b
 	.uleb128 0x2
-	.4byte	.LASF660
+	.4byte	.LASF661
 	.byte	0x2
 	.byte	0x35
 	.4byte	0x62
 	.uleb128 0x3
 	.byte	0x2
 	.byte	0x5
-	.4byte	.LASF661
-	.uleb128 0x2
 	.4byte	.LASF662
+	.uleb128 0x2
+	.4byte	.LASF663
 	.byte	0x2
 	.byte	0x36
 	.4byte	0x74
 	.uleb128 0x3
 	.byte	0x2
 	.byte	0x7
-	.4byte	.LASF663
-	.uleb128 0x2
 	.4byte	.LASF664
+	.uleb128 0x2
+	.4byte	.LASF665
 	.byte	0x2
 	.byte	0x37
 	.4byte	0x86
@@ -8377,38 +8377,38 @@ LoRaMacMaxEirpTable:
 	.byte	0x5
 	.ascii	"int\000"
 	.uleb128 0x2
-	.4byte	.LASF665
+	.4byte	.LASF666
 	.byte	0x2
 	.byte	0x38
 	.4byte	0x98
 	.uleb128 0x3
 	.byte	0x4
 	.byte	0x7
-	.4byte	.LASF666
-	.uleb128 0x3
-	.byte	0x8
-	.byte	0x5
 	.4byte	.LASF667
 	.uleb128 0x3
 	.byte	0x8
-	.byte	0x7
+	.byte	0x5
 	.4byte	.LASF668
+	.uleb128 0x3
+	.byte	0x8
+	.byte	0x7
+	.4byte	.LASF669
 	.uleb128 0x6
 	.byte	0x4
 	.uleb128 0x7
-	.4byte	.LASF719
+	.4byte	.LASF720
 	.byte	0x8
 	.byte	0x3
 	.byte	0x7e
 	.4byte	0xd4
 	.uleb128 0x8
-	.4byte	.LASF669
+	.4byte	.LASF670
 	.byte	0x3
 	.byte	0x7f
 	.4byte	0x86
 	.byte	0
 	.uleb128 0x8
-	.4byte	.LASF670
+	.4byte	.LASF671
 	.byte	0x3
 	.byte	0x80
 	.4byte	0xd4
@@ -8417,7 +8417,7 @@ LoRaMacMaxEirpTable:
 	.uleb128 0x3
 	.byte	0x4
 	.byte	0x5
-	.4byte	.LASF671
+	.4byte	.LASF672
 	.uleb128 0x9
 	.4byte	0x86
 	.4byte	0xf4
@@ -8434,7 +8434,7 @@ LoRaMacMaxEirpTable:
 	.uleb128 0x3
 	.byte	0x1
 	.byte	0x8
-	.4byte	.LASF672
+	.4byte	.LASF673
 	.uleb128 0x4
 	.4byte	0xfa
 	.uleb128 0xb
@@ -8464,200 +8464,200 @@ LoRaMacMaxEirpTable:
 	.byte	0x86
 	.4byte	0x2bf
 	.uleb128 0x8
-	.4byte	.LASF673
+	.4byte	.LASF674
 	.byte	0x3
 	.byte	0x88
 	.4byte	0x130
 	.byte	0
 	.uleb128 0x8
-	.4byte	.LASF674
+	.4byte	.LASF675
 	.byte	0x3
 	.byte	0x89
 	.4byte	0x130
 	.byte	0x4
 	.uleb128 0x8
-	.4byte	.LASF675
+	.4byte	.LASF676
 	.byte	0x3
 	.byte	0x8a
 	.4byte	0x130
 	.byte	0x8
 	.uleb128 0x8
-	.4byte	.LASF676
+	.4byte	.LASF677
 	.byte	0x3
 	.byte	0x8c
 	.4byte	0x130
 	.byte	0xc
 	.uleb128 0x8
-	.4byte	.LASF677
+	.4byte	.LASF678
 	.byte	0x3
 	.byte	0x8d
 	.4byte	0x130
 	.byte	0x10
 	.uleb128 0x8
-	.4byte	.LASF678
+	.4byte	.LASF679
 	.byte	0x3
 	.byte	0x8e
 	.4byte	0x130
 	.byte	0x14
 	.uleb128 0x8
-	.4byte	.LASF679
+	.4byte	.LASF680
 	.byte	0x3
 	.byte	0x8f
 	.4byte	0x130
 	.byte	0x18
 	.uleb128 0x8
-	.4byte	.LASF680
+	.4byte	.LASF681
 	.byte	0x3
 	.byte	0x90
 	.4byte	0x130
 	.byte	0x1c
 	.uleb128 0x8
-	.4byte	.LASF681
+	.4byte	.LASF682
 	.byte	0x3
 	.byte	0x91
 	.4byte	0x130
 	.byte	0x20
 	.uleb128 0x8
-	.4byte	.LASF682
+	.4byte	.LASF683
 	.byte	0x3
 	.byte	0x92
 	.4byte	0x130
 	.byte	0x24
 	.uleb128 0x8
-	.4byte	.LASF683
+	.4byte	.LASF684
 	.byte	0x3
 	.byte	0x94
 	.4byte	0xfa
 	.byte	0x28
 	.uleb128 0x8
-	.4byte	.LASF684
+	.4byte	.LASF685
 	.byte	0x3
 	.byte	0x95
 	.4byte	0xfa
 	.byte	0x29
 	.uleb128 0x8
-	.4byte	.LASF685
+	.4byte	.LASF686
 	.byte	0x3
 	.byte	0x96
 	.4byte	0xfa
 	.byte	0x2a
 	.uleb128 0x8
-	.4byte	.LASF686
+	.4byte	.LASF687
 	.byte	0x3
 	.byte	0x97
 	.4byte	0xfa
 	.byte	0x2b
 	.uleb128 0x8
-	.4byte	.LASF687
+	.4byte	.LASF688
 	.byte	0x3
 	.byte	0x98
 	.4byte	0xfa
 	.byte	0x2c
 	.uleb128 0x8
-	.4byte	.LASF688
+	.4byte	.LASF689
 	.byte	0x3
 	.byte	0x99
 	.4byte	0xfa
 	.byte	0x2d
 	.uleb128 0x8
-	.4byte	.LASF689
+	.4byte	.LASF690
 	.byte	0x3
 	.byte	0x9a
 	.4byte	0xfa
 	.byte	0x2e
 	.uleb128 0x8
-	.4byte	.LASF690
+	.4byte	.LASF691
 	.byte	0x3
 	.byte	0x9b
 	.4byte	0xfa
 	.byte	0x2f
 	.uleb128 0x8
-	.4byte	.LASF691
+	.4byte	.LASF692
 	.byte	0x3
 	.byte	0x9c
 	.4byte	0xfa
 	.byte	0x30
 	.uleb128 0x8
-	.4byte	.LASF692
+	.4byte	.LASF693
 	.byte	0x3
 	.byte	0x9d
 	.4byte	0xfa
 	.byte	0x31
 	.uleb128 0x8
-	.4byte	.LASF693
+	.4byte	.LASF694
 	.byte	0x3
 	.byte	0x9e
 	.4byte	0xfa
 	.byte	0x32
 	.uleb128 0x8
-	.4byte	.LASF694
+	.4byte	.LASF695
 	.byte	0x3
 	.byte	0x9f
 	.4byte	0xfa
 	.byte	0x33
 	.uleb128 0x8
-	.4byte	.LASF695
+	.4byte	.LASF696
 	.byte	0x3
 	.byte	0xa0
 	.4byte	0xfa
 	.byte	0x34
 	.uleb128 0x8
-	.4byte	.LASF696
+	.4byte	.LASF697
 	.byte	0x3
 	.byte	0xa1
 	.4byte	0xfa
 	.byte	0x35
 	.uleb128 0x8
-	.4byte	.LASF697
+	.4byte	.LASF698
 	.byte	0x3
 	.byte	0xa6
 	.4byte	0x130
 	.byte	0x38
 	.uleb128 0x8
-	.4byte	.LASF698
+	.4byte	.LASF699
 	.byte	0x3
 	.byte	0xa7
 	.4byte	0x130
 	.byte	0x3c
 	.uleb128 0x8
-	.4byte	.LASF699
+	.4byte	.LASF700
 	.byte	0x3
 	.byte	0xa8
 	.4byte	0x130
 	.byte	0x40
 	.uleb128 0x8
-	.4byte	.LASF700
+	.4byte	.LASF701
 	.byte	0x3
 	.byte	0xa9
 	.4byte	0x130
 	.byte	0x44
 	.uleb128 0x8
-	.4byte	.LASF701
+	.4byte	.LASF702
 	.byte	0x3
 	.byte	0xaa
 	.4byte	0x130
 	.byte	0x48
 	.uleb128 0x8
-	.4byte	.LASF702
+	.4byte	.LASF703
 	.byte	0x3
 	.byte	0xab
 	.4byte	0x130
 	.byte	0x4c
 	.uleb128 0x8
-	.4byte	.LASF703
+	.4byte	.LASF704
 	.byte	0x3
 	.byte	0xac
 	.4byte	0x130
 	.byte	0x50
 	.uleb128 0x8
-	.4byte	.LASF704
+	.4byte	.LASF705
 	.byte	0x3
 	.byte	0xad
 	.4byte	0x130
 	.byte	0x54
 	.byte	0
 	.uleb128 0x2
-	.4byte	.LASF705
+	.4byte	.LASF706
 	.byte	0x3
 	.byte	0xae
 	.4byte	0x136
@@ -8669,49 +8669,49 @@ LoRaMacMaxEirpTable:
 	.byte	0xc4
 	.4byte	0x338
 	.uleb128 0x8
-	.4byte	.LASF706
+	.4byte	.LASF707
 	.byte	0x3
 	.byte	0xc6
 	.4byte	0x34c
 	.byte	0
 	.uleb128 0x8
-	.4byte	.LASF707
+	.4byte	.LASF708
 	.byte	0x3
 	.byte	0xc7
 	.4byte	0x361
 	.byte	0x4
 	.uleb128 0x8
-	.4byte	.LASF708
+	.4byte	.LASF709
 	.byte	0x3
 	.byte	0xc8
 	.4byte	0x361
 	.byte	0x8
 	.uleb128 0x8
-	.4byte	.LASF709
+	.4byte	.LASF710
 	.byte	0x3
 	.byte	0xcb
 	.4byte	0x37b
 	.byte	0xc
 	.uleb128 0x8
-	.4byte	.LASF710
+	.4byte	.LASF711
 	.byte	0x3
 	.byte	0xcc
 	.4byte	0x390
 	.byte	0x10
 	.uleb128 0x8
-	.4byte	.LASF711
+	.4byte	.LASF712
 	.byte	0x3
 	.byte	0xcd
 	.4byte	0x390
 	.byte	0x14
 	.uleb128 0x8
-	.4byte	.LASF712
+	.4byte	.LASF713
 	.byte	0x3
 	.byte	0xd0
 	.4byte	0x396
 	.byte	0x18
 	.uleb128 0x8
-	.4byte	.LASF713
+	.4byte	.LASF714
 	.byte	0x3
 	.byte	0xd1
 	.4byte	0x39c
@@ -8764,7 +8764,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0x10c
 	.uleb128 0x2
-	.4byte	.LASF714
+	.4byte	.LASF715
 	.byte	0x3
 	.byte	0xd2
 	.4byte	0x2cf
@@ -8776,19 +8776,19 @@ LoRaMacMaxEirpTable:
 	.byte	0xd4
 	.4byte	0x3df
 	.uleb128 0x8
-	.4byte	.LASF715
+	.4byte	.LASF716
 	.byte	0x3
 	.byte	0xd5
 	.4byte	0x130
 	.byte	0
 	.uleb128 0x8
-	.4byte	.LASF716
+	.4byte	.LASF717
 	.byte	0x3
 	.byte	0xd6
 	.4byte	0x3df
 	.byte	0x4
 	.uleb128 0x8
-	.4byte	.LASF717
+	.4byte	.LASF718
 	.byte	0x3
 	.byte	0xd7
 	.4byte	0x3e5
@@ -8801,20 +8801,20 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0x3ad
 	.uleb128 0x2
-	.4byte	.LASF718
+	.4byte	.LASF719
 	.byte	0x3
 	.byte	0xd8
 	.4byte	0x3b2
 	.uleb128 0x4
 	.4byte	0x3eb
 	.uleb128 0x7
-	.4byte	.LASF720
+	.4byte	.LASF721
 	.byte	0x14
 	.byte	0x3
 	.byte	0xdc
 	.4byte	0x414
 	.uleb128 0x8
-	.4byte	.LASF721
+	.4byte	.LASF722
 	.byte	0x3
 	.byte	0xdd
 	.4byte	0x414
@@ -8831,22 +8831,22 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0x3f6
 	.uleb128 0xf
-	.4byte	.LASF722
+	.4byte	.LASF723
 	.byte	0x3
 	.2byte	0x106
 	.4byte	0x3fb
 	.uleb128 0xf
-	.4byte	.LASF723
+	.4byte	.LASF724
 	.byte	0x3
 	.2byte	0x10d
 	.4byte	0x3f6
 	.uleb128 0xf
-	.4byte	.LASF724
+	.4byte	.LASF725
 	.byte	0x3
 	.2byte	0x110
 	.4byte	0x3ad
 	.uleb128 0xf
-	.4byte	.LASF725
+	.4byte	.LASF726
 	.byte	0x3
 	.2byte	0x111
 	.4byte	0x3ad
@@ -8860,7 +8860,7 @@ LoRaMacMaxEirpTable:
 	.uleb128 0x4
 	.4byte	0x45a
 	.uleb128 0xf
-	.4byte	.LASF726
+	.4byte	.LASF727
 	.byte	0x3
 	.2byte	0x113
 	.4byte	0x46a
@@ -8872,52 +8872,52 @@ LoRaMacMaxEirpTable:
 	.uleb128 0x4
 	.4byte	0x47b
 	.uleb128 0xf
-	.4byte	.LASF727
+	.4byte	.LASF728
 	.byte	0x3
 	.2byte	0x115
 	.4byte	0x486
 	.uleb128 0xf
-	.4byte	.LASF728
+	.4byte	.LASF729
 	.byte	0x3
 	.2byte	0x116
 	.4byte	0x486
 	.uleb128 0xf
-	.4byte	.LASF729
+	.4byte	.LASF730
 	.byte	0x3
 	.2byte	0x117
 	.4byte	0x486
 	.uleb128 0xf
-	.4byte	.LASF730
+	.4byte	.LASF731
 	.byte	0x3
 	.2byte	0x118
 	.4byte	0x486
 	.uleb128 0xf
-	.4byte	.LASF731
+	.4byte	.LASF732
 	.byte	0x3
 	.2byte	0x11a
 	.4byte	0x486
 	.uleb128 0xf
-	.4byte	.LASF732
+	.4byte	.LASF733
 	.byte	0x3
 	.2byte	0x11b
 	.4byte	0x486
 	.uleb128 0xf
-	.4byte	.LASF733
+	.4byte	.LASF734
 	.byte	0x3
 	.2byte	0x11c
 	.4byte	0x486
 	.uleb128 0xf
-	.4byte	.LASF734
+	.4byte	.LASF735
 	.byte	0x3
 	.2byte	0x11d
 	.4byte	0x486
 	.uleb128 0xf
-	.4byte	.LASF735
+	.4byte	.LASF736
 	.byte	0x3
 	.2byte	0x11e
 	.4byte	0x486
 	.uleb128 0xf
-	.4byte	.LASF736
+	.4byte	.LASF737
 	.byte	0x3
 	.2byte	0x11f
 	.4byte	0x486
@@ -8931,11 +8931,11 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0x51d
 	.uleb128 0x11
-	.4byte	.LASF1436
+	.4byte	.LASF1437
 	.uleb128 0x4
 	.4byte	0x518
 	.uleb128 0xf
-	.4byte	.LASF737
+	.4byte	.LASF738
 	.byte	0x3
 	.2byte	0x135
 	.4byte	0x52e
@@ -8952,7 +8952,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0x518
 	.uleb128 0xf
-	.4byte	.LASF738
+	.4byte	.LASF739
 	.byte	0x3
 	.2byte	0x136
 	.4byte	0x555
@@ -8960,7 +8960,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0x534
 	.uleb128 0x12
-	.4byte	.LASF739
+	.4byte	.LASF740
 	.byte	0x3
 	.2byte	0x14d
 	.4byte	0x567
@@ -8974,19 +8974,19 @@ LoRaMacMaxEirpTable:
 	.4byte	0x86
 	.byte	0
 	.uleb128 0x13
-	.4byte	.LASF740
+	.4byte	.LASF741
 	.byte	0x8
 	.byte	0x3
 	.2byte	0x14f
 	.4byte	0x5a4
 	.uleb128 0x14
-	.4byte	.LASF741
+	.4byte	.LASF742
 	.byte	0x3
 	.2byte	0x151
 	.4byte	0x55b
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF742
+	.4byte	.LASF743
 	.byte	0x3
 	.2byte	0x152
 	.4byte	0x5a4
@@ -8996,12 +8996,12 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0x57c
 	.uleb128 0x12
-	.4byte	.LASF743
+	.4byte	.LASF744
 	.byte	0x3
 	.2byte	0x153
 	.4byte	0x57c
 	.uleb128 0xf
-	.4byte	.LASF744
+	.4byte	.LASF745
 	.byte	0x3
 	.2byte	0x157
 	.4byte	0x5c2
@@ -9013,37 +9013,37 @@ LoRaMacMaxEirpTable:
 	.4byte	0x5ce
 	.uleb128 0x15
 	.uleb128 0x7
-	.4byte	.LASF745
+	.4byte	.LASF746
 	.byte	0x14
 	.byte	0x4
 	.byte	0x31
 	.4byte	0x618
 	.uleb128 0x8
-	.4byte	.LASF746
+	.4byte	.LASF747
 	.byte	0x4
 	.byte	0x33
 	.4byte	0x8d
 	.byte	0
 	.uleb128 0x8
-	.4byte	.LASF747
+	.4byte	.LASF748
 	.byte	0x4
 	.byte	0x34
 	.4byte	0x8d
 	.byte	0x4
 	.uleb128 0x8
-	.4byte	.LASF748
+	.4byte	.LASF749
 	.byte	0x4
 	.byte	0x35
 	.4byte	0x618
 	.byte	0x8
 	.uleb128 0x8
-	.4byte	.LASF749
+	.4byte	.LASF750
 	.byte	0x4
 	.byte	0x36
 	.4byte	0x5c8
 	.byte	0xc
 	.uleb128 0x8
-	.4byte	.LASF750
+	.4byte	.LASF751
 	.byte	0x4
 	.byte	0x37
 	.4byte	0x61f
@@ -9052,17 +9052,17 @@ LoRaMacMaxEirpTable:
 	.uleb128 0x3
 	.byte	0x1
 	.byte	0x2
-	.4byte	.LASF751
+	.4byte	.LASF752
 	.uleb128 0xb
 	.byte	0x4
 	.4byte	0x5cf
 	.uleb128 0x2
-	.4byte	.LASF752
+	.4byte	.LASF753
 	.byte	0x4
 	.byte	0x38
 	.4byte	0x5cf
 	.uleb128 0x2
-	.4byte	.LASF753
+	.4byte	.LASF754
 	.byte	0x4
 	.byte	0x3d
 	.4byte	0x8d
@@ -9074,14 +9074,14 @@ LoRaMacMaxEirpTable:
 	.byte	0x1e
 	.4byte	0x655
 	.uleb128 0x17
-	.4byte	.LASF754
+	.4byte	.LASF755
 	.byte	0
 	.uleb128 0x17
-	.4byte	.LASF755
+	.4byte	.LASF756
 	.byte	0x1
 	.byte	0
 	.uleb128 0x2
-	.4byte	.LASF756
+	.4byte	.LASF757
 	.byte	0x5
 	.byte	0x21
 	.4byte	0x63b
@@ -9093,20 +9093,20 @@ LoRaMacMaxEirpTable:
 	.byte	0x27
 	.4byte	0x686
 	.uleb128 0x17
-	.4byte	.LASF757
+	.4byte	.LASF758
 	.byte	0
 	.uleb128 0x17
-	.4byte	.LASF758
+	.4byte	.LASF759
 	.byte	0x1
 	.uleb128 0x17
-	.4byte	.LASF759
+	.4byte	.LASF760
 	.byte	0x2
 	.uleb128 0x17
-	.4byte	.LASF760
+	.4byte	.LASF761
 	.byte	0x3
 	.byte	0
 	.uleb128 0x2
-	.4byte	.LASF761
+	.4byte	.LASF762
 	.byte	0x5
 	.byte	0x2c
 	.4byte	0x660
@@ -9116,43 +9116,43 @@ LoRaMacMaxEirpTable:
 	.byte	0x31
 	.4byte	0x6ee
 	.uleb128 0x8
-	.4byte	.LASF762
+	.4byte	.LASF763
 	.byte	0x5
 	.byte	0x36
 	.4byte	0x5c8
 	.byte	0
 	.uleb128 0x8
-	.4byte	.LASF763
+	.4byte	.LASF764
 	.byte	0x5
 	.byte	0x3a
 	.4byte	0x5c8
 	.byte	0x4
 	.uleb128 0x8
-	.4byte	.LASF764
+	.4byte	.LASF765
 	.byte	0x5
 	.byte	0x45
 	.4byte	0x70e
 	.byte	0x8
 	.uleb128 0x8
-	.4byte	.LASF765
+	.4byte	.LASF766
 	.byte	0x5
 	.byte	0x49
 	.4byte	0x5c8
 	.byte	0xc
 	.uleb128 0x8
-	.4byte	.LASF766
+	.4byte	.LASF767
 	.byte	0x5
 	.byte	0x4d
 	.4byte	0x5c8
 	.byte	0x10
 	.uleb128 0x8
-	.4byte	.LASF767
+	.4byte	.LASF768
 	.byte	0x5
 	.byte	0x53
 	.4byte	0x71f
 	.byte	0x14
 	.uleb128 0x8
-	.4byte	.LASF768
+	.4byte	.LASF769
 	.byte	0x5
 	.byte	0x5a
 	.4byte	0x730
@@ -9192,90 +9192,90 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0x725
 	.uleb128 0x2
-	.4byte	.LASF769
+	.4byte	.LASF770
 	.byte	0x5
 	.byte	0x5b
 	.4byte	0x691
 	.uleb128 0x7
-	.4byte	.LASF770
+	.4byte	.LASF771
 	.byte	0x6c
 	.byte	0x5
 	.byte	0x60
 	.4byte	0x8a1
 	.uleb128 0x8
-	.4byte	.LASF771
+	.4byte	.LASF772
 	.byte	0x5
 	.byte	0x67
 	.4byte	0x8b7
 	.byte	0
 	.uleb128 0x8
-	.4byte	.LASF772
+	.4byte	.LASF773
 	.byte	0x5
 	.byte	0x6d
 	.4byte	0x8c2
 	.byte	0x4
 	.uleb128 0x8
-	.4byte	.LASF773
+	.4byte	.LASF774
 	.byte	0x5
 	.byte	0x73
 	.4byte	0x8d3
 	.byte	0x8
 	.uleb128 0x8
-	.4byte	.LASF774
+	.4byte	.LASF775
 	.byte	0x5
 	.byte	0x79
 	.4byte	0x8e4
 	.byte	0xc
 	.uleb128 0x8
-	.4byte	.LASF775
+	.4byte	.LASF776
 	.byte	0x5
 	.byte	0x84
 	.4byte	0x908
 	.byte	0x10
 	.uleb128 0x8
-	.4byte	.LASF776
+	.4byte	.LASF777
 	.byte	0x5
 	.byte	0x8f
 	.4byte	0x913
 	.byte	0x14
 	.uleb128 0x8
-	.4byte	.LASF777
+	.4byte	.LASF778
 	.byte	0x5
 	.byte	0xb7
 	.4byte	0x965
 	.byte	0x18
 	.uleb128 0x8
-	.4byte	.LASF778
+	.4byte	.LASF779
 	.byte	0x5
 	.byte	0xe1
 	.4byte	0x9b2
 	.byte	0x1c
 	.uleb128 0x8
-	.4byte	.LASF779
+	.4byte	.LASF780
 	.byte	0x5
 	.byte	0xec
 	.4byte	0x9c7
 	.byte	0x20
 	.uleb128 0x8
-	.4byte	.LASF780
+	.4byte	.LASF781
 	.byte	0x5
 	.byte	0xf7
 	.4byte	0x9e1
 	.byte	0x24
 	.uleb128 0x8
-	.4byte	.LASF781
+	.4byte	.LASF782
 	.byte	0x5
 	.byte	0xff
 	.4byte	0x9f7
 	.byte	0x28
 	.uleb128 0x14
-	.4byte	.LASF782
+	.4byte	.LASF783
 	.byte	0x5
 	.2byte	0x103
 	.4byte	0x5c8
 	.byte	0x2c
 	.uleb128 0x14
-	.4byte	.LASF783
+	.4byte	.LASF784
 	.byte	0x5
 	.2byte	0x107
 	.4byte	0x5c8
@@ -9287,79 +9287,79 @@ LoRaMacMaxEirpTable:
 	.4byte	0x8e4
 	.byte	0x34
 	.uleb128 0x14
-	.4byte	.LASF784
+	.4byte	.LASF785
 	.byte	0x5
 	.2byte	0x111
 	.4byte	0x5c8
 	.byte	0x38
 	.uleb128 0x14
-	.4byte	.LASF785
+	.4byte	.LASF786
 	.byte	0x5
 	.2byte	0x119
 	.4byte	0xa12
 	.byte	0x3c
 	.uleb128 0x14
-	.4byte	.LASF786
+	.4byte	.LASF787
 	.byte	0x5
 	.2byte	0x11f
 	.4byte	0xa27
 	.byte	0x40
 	.uleb128 0x14
-	.4byte	.LASF787
+	.4byte	.LASF788
 	.byte	0x5
 	.2byte	0x126
 	.4byte	0xa3d
 	.byte	0x44
 	.uleb128 0x14
-	.4byte	.LASF788
+	.4byte	.LASF789
 	.byte	0x5
 	.2byte	0x12d
 	.4byte	0xa52
 	.byte	0x48
 	.uleb128 0x14
-	.4byte	.LASF789
+	.4byte	.LASF790
 	.byte	0x5
 	.2byte	0x135
 	.4byte	0xa6d
 	.byte	0x4c
 	.uleb128 0x14
-	.4byte	.LASF790
+	.4byte	.LASF791
 	.byte	0x5
 	.2byte	0x13d
 	.4byte	0xa6d
 	.byte	0x50
 	.uleb128 0x14
-	.4byte	.LASF791
+	.4byte	.LASF792
 	.byte	0x5
 	.2byte	0x144
 	.4byte	0xa83
 	.byte	0x54
 	.uleb128 0x14
-	.4byte	.LASF792
+	.4byte	.LASF793
 	.byte	0x5
 	.2byte	0x14c
 	.4byte	0x730
 	.byte	0x58
 	.uleb128 0x14
-	.4byte	.LASF793
+	.4byte	.LASF794
 	.byte	0x5
 	.2byte	0x152
 	.4byte	0x913
 	.byte	0x5c
 	.uleb128 0x14
-	.4byte	.LASF794
+	.4byte	.LASF795
 	.byte	0x5
 	.2byte	0x156
 	.4byte	0x5c8
 	.byte	0x60
 	.uleb128 0x14
-	.4byte	.LASF795
+	.4byte	.LASF796
 	.byte	0x5
 	.2byte	0x162
 	.4byte	0x8e4
 	.byte	0x64
 	.uleb128 0x14
-	.4byte	.LASF796
+	.4byte	.LASF797
 	.byte	0x5
 	.2byte	0x16b
 	.4byte	0xa99
@@ -9588,12 +9588,12 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0xa89
 	.uleb128 0xf
-	.4byte	.LASF797
+	.4byte	.LASF798
 	.byte	0x5
 	.2byte	0x174
 	.4byte	0x8a1
 	.uleb128 0x1b
-	.4byte	.LASF815
+	.4byte	.LASF816
 	.byte	0x7
 	.byte	0x1
 	.4byte	0x4b
@@ -9601,22 +9601,22 @@ LoRaMacMaxEirpTable:
 	.byte	0x92
 	.4byte	0xacf
 	.uleb128 0x17
-	.4byte	.LASF798
+	.4byte	.LASF799
 	.byte	0
 	.uleb128 0x17
-	.4byte	.LASF799
+	.4byte	.LASF800
 	.byte	0x1
 	.uleb128 0x17
-	.4byte	.LASF800
+	.4byte	.LASF801
 	.byte	0x2
 	.byte	0
 	.uleb128 0x2
-	.4byte	.LASF801
+	.4byte	.LASF802
 	.byte	0x6
 	.byte	0xa6
 	.4byte	0xaab
 	.uleb128 0x7
-	.4byte	.LASF802
+	.4byte	.LASF803
 	.byte	0x1
 	.byte	0x6
 	.byte	0xb4
@@ -9641,89 +9641,89 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x1d
-	.4byte	.LASF884
+	.4byte	.LASF885
 	.byte	0x1
 	.byte	0x6
 	.byte	0xab
 	.4byte	0xb28
 	.uleb128 0x1e
-	.4byte	.LASF803
+	.4byte	.LASF804
 	.byte	0x6
 	.byte	0xb0
 	.4byte	0x29
 	.uleb128 0x1e
-	.4byte	.LASF804
+	.4byte	.LASF805
 	.byte	0x6
 	.byte	0xc6
 	.4byte	0xada
 	.byte	0
 	.uleb128 0x2
-	.4byte	.LASF805
+	.4byte	.LASF806
 	.byte	0x6
 	.byte	0xc7
 	.4byte	0xb05
 	.uleb128 0x7
-	.4byte	.LASF806
+	.4byte	.LASF807
 	.byte	0xc
 	.byte	0x6
 	.byte	0xe7
 	.4byte	0xb70
 	.uleb128 0x8
-	.4byte	.LASF807
+	.4byte	.LASF808
 	.byte	0x6
 	.byte	0xec
 	.4byte	0x8d
 	.byte	0
 	.uleb128 0x8
-	.4byte	.LASF808
+	.4byte	.LASF809
 	.byte	0x6
 	.byte	0xf0
 	.4byte	0x8d
 	.byte	0x4
 	.uleb128 0x8
-	.4byte	.LASF809
+	.4byte	.LASF810
 	.byte	0x6
 	.byte	0xf4
 	.4byte	0xb28
 	.byte	0x8
 	.uleb128 0x8
-	.4byte	.LASF810
+	.4byte	.LASF811
 	.byte	0x6
 	.byte	0xf8
 	.4byte	0x3b
 	.byte	0x9
 	.byte	0
 	.uleb128 0x2
-	.4byte	.LASF811
+	.4byte	.LASF812
 	.byte	0x6
 	.byte	0xf9
 	.4byte	0xb33
 	.uleb128 0x7
-	.4byte	.LASF812
+	.4byte	.LASF813
 	.byte	0x8
 	.byte	0x6
 	.byte	0xfe
 	.4byte	0xba2
 	.uleb128 0x14
-	.4byte	.LASF807
+	.4byte	.LASF808
 	.byte	0x6
 	.2byte	0x103
 	.4byte	0x8d
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF813
+	.4byte	.LASF814
 	.byte	0x6
 	.2byte	0x10b
 	.4byte	0x3b
 	.byte	0x4
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF814
+	.4byte	.LASF815
 	.byte	0x6
 	.2byte	0x10c
 	.4byte	0xb7b
 	.uleb128 0x1f
-	.4byte	.LASF816
+	.4byte	.LASF817
 	.byte	0x7
 	.byte	0x1
 	.4byte	0x4b
@@ -9731,121 +9731,121 @@ LoRaMacMaxEirpTable:
 	.2byte	0x111
 	.4byte	0xbd9
 	.uleb128 0x17
-	.4byte	.LASF817
+	.4byte	.LASF818
 	.byte	0
 	.uleb128 0x17
-	.4byte	.LASF818
+	.4byte	.LASF819
 	.byte	0x1
 	.uleb128 0x17
-	.4byte	.LASF819
+	.4byte	.LASF820
 	.byte	0x2
 	.uleb128 0x17
-	.4byte	.LASF820
+	.4byte	.LASF821
 	.byte	0x3
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF821
+	.4byte	.LASF822
 	.byte	0x6
 	.2byte	0x123
 	.4byte	0xbae
 	.uleb128 0x13
-	.4byte	.LASF822
+	.4byte	.LASF823
 	.byte	0x38
 	.byte	0x6
 	.2byte	0x128
 	.4byte	0xcc3
 	.uleb128 0x14
-	.4byte	.LASF823
+	.4byte	.LASF824
 	.byte	0x6
 	.2byte	0x12d
 	.4byte	0x29
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF824
+	.4byte	.LASF825
 	.byte	0x6
 	.2byte	0x131
 	.4byte	0x29
 	.byte	0x1
 	.uleb128 0x14
-	.4byte	.LASF825
+	.4byte	.LASF826
 	.byte	0x6
 	.2byte	0x137
 	.4byte	0x8d
 	.byte	0x4
 	.uleb128 0x14
-	.4byte	.LASF826
+	.4byte	.LASF827
 	.byte	0x6
 	.2byte	0x13c
 	.4byte	0x3b
 	.byte	0x8
 	.uleb128 0x14
-	.4byte	.LASF827
+	.4byte	.LASF828
 	.byte	0x6
 	.2byte	0x140
 	.4byte	0x8d
 	.byte	0xc
 	.uleb128 0x14
-	.4byte	.LASF828
+	.4byte	.LASF829
 	.byte	0x6
 	.2byte	0x144
 	.4byte	0x8d
 	.byte	0x10
 	.uleb128 0x14
-	.4byte	.LASF829
+	.4byte	.LASF830
 	.byte	0x6
 	.2byte	0x148
 	.4byte	0x8d
 	.byte	0x14
 	.uleb128 0x14
-	.4byte	.LASF830
+	.4byte	.LASF831
 	.byte	0x6
 	.2byte	0x14c
 	.4byte	0x8d
 	.byte	0x18
 	.uleb128 0x14
-	.4byte	.LASF831
+	.4byte	.LASF832
 	.byte	0x6
 	.2byte	0x150
 	.4byte	0x8d
 	.byte	0x1c
 	.uleb128 0x14
-	.4byte	.LASF832
+	.4byte	.LASF833
 	.byte	0x6
 	.2byte	0x154
 	.4byte	0x3b
 	.byte	0x20
 	.uleb128 0x14
-	.4byte	.LASF833
+	.4byte	.LASF834
 	.byte	0x6
 	.2byte	0x158
 	.4byte	0x3b
 	.byte	0x21
 	.uleb128 0x14
-	.4byte	.LASF834
+	.4byte	.LASF835
 	.byte	0x6
 	.2byte	0x15c
 	.4byte	0xba2
 	.byte	0x24
 	.uleb128 0x14
-	.4byte	.LASF835
+	.4byte	.LASF836
 	.byte	0x6
 	.2byte	0x160
 	.4byte	0x3b
 	.byte	0x2c
 	.uleb128 0x14
-	.4byte	.LASF836
+	.4byte	.LASF837
 	.byte	0x6
 	.2byte	0x164
 	.4byte	0x3b
 	.byte	0x2d
 	.uleb128 0x14
-	.4byte	.LASF837
+	.4byte	.LASF838
 	.byte	0x6
 	.2byte	0x168
 	.4byte	0xcc3
 	.byte	0x30
 	.uleb128 0x14
-	.4byte	.LASF838
+	.4byte	.LASF839
 	.byte	0x6
 	.2byte	0x16c
 	.4byte	0xcc3
@@ -9854,44 +9854,44 @@ LoRaMacMaxEirpTable:
 	.uleb128 0x3
 	.byte	0x4
 	.byte	0x4
-	.4byte	.LASF839
-	.uleb128 0x12
 	.4byte	.LASF840
+	.uleb128 0x12
+	.4byte	.LASF841
 	.byte	0x6
 	.2byte	0x16d
 	.4byte	0xbe5
 	.uleb128 0x13
-	.4byte	.LASF841
+	.4byte	.LASF842
 	.byte	0x2c
 	.byte	0x6
 	.2byte	0x172
 	.4byte	0xd25
 	.uleb128 0x14
-	.4byte	.LASF842
+	.4byte	.LASF843
 	.byte	0x6
 	.2byte	0x177
 	.4byte	0x8d
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF843
+	.4byte	.LASF844
 	.byte	0x6
 	.2byte	0x17b
 	.4byte	0xd25
 	.byte	0x4
 	.uleb128 0x14
-	.4byte	.LASF844
+	.4byte	.LASF845
 	.byte	0x6
 	.2byte	0x17f
 	.4byte	0xd25
 	.byte	0x14
 	.uleb128 0x14
-	.4byte	.LASF845
+	.4byte	.LASF846
 	.byte	0x6
 	.2byte	0x183
 	.4byte	0x8d
 	.byte	0x24
 	.uleb128 0x14
-	.4byte	.LASF750
+	.4byte	.LASF751
 	.byte	0x6
 	.2byte	0x187
 	.4byte	0xd35
@@ -9908,12 +9908,12 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0xcd6
 	.uleb128 0x12
-	.4byte	.LASF846
+	.4byte	.LASF847
 	.byte	0x6
 	.2byte	0x188
 	.4byte	0xcd6
 	.uleb128 0x1f
-	.4byte	.LASF847
+	.4byte	.LASF848
 	.byte	0x7
 	.byte	0x1
 	.4byte	0x4b
@@ -9921,32 +9921,32 @@ LoRaMacMaxEirpTable:
 	.2byte	0x18f
 	.4byte	0xd8a
 	.uleb128 0x17
-	.4byte	.LASF848
+	.4byte	.LASF849
 	.byte	0
 	.uleb128 0x17
-	.4byte	.LASF849
+	.4byte	.LASF850
 	.byte	0x1
 	.uleb128 0x17
-	.4byte	.LASF850
+	.4byte	.LASF851
 	.byte	0x2
 	.uleb128 0x17
-	.4byte	.LASF851
+	.4byte	.LASF852
 	.byte	0x3
 	.uleb128 0x17
-	.4byte	.LASF852
+	.4byte	.LASF853
 	.byte	0x4
 	.uleb128 0x17
-	.4byte	.LASF853
+	.4byte	.LASF854
 	.byte	0x5
 	.uleb128 0x17
-	.4byte	.LASF854
+	.4byte	.LASF855
 	.byte	0x6
 	.uleb128 0x17
-	.4byte	.LASF855
+	.4byte	.LASF856
 	.byte	0x7
 	.byte	0
 	.uleb128 0x1f
-	.4byte	.LASF856
+	.4byte	.LASF857
 	.byte	0x7
 	.byte	0x1
 	.4byte	0x4b
@@ -9954,35 +9954,35 @@ LoRaMacMaxEirpTable:
 	.2byte	0x1b8
 	.4byte	0xdd3
 	.uleb128 0x17
-	.4byte	.LASF857
+	.4byte	.LASF858
 	.byte	0x2
 	.uleb128 0x17
-	.4byte	.LASF858
+	.4byte	.LASF859
 	.byte	0x3
 	.uleb128 0x17
-	.4byte	.LASF859
+	.4byte	.LASF860
 	.byte	0x4
 	.uleb128 0x17
-	.4byte	.LASF860
+	.4byte	.LASF861
 	.byte	0x5
 	.uleb128 0x17
-	.4byte	.LASF861
+	.4byte	.LASF862
 	.byte	0x6
 	.uleb128 0x17
-	.4byte	.LASF862
+	.4byte	.LASF863
 	.byte	0x7
 	.uleb128 0x17
-	.4byte	.LASF863
+	.4byte	.LASF864
 	.byte	0x8
 	.uleb128 0x17
-	.4byte	.LASF864
+	.4byte	.LASF865
 	.byte	0x9
 	.uleb128 0x17
-	.4byte	.LASF865
+	.4byte	.LASF866
 	.byte	0xa
 	.byte	0
 	.uleb128 0x1f
-	.4byte	.LASF866
+	.4byte	.LASF867
 	.byte	0x7
 	.byte	0x1
 	.4byte	0x4b
@@ -9990,35 +9990,35 @@ LoRaMacMaxEirpTable:
 	.2byte	0x1e5
 	.4byte	0xe1c
 	.uleb128 0x17
-	.4byte	.LASF867
+	.4byte	.LASF868
 	.byte	0x2
 	.uleb128 0x17
-	.4byte	.LASF868
+	.4byte	.LASF869
 	.byte	0x3
 	.uleb128 0x17
-	.4byte	.LASF869
+	.4byte	.LASF870
 	.byte	0x4
 	.uleb128 0x17
-	.4byte	.LASF870
+	.4byte	.LASF871
 	.byte	0x5
 	.uleb128 0x17
-	.4byte	.LASF871
+	.4byte	.LASF872
 	.byte	0x6
 	.uleb128 0x17
-	.4byte	.LASF872
+	.4byte	.LASF873
 	.byte	0x7
 	.uleb128 0x17
-	.4byte	.LASF873
+	.4byte	.LASF874
 	.byte	0x8
 	.uleb128 0x17
-	.4byte	.LASF874
+	.4byte	.LASF875
 	.byte	0x9
 	.uleb128 0x17
-	.4byte	.LASF875
+	.4byte	.LASF876
 	.byte	0xa
 	.byte	0
 	.uleb128 0x1f
-	.4byte	.LASF876
+	.4byte	.LASF877
 	.byte	0x7
 	.byte	0x1
 	.4byte	0x4b
@@ -10026,26 +10026,26 @@ LoRaMacMaxEirpTable:
 	.2byte	0x210
 	.4byte	0xe47
 	.uleb128 0x17
-	.4byte	.LASF877
+	.4byte	.LASF878
 	.byte	0
 	.uleb128 0x17
-	.4byte	.LASF878
+	.4byte	.LASF879
 	.byte	0x1
 	.uleb128 0x17
-	.4byte	.LASF879
+	.4byte	.LASF880
 	.byte	0xfe
 	.uleb128 0x17
-	.4byte	.LASF880
+	.4byte	.LASF881
 	.byte	0xff
 	.byte	0
 	.uleb128 0x13
-	.4byte	.LASF881
+	.4byte	.LASF882
 	.byte	0x1
 	.byte	0x6
 	.2byte	0x232
 	.4byte	0xe85
 	.uleb128 0x20
-	.4byte	.LASF882
+	.4byte	.LASF883
 	.byte	0x6
 	.2byte	0x237
 	.4byte	0x3b
@@ -10063,7 +10063,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.byte	0
 	.uleb128 0x20
-	.4byte	.LASF883
+	.4byte	.LASF884
 	.byte	0x6
 	.2byte	0x23f
 	.4byte	0x3b
@@ -10073,35 +10073,35 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x22
-	.4byte	.LASF885
+	.4byte	.LASF886
 	.byte	0x1
 	.byte	0x6
 	.2byte	0x229
 	.4byte	0xeab
 	.uleb128 0x23
-	.4byte	.LASF803
+	.4byte	.LASF804
 	.byte	0x6
 	.2byte	0x22e
 	.4byte	0x3b
 	.uleb128 0x23
-	.4byte	.LASF886
+	.4byte	.LASF887
 	.byte	0x6
 	.2byte	0x240
 	.4byte	0xe47
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF887
+	.4byte	.LASF888
 	.byte	0x6
 	.2byte	0x241
 	.4byte	0xe85
 	.uleb128 0x13
-	.4byte	.LASF888
+	.4byte	.LASF889
 	.byte	0x1
 	.byte	0x6
 	.2byte	0x251
 	.4byte	0xf15
 	.uleb128 0x20
-	.4byte	.LASF889
+	.4byte	.LASF890
 	.byte	0x6
 	.2byte	0x256
 	.4byte	0x3b
@@ -10110,7 +10110,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.byte	0
 	.uleb128 0x20
-	.4byte	.LASF890
+	.4byte	.LASF891
 	.byte	0x6
 	.2byte	0x25a
 	.4byte	0x3b
@@ -10128,7 +10128,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x2
 	.byte	0
 	.uleb128 0x20
-	.4byte	.LASF891
+	.4byte	.LASF892
 	.byte	0x6
 	.2byte	0x262
 	.4byte	0x3b
@@ -10147,29 +10147,29 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x22
-	.4byte	.LASF892
+	.4byte	.LASF893
 	.byte	0x1
 	.byte	0x6
 	.2byte	0x248
 	.4byte	0xf3b
 	.uleb128 0x23
-	.4byte	.LASF803
+	.4byte	.LASF804
 	.byte	0x6
 	.2byte	0x24d
 	.4byte	0x3b
 	.uleb128 0x23
-	.4byte	.LASF886
+	.4byte	.LASF887
 	.byte	0x6
 	.2byte	0x267
 	.4byte	0xeb7
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF893
+	.4byte	.LASF894
 	.byte	0x6
 	.2byte	0x268
 	.4byte	0xf15
 	.uleb128 0x1f
-	.4byte	.LASF894
+	.4byte	.LASF895
 	.byte	0x7
 	.byte	0x1
 	.4byte	0x4b
@@ -10177,58 +10177,58 @@ LoRaMacMaxEirpTable:
 	.2byte	0x26d
 	.4byte	0xfa8
 	.uleb128 0x17
-	.4byte	.LASF895
+	.4byte	.LASF896
 	.byte	0
 	.uleb128 0x17
-	.4byte	.LASF896
+	.4byte	.LASF897
 	.byte	0x1
 	.uleb128 0x17
-	.4byte	.LASF897
+	.4byte	.LASF898
 	.byte	0x2
 	.uleb128 0x17
-	.4byte	.LASF898
+	.4byte	.LASF899
 	.byte	0x3
 	.uleb128 0x17
-	.4byte	.LASF899
+	.4byte	.LASF900
 	.byte	0x4
 	.uleb128 0x17
-	.4byte	.LASF900
+	.4byte	.LASF901
 	.byte	0x5
 	.uleb128 0x17
-	.4byte	.LASF901
+	.4byte	.LASF902
 	.byte	0x6
 	.uleb128 0x17
-	.4byte	.LASF902
+	.4byte	.LASF903
 	.byte	0x7
 	.uleb128 0x17
-	.4byte	.LASF903
+	.4byte	.LASF904
 	.byte	0x8
 	.uleb128 0x17
-	.4byte	.LASF904
+	.4byte	.LASF905
 	.byte	0x9
 	.uleb128 0x17
-	.4byte	.LASF905
+	.4byte	.LASF906
 	.byte	0xa
 	.uleb128 0x17
-	.4byte	.LASF906
+	.4byte	.LASF907
 	.byte	0xb
 	.uleb128 0x17
-	.4byte	.LASF907
+	.4byte	.LASF908
 	.byte	0xc
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF908
+	.4byte	.LASF909
 	.byte	0x6
 	.2byte	0x2a6
 	.4byte	0xf47
 	.uleb128 0x13
-	.4byte	.LASF909
+	.4byte	.LASF910
 	.byte	0x1
 	.byte	0x6
 	.2byte	0x2b4
 	.4byte	0x1022
 	.uleb128 0x20
-	.4byte	.LASF910
+	.4byte	.LASF911
 	.byte	0x6
 	.2byte	0x2b9
 	.4byte	0x3b
@@ -10237,7 +10237,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x7
 	.byte	0
 	.uleb128 0x20
-	.4byte	.LASF911
+	.4byte	.LASF912
 	.byte	0x6
 	.2byte	0x2bd
 	.4byte	0x3b
@@ -10246,7 +10246,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x6
 	.byte	0
 	.uleb128 0x20
-	.4byte	.LASF912
+	.4byte	.LASF913
 	.byte	0x6
 	.2byte	0x2c1
 	.4byte	0x3b
@@ -10255,7 +10255,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x5
 	.byte	0
 	.uleb128 0x20
-	.4byte	.LASF913
+	.4byte	.LASF914
 	.byte	0x6
 	.2byte	0x2c5
 	.4byte	0x3b
@@ -10264,7 +10264,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.byte	0
 	.uleb128 0x20
-	.4byte	.LASF914
+	.4byte	.LASF915
 	.byte	0x6
 	.2byte	0x2c9
 	.4byte	0x3b
@@ -10273,7 +10273,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.byte	0
 	.uleb128 0x20
-	.4byte	.LASF915
+	.4byte	.LASF916
 	.byte	0x6
 	.2byte	0x2cd
 	.4byte	0x3b
@@ -10283,29 +10283,29 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x22
-	.4byte	.LASF916
+	.4byte	.LASF917
 	.byte	0x1
 	.byte	0x6
 	.2byte	0x2ab
 	.4byte	0x1048
 	.uleb128 0x23
-	.4byte	.LASF803
+	.4byte	.LASF804
 	.byte	0x6
 	.2byte	0x2b0
 	.4byte	0x3b
 	.uleb128 0x23
-	.4byte	.LASF886
+	.4byte	.LASF887
 	.byte	0x6
 	.2byte	0x2ce
 	.4byte	0xfb4
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF917
+	.4byte	.LASF918
 	.byte	0x6
 	.2byte	0x2cf
 	.4byte	0x1022
 	.uleb128 0x1f
-	.4byte	.LASF918
+	.4byte	.LASF919
 	.byte	0x7
 	.byte	0x1
 	.4byte	0x4b
@@ -10313,161 +10313,161 @@ LoRaMacMaxEirpTable:
 	.2byte	0x2e8
 	.4byte	0x107f
 	.uleb128 0x17
-	.4byte	.LASF919
+	.4byte	.LASF920
 	.byte	0
 	.uleb128 0x17
-	.4byte	.LASF920
+	.4byte	.LASF921
 	.byte	0x1
 	.uleb128 0x17
-	.4byte	.LASF921
+	.4byte	.LASF922
 	.byte	0x2
 	.uleb128 0x17
-	.4byte	.LASF922
+	.4byte	.LASF923
 	.byte	0x3
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF923
+	.4byte	.LASF924
 	.byte	0x6
 	.2byte	0x2fa
 	.4byte	0x1054
 	.uleb128 0x13
-	.4byte	.LASF924
+	.4byte	.LASF925
 	.byte	0xc
 	.byte	0x6
 	.2byte	0x2ff
 	.4byte	0x10cd
 	.uleb128 0x14
-	.4byte	.LASF925
+	.4byte	.LASF926
 	.byte	0x6
 	.2byte	0x307
 	.4byte	0x3b
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF926
+	.4byte	.LASF927
 	.byte	0x6
 	.2byte	0x30b
 	.4byte	0xad
 	.byte	0x4
 	.uleb128 0x14
-	.4byte	.LASF927
+	.4byte	.LASF928
 	.byte	0x6
 	.2byte	0x30f
 	.4byte	0x69
 	.byte	0x8
 	.uleb128 0x14
-	.4byte	.LASF813
+	.4byte	.LASF814
 	.byte	0x6
 	.2byte	0x313
 	.4byte	0x29
 	.byte	0xa
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF928
+	.4byte	.LASF929
 	.byte	0x6
 	.2byte	0x314
 	.4byte	0x108b
 	.uleb128 0x13
-	.4byte	.LASF929
+	.4byte	.LASF930
 	.byte	0xc
 	.byte	0x6
 	.2byte	0x319
 	.4byte	0x1128
 	.uleb128 0x14
-	.4byte	.LASF925
+	.4byte	.LASF926
 	.byte	0x6
 	.2byte	0x321
 	.4byte	0x3b
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF926
+	.4byte	.LASF927
 	.byte	0x6
 	.2byte	0x325
 	.4byte	0xad
 	.byte	0x4
 	.uleb128 0x14
-	.4byte	.LASF927
+	.4byte	.LASF928
 	.byte	0x6
 	.2byte	0x329
 	.4byte	0x69
 	.byte	0x8
 	.uleb128 0x14
-	.4byte	.LASF813
+	.4byte	.LASF814
 	.byte	0x6
 	.2byte	0x32d
 	.4byte	0x29
 	.byte	0xa
 	.uleb128 0x14
-	.4byte	.LASF930
+	.4byte	.LASF931
 	.byte	0x6
 	.2byte	0x342
 	.4byte	0x3b
 	.byte	0xb
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF931
+	.4byte	.LASF932
 	.byte	0x6
 	.2byte	0x343
 	.4byte	0x10d9
 	.uleb128 0x13
-	.4byte	.LASF932
+	.4byte	.LASF933
 	.byte	0x8
 	.byte	0x6
 	.2byte	0x348
 	.4byte	0x1169
 	.uleb128 0x14
-	.4byte	.LASF926
+	.4byte	.LASF927
 	.byte	0x6
 	.2byte	0x34d
 	.4byte	0xad
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF927
+	.4byte	.LASF928
 	.byte	0x6
 	.2byte	0x351
 	.4byte	0x69
 	.byte	0x4
 	.uleb128 0x14
-	.4byte	.LASF813
+	.4byte	.LASF814
 	.byte	0x6
 	.2byte	0x355
 	.4byte	0x29
 	.byte	0x6
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF933
+	.4byte	.LASF934
 	.byte	0x6
 	.2byte	0x356
 	.4byte	0x1134
 	.uleb128 0x22
-	.4byte	.LASF934
+	.4byte	.LASF935
 	.byte	0xc
 	.byte	0x6
 	.2byte	0x365
 	.4byte	0x11a7
 	.uleb128 0x23
-	.4byte	.LASF935
+	.4byte	.LASF936
 	.byte	0x6
 	.2byte	0x36a
 	.4byte	0x10cd
 	.uleb128 0x23
-	.4byte	.LASF936
+	.4byte	.LASF937
 	.byte	0x6
 	.2byte	0x36e
 	.4byte	0x1128
 	.uleb128 0x23
-	.4byte	.LASF937
+	.4byte	.LASF938
 	.byte	0x6
 	.2byte	0x372
 	.4byte	0x1169
 	.byte	0
 	.uleb128 0x13
-	.4byte	.LASF938
+	.4byte	.LASF939
 	.byte	0x10
 	.byte	0x6
 	.2byte	0x35b
 	.4byte	0x11cf
 	.uleb128 0x14
-	.4byte	.LASF939
+	.4byte	.LASF940
 	.byte	0x6
 	.2byte	0x360
 	.4byte	0x107f
@@ -10480,138 +10480,138 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF940
+	.4byte	.LASF941
 	.byte	0x6
 	.2byte	0x374
 	.4byte	0x11a7
 	.uleb128 0x13
-	.4byte	.LASF941
+	.4byte	.LASF942
 	.byte	0x14
 	.byte	0x6
 	.2byte	0x379
 	.4byte	0x125e
 	.uleb128 0x14
-	.4byte	.LASF942
+	.4byte	.LASF943
 	.byte	0x6
 	.2byte	0x37e
 	.4byte	0x107f
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF943
+	.4byte	.LASF944
 	.byte	0x6
 	.2byte	0x382
 	.4byte	0xfa8
 	.byte	0x1
 	.uleb128 0x14
-	.4byte	.LASF813
+	.4byte	.LASF814
 	.byte	0x6
 	.2byte	0x386
 	.4byte	0x3b
 	.byte	0x2
 	.uleb128 0x14
-	.4byte	.LASF944
+	.4byte	.LASF945
 	.byte	0x6
 	.2byte	0x38a
 	.4byte	0x29
 	.byte	0x3
 	.uleb128 0x14
-	.4byte	.LASF945
+	.4byte	.LASF946
 	.byte	0x6
 	.2byte	0x38e
 	.4byte	0x618
 	.byte	0x4
 	.uleb128 0x14
-	.4byte	.LASF946
+	.4byte	.LASF947
 	.byte	0x6
 	.2byte	0x392
 	.4byte	0x3b
 	.byte	0x5
 	.uleb128 0x14
-	.4byte	.LASF947
+	.4byte	.LASF948
 	.byte	0x6
 	.2byte	0x396
 	.4byte	0x630
 	.byte	0x8
 	.uleb128 0x14
-	.4byte	.LASF948
+	.4byte	.LASF949
 	.byte	0x6
 	.2byte	0x39a
 	.4byte	0x8d
 	.byte	0xc
 	.uleb128 0x14
-	.4byte	.LASF949
+	.4byte	.LASF950
 	.byte	0x6
 	.2byte	0x39e
 	.4byte	0x8d
 	.byte	0x10
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF950
+	.4byte	.LASF951
 	.byte	0x6
 	.2byte	0x39f
 	.4byte	0x11db
 	.uleb128 0x13
-	.4byte	.LASF951
+	.4byte	.LASF952
 	.byte	0x18
 	.byte	0x6
 	.2byte	0x3a4
 	.4byte	0x132e
 	.uleb128 0x14
-	.4byte	.LASF952
+	.4byte	.LASF953
 	.byte	0x6
 	.2byte	0x3a9
 	.4byte	0x107f
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF943
+	.4byte	.LASF944
 	.byte	0x6
 	.2byte	0x3ad
 	.4byte	0xfa8
 	.byte	0x1
 	.uleb128 0x14
-	.4byte	.LASF953
+	.4byte	.LASF954
 	.byte	0x6
 	.2byte	0x3b1
 	.4byte	0x3b
 	.byte	0x2
 	.uleb128 0x14
-	.4byte	.LASF954
+	.4byte	.LASF955
 	.byte	0x6
 	.2byte	0x3b5
 	.4byte	0x3b
 	.byte	0x3
 	.uleb128 0x14
-	.4byte	.LASF955
+	.4byte	.LASF956
 	.byte	0x6
 	.2byte	0x3b9
 	.4byte	0x3b
 	.byte	0x4
 	.uleb128 0x14
-	.4byte	.LASF956
+	.4byte	.LASF957
 	.byte	0x6
 	.2byte	0x3bd
 	.4byte	0x3b
 	.byte	0x5
 	.uleb128 0x14
-	.4byte	.LASF957
+	.4byte	.LASF958
 	.byte	0x6
 	.2byte	0x3c1
 	.4byte	0x708
 	.byte	0x8
 	.uleb128 0x14
-	.4byte	.LASF958
+	.4byte	.LASF959
 	.byte	0x6
 	.2byte	0x3c5
 	.4byte	0x3b
 	.byte	0xc
 	.uleb128 0x14
-	.4byte	.LASF959
+	.4byte	.LASF960
 	.byte	0x6
 	.2byte	0x3c9
 	.4byte	0x618
 	.byte	0xd
 	.uleb128 0x14
-	.4byte	.LASF786
+	.4byte	.LASF787
 	.byte	0x6
 	.2byte	0x3cd
 	.4byte	0x57
@@ -10623,31 +10623,31 @@ LoRaMacMaxEirpTable:
 	.4byte	0x3b
 	.byte	0x10
 	.uleb128 0x14
-	.4byte	.LASF960
+	.4byte	.LASF961
 	.byte	0x6
 	.2byte	0x3d5
 	.4byte	0xbd9
 	.byte	0x11
 	.uleb128 0x14
-	.4byte	.LASF945
+	.4byte	.LASF946
 	.byte	0x6
 	.2byte	0x3d9
 	.4byte	0x618
 	.byte	0x12
 	.uleb128 0x14
-	.4byte	.LASF845
+	.4byte	.LASF846
 	.byte	0x6
 	.2byte	0x3dd
 	.4byte	0x8d
 	.byte	0x14
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF961
+	.4byte	.LASF962
 	.byte	0x6
 	.2byte	0x3de
 	.4byte	0x126a
 	.uleb128 0x1f
-	.4byte	.LASF962
+	.4byte	.LASF963
 	.byte	0x7
 	.byte	0x1
 	.4byte	0x4b
@@ -10655,117 +10655,117 @@ LoRaMacMaxEirpTable:
 	.2byte	0x3f6
 	.4byte	0x136b
 	.uleb128 0x17
-	.4byte	.LASF963
+	.4byte	.LASF964
 	.byte	0
 	.uleb128 0x17
-	.4byte	.LASF964
+	.4byte	.LASF965
 	.byte	0x1
 	.uleb128 0x17
-	.4byte	.LASF965
+	.4byte	.LASF966
 	.byte	0x2
 	.uleb128 0x17
-	.4byte	.LASF966
+	.4byte	.LASF967
 	.byte	0x3
 	.uleb128 0x17
-	.4byte	.LASF967
+	.4byte	.LASF968
 	.byte	0x4
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF968
+	.4byte	.LASF969
 	.byte	0x6
 	.2byte	0x415
 	.4byte	0x133a
 	.uleb128 0x13
-	.4byte	.LASF969
+	.4byte	.LASF970
 	.byte	0x10
 	.byte	0x6
 	.2byte	0x41a
 	.4byte	0x13b9
 	.uleb128 0x14
-	.4byte	.LASF970
+	.4byte	.LASF971
 	.byte	0x6
 	.2byte	0x421
 	.4byte	0x708
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF971
+	.4byte	.LASF972
 	.byte	0x6
 	.2byte	0x427
 	.4byte	0x708
 	.byte	0x4
 	.uleb128 0x14
-	.4byte	.LASF972
+	.4byte	.LASF973
 	.byte	0x6
 	.2byte	0x42d
 	.4byte	0x708
 	.byte	0x8
 	.uleb128 0x14
-	.4byte	.LASF813
+	.4byte	.LASF814
 	.byte	0x6
 	.2byte	0x431
 	.4byte	0x3b
 	.byte	0xc
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF973
+	.4byte	.LASF974
 	.byte	0x6
 	.2byte	0x432
 	.4byte	0x1377
 	.uleb128 0x13
-	.4byte	.LASF974
+	.4byte	.LASF975
 	.byte	0xc
 	.byte	0x6
 	.2byte	0x437
 	.4byte	0x13fa
 	.uleb128 0x14
-	.4byte	.LASF975
+	.4byte	.LASF976
 	.byte	0x6
 	.2byte	0x43c
 	.4byte	0x69
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF807
+	.4byte	.LASF808
 	.byte	0x6
 	.2byte	0x440
 	.4byte	0x8d
 	.byte	0x4
 	.uleb128 0x14
-	.4byte	.LASF976
+	.4byte	.LASF977
 	.byte	0x6
 	.2byte	0x444
 	.4byte	0x3b
 	.byte	0x8
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF977
+	.4byte	.LASF978
 	.byte	0x6
 	.2byte	0x445
 	.4byte	0x13c5
 	.uleb128 0x22
-	.4byte	.LASF978
+	.4byte	.LASF979
 	.byte	0x10
 	.byte	0x6
 	.2byte	0x454
 	.4byte	0x142c
 	.uleb128 0x23
-	.4byte	.LASF979
+	.4byte	.LASF980
 	.byte	0x6
 	.2byte	0x459
 	.4byte	0x13b9
 	.uleb128 0x23
-	.4byte	.LASF980
+	.4byte	.LASF981
 	.byte	0x6
 	.2byte	0x45d
 	.4byte	0x13fa
 	.byte	0
 	.uleb128 0x13
-	.4byte	.LASF981
+	.4byte	.LASF982
 	.byte	0x14
 	.byte	0x6
 	.2byte	0x44a
 	.4byte	0x1454
 	.uleb128 0x14
-	.4byte	.LASF939
+	.4byte	.LASF940
 	.byte	0x6
 	.2byte	0x44f
 	.4byte	0x136b
@@ -10778,72 +10778,72 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF982
+	.4byte	.LASF983
 	.byte	0x6
 	.2byte	0x45f
 	.4byte	0x142c
 	.uleb128 0x13
-	.4byte	.LASF983
+	.4byte	.LASF984
 	.byte	0xc
 	.byte	0x6
 	.2byte	0x464
 	.4byte	0x14af
 	.uleb128 0x14
-	.4byte	.LASF984
+	.4byte	.LASF985
 	.byte	0x6
 	.2byte	0x469
 	.4byte	0x136b
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF943
+	.4byte	.LASF944
 	.byte	0x6
 	.2byte	0x46d
 	.4byte	0xfa8
 	.byte	0x1
 	.uleb128 0x14
-	.4byte	.LASF947
+	.4byte	.LASF948
 	.byte	0x6
 	.2byte	0x471
 	.4byte	0x630
 	.byte	0x4
 	.uleb128 0x14
-	.4byte	.LASF985
+	.4byte	.LASF986
 	.byte	0x6
 	.2byte	0x476
 	.4byte	0x3b
 	.byte	0x8
 	.uleb128 0x14
-	.4byte	.LASF986
+	.4byte	.LASF987
 	.byte	0x6
 	.2byte	0x47a
 	.4byte	0x3b
 	.byte	0x9
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF987
+	.4byte	.LASF988
 	.byte	0x6
 	.2byte	0x47b
 	.4byte	0x1460
 	.uleb128 0x13
-	.4byte	.LASF988
+	.4byte	.LASF989
 	.byte	0x1
 	.byte	0x6
 	.2byte	0x480
 	.4byte	0x14d6
 	.uleb128 0x14
-	.4byte	.LASF989
+	.4byte	.LASF990
 	.byte	0x6
 	.2byte	0x485
 	.4byte	0x136b
 	.byte	0
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF990
+	.4byte	.LASF991
 	.byte	0x6
 	.2byte	0x486
 	.4byte	0x14bb
 	.uleb128 0x1f
-	.4byte	.LASF991
+	.4byte	.LASF992
 	.byte	0x7
 	.byte	0x1
 	.4byte	0x4b
@@ -10851,262 +10851,262 @@ LoRaMacMaxEirpTable:
 	.2byte	0x4b6
 	.4byte	0x15af
 	.uleb128 0x17
-	.4byte	.LASF992
+	.4byte	.LASF993
 	.byte	0
 	.uleb128 0x17
-	.4byte	.LASF993
+	.4byte	.LASF994
 	.byte	0x1
 	.uleb128 0x17
-	.4byte	.LASF994
+	.4byte	.LASF995
 	.byte	0x2
 	.uleb128 0x17
-	.4byte	.LASF995
+	.4byte	.LASF996
 	.byte	0x3
 	.uleb128 0x17
-	.4byte	.LASF996
+	.4byte	.LASF997
 	.byte	0x4
 	.uleb128 0x17
-	.4byte	.LASF997
+	.4byte	.LASF998
 	.byte	0x5
 	.uleb128 0x17
-	.4byte	.LASF998
+	.4byte	.LASF999
 	.byte	0x6
 	.uleb128 0x17
-	.4byte	.LASF999
+	.4byte	.LASF1000
 	.byte	0x7
 	.uleb128 0x17
-	.4byte	.LASF1000
+	.4byte	.LASF1001
 	.byte	0x8
 	.uleb128 0x17
-	.4byte	.LASF1001
+	.4byte	.LASF1002
 	.byte	0x9
 	.uleb128 0x17
-	.4byte	.LASF1002
+	.4byte	.LASF1003
 	.byte	0xa
 	.uleb128 0x17
-	.4byte	.LASF1003
+	.4byte	.LASF1004
 	.byte	0xb
 	.uleb128 0x17
-	.4byte	.LASF1004
+	.4byte	.LASF1005
 	.byte	0xc
 	.uleb128 0x17
-	.4byte	.LASF1005
+	.4byte	.LASF1006
 	.byte	0xd
 	.uleb128 0x17
-	.4byte	.LASF1006
+	.4byte	.LASF1007
 	.byte	0xe
 	.uleb128 0x17
-	.4byte	.LASF1007
+	.4byte	.LASF1008
 	.byte	0xf
 	.uleb128 0x17
-	.4byte	.LASF1008
+	.4byte	.LASF1009
 	.byte	0x10
 	.uleb128 0x17
-	.4byte	.LASF1009
+	.4byte	.LASF1010
 	.byte	0x11
 	.uleb128 0x17
-	.4byte	.LASF1010
+	.4byte	.LASF1011
 	.byte	0x12
 	.uleb128 0x17
-	.4byte	.LASF1011
+	.4byte	.LASF1012
 	.byte	0x13
 	.uleb128 0x17
-	.4byte	.LASF1012
+	.4byte	.LASF1013
 	.byte	0x14
 	.uleb128 0x17
-	.4byte	.LASF1013
+	.4byte	.LASF1014
 	.byte	0x15
 	.uleb128 0x17
-	.4byte	.LASF1014
+	.4byte	.LASF1015
 	.byte	0x16
 	.uleb128 0x17
-	.4byte	.LASF1015
+	.4byte	.LASF1016
 	.byte	0x17
 	.uleb128 0x17
-	.4byte	.LASF1016
+	.4byte	.LASF1017
 	.byte	0x18
 	.uleb128 0x17
-	.4byte	.LASF1017
+	.4byte	.LASF1018
 	.byte	0x19
 	.uleb128 0x17
-	.4byte	.LASF1018
+	.4byte	.LASF1019
 	.byte	0x1a
 	.uleb128 0x17
-	.4byte	.LASF1019
+	.4byte	.LASF1020
 	.byte	0x1b
 	.uleb128 0x17
-	.4byte	.LASF1020
+	.4byte	.LASF1021
 	.byte	0x1c
 	.uleb128 0x17
-	.4byte	.LASF1021
+	.4byte	.LASF1022
 	.byte	0x1d
 	.uleb128 0x17
-	.4byte	.LASF1022
+	.4byte	.LASF1023
 	.byte	0x1e
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1023
+	.4byte	.LASF1024
 	.byte	0x6
 	.2byte	0x583
 	.4byte	0x14e2
 	.uleb128 0x22
-	.4byte	.LASF1024
+	.4byte	.LASF1025
 	.byte	0x8
 	.byte	0x6
 	.2byte	0x588
 	.4byte	0x173d
 	.uleb128 0x23
-	.4byte	.LASF1025
+	.4byte	.LASF1026
 	.byte	0x6
 	.2byte	0x58f
 	.4byte	0xacf
 	.uleb128 0x23
-	.4byte	.LASF1026
+	.4byte	.LASF1027
 	.byte	0x6
 	.2byte	0x595
 	.4byte	0x618
 	.uleb128 0x23
-	.4byte	.LASF1027
+	.4byte	.LASF1028
 	.byte	0x6
 	.2byte	0x59b
 	.4byte	0x618
 	.uleb128 0x23
-	.4byte	.LASF1028
+	.4byte	.LASF1029
 	.byte	0x6
 	.2byte	0x5a1
 	.4byte	0x8d
 	.uleb128 0x23
-	.4byte	.LASF1029
+	.4byte	.LASF1030
 	.byte	0x6
 	.2byte	0x5a7
 	.4byte	0x8d
 	.uleb128 0x23
-	.4byte	.LASF843
+	.4byte	.LASF844
 	.byte	0x6
 	.2byte	0x5ad
 	.4byte	0x708
 	.uleb128 0x23
-	.4byte	.LASF844
+	.4byte	.LASF845
 	.byte	0x6
 	.2byte	0x5b3
 	.4byte	0x708
 	.uleb128 0x23
-	.4byte	.LASF1030
+	.4byte	.LASF1031
 	.byte	0x6
 	.2byte	0x5b9
 	.4byte	0x618
 	.uleb128 0x23
-	.4byte	.LASF1031
+	.4byte	.LASF1032
 	.byte	0x6
 	.2byte	0x5bf
 	.4byte	0x618
 	.uleb128 0x23
-	.4byte	.LASF1032
+	.4byte	.LASF1033
 	.byte	0x6
 	.2byte	0x5c5
 	.4byte	0x173d
 	.uleb128 0x23
-	.4byte	.LASF834
+	.4byte	.LASF835
 	.byte	0x6
 	.2byte	0x5cb
 	.4byte	0xba2
 	.uleb128 0x23
-	.4byte	.LASF1033
+	.4byte	.LASF1034
 	.byte	0x6
 	.2byte	0x5d1
 	.4byte	0xba2
 	.uleb128 0x23
-	.4byte	.LASF1034
+	.4byte	.LASF1035
 	.byte	0x6
 	.2byte	0x5d7
 	.4byte	0x1743
 	.uleb128 0x23
-	.4byte	.LASF1035
+	.4byte	.LASF1036
 	.byte	0x6
 	.2byte	0x5dd
 	.4byte	0x1743
 	.uleb128 0x23
-	.4byte	.LASF1036
+	.4byte	.LASF1037
 	.byte	0x6
 	.2byte	0x5e3
 	.4byte	0x3b
 	.uleb128 0x23
-	.4byte	.LASF827
+	.4byte	.LASF828
 	.byte	0x6
 	.2byte	0x5e9
 	.4byte	0x8d
 	.uleb128 0x23
-	.4byte	.LASF828
+	.4byte	.LASF829
 	.byte	0x6
 	.2byte	0x5ef
 	.4byte	0x8d
 	.uleb128 0x23
-	.4byte	.LASF829
+	.4byte	.LASF830
 	.byte	0x6
 	.2byte	0x5f5
 	.4byte	0x8d
 	.uleb128 0x23
-	.4byte	.LASF830
+	.4byte	.LASF831
 	.byte	0x6
 	.2byte	0x5fb
 	.4byte	0x8d
 	.uleb128 0x23
-	.4byte	.LASF831
+	.4byte	.LASF832
 	.byte	0x6
 	.2byte	0x601
 	.4byte	0x8d
 	.uleb128 0x23
-	.4byte	.LASF1037
+	.4byte	.LASF1038
 	.byte	0x6
 	.2byte	0x607
 	.4byte	0x29
 	.uleb128 0x23
-	.4byte	.LASF824
+	.4byte	.LASF825
 	.byte	0x6
 	.2byte	0x60d
 	.4byte	0x29
 	.uleb128 0x23
-	.4byte	.LASF1038
+	.4byte	.LASF1039
 	.byte	0x6
 	.2byte	0x613
 	.4byte	0x29
 	.uleb128 0x23
-	.4byte	.LASF823
+	.4byte	.LASF824
 	.byte	0x6
 	.2byte	0x619
 	.4byte	0x29
 	.uleb128 0x23
-	.4byte	.LASF948
+	.4byte	.LASF949
 	.byte	0x6
 	.2byte	0x61f
 	.4byte	0x8d
 	.uleb128 0x23
-	.4byte	.LASF845
+	.4byte	.LASF846
 	.byte	0x6
 	.2byte	0x625
 	.4byte	0x8d
 	.uleb128 0x23
-	.4byte	.LASF1039
+	.4byte	.LASF1040
 	.byte	0x6
 	.2byte	0x62b
 	.4byte	0x1749
 	.uleb128 0x23
-	.4byte	.LASF825
+	.4byte	.LASF826
 	.byte	0x6
 	.2byte	0x631
 	.4byte	0x8d
 	.uleb128 0x23
-	.4byte	.LASF826
+	.4byte	.LASF827
 	.byte	0x6
 	.2byte	0x637
 	.4byte	0x3b
 	.uleb128 0x23
-	.4byte	.LASF838
+	.4byte	.LASF839
 	.byte	0x6
 	.2byte	0x63d
 	.4byte	0xcc3
 	.uleb128 0x23
-	.4byte	.LASF1040
+	.4byte	.LASF1041
 	.byte	0x6
 	.2byte	0x643
 	.4byte	0xcc3
@@ -11121,60 +11121,60 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0xd3b
 	.uleb128 0x12
-	.4byte	.LASF1041
+	.4byte	.LASF1042
 	.byte	0x6
 	.2byte	0x644
 	.4byte	0x15bb
 	.uleb128 0x13
-	.4byte	.LASF1042
+	.4byte	.LASF1043
 	.byte	0xc
 	.byte	0x6
 	.2byte	0x649
 	.4byte	0x1783
 	.uleb128 0x14
-	.4byte	.LASF939
+	.4byte	.LASF940
 	.byte	0x6
 	.2byte	0x64e
 	.4byte	0x15af
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF1043
+	.4byte	.LASF1044
 	.byte	0x6
 	.2byte	0x653
 	.4byte	0x174f
 	.byte	0x4
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1044
+	.4byte	.LASF1045
 	.byte	0x6
 	.2byte	0x654
 	.4byte	0x175b
 	.uleb128 0x13
-	.4byte	.LASF1045
+	.4byte	.LASF1046
 	.byte	0x2
 	.byte	0x6
 	.2byte	0x659
 	.4byte	0x17b7
 	.uleb128 0x14
-	.4byte	.LASF1046
+	.4byte	.LASF1047
 	.byte	0x6
 	.2byte	0x65e
 	.4byte	0x3b
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF1047
+	.4byte	.LASF1048
 	.byte	0x6
 	.2byte	0x662
 	.4byte	0x3b
 	.byte	0x1
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1048
+	.4byte	.LASF1049
 	.byte	0x6
 	.2byte	0x663
 	.4byte	0x178f
 	.uleb128 0x1f
-	.4byte	.LASF1049
+	.4byte	.LASF1050
 	.byte	0x7
 	.byte	0x1
 	.4byte	0x4b
@@ -11182,55 +11182,55 @@ LoRaMacMaxEirpTable:
 	.2byte	0x668
 	.4byte	0x182a
 	.uleb128 0x17
-	.4byte	.LASF1050
+	.4byte	.LASF1051
 	.byte	0
 	.uleb128 0x17
-	.4byte	.LASF1051
+	.4byte	.LASF1052
 	.byte	0x1
 	.uleb128 0x17
-	.4byte	.LASF1052
+	.4byte	.LASF1053
 	.byte	0x2
 	.uleb128 0x17
-	.4byte	.LASF1053
+	.4byte	.LASF1054
 	.byte	0x3
 	.uleb128 0x17
-	.4byte	.LASF1054
+	.4byte	.LASF1055
 	.byte	0x4
 	.uleb128 0x17
-	.4byte	.LASF1055
+	.4byte	.LASF1056
 	.byte	0x5
 	.uleb128 0x17
-	.4byte	.LASF1056
+	.4byte	.LASF1057
 	.byte	0x6
 	.uleb128 0x17
-	.4byte	.LASF1057
+	.4byte	.LASF1058
 	.byte	0x7
 	.uleb128 0x17
-	.4byte	.LASF1058
+	.4byte	.LASF1059
 	.byte	0x8
 	.uleb128 0x17
-	.4byte	.LASF1059
+	.4byte	.LASF1060
 	.byte	0x9
 	.uleb128 0x17
-	.4byte	.LASF1060
+	.4byte	.LASF1061
 	.byte	0xa
 	.uleb128 0x17
-	.4byte	.LASF1061
+	.4byte	.LASF1062
 	.byte	0xb
 	.uleb128 0x17
-	.4byte	.LASF1062
+	.4byte	.LASF1063
 	.byte	0xc
 	.uleb128 0x17
-	.4byte	.LASF1063
+	.4byte	.LASF1064
 	.byte	0xd
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1064
+	.4byte	.LASF1065
 	.byte	0x6
 	.2byte	0x6a3
 	.4byte	0x17c3
 	.uleb128 0x1f
-	.4byte	.LASF1065
+	.4byte	.LASF1066
 	.byte	0x7
 	.byte	0x1
 	.4byte	0x4b
@@ -11238,67 +11238,67 @@ LoRaMacMaxEirpTable:
 	.2byte	0x6a8
 	.4byte	0x1885
 	.uleb128 0x17
-	.4byte	.LASF1066
+	.4byte	.LASF1067
 	.byte	0
 	.uleb128 0x17
-	.4byte	.LASF1067
+	.4byte	.LASF1068
 	.byte	0x1
 	.uleb128 0x17
-	.4byte	.LASF1068
+	.4byte	.LASF1069
 	.byte	0x2
 	.uleb128 0x17
-	.4byte	.LASF1069
+	.4byte	.LASF1070
 	.byte	0x3
 	.uleb128 0x17
-	.4byte	.LASF1070
+	.4byte	.LASF1071
 	.byte	0x4
 	.uleb128 0x17
-	.4byte	.LASF1071
+	.4byte	.LASF1072
 	.byte	0x5
 	.uleb128 0x17
-	.4byte	.LASF1072
+	.4byte	.LASF1073
 	.byte	0x6
 	.uleb128 0x17
-	.4byte	.LASF1073
+	.4byte	.LASF1074
 	.byte	0x7
 	.uleb128 0x17
-	.4byte	.LASF1074
+	.4byte	.LASF1075
 	.byte	0x8
 	.uleb128 0x17
-	.4byte	.LASF1075
+	.4byte	.LASF1076
 	.byte	0x9
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1076
+	.4byte	.LASF1077
 	.byte	0x6
 	.2byte	0x6d2
 	.4byte	0x1836
 	.uleb128 0x13
-	.4byte	.LASF1077
+	.4byte	.LASF1078
 	.byte	0x10
 	.byte	0x6
 	.2byte	0x6d8
 	.4byte	0x18d3
 	.uleb128 0x14
-	.4byte	.LASF1078
+	.4byte	.LASF1079
 	.byte	0x6
 	.2byte	0x6df
 	.4byte	0x18e4
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF1079
+	.4byte	.LASF1080
 	.byte	0x6
 	.2byte	0x6e5
 	.4byte	0x18fb
 	.byte	0x4
 	.uleb128 0x14
-	.4byte	.LASF1080
+	.4byte	.LASF1081
 	.byte	0x6
 	.2byte	0x6eb
 	.4byte	0x1912
 	.byte	0x8
 	.uleb128 0x14
-	.4byte	.LASF1081
+	.4byte	.LASF1082
 	.byte	0x6
 	.2byte	0x6f1
 	.4byte	0x1929
@@ -11349,18 +11349,18 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0x1918
 	.uleb128 0x12
-	.4byte	.LASF1082
+	.4byte	.LASF1083
 	.byte	0x6
 	.2byte	0x6f2
 	.4byte	0x1891
 	.uleb128 0x13
-	.4byte	.LASF1083
+	.4byte	.LASF1084
 	.byte	0x4
 	.byte	0x6
 	.2byte	0x6f7
 	.4byte	0x1956
 	.uleb128 0x14
-	.4byte	.LASF1084
+	.4byte	.LASF1085
 	.byte	0x6
 	.2byte	0x701
 	.4byte	0x195b
@@ -11372,7 +11372,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0x1956
 	.uleb128 0x12
-	.4byte	.LASF1085
+	.4byte	.LASF1086
 	.byte	0x6
 	.2byte	0x702
 	.4byte	0x193b
@@ -11386,7 +11386,7 @@ LoRaMacMaxEirpTable:
 	.uleb128 0x4
 	.4byte	0x196d
 	.uleb128 0x24
-	.4byte	.LASF1198
+	.4byte	.LASF1199
 	.byte	0x6
 	.2byte	0x707
 	.4byte	0x197d
@@ -11394,7 +11394,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacMaxEirpTable
 	.uleb128 0x1f
-	.4byte	.LASF1086
+	.4byte	.LASF1087
 	.byte	0x7
 	.byte	0x1
 	.4byte	0x4b
@@ -11402,106 +11402,106 @@ LoRaMacMaxEirpTable:
 	.2byte	0x210
 	.4byte	0x1a61
 	.uleb128 0x17
-	.4byte	.LASF1087
+	.4byte	.LASF1088
 	.byte	0
 	.uleb128 0x17
-	.4byte	.LASF1088
+	.4byte	.LASF1089
 	.byte	0x1
 	.uleb128 0x17
-	.4byte	.LASF1089
+	.4byte	.LASF1090
 	.byte	0x2
 	.uleb128 0x17
-	.4byte	.LASF1090
+	.4byte	.LASF1091
 	.byte	0x3
 	.uleb128 0x17
-	.4byte	.LASF1091
+	.4byte	.LASF1092
 	.byte	0x4
 	.uleb128 0x17
-	.4byte	.LASF1092
+	.4byte	.LASF1093
 	.byte	0x5
 	.uleb128 0x17
-	.4byte	.LASF1093
+	.4byte	.LASF1094
 	.byte	0x6
 	.uleb128 0x17
-	.4byte	.LASF1094
+	.4byte	.LASF1095
 	.byte	0x7
 	.uleb128 0x17
-	.4byte	.LASF1095
+	.4byte	.LASF1096
 	.byte	0x8
 	.uleb128 0x17
-	.4byte	.LASF1096
+	.4byte	.LASF1097
 	.byte	0x9
 	.uleb128 0x17
-	.4byte	.LASF1097
+	.4byte	.LASF1098
 	.byte	0xa
 	.uleb128 0x17
-	.4byte	.LASF1098
+	.4byte	.LASF1099
 	.byte	0xb
 	.uleb128 0x17
-	.4byte	.LASF1099
+	.4byte	.LASF1100
 	.byte	0xc
 	.uleb128 0x17
-	.4byte	.LASF1100
+	.4byte	.LASF1101
 	.byte	0xd
 	.uleb128 0x17
-	.4byte	.LASF1101
+	.4byte	.LASF1102
 	.byte	0xe
 	.uleb128 0x17
-	.4byte	.LASF1102
+	.4byte	.LASF1103
 	.byte	0xf
 	.uleb128 0x17
-	.4byte	.LASF1103
+	.4byte	.LASF1104
 	.byte	0x10
 	.uleb128 0x17
-	.4byte	.LASF1104
+	.4byte	.LASF1105
 	.byte	0x11
 	.uleb128 0x17
-	.4byte	.LASF1105
+	.4byte	.LASF1106
 	.byte	0x12
 	.uleb128 0x17
-	.4byte	.LASF1106
+	.4byte	.LASF1107
 	.byte	0x13
 	.uleb128 0x17
-	.4byte	.LASF1107
+	.4byte	.LASF1108
 	.byte	0x14
 	.uleb128 0x17
-	.4byte	.LASF1108
+	.4byte	.LASF1109
 	.byte	0x15
 	.uleb128 0x17
-	.4byte	.LASF1109
+	.4byte	.LASF1110
 	.byte	0x16
 	.uleb128 0x17
-	.4byte	.LASF1110
+	.4byte	.LASF1111
 	.byte	0x17
 	.uleb128 0x17
-	.4byte	.LASF1111
+	.4byte	.LASF1112
 	.byte	0x18
 	.uleb128 0x17
-	.4byte	.LASF1112
+	.4byte	.LASF1113
 	.byte	0x19
 	.uleb128 0x17
-	.4byte	.LASF1113
+	.4byte	.LASF1114
 	.byte	0x1a
 	.uleb128 0x17
-	.4byte	.LASF1114
+	.4byte	.LASF1115
 	.byte	0x1b
 	.uleb128 0x17
-	.4byte	.LASF1115
+	.4byte	.LASF1116
 	.byte	0x1c
 	.uleb128 0x17
-	.4byte	.LASF1116
+	.4byte	.LASF1117
 	.byte	0x1d
 	.uleb128 0x17
-	.4byte	.LASF1117
+	.4byte	.LASF1118
 	.byte	0x1e
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1118
+	.4byte	.LASF1119
 	.byte	0x7
 	.2byte	0x28e
 	.4byte	0x1994
 	.uleb128 0x1f
-	.4byte	.LASF1119
+	.4byte	.LASF1120
 	.byte	0x7
 	.byte	0x1
 	.4byte	0x4b
@@ -11509,17 +11509,17 @@ LoRaMacMaxEirpTable:
 	.2byte	0x293
 	.4byte	0x1a92
 	.uleb128 0x17
-	.4byte	.LASF1120
+	.4byte	.LASF1121
 	.byte	0
 	.uleb128 0x17
-	.4byte	.LASF1121
+	.4byte	.LASF1122
 	.byte	0x1
 	.uleb128 0x17
-	.4byte	.LASF1122
+	.4byte	.LASF1123
 	.byte	0x2
 	.byte	0
 	.uleb128 0x1f
-	.4byte	.LASF1123
+	.4byte	.LASF1124
 	.byte	0x7
 	.byte	0x1
 	.4byte	0x4b
@@ -11527,733 +11527,733 @@ LoRaMacMaxEirpTable:
 	.2byte	0x2a5
 	.4byte	0x1ab1
 	.uleb128 0x17
-	.4byte	.LASF1124
+	.4byte	.LASF1125
 	.byte	0
 	.uleb128 0x17
-	.4byte	.LASF1125
+	.4byte	.LASF1126
 	.byte	0x1
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1126
+	.4byte	.LASF1127
 	.byte	0x7
 	.2byte	0x2af
 	.4byte	0x1a92
 	.uleb128 0x22
-	.4byte	.LASF1127
+	.4byte	.LASF1128
 	.byte	0x4
 	.byte	0x7
 	.2byte	0x2b4
 	.4byte	0x1afb
 	.uleb128 0x23
-	.4byte	.LASF803
+	.4byte	.LASF804
 	.byte	0x7
 	.2byte	0x2b9
 	.4byte	0x8d
 	.uleb128 0x23
-	.4byte	.LASF1128
+	.4byte	.LASF1129
 	.byte	0x7
 	.2byte	0x2bd
 	.4byte	0xcc3
 	.uleb128 0x23
-	.4byte	.LASF1034
+	.4byte	.LASF1035
 	.byte	0x7
 	.2byte	0x2c1
 	.4byte	0x1743
 	.uleb128 0x23
-	.4byte	.LASF1129
+	.4byte	.LASF1130
 	.byte	0x7
 	.2byte	0x2c5
 	.4byte	0x173d
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1130
+	.4byte	.LASF1131
 	.byte	0x7
 	.2byte	0x2c6
 	.4byte	0x1abd
 	.uleb128 0x13
-	.4byte	.LASF1131
+	.4byte	.LASF1132
 	.byte	0x4
 	.byte	0x7
 	.2byte	0x2cb
 	.4byte	0x1b49
 	.uleb128 0x14
-	.4byte	.LASF1132
+	.4byte	.LASF1133
 	.byte	0x7
 	.2byte	0x2d0
 	.4byte	0x1a61
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF813
+	.4byte	.LASF814
 	.byte	0x7
 	.2byte	0x2d6
 	.4byte	0x29
 	.byte	0x1
 	.uleb128 0x14
-	.4byte	.LASF835
+	.4byte	.LASF836
 	.byte	0x7
 	.2byte	0x2dc
 	.4byte	0x3b
 	.byte	0x2
 	.uleb128 0x14
-	.4byte	.LASF836
+	.4byte	.LASF837
 	.byte	0x7
 	.2byte	0x2e2
 	.4byte	0x3b
 	.byte	0x3
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1133
+	.4byte	.LASF1134
 	.byte	0x7
 	.2byte	0x2e3
 	.4byte	0x1b07
 	.uleb128 0x13
-	.4byte	.LASF1134
+	.4byte	.LASF1135
 	.byte	0x8
 	.byte	0x7
 	.2byte	0x2e8
 	.4byte	0x1b8a
 	.uleb128 0x14
-	.4byte	.LASF949
+	.4byte	.LASF950
 	.byte	0x7
 	.2byte	0x2ed
 	.4byte	0x3b
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF1135
+	.4byte	.LASF1136
 	.byte	0x7
 	.2byte	0x2f1
 	.4byte	0x618
 	.byte	0x1
 	.uleb128 0x14
-	.4byte	.LASF1136
+	.4byte	.LASF1137
 	.byte	0x7
 	.2byte	0x2f5
 	.4byte	0x630
 	.byte	0x4
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1137
+	.4byte	.LASF1138
 	.byte	0x7
 	.2byte	0x2f6
 	.4byte	0x1b55
 	.uleb128 0x13
-	.4byte	.LASF1138
+	.4byte	.LASF1139
 	.byte	0x3
 	.byte	0x7
 	.2byte	0x308
 	.4byte	0x1bcb
 	.uleb128 0x14
-	.4byte	.LASF813
+	.4byte	.LASF814
 	.byte	0x7
 	.2byte	0x30d
 	.4byte	0x29
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF836
+	.4byte	.LASF837
 	.byte	0x7
 	.2byte	0x311
 	.4byte	0x3b
 	.byte	0x1
 	.uleb128 0x14
-	.4byte	.LASF835
+	.4byte	.LASF836
 	.byte	0x7
 	.2byte	0x315
 	.4byte	0x3b
 	.byte	0x2
 	.byte	0
 	.uleb128 0x22
-	.4byte	.LASF1139
+	.4byte	.LASF1140
 	.byte	0x3
 	.byte	0x7
 	.2byte	0x2fb
 	.4byte	0x1bfd
 	.uleb128 0x23
-	.4byte	.LASF944
+	.4byte	.LASF945
 	.byte	0x7
 	.2byte	0x300
 	.4byte	0x29
 	.uleb128 0x23
-	.4byte	.LASF1140
+	.4byte	.LASF1141
 	.byte	0x7
 	.2byte	0x304
 	.4byte	0x618
 	.uleb128 0x23
-	.4byte	.LASF1141
+	.4byte	.LASF1142
 	.byte	0x7
 	.2byte	0x316
 	.4byte	0x1b96
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1142
+	.4byte	.LASF1143
 	.byte	0x7
 	.2byte	0x317
 	.4byte	0x1bcb
 	.uleb128 0x13
-	.4byte	.LASF1143
+	.4byte	.LASF1144
 	.byte	0x8
 	.byte	0x7
 	.2byte	0x31c
 	.4byte	0x1c31
 	.uleb128 0x14
-	.4byte	.LASF1144
+	.4byte	.LASF1145
 	.byte	0x7
 	.2byte	0x321
 	.4byte	0x708
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF1145
+	.4byte	.LASF1146
 	.byte	0x7
 	.2byte	0x325
 	.4byte	0x3b
 	.byte	0x4
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1146
+	.4byte	.LASF1147
 	.byte	0x7
 	.2byte	0x326
 	.4byte	0x1c09
 	.uleb128 0x13
-	.4byte	.LASF1147
+	.4byte	.LASF1148
 	.byte	0x8
 	.byte	0x7
 	.2byte	0x32b
 	.4byte	0x1c65
 	.uleb128 0x14
-	.4byte	.LASF1148
+	.4byte	.LASF1149
 	.byte	0x7
 	.2byte	0x330
 	.4byte	0x1743
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF1149
+	.4byte	.LASF1150
 	.byte	0x7
 	.2byte	0x334
 	.4byte	0x1ab1
 	.byte	0x4
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1150
+	.4byte	.LASF1151
 	.byte	0x7
 	.2byte	0x335
 	.4byte	0x1c3d
 	.uleb128 0x13
-	.4byte	.LASF1151
+	.4byte	.LASF1152
 	.byte	0xc
 	.byte	0x7
 	.2byte	0x33a
 	.4byte	0x1ccd
 	.uleb128 0x14
-	.4byte	.LASF1152
+	.4byte	.LASF1153
 	.byte	0x7
 	.2byte	0x33f
 	.4byte	0x618
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF1153
+	.4byte	.LASF1154
 	.byte	0x7
 	.2byte	0x343
 	.4byte	0x618
 	.byte	0x1
 	.uleb128 0x14
-	.4byte	.LASF1154
+	.4byte	.LASF1155
 	.byte	0x7
 	.2byte	0x347
 	.4byte	0x8d
 	.byte	0x4
 	.uleb128 0x14
-	.4byte	.LASF813
+	.4byte	.LASF814
 	.byte	0x7
 	.2byte	0x34b
 	.4byte	0x29
 	.byte	0x8
 	.uleb128 0x14
-	.4byte	.LASF944
+	.4byte	.LASF945
 	.byte	0x7
 	.2byte	0x34f
 	.4byte	0x29
 	.byte	0x9
 	.uleb128 0x14
-	.4byte	.LASF835
+	.4byte	.LASF836
 	.byte	0x7
 	.2byte	0x353
 	.4byte	0x3b
 	.byte	0xa
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1155
+	.4byte	.LASF1156
 	.byte	0x7
 	.2byte	0x354
 	.4byte	0x1c71
 	.uleb128 0x13
-	.4byte	.LASF1156
+	.4byte	.LASF1157
 	.byte	0x14
 	.byte	0x7
 	.2byte	0x359
 	.4byte	0x1d76
 	.uleb128 0x14
-	.4byte	.LASF949
+	.4byte	.LASF950
 	.byte	0x7
 	.2byte	0x35e
 	.4byte	0x3b
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF813
+	.4byte	.LASF814
 	.byte	0x7
 	.2byte	0x362
 	.4byte	0x29
 	.byte	0x1
 	.uleb128 0x14
-	.4byte	.LASF1157
+	.4byte	.LASF1158
 	.byte	0x7
 	.2byte	0x366
 	.4byte	0x3b
 	.byte	0x2
 	.uleb128 0x14
-	.4byte	.LASF1158
+	.4byte	.LASF1159
 	.byte	0x7
 	.2byte	0x36a
 	.4byte	0x29
 	.byte	0x3
 	.uleb128 0x14
-	.4byte	.LASF807
+	.4byte	.LASF808
 	.byte	0x7
 	.2byte	0x36e
 	.4byte	0x8d
 	.byte	0x4
 	.uleb128 0x14
-	.4byte	.LASF1159
+	.4byte	.LASF1160
 	.byte	0x7
 	.2byte	0x372
 	.4byte	0x8d
 	.byte	0x8
 	.uleb128 0x14
-	.4byte	.LASF1160
+	.4byte	.LASF1161
 	.byte	0x7
 	.2byte	0x376
 	.4byte	0x7b
 	.byte	0xc
 	.uleb128 0x14
-	.4byte	.LASF836
+	.4byte	.LASF837
 	.byte	0x7
 	.2byte	0x37a
 	.4byte	0x3b
 	.byte	0x10
 	.uleb128 0x14
-	.4byte	.LASF1161
+	.4byte	.LASF1162
 	.byte	0x7
 	.2byte	0x37e
 	.4byte	0x618
 	.byte	0x11
 	.uleb128 0x14
-	.4byte	.LASF1162
+	.4byte	.LASF1163
 	.byte	0x7
 	.2byte	0x382
 	.4byte	0x618
 	.byte	0x12
 	.uleb128 0x14
-	.4byte	.LASF960
+	.4byte	.LASF961
 	.byte	0x7
 	.2byte	0x386
 	.4byte	0xbd9
 	.byte	0x13
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1163
+	.4byte	.LASF1164
 	.byte	0x7
 	.2byte	0x387
 	.4byte	0x1cd9
 	.uleb128 0x13
-	.4byte	.LASF1164
+	.4byte	.LASF1165
 	.byte	0x10
 	.byte	0x7
 	.2byte	0x38c
 	.4byte	0x1dde
 	.uleb128 0x14
-	.4byte	.LASF949
+	.4byte	.LASF950
 	.byte	0x7
 	.2byte	0x391
 	.4byte	0x3b
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF813
+	.4byte	.LASF814
 	.byte	0x7
 	.2byte	0x395
 	.4byte	0x29
 	.byte	0x1
 	.uleb128 0x14
-	.4byte	.LASF944
+	.4byte	.LASF945
 	.byte	0x7
 	.2byte	0x399
 	.4byte	0x29
 	.byte	0x2
 	.uleb128 0x14
-	.4byte	.LASF837
+	.4byte	.LASF838
 	.byte	0x7
 	.2byte	0x39d
 	.4byte	0xcc3
 	.byte	0x4
 	.uleb128 0x14
-	.4byte	.LASF838
+	.4byte	.LASF839
 	.byte	0x7
 	.2byte	0x3a1
 	.4byte	0xcc3
 	.byte	0x8
 	.uleb128 0x14
-	.4byte	.LASF1165
+	.4byte	.LASF1166
 	.byte	0x7
 	.2byte	0x3a5
 	.4byte	0x69
 	.byte	0xc
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1166
+	.4byte	.LASF1167
 	.byte	0x7
 	.2byte	0x3a6
 	.4byte	0x1d82
 	.uleb128 0x13
-	.4byte	.LASF1167
+	.4byte	.LASF1168
 	.byte	0xc
 	.byte	0x7
 	.2byte	0x3ab
 	.4byte	0x1e53
 	.uleb128 0x14
-	.4byte	.LASF1144
+	.4byte	.LASF1145
 	.byte	0x7
 	.2byte	0x3b0
 	.4byte	0x708
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF1168
+	.4byte	.LASF1169
 	.byte	0x7
 	.2byte	0x3b4
 	.4byte	0x3b
 	.byte	0x4
 	.uleb128 0x14
-	.4byte	.LASF835
+	.4byte	.LASF836
 	.byte	0x7
 	.2byte	0x3b8
 	.4byte	0x3b
 	.byte	0x5
 	.uleb128 0x14
-	.4byte	.LASF1153
+	.4byte	.LASF1154
 	.byte	0x7
 	.2byte	0x3bc
 	.4byte	0x618
 	.byte	0x6
 	.uleb128 0x14
-	.4byte	.LASF1169
+	.4byte	.LASF1170
 	.byte	0x7
 	.2byte	0x3c0
 	.4byte	0x29
 	.byte	0x7
 	.uleb128 0x14
-	.4byte	.LASF1170
+	.4byte	.LASF1171
 	.byte	0x7
 	.2byte	0x3c4
 	.4byte	0x29
 	.byte	0x8
 	.uleb128 0x14
-	.4byte	.LASF1171
+	.4byte	.LASF1172
 	.byte	0x7
 	.2byte	0x3c8
 	.4byte	0x3b
 	.byte	0x9
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1172
+	.4byte	.LASF1173
 	.byte	0x7
 	.2byte	0x3c9
 	.4byte	0x1dea
 	.uleb128 0x13
-	.4byte	.LASF1173
+	.4byte	.LASF1174
 	.byte	0x8
 	.byte	0x7
 	.2byte	0x3ce
 	.4byte	0x1e94
 	.uleb128 0x14
-	.4byte	.LASF813
+	.4byte	.LASF814
 	.byte	0x7
 	.2byte	0x3d3
 	.4byte	0x29
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF1158
+	.4byte	.LASF1159
 	.byte	0x7
 	.2byte	0x3d7
 	.4byte	0x29
 	.byte	0x1
 	.uleb128 0x14
-	.4byte	.LASF807
+	.4byte	.LASF808
 	.byte	0x7
 	.2byte	0x3db
 	.4byte	0x8d
 	.byte	0x4
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1174
+	.4byte	.LASF1175
 	.byte	0x7
 	.2byte	0x3dc
 	.4byte	0x1e5f
 	.uleb128 0x13
-	.4byte	.LASF1175
+	.4byte	.LASF1176
 	.byte	0x8
 	.byte	0x7
 	.2byte	0x3e1
 	.4byte	0x1ec8
 	.uleb128 0x14
-	.4byte	.LASF1176
+	.4byte	.LASF1177
 	.byte	0x7
 	.2byte	0x3e6
 	.4byte	0x173d
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF1177
+	.4byte	.LASF1178
 	.byte	0x7
 	.2byte	0x3ea
 	.4byte	0x29
 	.byte	0x4
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1178
+	.4byte	.LASF1179
 	.byte	0x7
 	.2byte	0x3eb
 	.4byte	0x1ea0
 	.uleb128 0x13
-	.4byte	.LASF1179
+	.4byte	.LASF1180
 	.byte	0x3
 	.byte	0x7
 	.2byte	0x3f0
 	.4byte	0x1f09
 	.uleb128 0x14
-	.4byte	.LASF835
+	.4byte	.LASF836
 	.byte	0x7
 	.2byte	0x3f5
 	.4byte	0x3b
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF836
+	.4byte	.LASF837
 	.byte	0x7
 	.2byte	0x3f9
 	.4byte	0x3b
 	.byte	0x1
 	.uleb128 0x14
-	.4byte	.LASF837
+	.4byte	.LASF838
 	.byte	0x7
 	.2byte	0x3fd
 	.4byte	0x3b
 	.byte	0x2
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1180
+	.4byte	.LASF1181
 	.byte	0x7
 	.2byte	0x3fe
 	.4byte	0x1ed4
 	.uleb128 0x13
-	.4byte	.LASF1181
+	.4byte	.LASF1182
 	.byte	0x8
 	.byte	0x7
 	.2byte	0x403
 	.4byte	0x1f3d
 	.uleb128 0x14
-	.4byte	.LASF1177
+	.4byte	.LASF1178
 	.byte	0x7
 	.2byte	0x408
 	.4byte	0x3b
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF808
+	.4byte	.LASF809
 	.byte	0x7
 	.2byte	0x40c
 	.4byte	0x8d
 	.byte	0x4
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1182
+	.4byte	.LASF1183
 	.byte	0x7
 	.2byte	0x40d
 	.4byte	0x1f15
 	.uleb128 0x13
-	.4byte	.LASF1183
+	.4byte	.LASF1184
 	.byte	0xc
 	.byte	0x7
 	.2byte	0x412
 	.4byte	0x1fa5
 	.uleb128 0x14
-	.4byte	.LASF1135
+	.4byte	.LASF1136
 	.byte	0x7
 	.2byte	0x417
 	.4byte	0x618
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF1184
+	.4byte	.LASF1185
 	.byte	0x7
 	.2byte	0x41b
 	.4byte	0x618
 	.byte	0x1
 	.uleb128 0x14
-	.4byte	.LASF1185
+	.4byte	.LASF1186
 	.byte	0x7
 	.2byte	0x41f
 	.4byte	0x618
 	.byte	0x2
 	.uleb128 0x14
-	.4byte	.LASF949
+	.4byte	.LASF950
 	.byte	0x7
 	.2byte	0x423
 	.4byte	0x3b
 	.byte	0x3
 	.uleb128 0x14
-	.4byte	.LASF1186
+	.4byte	.LASF1187
 	.byte	0x7
 	.2byte	0x427
 	.4byte	0x630
 	.byte	0x4
 	.uleb128 0x14
-	.4byte	.LASF947
+	.4byte	.LASF948
 	.byte	0x7
 	.2byte	0x42b
 	.4byte	0x630
 	.byte	0x8
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1187
+	.4byte	.LASF1188
 	.byte	0x7
 	.2byte	0x42c
 	.4byte	0x1f49
 	.uleb128 0x13
-	.4byte	.LASF1188
+	.4byte	.LASF1189
 	.byte	0xc
 	.byte	0x7
 	.2byte	0x431
 	.4byte	0x2000
 	.uleb128 0x14
-	.4byte	.LASF1189
+	.4byte	.LASF1190
 	.byte	0x7
 	.2byte	0x436
 	.4byte	0x630
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF1190
+	.4byte	.LASF1191
 	.byte	0x7
 	.2byte	0x43a
 	.4byte	0x630
 	.byte	0x4
 	.uleb128 0x14
-	.4byte	.LASF813
+	.4byte	.LASF814
 	.byte	0x7
 	.2byte	0x43e
 	.4byte	0x29
 	.byte	0x8
 	.uleb128 0x14
-	.4byte	.LASF1135
+	.4byte	.LASF1136
 	.byte	0x7
 	.2byte	0x442
 	.4byte	0x618
 	.byte	0x9
 	.uleb128 0x14
-	.4byte	.LASF1185
+	.4byte	.LASF1186
 	.byte	0x7
 	.2byte	0x446
 	.4byte	0x618
 	.byte	0xa
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1191
+	.4byte	.LASF1192
 	.byte	0x7
 	.2byte	0x447
 	.4byte	0x1fb1
 	.uleb128 0x13
-	.4byte	.LASF1192
+	.4byte	.LASF1193
 	.byte	0x8
 	.byte	0x7
 	.2byte	0x44c
 	.4byte	0x2034
 	.uleb128 0x14
-	.4byte	.LASF1176
+	.4byte	.LASF1177
 	.byte	0x7
 	.2byte	0x451
 	.4byte	0x173d
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF1177
+	.4byte	.LASF1178
 	.byte	0x7
 	.2byte	0x455
 	.4byte	0x3b
 	.byte	0x4
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1193
+	.4byte	.LASF1194
 	.byte	0x7
 	.2byte	0x456
 	.4byte	0x200c
 	.uleb128 0x13
-	.4byte	.LASF1194
+	.4byte	.LASF1195
 	.byte	0x1
 	.byte	0x7
 	.2byte	0x45b
 	.4byte	0x205b
 	.uleb128 0x14
-	.4byte	.LASF1177
+	.4byte	.LASF1178
 	.byte	0x7
 	.2byte	0x460
 	.4byte	0x3b
 	.byte	0
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1195
+	.4byte	.LASF1196
 	.byte	0x7
 	.2byte	0x461
 	.4byte	0x2040
 	.uleb128 0x13
-	.4byte	.LASF1196
+	.4byte	.LASF1197
 	.byte	0x10
 	.byte	0x7
 	.2byte	0x466
 	.4byte	0x20c3
 	.uleb128 0x14
-	.4byte	.LASF949
+	.4byte	.LASF950
 	.byte	0x7
 	.2byte	0x46b
 	.4byte	0x3b
 	.byte	0
 	.uleb128 0x14
-	.4byte	.LASF813
+	.4byte	.LASF814
 	.byte	0x7
 	.2byte	0x46f
 	.4byte	0x29
 	.byte	0x1
 	.uleb128 0x14
-	.4byte	.LASF944
+	.4byte	.LASF945
 	.byte	0x7
 	.2byte	0x473
 	.4byte	0x29
 	.byte	0x2
 	.uleb128 0x14
-	.4byte	.LASF837
+	.4byte	.LASF838
 	.byte	0x7
 	.2byte	0x477
 	.4byte	0xcc3
 	.byte	0x4
 	.uleb128 0x14
-	.4byte	.LASF838
+	.4byte	.LASF839
 	.byte	0x7
 	.2byte	0x47b
 	.4byte	0xcc3
 	.byte	0x8
 	.uleb128 0x14
-	.4byte	.LASF975
+	.4byte	.LASF976
 	.byte	0x7
 	.2byte	0x47f
 	.4byte	0x69
 	.byte	0xc
 	.byte	0
 	.uleb128 0x12
-	.4byte	.LASF1197
+	.4byte	.LASF1198
 	.byte	0x7
 	.2byte	0x480
 	.4byte	0x2067
 	.uleb128 0x25
-	.4byte	.LASF1199
+	.4byte	.LASF1200
 	.byte	0x1
 	.byte	0x36
 	.4byte	0x1885
@@ -12261,7 +12261,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacRegion
 	.uleb128 0x25
-	.4byte	.LASF1200
+	.4byte	.LASF1201
 	.byte	0x1
 	.byte	0x4a
 	.4byte	0x708
@@ -12269,7 +12269,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacDevEui
 	.uleb128 0x25
-	.4byte	.LASF1201
+	.4byte	.LASF1202
 	.byte	0x1
 	.byte	0x4f
 	.4byte	0x708
@@ -12277,7 +12277,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacAppEui
 	.uleb128 0x25
-	.4byte	.LASF1202
+	.4byte	.LASF1203
 	.byte	0x1
 	.byte	0x54
 	.4byte	0x708
@@ -12285,7 +12285,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacAppKey
 	.uleb128 0x25
-	.4byte	.LASF1203
+	.4byte	.LASF1204
 	.byte	0x1
 	.byte	0x59
 	.4byte	0xd25
@@ -12293,7 +12293,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacNwkSKey
 	.uleb128 0x25
-	.4byte	.LASF1204
+	.4byte	.LASF1205
 	.byte	0x1
 	.byte	0x62
 	.4byte	0xd25
@@ -12301,7 +12301,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacAppSKey
 	.uleb128 0x25
-	.4byte	.LASF1205
+	.4byte	.LASF1206
 	.byte	0x1
 	.byte	0x6c
 	.4byte	0x69
@@ -12309,7 +12309,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacDevNonce
 	.uleb128 0x25
-	.4byte	.LASF1206
+	.4byte	.LASF1207
 	.byte	0x1
 	.byte	0x71
 	.4byte	0x8d
@@ -12317,7 +12317,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacNetID
 	.uleb128 0x25
-	.4byte	.LASF1207
+	.4byte	.LASF1208
 	.byte	0x1
 	.byte	0x76
 	.4byte	0x8d
@@ -12325,7 +12325,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacDevAddr
 	.uleb128 0x25
-	.4byte	.LASF1208
+	.4byte	.LASF1209
 	.byte	0x1
 	.byte	0x7b
 	.4byte	0x1749
@@ -12333,7 +12333,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	MulticastChannels
 	.uleb128 0x25
-	.4byte	.LASF1209
+	.4byte	.LASF1210
 	.byte	0x1
 	.byte	0x80
 	.4byte	0xacf
@@ -12341,7 +12341,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacDeviceClass
 	.uleb128 0x25
-	.4byte	.LASF1210
+	.4byte	.LASF1211
 	.byte	0x1
 	.byte	0x85
 	.4byte	0x618
@@ -12349,7 +12349,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	PublicNetwork
 	.uleb128 0x25
-	.4byte	.LASF1161
+	.4byte	.LASF1162
 	.byte	0x1
 	.byte	0x8a
 	.4byte	0x618
@@ -12364,7 +12364,7 @@ LoRaMacMaxEirpTable:
 	.byte	0xfe
 	.byte	0
 	.uleb128 0x25
-	.4byte	.LASF1211
+	.4byte	.LASF1212
 	.byte	0x1
 	.byte	0x8f
 	.4byte	0x21ac
@@ -12372,7 +12372,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacBuffer
 	.uleb128 0x25
-	.4byte	.LASF1212
+	.4byte	.LASF1213
 	.byte	0x1
 	.byte	0x94
 	.4byte	0x69
@@ -12380,7 +12380,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacBufferPktLen
 	.uleb128 0x25
-	.4byte	.LASF1213
+	.4byte	.LASF1214
 	.byte	0x1
 	.byte	0x99
 	.4byte	0x3b
@@ -12388,7 +12388,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacTxPayloadLen
 	.uleb128 0x25
-	.4byte	.LASF1214
+	.4byte	.LASF1215
 	.byte	0x1
 	.byte	0x9e
 	.4byte	0x21ac
@@ -12396,7 +12396,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacRxPayload
 	.uleb128 0x25
-	.4byte	.LASF948
+	.4byte	.LASF949
 	.byte	0x1
 	.byte	0xa4
 	.4byte	0x8d
@@ -12404,7 +12404,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	UpLinkCounter
 	.uleb128 0x25
-	.4byte	.LASF845
+	.4byte	.LASF846
 	.byte	0x1
 	.byte	0xaa
 	.4byte	0x8d
@@ -12412,7 +12412,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	DownLinkCounter
 	.uleb128 0x25
-	.4byte	.LASF1215
+	.4byte	.LASF1216
 	.byte	0x1
 	.byte	0xb0
 	.4byte	0x618
@@ -12420,7 +12420,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	IsUpLinkCounterFixed
 	.uleb128 0x25
-	.4byte	.LASF1216
+	.4byte	.LASF1217
 	.byte	0x1
 	.byte	0xb5
 	.4byte	0x618
@@ -12428,7 +12428,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	IsRxWindowsEnabled
 	.uleb128 0x25
-	.4byte	.LASF1217
+	.4byte	.LASF1218
 	.byte	0x1
 	.byte	0xba
 	.4byte	0x618
@@ -12436,7 +12436,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	IsLoRaMacNetworkJoined
 	.uleb128 0x25
-	.4byte	.LASF1218
+	.4byte	.LASF1219
 	.byte	0x1
 	.byte	0xbf
 	.4byte	0x618
@@ -12444,7 +12444,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	AdrCtrlOn
 	.uleb128 0x25
-	.4byte	.LASF1154
+	.4byte	.LASF1155
 	.byte	0x1
 	.byte	0xc4
 	.4byte	0x8d
@@ -12452,7 +12452,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	AdrAckCounter
 	.uleb128 0x25
-	.4byte	.LASF1219
+	.4byte	.LASF1220
 	.byte	0x1
 	.byte	0xca
 	.4byte	0x618
@@ -12460,7 +12460,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	NodeAckRequested
 	.uleb128 0x25
-	.4byte	.LASF1220
+	.4byte	.LASF1221
 	.byte	0x1
 	.byte	0xd0
 	.4byte	0x618
@@ -12468,7 +12468,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	SrvAckRequested
 	.uleb128 0x25
-	.4byte	.LASF1221
+	.4byte	.LASF1222
 	.byte	0x1
 	.byte	0xd5
 	.4byte	0x618
@@ -12476,7 +12476,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	MacCommandsInNextTx
 	.uleb128 0x25
-	.4byte	.LASF1222
+	.4byte	.LASF1223
 	.byte	0x1
 	.byte	0xda
 	.4byte	0x3b
@@ -12484,7 +12484,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	MacCommandsBufferIndex
 	.uleb128 0x25
-	.4byte	.LASF1223
+	.4byte	.LASF1224
 	.byte	0x1
 	.byte	0xdf
 	.4byte	0x3b
@@ -12499,7 +12499,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x7f
 	.byte	0
 	.uleb128 0x25
-	.4byte	.LASF1224
+	.4byte	.LASF1225
 	.byte	0x1
 	.byte	0xe4
 	.4byte	0x22cc
@@ -12507,7 +12507,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	MacCommandsBuffer
 	.uleb128 0x25
-	.4byte	.LASF1225
+	.4byte	.LASF1226
 	.byte	0x1
 	.byte	0xe9
 	.4byte	0x22cc
@@ -12515,7 +12515,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	MacCommandsBufferToRepeat
 	.uleb128 0x26
-	.4byte	.LASF1226
+	.4byte	.LASF1227
 	.byte	0x1
 	.byte	0xee
 	.4byte	0xcca
@@ -12523,7 +12523,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacParams
 	.uleb128 0x26
-	.4byte	.LASF1227
+	.4byte	.LASF1228
 	.byte	0x1
 	.byte	0xf3
 	.4byte	0xcca
@@ -12531,7 +12531,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacParamsDefaults
 	.uleb128 0x25
-	.4byte	.LASF1228
+	.4byte	.LASF1229
 	.byte	0x1
 	.byte	0xf8
 	.4byte	0x3b
@@ -12539,7 +12539,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	ChannelsNbRepCounter
 	.uleb128 0x25
-	.4byte	.LASF1229
+	.4byte	.LASF1230
 	.byte	0x1
 	.byte	0xfe
 	.4byte	0x3b
@@ -12547,7 +12547,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	MaxDCycle
 	.uleb128 0x24
-	.4byte	.LASF1230
+	.4byte	.LASF1231
 	.byte	0x1
 	.2byte	0x103
 	.4byte	0x69
@@ -12555,7 +12555,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	AggregatedDCycle
 	.uleb128 0x24
-	.4byte	.LASF1231
+	.4byte	.LASF1232
 	.byte	0x1
 	.2byte	0x104
 	.4byte	0x630
@@ -12563,7 +12563,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	AggregatedLastTxDoneTime
 	.uleb128 0x24
-	.4byte	.LASF1232
+	.4byte	.LASF1233
 	.byte	0x1
 	.2byte	0x105
 	.4byte	0x630
@@ -12571,7 +12571,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	AggregatedTimeOff
 	.uleb128 0x24
-	.4byte	.LASF1233
+	.4byte	.LASF1234
 	.byte	0x1
 	.2byte	0x10a
 	.4byte	0x618
@@ -12579,7 +12579,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	DutyCycleOn
 	.uleb128 0x24
-	.4byte	.LASF949
+	.4byte	.LASF950
 	.byte	0x1
 	.2byte	0x10f
 	.4byte	0x3b
@@ -12587,7 +12587,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	Channel
 	.uleb128 0x24
-	.4byte	.LASF1234
+	.4byte	.LASF1235
 	.byte	0x1
 	.2byte	0x114
 	.4byte	0x3b
@@ -12595,7 +12595,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LastTxChannel
 	.uleb128 0x24
-	.4byte	.LASF1184
+	.4byte	.LASF1185
 	.byte	0x1
 	.2byte	0x119
 	.4byte	0x618
@@ -12603,7 +12603,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LastTxIsJoinRequest
 	.uleb128 0x24
-	.4byte	.LASF1235
+	.4byte	.LASF1236
 	.byte	0x1
 	.2byte	0x120
 	.4byte	0x630
@@ -12611,7 +12611,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacInitializationTime
 	.uleb128 0x1f
-	.4byte	.LASF1236
+	.4byte	.LASF1237
 	.byte	0x7
 	.byte	0x1
 	.4byte	0x4b
@@ -12619,32 +12619,32 @@ LoRaMacMaxEirpTable:
 	.2byte	0x125
 	.4byte	0x2415
 	.uleb128 0x17
-	.4byte	.LASF1237
+	.4byte	.LASF1238
 	.byte	0
 	.uleb128 0x17
-	.4byte	.LASF1238
+	.4byte	.LASF1239
 	.byte	0x1
 	.uleb128 0x17
-	.4byte	.LASF1239
+	.4byte	.LASF1240
 	.byte	0x2
 	.uleb128 0x17
-	.4byte	.LASF1240
+	.4byte	.LASF1241
 	.byte	0x4
 	.uleb128 0x17
-	.4byte	.LASF1241
+	.4byte	.LASF1242
 	.byte	0x8
 	.uleb128 0x17
-	.4byte	.LASF1242
+	.4byte	.LASF1243
 	.byte	0x10
 	.uleb128 0x17
-	.4byte	.LASF1243
+	.4byte	.LASF1244
 	.byte	0x20
 	.uleb128 0x17
-	.4byte	.LASF1244
+	.4byte	.LASF1245
 	.byte	0x40
 	.byte	0
 	.uleb128 0x27
-	.4byte	.LASF1245
+	.4byte	.LASF1246
 	.byte	0x1
 	.2byte	0x134
 	.4byte	0x8d
@@ -12652,7 +12652,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacState
 	.uleb128 0x24
-	.4byte	.LASF1246
+	.4byte	.LASF1247
 	.byte	0x1
 	.2byte	0x139
 	.4byte	0x625
@@ -12660,7 +12660,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	MacStateCheckTimer
 	.uleb128 0x24
-	.4byte	.LASF1247
+	.4byte	.LASF1248
 	.byte	0x1
 	.2byte	0x13e
 	.4byte	0x244b
@@ -12671,7 +12671,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0x192f
 	.uleb128 0x24
-	.4byte	.LASF1248
+	.4byte	.LASF1249
 	.byte	0x1
 	.2byte	0x143
 	.4byte	0x2463
@@ -12682,7 +12682,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0x1961
 	.uleb128 0x24
-	.4byte	.LASF1249
+	.4byte	.LASF1250
 	.byte	0x1
 	.2byte	0x148
 	.4byte	0x736
@@ -12690,7 +12690,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	RadioEvents
 	.uleb128 0x24
-	.4byte	.LASF1250
+	.4byte	.LASF1251
 	.byte	0x1
 	.2byte	0x14d
 	.4byte	0x625
@@ -12698,7 +12698,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	TxDelayedTimer
 	.uleb128 0x24
-	.4byte	.LASF1251
+	.4byte	.LASF1252
 	.byte	0x1
 	.2byte	0x152
 	.4byte	0x625
@@ -12706,7 +12706,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	RxWindowTimer1
 	.uleb128 0x24
-	.4byte	.LASF1252
+	.4byte	.LASF1253
 	.byte	0x1
 	.2byte	0x153
 	.4byte	0x625
@@ -12714,7 +12714,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	RxWindowTimer2
 	.uleb128 0x24
-	.4byte	.LASF1253
+	.4byte	.LASF1254
 	.byte	0x1
 	.2byte	0x15a
 	.4byte	0x8d
@@ -12722,7 +12722,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	RxWindow1Delay
 	.uleb128 0x24
-	.4byte	.LASF1254
+	.4byte	.LASF1255
 	.byte	0x1
 	.2byte	0x15b
 	.4byte	0x8d
@@ -12730,7 +12730,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	RxWindow2Delay
 	.uleb128 0x24
-	.4byte	.LASF1255
+	.4byte	.LASF1256
 	.byte	0x1
 	.2byte	0x160
 	.4byte	0x1d76
@@ -12738,7 +12738,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	RxWindow1Config
 	.uleb128 0x24
-	.4byte	.LASF1256
+	.4byte	.LASF1257
 	.byte	0x1
 	.2byte	0x161
 	.4byte	0x1d76
@@ -12746,7 +12746,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	RxWindow2Config
 	.uleb128 0x24
-	.4byte	.LASF1257
+	.4byte	.LASF1258
 	.byte	0x1
 	.2byte	0x166
 	.4byte	0x625
@@ -12754,7 +12754,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	AckTimeoutTimer
 	.uleb128 0x24
-	.4byte	.LASF1258
+	.4byte	.LASF1259
 	.byte	0x1
 	.2byte	0x16b
 	.4byte	0x3b
@@ -12762,7 +12762,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	AckTimeoutRetries
 	.uleb128 0x24
-	.4byte	.LASF1259
+	.4byte	.LASF1260
 	.byte	0x1
 	.2byte	0x170
 	.4byte	0x3b
@@ -12770,7 +12770,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	AckTimeoutRetriesCounter
 	.uleb128 0x24
-	.4byte	.LASF1260
+	.4byte	.LASF1261
 	.byte	0x1
 	.2byte	0x175
 	.4byte	0x618
@@ -12778,7 +12778,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	AckTimeoutRetry
 	.uleb128 0x27
-	.4byte	.LASF947
+	.4byte	.LASF948
 	.byte	0x1
 	.2byte	0x17a
 	.4byte	0x630
@@ -12786,7 +12786,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	TxTimeOnAir
 	.uleb128 0x24
-	.4byte	.LASF952
+	.4byte	.LASF953
 	.byte	0x1
 	.2byte	0x17f
 	.4byte	0x132e
@@ -12794,7 +12794,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	McpsIndication
 	.uleb128 0x24
-	.4byte	.LASF1261
+	.4byte	.LASF1262
 	.byte	0x1
 	.2byte	0x184
 	.4byte	0x125e
@@ -12802,7 +12802,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	McpsConfirm
 	.uleb128 0x24
-	.4byte	.LASF989
+	.4byte	.LASF990
 	.byte	0x1
 	.2byte	0x189
 	.4byte	0x14d6
@@ -12810,7 +12810,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	MlmeIndication
 	.uleb128 0x24
-	.4byte	.LASF1262
+	.4byte	.LASF1263
 	.byte	0x1
 	.2byte	0x18e
 	.4byte	0x14af
@@ -12818,7 +12818,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	MlmeConfirm
 	.uleb128 0x24
-	.4byte	.LASF960
+	.4byte	.LASF961
 	.byte	0x1
 	.2byte	0x193
 	.4byte	0xbd9
@@ -12826,7 +12826,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	RxSlot
 	.uleb128 0x27
-	.4byte	.LASF1263
+	.4byte	.LASF1264
 	.byte	0x1
 	.2byte	0x198
 	.4byte	0x1048
@@ -12834,7 +12834,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x3
 	.4byte	LoRaMacFlags
 	.uleb128 0x28
-	.4byte	.LASF1264
+	.4byte	.LASF1265
 	.byte	0x1
 	.2byte	0xd65
 	.4byte	.LFB42
@@ -12843,7 +12843,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x25e4
 	.uleb128 0x29
-	.4byte	.LASF1266
+	.4byte	.LASF1267
 	.byte	0x1
 	.2byte	0xd65
 	.4byte	0x3b
@@ -12851,7 +12851,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x50
 	.byte	0
 	.uleb128 0x28
-	.4byte	.LASF1265
+	.4byte	.LASF1266
 	.byte	0x1
 	.2byte	0xd59
 	.4byte	.LFB41
@@ -12860,13 +12860,13 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x262f
 	.uleb128 0x2a
-	.4byte	.LASF1267
+	.4byte	.LASF1268
 	.byte	0x1
 	.2byte	0xd59
 	.4byte	0x618
 	.4byte	.LLST145
 	.uleb128 0x24
-	.4byte	.LASF1268
+	.4byte	.LASF1269
 	.byte	0x1
 	.2byte	0xd5b
 	.4byte	0x1bfd
@@ -12890,7 +12890,7 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x28
-	.4byte	.LASF1269
+	.4byte	.LASF1270
 	.byte	0x1
 	.2byte	0xd53
 	.4byte	.LFB40
@@ -12899,7 +12899,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x2654
 	.uleb128 0x29
-	.4byte	.LASF1270
+	.4byte	.LASF1271
 	.byte	0x1
 	.2byte	0xd53
 	.4byte	0x69
@@ -12907,7 +12907,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x50
 	.byte	0
 	.uleb128 0x28
-	.4byte	.LASF1271
+	.4byte	.LASF1272
 	.byte	0x1
 	.2byte	0xd4e
 	.4byte	.LFB39
@@ -12916,7 +12916,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x2679
 	.uleb128 0x29
-	.4byte	.LASF1267
+	.4byte	.LASF1268
 	.byte	0x1
 	.2byte	0xd4e
 	.4byte	0x618
@@ -12924,7 +12924,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x50
 	.byte	0
 	.uleb128 0x2d
-	.4byte	.LASF1279
+	.4byte	.LASF1280
 	.byte	0x1
 	.2byte	0xcda
 	.4byte	0x182a
@@ -12934,13 +12934,13 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x27cd
 	.uleb128 0x2a
-	.4byte	.LASF1272
+	.4byte	.LASF1273
 	.byte	0x1
 	.2byte	0xcda
 	.4byte	0x27cd
 	.4byte	.LLST136
 	.uleb128 0x24
-	.4byte	.LASF1273
+	.4byte	.LASF1274
 	.byte	0x1
 	.2byte	0xcdc
 	.4byte	0x1b49
@@ -12948,19 +12948,19 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -44
 	.uleb128 0x2e
-	.4byte	.LASF1274
+	.4byte	.LASF1275
 	.byte	0x1
 	.2byte	0xcdd
 	.4byte	0x1afb
 	.4byte	.LLST137
 	.uleb128 0x2e
-	.4byte	.LASF1275
+	.4byte	.LASF1276
 	.byte	0x1
 	.2byte	0xcde
 	.4byte	0x182a
 	.4byte	.LLST138
 	.uleb128 0x24
-	.4byte	.LASF1276
+	.4byte	.LASF1277
 	.byte	0x1
 	.2byte	0xcdf
 	.4byte	0xeab
@@ -12968,7 +12968,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -52
 	.uleb128 0x24
-	.4byte	.LASF1268
+	.4byte	.LASF1269
 	.byte	0x1
 	.2byte	0xce0
 	.4byte	0x1bfd
@@ -12976,31 +12976,31 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x2e
-	.4byte	.LASF925
+	.4byte	.LASF926
 	.byte	0x1
 	.2byte	0xce1
 	.4byte	0x3b
 	.4byte	.LLST139
 	.uleb128 0x2e
-	.4byte	.LASF926
+	.4byte	.LASF927
 	.byte	0x1
 	.2byte	0xce2
 	.4byte	0xad
 	.4byte	.LLST140
 	.uleb128 0x2e
-	.4byte	.LASF927
+	.4byte	.LASF928
 	.byte	0x1
 	.2byte	0xce3
 	.4byte	0x69
 	.4byte	.LLST141
 	.uleb128 0x2e
-	.4byte	.LASF1277
+	.4byte	.LASF1278
 	.byte	0x1
 	.2byte	0xce4
 	.4byte	0x29
 	.4byte	.LLST142
 	.uleb128 0x2e
-	.4byte	.LASF1278
+	.4byte	.LASF1279
 	.byte	0x1
 	.2byte	0xce5
 	.4byte	0x618
@@ -13098,7 +13098,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0x11cf
 	.uleb128 0x2d
-	.4byte	.LASF1280
+	.4byte	.LASF1281
 	.byte	0x1
 	.2byte	0xc83
 	.4byte	0x182a
@@ -13108,19 +13108,19 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x28c8
 	.uleb128 0x2a
-	.4byte	.LASF1281
+	.4byte	.LASF1282
 	.byte	0x1
 	.2byte	0xc83
 	.4byte	0x28c8
 	.4byte	.LLST129
 	.uleb128 0x2e
-	.4byte	.LASF1275
+	.4byte	.LASF1276
 	.byte	0x1
 	.2byte	0xc85
 	.4byte	0x182a
 	.4byte	.LLST130
 	.uleb128 0x24
-	.4byte	.LASF1276
+	.4byte	.LASF1277
 	.byte	0x1
 	.2byte	0xc86
 	.4byte	0xeab
@@ -13215,7 +13215,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0x1454
 	.uleb128 0x2d
-	.4byte	.LASF1282
+	.4byte	.LASF1283
 	.byte	0x1
 	.2byte	0xc5c
 	.4byte	0x182a
@@ -13225,7 +13225,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x2913
 	.uleb128 0x2a
-	.4byte	.LASF1283
+	.4byte	.LASF1284
 	.byte	0x1
 	.2byte	0xc5c
 	.4byte	0x1749
@@ -13242,7 +13242,7 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x2d
-	.4byte	.LASF1284
+	.4byte	.LASF1285
 	.byte	0x1
 	.2byte	0xc39
 	.4byte	0x182a
@@ -13252,7 +13252,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x2958
 	.uleb128 0x2a
-	.4byte	.LASF1283
+	.4byte	.LASF1284
 	.byte	0x1
 	.2byte	0xc39
 	.4byte	0x1749
@@ -13269,7 +13269,7 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x2d
-	.4byte	.LASF1285
+	.4byte	.LASF1286
 	.byte	0x1
 	.2byte	0xc24
 	.4byte	0x182a
@@ -13285,7 +13285,7 @@ LoRaMacMaxEirpTable:
 	.4byte	0x3b
 	.4byte	.LLST124
 	.uleb128 0x24
-	.4byte	.LASF1286
+	.4byte	.LASF1287
 	.byte	0x1
 	.2byte	0xc26
 	.4byte	0x205b
@@ -13304,7 +13304,7 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x2d
-	.4byte	.LASF1287
+	.4byte	.LASF1288
 	.byte	0x1
 	.2byte	0xc11
 	.4byte	0x182a
@@ -13320,7 +13320,7 @@ LoRaMacMaxEirpTable:
 	.4byte	0x3b
 	.4byte	.LLST123
 	.uleb128 0x29
-	.4byte	.LASF1288
+	.4byte	.LASF1289
 	.byte	0x1
 	.2byte	0xc11
 	.4byte	0xb70
@@ -13328,7 +13328,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -28
 	.uleb128 0x24
-	.4byte	.LASF1289
+	.4byte	.LASF1290
 	.byte	0x1
 	.2byte	0xc13
 	.4byte	0x2034
@@ -13347,7 +13347,7 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x2d
-	.4byte	.LASF1290
+	.4byte	.LASF1291
 	.byte	0x1
 	.2byte	0xadd
 	.4byte	0x182a
@@ -13357,19 +13357,19 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x2b54
 	.uleb128 0x2a
-	.4byte	.LASF1291
+	.4byte	.LASF1292
 	.byte	0x1
 	.2byte	0xadd
 	.4byte	0x2b54
 	.4byte	.LLST121
 	.uleb128 0x2e
-	.4byte	.LASF1275
+	.4byte	.LASF1276
 	.byte	0x1
 	.2byte	0xadf
 	.4byte	0x182a
 	.4byte	.LLST122
 	.uleb128 0x24
-	.4byte	.LASF1292
+	.4byte	.LASF1293
 	.byte	0x1
 	.2byte	0xae0
 	.4byte	0x1c65
@@ -13377,7 +13377,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -24
 	.uleb128 0x24
-	.4byte	.LASF1268
+	.4byte	.LASF1269
 	.byte	0x1
 	.2byte	0xae1
 	.4byte	0x1bfd
@@ -13536,7 +13536,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0x1783
 	.uleb128 0x2d
-	.4byte	.LASF1293
+	.4byte	.LASF1294
 	.byte	0x1
 	.2byte	0xa24
 	.4byte	0x182a
@@ -13546,19 +13546,19 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x2bc1
 	.uleb128 0x2a
-	.4byte	.LASF1294
+	.4byte	.LASF1295
 	.byte	0x1
 	.2byte	0xa24
 	.4byte	0x2b54
 	.4byte	.LLST119
 	.uleb128 0x3a
-	.4byte	.LASF1275
+	.4byte	.LASF1276
 	.byte	0x1
 	.2byte	0xa26
 	.4byte	0x182a
 	.byte	0
 	.uleb128 0x24
-	.4byte	.LASF1273
+	.4byte	.LASF1274
 	.byte	0x1
 	.2byte	0xa27
 	.4byte	0x1b49
@@ -13566,7 +13566,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -12
 	.uleb128 0x2e
-	.4byte	.LASF1274
+	.4byte	.LASF1275
 	.byte	0x1
 	.2byte	0xa28
 	.4byte	0x1afb
@@ -13583,7 +13583,7 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x2d
-	.4byte	.LASF1295
+	.4byte	.LASF1296
 	.byte	0x1
 	.2byte	0x9e6
 	.4byte	0x182a
@@ -13593,19 +13593,19 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x2ca8
 	.uleb128 0x2a
-	.4byte	.LASF1296
+	.4byte	.LASF1297
 	.byte	0x1
 	.2byte	0x9e6
 	.4byte	0x3b
 	.4byte	.LLST116
 	.uleb128 0x2a
-	.4byte	.LASF1297
+	.4byte	.LASF1298
 	.byte	0x1
 	.2byte	0x9e6
 	.4byte	0x2ca8
 	.4byte	.LLST117
 	.uleb128 0x24
-	.4byte	.LASF1298
+	.4byte	.LASF1299
 	.byte	0x1
 	.2byte	0x9e8
 	.4byte	0x1ccd
@@ -13613,7 +13613,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -52
 	.uleb128 0x24
-	.4byte	.LASF1273
+	.4byte	.LASF1274
 	.byte	0x1
 	.2byte	0x9e9
 	.4byte	0x1b49
@@ -13621,12 +13621,12 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -56
 	.uleb128 0x3b
-	.4byte	.LASF1274
+	.4byte	.LASF1275
 	.byte	0x1
 	.2byte	0x9ea
 	.4byte	0x1afb
 	.uleb128 0x24
-	.4byte	.LASF1277
+	.4byte	.LASF1278
 	.byte	0x1
 	.2byte	0x9eb
 	.4byte	0x29
@@ -13634,7 +13634,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -58
 	.uleb128 0x24
-	.4byte	.LASF1299
+	.4byte	.LASF1300
 	.byte	0x1
 	.2byte	0x9ec
 	.4byte	0x29
@@ -13642,7 +13642,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -57
 	.uleb128 0x2e
-	.4byte	.LASF1300
+	.4byte	.LASF1301
 	.byte	0x1
 	.2byte	0x9ed
 	.4byte	0x3b
@@ -13709,7 +13709,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.4byte	0x17b7
 	.uleb128 0x2d
-	.4byte	.LASF1301
+	.4byte	.LASF1302
 	.byte	0x1
 	.2byte	0x953
 	.4byte	0x182a
@@ -13719,25 +13719,25 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x2f89
 	.uleb128 0x2a
-	.4byte	.LASF1302
+	.4byte	.LASF1303
 	.byte	0x1
 	.2byte	0x953
 	.4byte	0x244b
 	.4byte	.LLST112
 	.uleb128 0x2a
-	.4byte	.LASF1303
+	.4byte	.LASF1304
 	.byte	0x1
 	.2byte	0x953
 	.4byte	0x2463
 	.4byte	.LLST113
 	.uleb128 0x2a
-	.4byte	.LASF1304
+	.4byte	.LASF1305
 	.byte	0x1
 	.2byte	0x953
 	.4byte	0x1885
 	.4byte	.LLST114
 	.uleb128 0x24
-	.4byte	.LASF1273
+	.4byte	.LASF1274
 	.byte	0x1
 	.2byte	0x955
 	.4byte	0x1b49
@@ -13745,7 +13745,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -28
 	.uleb128 0x2e
-	.4byte	.LASF1274
+	.4byte	.LASF1275
 	.byte	0x1
 	.2byte	0x956
 	.4byte	0x1afb
@@ -14096,7 +14096,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x6
 	.byte	0
 	.uleb128 0x2d
-	.4byte	.LASF1305
+	.4byte	.LASF1306
 	.byte	0x1
 	.2byte	0x946
 	.4byte	0x182a
@@ -14106,19 +14106,19 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x3017
 	.uleb128 0x2a
-	.4byte	.LASF1306
+	.4byte	.LASF1307
 	.byte	0x1
 	.2byte	0x946
 	.4byte	0x69
 	.4byte	.LLST109
 	.uleb128 0x2a
-	.4byte	.LASF1307
+	.4byte	.LASF1308
 	.byte	0x1
 	.2byte	0x946
 	.4byte	0x8d
 	.4byte	.LLST110
 	.uleb128 0x2a
-	.4byte	.LASF1308
+	.4byte	.LASF1309
 	.byte	0x1
 	.2byte	0x946
 	.4byte	0x3b
@@ -14170,7 +14170,7 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x2d
-	.4byte	.LASF785
+	.4byte	.LASF786
 	.byte	0x1
 	.2byte	0x930
 	.4byte	0x182a
@@ -14180,13 +14180,13 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x3090
 	.uleb128 0x2a
-	.4byte	.LASF1306
+	.4byte	.LASF1307
 	.byte	0x1
 	.2byte	0x930
 	.4byte	0x69
 	.4byte	.LLST108
 	.uleb128 0x24
-	.4byte	.LASF1309
+	.4byte	.LASF1310
 	.byte	0x1
 	.2byte	0x932
 	.4byte	0x20c3
@@ -14233,7 +14233,7 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x2d
-	.4byte	.LASF1310
+	.4byte	.LASF1311
 	.byte	0x1
 	.2byte	0x90c
 	.4byte	0x182a
@@ -14243,13 +14243,13 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x3137
 	.uleb128 0x2a
-	.4byte	.LASF1266
+	.4byte	.LASF1267
 	.byte	0x1
 	.2byte	0x90c
 	.4byte	0x3b
 	.4byte	.LLST96
 	.uleb128 0x24
-	.4byte	.LASF1311
+	.4byte	.LASF1312
 	.byte	0x1
 	.2byte	0x90e
 	.4byte	0x1dde
@@ -14257,7 +14257,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -40
 	.uleb128 0x24
-	.4byte	.LASF1299
+	.4byte	.LASF1300
 	.byte	0x1
 	.2byte	0x90f
 	.4byte	0x29
@@ -14326,7 +14326,7 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x2d
-	.4byte	.LASF1312
+	.4byte	.LASF1313
 	.byte	0x1
 	.2byte	0x866
 	.4byte	0x182a
@@ -14336,37 +14336,37 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x3333
 	.uleb128 0x2a
-	.4byte	.LASF1276
+	.4byte	.LASF1277
 	.byte	0x1
 	.2byte	0x866
 	.4byte	0x3333
 	.4byte	.LLST82
 	.uleb128 0x2a
-	.4byte	.LASF1313
+	.4byte	.LASF1314
 	.byte	0x1
 	.2byte	0x866
 	.4byte	0x3339
 	.4byte	.LLST83
 	.uleb128 0x2a
-	.4byte	.LASF925
+	.4byte	.LASF926
 	.byte	0x1
 	.2byte	0x866
 	.4byte	0x3b
 	.4byte	.LLST84
 	.uleb128 0x2a
-	.4byte	.LASF926
+	.4byte	.LASF927
 	.byte	0x1
 	.2byte	0x866
 	.4byte	0xad
 	.4byte	.LLST85
 	.uleb128 0x2a
-	.4byte	.LASF927
+	.4byte	.LASF928
 	.byte	0x1
 	.2byte	0x866
 	.4byte	0x69
 	.4byte	.LLST86
 	.uleb128 0x24
-	.4byte	.LASF1298
+	.4byte	.LASF1299
 	.byte	0x1
 	.2byte	0x868
 	.4byte	0x1ccd
@@ -14380,7 +14380,7 @@ LoRaMacMaxEirpTable:
 	.4byte	0x69
 	.4byte	.LLST87
 	.uleb128 0x2e
-	.4byte	.LASF1314
+	.4byte	.LASF1315
 	.byte	0x1
 	.2byte	0x86a
 	.4byte	0x3b
@@ -14394,13 +14394,13 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -56
 	.uleb128 0x2e
-	.4byte	.LASF1315
+	.4byte	.LASF1316
 	.byte	0x1
 	.2byte	0x86c
 	.4byte	0x333f
 	.4byte	.LLST89
 	.uleb128 0x2e
-	.4byte	.LASF1316
+	.4byte	.LASF1317
 	.byte	0x1
 	.2byte	0x86d
 	.4byte	0x3b
@@ -14587,7 +14587,7 @@ LoRaMacMaxEirpTable:
 	.4byte	0x3345
 	.uleb128 0x41
 	.uleb128 0x42
-	.4byte	.LASF1317
+	.4byte	.LASF1318
 	.byte	0x1
 	.2byte	0x860
 	.4byte	.LFB24
@@ -14600,20 +14600,20 @@ LoRaMacMaxEirpTable:
 	.4byte	0x3ba3
 	.byte	0
 	.uleb128 0x43
-	.4byte	.LASF1339
+	.4byte	.LASF1340
 	.byte	0x1
 	.2byte	0x857
 	.4byte	0x618
 	.byte	0x1
 	.4byte	0x3384
 	.uleb128 0x44
-	.4byte	.LASF925
+	.4byte	.LASF926
 	.byte	0x1
 	.2byte	0x857
 	.4byte	0x3b
 	.byte	0
 	.uleb128 0x42
-	.4byte	.LASF1318
+	.4byte	.LASF1319
 	.byte	0x1
 	.2byte	0x823
 	.4byte	.LFB22
@@ -14639,24 +14639,24 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x45
-	.4byte	.LASF1353
+	.4byte	.LASF1354
 	.byte	0x1
 	.2byte	0x810
 	.byte	0x1
 	.4byte	0x33de
 	.uleb128 0x44
-	.4byte	.LASF1266
+	.4byte	.LASF1267
 	.byte	0x1
 	.2byte	0x810
 	.4byte	0x3b
 	.uleb128 0x3b
-	.4byte	.LASF1319
+	.4byte	.LASF1320
 	.byte	0x1
 	.2byte	0x812
 	.4byte	0x1fa5
 	.byte	0
 	.uleb128 0x46
-	.4byte	.LASF1347
+	.4byte	.LASF1348
 	.byte	0x1
 	.2byte	0x7bf
 	.4byte	0x182a
@@ -14666,19 +14666,19 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x352a
 	.uleb128 0x2a
-	.4byte	.LASF1320
+	.4byte	.LASF1321
 	.byte	0x1
 	.2byte	0x7bf
 	.4byte	0x618
 	.4byte	.LLST97
 	.uleb128 0x2e
-	.4byte	.LASF1275
+	.4byte	.LASF1276
 	.byte	0x1
 	.2byte	0x7c1
 	.4byte	0x182a
 	.4byte	.LLST98
 	.uleb128 0x24
-	.4byte	.LASF1321
+	.4byte	.LASF1322
 	.byte	0x1
 	.2byte	0x7c2
 	.4byte	0x630
@@ -14686,7 +14686,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x24
-	.4byte	.LASF1322
+	.4byte	.LASF1323
 	.byte	0x1
 	.2byte	0x7c3
 	.4byte	0x2000
@@ -14826,45 +14826,45 @@ LoRaMacMaxEirpTable:
 	.4byte	0x3a6f
 	.byte	0
 	.uleb128 0x48
-	.4byte	.LASF781
+	.4byte	.LASF782
 	.byte	0x1
 	.2byte	0x79f
 	.4byte	0x182a
 	.byte	0x1
 	.4byte	0x3584
 	.uleb128 0x44
-	.4byte	.LASF1276
+	.4byte	.LASF1277
 	.byte	0x1
 	.2byte	0x79f
 	.4byte	0x3333
 	.uleb128 0x44
-	.4byte	.LASF925
+	.4byte	.LASF926
 	.byte	0x1
 	.2byte	0x79f
 	.4byte	0x3b
 	.uleb128 0x44
-	.4byte	.LASF926
+	.4byte	.LASF927
 	.byte	0x1
 	.2byte	0x79f
 	.4byte	0xad
 	.uleb128 0x44
-	.4byte	.LASF927
+	.4byte	.LASF928
 	.byte	0x1
 	.2byte	0x79f
 	.4byte	0x69
 	.uleb128 0x3b
-	.4byte	.LASF1313
+	.4byte	.LASF1314
 	.byte	0x1
 	.2byte	0x7a1
 	.4byte	0xf3b
 	.uleb128 0x3b
-	.4byte	.LASF1275
+	.4byte	.LASF1276
 	.byte	0x1
 	.2byte	0x7a2
 	.4byte	0x182a
 	.byte	0
 	.uleb128 0x49
-	.4byte	.LASF1323
+	.4byte	.LASF1324
 	.byte	0x1
 	.2byte	0x6ec
 	.4byte	.LFB18
@@ -14873,19 +14873,19 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x39c1
 	.uleb128 0x2a
-	.4byte	.LASF1315
+	.4byte	.LASF1316
 	.byte	0x1
 	.2byte	0x6ec
 	.4byte	0x708
 	.4byte	.LLST15
 	.uleb128 0x2a
-	.4byte	.LASF1324
+	.4byte	.LASF1325
 	.byte	0x1
 	.2byte	0x6ec
 	.4byte	0x3b
 	.4byte	.LLST16
 	.uleb128 0x2a
-	.4byte	.LASF1325
+	.4byte	.LASF1326
 	.byte	0x1
 	.2byte	0x6ec
 	.4byte	0x3b
@@ -14897,7 +14897,7 @@ LoRaMacMaxEirpTable:
 	.4byte	0x3b
 	.4byte	.LLST18
 	.uleb128 0x2e
-	.4byte	.LASF1275
+	.4byte	.LASF1276
 	.byte	0x1
 	.2byte	0x6ee
 	.4byte	0x3b
@@ -14906,7 +14906,7 @@ LoRaMacMaxEirpTable:
 	.4byte	.Ldebug_ranges0+0xa0
 	.4byte	0x36c1
 	.uleb128 0x24
-	.4byte	.LASF1326
+	.4byte	.LASF1327
 	.byte	0x1
 	.2byte	0x6fc
 	.4byte	0x1e53
@@ -14914,7 +14914,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -52
 	.uleb128 0x24
-	.4byte	.LASF1327
+	.4byte	.LASF1328
 	.byte	0x1
 	.2byte	0x6fd
 	.4byte	0x29
@@ -14922,7 +14922,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -63
 	.uleb128 0x24
-	.4byte	.LASF1328
+	.4byte	.LASF1329
 	.byte	0x1
 	.2byte	0x6fe
 	.4byte	0x29
@@ -14930,7 +14930,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -62
 	.uleb128 0x24
-	.4byte	.LASF1329
+	.4byte	.LASF1330
 	.byte	0x1
 	.2byte	0x6ff
 	.4byte	0x3b
@@ -14938,7 +14938,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -61
 	.uleb128 0x24
-	.4byte	.LASF1330
+	.4byte	.LASF1331
 	.byte	0x1
 	.2byte	0x700
 	.4byte	0x3b
@@ -15021,7 +15021,7 @@ LoRaMacMaxEirpTable:
 	.4byte	.LBE99-.LBB99
 	.4byte	0x373a
 	.uleb128 0x24
-	.4byte	.LASF1331
+	.4byte	.LASF1332
 	.byte	0x1
 	.2byte	0x726
 	.4byte	0x1e94
@@ -15070,7 +15070,7 @@ LoRaMacMaxEirpTable:
 	.4byte	.Ldebug_ranges0+0x128
 	.4byte	0x3794
 	.uleb128 0x2e
-	.4byte	.LASF1332
+	.4byte	.LASF1333
 	.byte	0x1
 	.2byte	0x740
 	.4byte	0x3b
@@ -15105,7 +15105,7 @@ LoRaMacMaxEirpTable:
 	.4byte	.LBE109-.LBB109
 	.4byte	0x3818
 	.uleb128 0x24
-	.4byte	.LASF1333
+	.4byte	.LASF1334
 	.byte	0x1
 	.2byte	0x74a
 	.4byte	0x1ec8
@@ -15113,7 +15113,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -60
 	.uleb128 0x24
-	.4byte	.LASF1334
+	.4byte	.LASF1335
 	.byte	0x1
 	.2byte	0x74b
 	.4byte	0xb70
@@ -15162,7 +15162,7 @@ LoRaMacMaxEirpTable:
 	.4byte	.LBE117-.LBB117
 	.4byte	0x3878
 	.uleb128 0x24
-	.4byte	.LASF1335
+	.4byte	.LASF1336
 	.byte	0x1
 	.2byte	0x75f
 	.4byte	0x3b
@@ -15199,7 +15199,7 @@ LoRaMacMaxEirpTable:
 	.4byte	.LBE125-.LBB125
 	.4byte	0x38fb
 	.uleb128 0x24
-	.4byte	.LASF1336
+	.4byte	.LASF1337
 	.byte	0x1
 	.2byte	0x76c
 	.4byte	0x1f09
@@ -15207,7 +15207,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -52
 	.uleb128 0x24
-	.4byte	.LASF1337
+	.4byte	.LASF1338
 	.byte	0x1
 	.2byte	0x76d
 	.4byte	0x3b
@@ -15254,7 +15254,7 @@ LoRaMacMaxEirpTable:
 	.4byte	.Ldebug_ranges0+0x30
 	.4byte	0x397c
 	.uleb128 0x24
-	.4byte	.LASF1338
+	.4byte	.LASF1339
 	.byte	0x1
 	.2byte	0x78a
 	.4byte	0x1f3d
@@ -15340,24 +15340,24 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x43
-	.4byte	.LASF1340
+	.4byte	.LASF1341
 	.byte	0x1
 	.2byte	0x6b7
 	.4byte	0x3b
 	.byte	0x1
 	.4byte	0x3a0d
 	.uleb128 0x44
-	.4byte	.LASF1341
+	.4byte	.LASF1342
 	.byte	0x1
 	.2byte	0x6b7
 	.4byte	0x708
 	.uleb128 0x44
-	.4byte	.LASF1342
+	.4byte	.LASF1343
 	.byte	0x1
 	.2byte	0x6b7
 	.4byte	0x3b
 	.uleb128 0x44
-	.4byte	.LASF1343
+	.4byte	.LASF1344
 	.byte	0x1
 	.2byte	0x6b7
 	.4byte	0x708
@@ -15367,13 +15367,13 @@ LoRaMacMaxEirpTable:
 	.2byte	0x6b9
 	.4byte	0x3b
 	.uleb128 0x3b
-	.4byte	.LASF1344
+	.4byte	.LASF1345
 	.byte	0x1
 	.2byte	0x6ba
 	.4byte	0x3b
 	.byte	0
 	.uleb128 0x43
-	.4byte	.LASF1345
+	.4byte	.LASF1346
 	.byte	0x1
 	.2byte	0x64e
 	.4byte	0x182a
@@ -15395,29 +15395,29 @@ LoRaMacMaxEirpTable:
 	.2byte	0x64e
 	.4byte	0x3b
 	.uleb128 0x3b
-	.4byte	.LASF1275
+	.4byte	.LASF1276
 	.byte	0x1
 	.2byte	0x650
 	.4byte	0x182a
 	.uleb128 0x3b
-	.4byte	.LASF1346
+	.4byte	.LASF1347
 	.byte	0x1
 	.2byte	0x652
 	.4byte	0x3b
 	.byte	0
 	.uleb128 0x53
-	.4byte	.LASF1364
+	.4byte	.LASF1365
 	.byte	0x1
 	.2byte	0x648
 	.byte	0x1
 	.uleb128 0x54
-	.4byte	.LASF1437
+	.4byte	.LASF1438
 	.byte	0x1
 	.2byte	0x63e
 	.4byte	0x618
 	.byte	0x1
 	.uleb128 0x46
-	.4byte	.LASF1348
+	.4byte	.LASF1349
 	.byte	0x1
 	.2byte	0x61f
 	.4byte	0x618
@@ -15427,25 +15427,25 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x3b09
 	.uleb128 0x2a
-	.4byte	.LASF1349
+	.4byte	.LASF1350
 	.byte	0x1
 	.2byte	0x61f
 	.4byte	0x3b
 	.4byte	.LLST0
 	.uleb128 0x2a
-	.4byte	.LASF1277
+	.4byte	.LASF1278
 	.byte	0x1
 	.2byte	0x61f
 	.4byte	0x29
 	.4byte	.LLST1
 	.uleb128 0x2a
-	.4byte	.LASF1350
+	.4byte	.LASF1351
 	.byte	0x1
 	.2byte	0x61f
 	.4byte	0x3b
 	.4byte	.LLST2
 	.uleb128 0x24
-	.4byte	.LASF1273
+	.4byte	.LASF1274
 	.byte	0x1
 	.2byte	0x621
 	.4byte	0x1b49
@@ -15453,19 +15453,19 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -20
 	.uleb128 0x2e
-	.4byte	.LASF1274
+	.4byte	.LASF1275
 	.byte	0x1
 	.2byte	0x622
 	.4byte	0x1afb
 	.4byte	.LLST3
 	.uleb128 0x2e
-	.4byte	.LASF1351
+	.4byte	.LASF1352
 	.byte	0x1
 	.2byte	0x623
 	.4byte	0x69
 	.4byte	.LLST4
 	.uleb128 0x2e
-	.4byte	.LASF1352
+	.4byte	.LASF1353
 	.byte	0x1
 	.2byte	0x624
 	.4byte	0x69
@@ -15482,24 +15482,24 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x45
-	.4byte	.LASF1354
+	.4byte	.LASF1355
 	.byte	0x1
 	.2byte	0x613
 	.byte	0x1
 	.4byte	0x3b2f
 	.uleb128 0x44
-	.4byte	.LASF1355
+	.4byte	.LASF1356
 	.byte	0x1
 	.2byte	0x613
 	.4byte	0x618
 	.uleb128 0x44
-	.4byte	.LASF1356
+	.4byte	.LASF1357
 	.byte	0x1
 	.2byte	0x613
 	.4byte	0x8d
 	.byte	0
 	.uleb128 0x42
-	.4byte	.LASF1357
+	.4byte	.LASF1358
 	.byte	0x1
 	.2byte	0x604
 	.4byte	.LFB11
@@ -15519,44 +15519,44 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x45
-	.4byte	.LASF1358
+	.4byte	.LASF1359
 	.byte	0x1
 	.2byte	0x5e1
 	.byte	0x1
 	.4byte	0x3ba3
 	.uleb128 0x44
-	.4byte	.LASF1359
-	.byte	0x1
-	.2byte	0x5e1
-	.4byte	0x618
-	.uleb128 0x44
 	.4byte	.LASF1360
 	.byte	0x1
 	.2byte	0x5e1
-	.4byte	0xacf
+	.4byte	0x618
 	.uleb128 0x44
 	.4byte	.LASF1361
 	.byte	0x1
 	.2byte	0x5e1
-	.4byte	0x618
+	.4byte	0xacf
 	.uleb128 0x44
 	.4byte	.LASF1362
 	.byte	0x1
-	.2byte	0x5e2
-	.4byte	0x3b
+	.2byte	0x5e1
+	.4byte	0x618
 	.uleb128 0x44
 	.4byte	.LASF1363
 	.byte	0x1
 	.2byte	0x5e2
 	.4byte	0x3b
+	.uleb128 0x44
+	.4byte	.LASF1364
+	.byte	0x1
+	.2byte	0x5e2
+	.4byte	0x3b
 	.byte	0
 	.uleb128 0x53
-	.4byte	.LASF1365
+	.4byte	.LASF1366
 	.byte	0x1
 	.2byte	0x5c6
 	.byte	0x1
 	.uleb128 0x55
-	.4byte	.LASF1438
+	.4byte	.LASF1439
 	.byte	0x1
 	.2byte	0x5b1
 	.4byte	.LFB8
@@ -15624,7 +15624,7 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x42
-	.4byte	.LASF1366
+	.4byte	.LASF1367
 	.byte	0x1
 	.2byte	0x5a8
 	.4byte	.LFB7
@@ -15654,7 +15654,7 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x42
-	.4byte	.LASF1367
+	.4byte	.LASF1368
 	.byte	0x1
 	.2byte	0x4de
 	.4byte	.LFB6
@@ -15663,7 +15663,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x3dc2
 	.uleb128 0x24
-	.4byte	.LASF1273
+	.4byte	.LASF1274
 	.byte	0x1
 	.2byte	0x4e0
 	.4byte	0x1b49
@@ -15671,12 +15671,12 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -28
 	.uleb128 0x3b
-	.4byte	.LASF1274
+	.4byte	.LASF1275
 	.byte	0x1
 	.2byte	0x4e1
 	.4byte	0x1afb
 	.uleb128 0x2e
-	.4byte	.LASF1368
+	.4byte	.LASF1369
 	.byte	0x1
 	.2byte	0x4e2
 	.4byte	0x618
@@ -15810,7 +15810,7 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x42
-	.4byte	.LASF1369
+	.4byte	.LASF1370
 	.byte	0x1
 	.2byte	0x4b2
 	.4byte	.LFB5
@@ -15839,7 +15839,7 @@ LoRaMacMaxEirpTable:
 	.4byte	0x3346
 	.byte	0
 	.uleb128 0x42
-	.4byte	.LASF1370
+	.4byte	.LASF1371
 	.byte	0x1
 	.2byte	0x486
 	.4byte	.LFB4
@@ -15868,7 +15868,7 @@ LoRaMacMaxEirpTable:
 	.4byte	0x3346
 	.byte	0
 	.uleb128 0x42
-	.4byte	.LASF1371
+	.4byte	.LASF1372
 	.byte	0x1
 	.2byte	0x476
 	.4byte	.LFB3
@@ -15883,7 +15883,7 @@ LoRaMacMaxEirpTable:
 	.4byte	0x3346
 	.byte	0
 	.uleb128 0x42
-	.4byte	.LASF1372
+	.4byte	.LASF1373
 	.byte	0x1
 	.2byte	0x2e3
 	.4byte	.LFB2
@@ -15892,19 +15892,19 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x42b7
 	.uleb128 0x2a
-	.4byte	.LASF1315
+	.4byte	.LASF1316
 	.byte	0x1
 	.2byte	0x2e3
 	.4byte	0x708
 	.4byte	.LLST56
 	.uleb128 0x2a
-	.4byte	.LASF1296
+	.4byte	.LASF1297
 	.byte	0x1
 	.2byte	0x2e3
 	.4byte	0x69
 	.4byte	.LLST57
 	.uleb128 0x2a
-	.4byte	.LASF1373
+	.4byte	.LASF1374
 	.byte	0x1
 	.2byte	0x2e3
 	.4byte	0x57
@@ -15916,17 +15916,17 @@ LoRaMacMaxEirpTable:
 	.4byte	0x29
 	.4byte	.LLST59
 	.uleb128 0x3b
-	.4byte	.LASF1276
+	.4byte	.LASF1277
 	.byte	0x1
 	.2byte	0x2e5
 	.4byte	0xeab
 	.uleb128 0x3b
-	.4byte	.LASF1313
+	.4byte	.LASF1314
 	.byte	0x1
 	.2byte	0x2e6
 	.4byte	0xf3b
 	.uleb128 0x24
-	.4byte	.LASF1374
+	.4byte	.LASF1375
 	.byte	0x1
 	.2byte	0x2e7
 	.4byte	0x1c31
@@ -15934,7 +15934,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -48
 	.uleb128 0x24
-	.4byte	.LASF1273
+	.4byte	.LASF1274
 	.byte	0x1
 	.2byte	0x2e8
 	.4byte	0x1b49
@@ -15942,37 +15942,37 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -56
 	.uleb128 0x2e
-	.4byte	.LASF1274
+	.4byte	.LASF1275
 	.byte	0x1
 	.2byte	0x2e9
 	.4byte	0x1afb
 	.4byte	.LLST60
 	.uleb128 0x2e
-	.4byte	.LASF1314
+	.4byte	.LASF1315
 	.byte	0x1
 	.2byte	0x2eb
 	.4byte	0x3b
 	.4byte	.LLST61
 	.uleb128 0x2e
-	.4byte	.LASF1375
+	.4byte	.LASF1376
 	.byte	0x1
 	.2byte	0x2ec
 	.4byte	0x8d
 	.4byte	.LLST62
 	.uleb128 0x2e
-	.4byte	.LASF1376
+	.4byte	.LASF1377
 	.byte	0x1
 	.2byte	0x2ed
 	.4byte	0x3b
 	.4byte	.LLST63
 	.uleb128 0x2e
-	.4byte	.LASF1377
+	.4byte	.LASF1378
 	.byte	0x1
 	.2byte	0x2ee
 	.4byte	0x3b
 	.4byte	.LLST64
 	.uleb128 0x2e
-	.4byte	.LASF1378
+	.4byte	.LASF1379
 	.byte	0x1
 	.2byte	0x2ef
 	.4byte	0x3b
@@ -15986,61 +15986,61 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -52
 	.uleb128 0x2e
-	.4byte	.LASF1379
+	.4byte	.LASF1380
 	.byte	0x1
 	.2byte	0x2f1
 	.4byte	0x8d
 	.4byte	.LLST66
 	.uleb128 0x2e
-	.4byte	.LASF1380
+	.4byte	.LASF1381
 	.byte	0x1
 	.2byte	0x2f3
 	.4byte	0x69
 	.4byte	.LLST67
 	.uleb128 0x2e
-	.4byte	.LASF1381
+	.4byte	.LASF1382
 	.byte	0x1
 	.2byte	0x2f4
 	.4byte	0x69
 	.4byte	.LLST68
 	.uleb128 0x2e
-	.4byte	.LASF1382
+	.4byte	.LASF1383
 	.byte	0x1
 	.2byte	0x2f5
 	.4byte	0x69
 	.4byte	.LLST69
 	.uleb128 0x2e
-	.4byte	.LASF1383
+	.4byte	.LASF1384
 	.byte	0x1
 	.2byte	0x2f6
 	.4byte	0x8d
 	.4byte	.LLST70
 	.uleb128 0x2e
-	.4byte	.LASF1384
+	.4byte	.LASF1385
 	.byte	0x1
 	.2byte	0x2f8
 	.4byte	0x1749
 	.4byte	.LLST71
 	.uleb128 0x2e
-	.4byte	.LASF1385
+	.4byte	.LASF1386
 	.byte	0x1
 	.2byte	0x2f9
 	.4byte	0x708
 	.4byte	.LLST72
 	.uleb128 0x2e
-	.4byte	.LASF1386
+	.4byte	.LASF1387
 	.byte	0x1
 	.2byte	0x2fa
 	.4byte	0x708
 	.4byte	.LLST73
 	.uleb128 0x2e
-	.4byte	.LASF1387
+	.4byte	.LASF1388
 	.byte	0x1
 	.2byte	0x2fc
 	.4byte	0x3b
 	.4byte	.LLST74
 	.uleb128 0x2e
-	.4byte	.LASF1388
+	.4byte	.LASF1389
 	.byte	0x1
 	.2byte	0x2fe
 	.4byte	0x618
@@ -16050,7 +16050,7 @@ LoRaMacMaxEirpTable:
 	.4byte	.LBE139-.LBB139
 	.4byte	0x405c
 	.uleb128 0x2e
-	.4byte	.LASF1389
+	.4byte	.LASF1390
 	.byte	0x1
 	.2byte	0x3a4
 	.4byte	0x8d
@@ -16486,7 +16486,7 @@ LoRaMacMaxEirpTable:
 	.4byte	0x42b7
 	.byte	0
 	.uleb128 0x42
-	.4byte	.LASF1390
+	.4byte	.LASF1391
 	.byte	0x1
 	.2byte	0x2d2
 	.4byte	.LFB1
@@ -16525,7 +16525,7 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x42
-	.4byte	.LASF1391
+	.4byte	.LASF1392
 	.byte	0x1
 	.2byte	0x289
 	.4byte	.LFB0
@@ -16534,7 +16534,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x9c
 	.4byte	0x4420
 	.uleb128 0x24
-	.4byte	.LASF1273
+	.4byte	.LASF1274
 	.byte	0x1
 	.2byte	0x28b
 	.4byte	0x1b49
@@ -16542,12 +16542,12 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -36
 	.uleb128 0x3b
-	.4byte	.LASF1274
+	.4byte	.LASF1275
 	.byte	0x1
 	.2byte	0x28c
 	.4byte	0x1afb
 	.uleb128 0x24
-	.4byte	.LASF1392
+	.4byte	.LASF1393
 	.byte	0x1
 	.2byte	0x28d
 	.4byte	0x1b8a
@@ -16555,7 +16555,7 @@ LoRaMacMaxEirpTable:
 	.byte	0x91
 	.sleb128 -32
 	.uleb128 0x2e
-	.4byte	.LASF1393
+	.4byte	.LASF1394
 	.byte	0x1
 	.2byte	0x28e
 	.4byte	0x630
@@ -16797,198 +16797,198 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0
 	.uleb128 0x5d
-	.4byte	.LASF1394
-	.4byte	.LASF1394
+	.4byte	.LASF1395
+	.4byte	.LASF1395
 	.byte	0x7
 	.2byte	0x4b6
 	.uleb128 0x5e
-	.4byte	.LASF1395
-	.4byte	.LASF1395
+	.4byte	.LASF1396
+	.4byte	.LASF1396
 	.byte	0x8
 	.byte	0x4b
 	.uleb128 0x5d
-	.4byte	.LASF1396
-	.4byte	.LASF1396
+	.4byte	.LASF1397
+	.4byte	.LASF1397
 	.byte	0x7
 	.2byte	0x497
 	.uleb128 0x5d
-	.4byte	.LASF1397
-	.4byte	.LASF1397
+	.4byte	.LASF1398
+	.4byte	.LASF1398
 	.byte	0x7
 	.2byte	0x57b
 	.uleb128 0x5d
-	.4byte	.LASF1398
-	.4byte	.LASF1398
+	.4byte	.LASF1399
+	.4byte	.LASF1399
 	.byte	0x7
 	.2byte	0x5aa
 	.uleb128 0x5d
-	.4byte	.LASF1399
-	.4byte	.LASF1399
+	.4byte	.LASF1400
+	.4byte	.LASF1400
 	.byte	0x7
 	.2byte	0x59f
 	.uleb128 0x5d
-	.4byte	.LASF1400
-	.4byte	.LASF1400
+	.4byte	.LASF1401
+	.4byte	.LASF1401
 	.byte	0x7
 	.2byte	0x520
 	.uleb128 0x5e
-	.4byte	.LASF1401
-	.4byte	.LASF1401
+	.4byte	.LASF1402
+	.4byte	.LASF1402
 	.byte	0x8
 	.byte	0x37
 	.uleb128 0x5d
-	.4byte	.LASF1402
-	.4byte	.LASF1402
+	.4byte	.LASF1403
+	.4byte	.LASF1403
 	.byte	0x7
 	.2byte	0x4cb
 	.uleb128 0x5d
-	.4byte	.LASF1403
-	.4byte	.LASF1403
+	.4byte	.LASF1404
+	.4byte	.LASF1404
 	.byte	0x7
 	.2byte	0x4dc
 	.uleb128 0x5d
-	.4byte	.LASF1404
-	.4byte	.LASF1404
+	.4byte	.LASF1405
+	.4byte	.LASF1405
 	.byte	0x7
 	.2byte	0x48c
 	.uleb128 0x5d
-	.4byte	.LASF1405
-	.4byte	.LASF1405
+	.4byte	.LASF1406
+	.4byte	.LASF1406
 	.byte	0x7
 	.2byte	0x4a9
 	.uleb128 0x5e
-	.4byte	.LASF1406
-	.4byte	.LASF1406
+	.4byte	.LASF1407
+	.4byte	.LASF1407
 	.byte	0x4
 	.byte	0x50
 	.uleb128 0x5e
-	.4byte	.LASF1407
-	.4byte	.LASF1407
+	.4byte	.LASF1408
+	.4byte	.LASF1408
 	.byte	0x4
 	.byte	0x6a
 	.uleb128 0x5e
-	.4byte	.LASF1408
-	.4byte	.LASF1408
+	.4byte	.LASF1409
+	.4byte	.LASF1409
 	.byte	0x4
 	.byte	0x78
 	.uleb128 0x5e
-	.4byte	.LASF1409
-	.4byte	.LASF1409
+	.4byte	.LASF1410
+	.4byte	.LASF1410
 	.byte	0x8
 	.byte	0x23
 	.uleb128 0x5e
-	.4byte	.LASF1410
-	.4byte	.LASF1410
+	.4byte	.LASF1411
+	.4byte	.LASF1411
 	.byte	0x4
 	.byte	0x56
 	.uleb128 0x5d
-	.4byte	.LASF1411
-	.4byte	.LASF1411
+	.4byte	.LASF1412
+	.4byte	.LASF1412
 	.byte	0x7
 	.2byte	0x5b3
 	.uleb128 0x5d
-	.4byte	.LASF1412
-	.4byte	.LASF1412
+	.4byte	.LASF1413
+	.4byte	.LASF1413
 	.byte	0x7
 	.2byte	0x52f
 	.uleb128 0x5e
-	.4byte	.LASF1413
-	.4byte	.LASF1413
+	.4byte	.LASF1414
+	.4byte	.LASF1414
 	.byte	0x8
 	.byte	0x40
 	.uleb128 0x5e
-	.4byte	.LASF1414
-	.4byte	.LASF1414
+	.4byte	.LASF1415
+	.4byte	.LASF1415
 	.byte	0x9
 	.byte	0x58
 	.uleb128 0x5e
-	.4byte	.LASF1415
-	.4byte	.LASF1415
+	.4byte	.LASF1416
+	.4byte	.LASF1416
 	.byte	0x9
 	.byte	0x41
 	.uleb128 0x5e
-	.4byte	.LASF1416
-	.4byte	.LASF1416
+	.4byte	.LASF1417
+	.4byte	.LASF1417
 	.byte	0x9
 	.byte	0x34
 	.uleb128 0x5e
-	.4byte	.LASF1417
-	.4byte	.LASF1417
+	.4byte	.LASF1418
+	.4byte	.LASF1418
 	.byte	0x4
 	.byte	0x72
 	.uleb128 0x5d
-	.4byte	.LASF1418
-	.4byte	.LASF1418
+	.4byte	.LASF1419
+	.4byte	.LASF1419
 	.byte	0x7
 	.2byte	0x584
 	.uleb128 0x5d
-	.4byte	.LASF1419
-	.4byte	.LASF1419
+	.4byte	.LASF1420
+	.4byte	.LASF1420
 	.byte	0x7
 	.2byte	0x594
 	.uleb128 0x5d
-	.4byte	.LASF1420
-	.4byte	.LASF1420
+	.4byte	.LASF1421
+	.4byte	.LASF1421
 	.byte	0x7
 	.2byte	0x5c0
 	.uleb128 0x5d
-	.4byte	.LASF1421
-	.4byte	.LASF1421
+	.4byte	.LASF1422
+	.4byte	.LASF1422
 	.byte	0x7
 	.2byte	0x542
 	.uleb128 0x5d
-	.4byte	.LASF1422
-	.4byte	.LASF1422
+	.4byte	.LASF1423
+	.4byte	.LASF1423
 	.byte	0x7
 	.2byte	0x54d
 	.uleb128 0x5d
-	.4byte	.LASF1423
-	.4byte	.LASF1423
+	.4byte	.LASF1424
+	.4byte	.LASF1424
 	.byte	0x7
 	.2byte	0x558
 	.uleb128 0x5d
-	.4byte	.LASF1424
-	.4byte	.LASF1424
+	.4byte	.LASF1425
+	.4byte	.LASF1425
 	.byte	0x7
 	.2byte	0x565
 	.uleb128 0x5d
-	.4byte	.LASF1425
-	.4byte	.LASF1425
+	.4byte	.LASF1426
+	.4byte	.LASF1426
 	.byte	0x7
 	.2byte	0x570
 	.uleb128 0x5e
-	.4byte	.LASF1426
-	.4byte	.LASF1426
+	.4byte	.LASF1427
+	.4byte	.LASF1427
 	.byte	0x4
 	.byte	0x5c
 	.uleb128 0x5d
-	.4byte	.LASF1427
-	.4byte	.LASF1427
+	.4byte	.LASF1428
+	.4byte	.LASF1428
 	.byte	0x7
 	.2byte	0x4e9
 	.uleb128 0x5e
-	.4byte	.LASF1428
-	.4byte	.LASF1428
+	.4byte	.LASF1429
+	.4byte	.LASF1429
 	.byte	0x9
 	.byte	0x62
 	.uleb128 0x5e
-	.4byte	.LASF1429
-	.4byte	.LASF1429
+	.4byte	.LASF1430
+	.4byte	.LASF1430
 	.byte	0x9
 	.byte	0x6d
 	.uleb128 0x5d
-	.4byte	.LASF1430
-	.4byte	.LASF1430
+	.4byte	.LASF1431
+	.4byte	.LASF1431
 	.byte	0x7
 	.2byte	0x4c0
 	.uleb128 0x5e
-	.4byte	.LASF1431
-	.4byte	.LASF1431
+	.4byte	.LASF1432
+	.4byte	.LASF1432
 	.byte	0x9
 	.byte	0x4e
 	.uleb128 0x5d
-	.4byte	.LASF1432
-	.4byte	.LASF1432
+	.4byte	.LASF1433
+	.4byte	.LASF1433
 	.byte	0x7
 	.2byte	0x4a0
 	.byte	0
@@ -23602,7 +23602,7 @@ LoRaMacMaxEirpTable:
 	.uleb128 0x8
 	.byte	0x5
 	.uleb128 0x10
-	.4byte	.LASF456
+	.4byte	.LASF457
 	.byte	0x3
 	.uleb128 0x12
 	.uleb128 0x2
@@ -23615,7 +23615,7 @@ LoRaMacMaxEirpTable:
 	.uleb128 0xa
 	.byte	0x5
 	.uleb128 0x2d
-	.4byte	.LASF517
+	.4byte	.LASF518
 	.byte	0x3
 	.uleb128 0x2f
 	.uleb128 0x3
@@ -23634,14 +23634,14 @@ LoRaMacMaxEirpTable:
 	.byte	0x4
 	.byte	0x5
 	.uleb128 0x1c
-	.4byte	.LASF599
+	.4byte	.LASF600
 	.byte	0x4
 	.byte	0x3
 	.uleb128 0x20
 	.uleb128 0x6
 	.byte	0x5
 	.uleb128 0x65
-	.4byte	.LASF600
+	.4byte	.LASF601
 	.file 12 "/Applications/SEGGER Embedded Studio for ARM 3.52a/include/stdbool.h"
 	.byte	0x3
 	.uleb128 0x68
@@ -23654,14 +23654,14 @@ LoRaMacMaxEirpTable:
 	.uleb128 0x4
 	.byte	0x5
 	.uleb128 0x26
-	.4byte	.LASF606
+	.4byte	.LASF607
 	.byte	0x4
 	.byte	0x3
 	.uleb128 0x6a
 	.uleb128 0x5
 	.byte	0x5
 	.uleb128 0x18
-	.4byte	.LASF607
+	.4byte	.LASF608
 	.byte	0x4
 	.byte	0x7
 	.4byte	.Ldebug_macro7
@@ -23677,7 +23677,7 @@ LoRaMacMaxEirpTable:
 	.uleb128 0x9
 	.byte	0x5
 	.uleb128 0x25
-	.4byte	.LASF648
+	.4byte	.LASF649
 	.byte	0x4
 	.file 13 "/Users/russ/nRF5_SDK_15.2.0_9412b96/examples/ble_peripheral/flightSketch/lora/mac/LoRaMacTest.h"
 	.byte	0x3
@@ -23685,29 +23685,29 @@ LoRaMacMaxEirpTable:
 	.uleb128 0xd
 	.byte	0x5
 	.uleb128 0x25
-	.4byte	.LASF649
+	.4byte	.LASF650
 	.byte	0x4
 	.byte	0x5
 	.uleb128 0x27
-	.4byte	.LASF650
-	.byte	0x5
-	.uleb128 0x2c
 	.4byte	.LASF651
 	.byte	0x5
-	.uleb128 0x31
+	.uleb128 0x2c
 	.4byte	.LASF652
 	.byte	0x5
-	.uleb128 0x3b
+	.uleb128 0x31
 	.4byte	.LASF653
 	.byte	0x5
-	.uleb128 0x40
+	.uleb128 0x3b
 	.4byte	.LASF654
 	.byte	0x5
-	.uleb128 0x45
+	.uleb128 0x40
 	.4byte	.LASF655
+	.byte	0x5
+	.uleb128 0x45
+	.4byte	.LASF656
 	.byte	0x4
 	.byte	0
-	.section	.debug_macro,"G",%progbits,wm4.0.5b7516750e5636f001975cd02ec9d690,comdat
+	.section	.debug_macro,"G",%progbits,wm4.0.64bcd1a6f62e5b713d9b994f45ff257a,comdat
 .Ldebug_macro1:
 	.2byte	0x4
 	.byte	0
@@ -25082,6 +25082,33 @@ LoRaMacMaxEirpTable:
 	.byte	0x5
 	.uleb128 0
 	.4byte	.LASF455
+	.byte	0x5
+	.uleb128 0
+	.4byte	.LASF443
+	.byte	0x5
+	.uleb128 0
+	.4byte	.LASF444
+	.byte	0x5
+	.uleb128 0
+	.4byte	.LASF445
+	.byte	0x5
+	.uleb128 0
+	.4byte	.LASF446
+	.byte	0x5
+	.uleb128 0
+	.4byte	.LASF447
+	.byte	0x5
+	.uleb128 0
+	.4byte	.LASF448
+	.byte	0x5
+	.uleb128 0
+	.4byte	.LASF449
+	.byte	0x5
+	.uleb128 0
+	.4byte	.LASF453
+	.byte	0x5
+	.uleb128 0
+	.4byte	.LASF456
 	.byte	0
 	.section	.debug_macro,"G",%progbits,wm4.stdint.h.45.370e29a4497ae7c3b4c92e383ca5b648,comdat
 .Ldebug_macro2:
@@ -25089,184 +25116,184 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0x5
 	.uleb128 0x2d
-	.4byte	.LASF457
-	.byte	0x5
-	.uleb128 0x79
 	.4byte	.LASF458
 	.byte	0x5
-	.uleb128 0x7b
+	.uleb128 0x79
 	.4byte	.LASF459
 	.byte	0x5
-	.uleb128 0x7c
+	.uleb128 0x7b
 	.4byte	.LASF460
 	.byte	0x5
-	.uleb128 0x7e
+	.uleb128 0x7c
 	.4byte	.LASF461
 	.byte	0x5
-	.uleb128 0x80
+	.uleb128 0x7e
 	.4byte	.LASF462
 	.byte	0x5
-	.uleb128 0x81
+	.uleb128 0x80
 	.4byte	.LASF463
 	.byte	0x5
-	.uleb128 0x83
+	.uleb128 0x81
 	.4byte	.LASF464
 	.byte	0x5
-	.uleb128 0x84
+	.uleb128 0x83
 	.4byte	.LASF465
 	.byte	0x5
-	.uleb128 0x85
+	.uleb128 0x84
 	.4byte	.LASF466
 	.byte	0x5
-	.uleb128 0x87
+	.uleb128 0x85
 	.4byte	.LASF467
 	.byte	0x5
-	.uleb128 0x88
+	.uleb128 0x87
 	.4byte	.LASF468
 	.byte	0x5
-	.uleb128 0x89
+	.uleb128 0x88
 	.4byte	.LASF469
 	.byte	0x5
-	.uleb128 0x8b
+	.uleb128 0x89
 	.4byte	.LASF470
 	.byte	0x5
-	.uleb128 0x8c
+	.uleb128 0x8b
 	.4byte	.LASF471
 	.byte	0x5
-	.uleb128 0x8d
+	.uleb128 0x8c
 	.4byte	.LASF472
 	.byte	0x5
-	.uleb128 0x90
+	.uleb128 0x8d
 	.4byte	.LASF473
 	.byte	0x5
-	.uleb128 0x91
+	.uleb128 0x90
 	.4byte	.LASF474
 	.byte	0x5
-	.uleb128 0x92
+	.uleb128 0x91
 	.4byte	.LASF475
 	.byte	0x5
-	.uleb128 0x93
+	.uleb128 0x92
 	.4byte	.LASF476
 	.byte	0x5
-	.uleb128 0x94
+	.uleb128 0x93
 	.4byte	.LASF477
 	.byte	0x5
-	.uleb128 0x95
+	.uleb128 0x94
 	.4byte	.LASF478
 	.byte	0x5
-	.uleb128 0x96
+	.uleb128 0x95
 	.4byte	.LASF479
 	.byte	0x5
-	.uleb128 0x97
+	.uleb128 0x96
 	.4byte	.LASF480
 	.byte	0x5
-	.uleb128 0x98
+	.uleb128 0x97
 	.4byte	.LASF481
 	.byte	0x5
-	.uleb128 0x99
+	.uleb128 0x98
 	.4byte	.LASF482
 	.byte	0x5
-	.uleb128 0x9a
+	.uleb128 0x99
 	.4byte	.LASF483
 	.byte	0x5
-	.uleb128 0x9b
+	.uleb128 0x9a
 	.4byte	.LASF484
 	.byte	0x5
-	.uleb128 0x9d
+	.uleb128 0x9b
 	.4byte	.LASF485
 	.byte	0x5
-	.uleb128 0x9e
+	.uleb128 0x9d
 	.4byte	.LASF486
 	.byte	0x5
-	.uleb128 0x9f
+	.uleb128 0x9e
 	.4byte	.LASF487
 	.byte	0x5
-	.uleb128 0xa0
+	.uleb128 0x9f
 	.4byte	.LASF488
 	.byte	0x5
-	.uleb128 0xa1
+	.uleb128 0xa0
 	.4byte	.LASF489
 	.byte	0x5
-	.uleb128 0xa2
+	.uleb128 0xa1
 	.4byte	.LASF490
 	.byte	0x5
-	.uleb128 0xa3
+	.uleb128 0xa2
 	.4byte	.LASF491
 	.byte	0x5
-	.uleb128 0xa4
+	.uleb128 0xa3
 	.4byte	.LASF492
 	.byte	0x5
-	.uleb128 0xa5
+	.uleb128 0xa4
 	.4byte	.LASF493
 	.byte	0x5
-	.uleb128 0xa6
+	.uleb128 0xa5
 	.4byte	.LASF494
 	.byte	0x5
-	.uleb128 0xa7
+	.uleb128 0xa6
 	.4byte	.LASF495
 	.byte	0x5
-	.uleb128 0xa8
+	.uleb128 0xa7
 	.4byte	.LASF496
 	.byte	0x5
-	.uleb128 0xad
+	.uleb128 0xa8
 	.4byte	.LASF497
 	.byte	0x5
-	.uleb128 0xae
+	.uleb128 0xad
 	.4byte	.LASF498
 	.byte	0x5
-	.uleb128 0xaf
+	.uleb128 0xae
 	.4byte	.LASF499
 	.byte	0x5
-	.uleb128 0xb1
+	.uleb128 0xaf
 	.4byte	.LASF500
 	.byte	0x5
-	.uleb128 0xb2
+	.uleb128 0xb1
 	.4byte	.LASF501
 	.byte	0x5
-	.uleb128 0xb3
+	.uleb128 0xb2
 	.4byte	.LASF502
 	.byte	0x5
-	.uleb128 0xc3
+	.uleb128 0xb3
 	.4byte	.LASF503
 	.byte	0x5
-	.uleb128 0xc4
+	.uleb128 0xc3
 	.4byte	.LASF504
 	.byte	0x5
-	.uleb128 0xc5
+	.uleb128 0xc4
 	.4byte	.LASF505
 	.byte	0x5
-	.uleb128 0xc6
+	.uleb128 0xc5
 	.4byte	.LASF506
 	.byte	0x5
-	.uleb128 0xc7
+	.uleb128 0xc6
 	.4byte	.LASF507
 	.byte	0x5
-	.uleb128 0xc8
+	.uleb128 0xc7
 	.4byte	.LASF508
 	.byte	0x5
-	.uleb128 0xc9
+	.uleb128 0xc8
 	.4byte	.LASF509
 	.byte	0x5
-	.uleb128 0xca
+	.uleb128 0xc9
 	.4byte	.LASF510
 	.byte	0x5
-	.uleb128 0xcc
+	.uleb128 0xca
 	.4byte	.LASF511
 	.byte	0x5
-	.uleb128 0xcd
+	.uleb128 0xcc
 	.4byte	.LASF512
 	.byte	0x5
-	.uleb128 0xd7
+	.uleb128 0xcd
 	.4byte	.LASF513
 	.byte	0x5
-	.uleb128 0xd8
+	.uleb128 0xd7
 	.4byte	.LASF514
 	.byte	0x5
-	.uleb128 0xdc
+	.uleb128 0xd8
 	.4byte	.LASF515
 	.byte	0x5
-	.uleb128 0xdd
+	.uleb128 0xdc
 	.4byte	.LASF516
+	.byte	0x5
+	.uleb128 0xdd
+	.4byte	.LASF517
 	.byte	0
 	.section	.debug_macro,"G",%progbits,wm4.__crossworks.h.45.c15bb6e0a60630589d552427ceaabe49,comdat
 .Ldebug_macro3:
@@ -25274,70 +25301,70 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0x5
 	.uleb128 0x2d
-	.4byte	.LASF518
+	.4byte	.LASF519
 	.byte	0x5
 	.uleb128 0x41
-	.4byte	.LASF519
+	.4byte	.LASF520
 	.byte	0x6
 	.uleb128 0x43
-	.4byte	.LASF520
-	.byte	0x5
-	.uleb128 0x45
 	.4byte	.LASF521
 	.byte	0x5
-	.uleb128 0x49
+	.uleb128 0x45
 	.4byte	.LASF522
 	.byte	0x5
-	.uleb128 0x4b
+	.uleb128 0x49
 	.4byte	.LASF523
 	.byte	0x5
-	.uleb128 0x5c
+	.uleb128 0x4b
 	.4byte	.LASF524
 	.byte	0x5
-	.uleb128 0x63
-	.4byte	.LASF519
-	.byte	0x5
-	.uleb128 0x69
+	.uleb128 0x5c
 	.4byte	.LASF525
 	.byte	0x5
-	.uleb128 0x6a
+	.uleb128 0x63
+	.4byte	.LASF520
+	.byte	0x5
+	.uleb128 0x69
 	.4byte	.LASF526
 	.byte	0x5
-	.uleb128 0x6b
+	.uleb128 0x6a
 	.4byte	.LASF527
 	.byte	0x5
-	.uleb128 0x6c
+	.uleb128 0x6b
 	.4byte	.LASF528
 	.byte	0x5
-	.uleb128 0x6d
+	.uleb128 0x6c
 	.4byte	.LASF529
 	.byte	0x5
-	.uleb128 0x6e
+	.uleb128 0x6d
 	.4byte	.LASF530
 	.byte	0x5
-	.uleb128 0x6f
+	.uleb128 0x6e
 	.4byte	.LASF531
 	.byte	0x5
-	.uleb128 0x70
+	.uleb128 0x6f
 	.4byte	.LASF532
 	.byte	0x5
-	.uleb128 0x73
+	.uleb128 0x70
 	.4byte	.LASF533
 	.byte	0x5
-	.uleb128 0x74
+	.uleb128 0x73
 	.4byte	.LASF534
 	.byte	0x5
-	.uleb128 0x75
+	.uleb128 0x74
 	.4byte	.LASF535
 	.byte	0x5
-	.uleb128 0x76
+	.uleb128 0x75
 	.4byte	.LASF536
 	.byte	0x5
-	.uleb128 0x7b
+	.uleb128 0x76
 	.4byte	.LASF537
 	.byte	0x5
-	.uleb128 0xda
+	.uleb128 0x7b
 	.4byte	.LASF538
+	.byte	0x5
+	.uleb128 0xda
+	.4byte	.LASF539
 	.byte	0
 	.section	.debug_macro,"G",%progbits,wm4.stdlib.h.54.34e6c3eb1c7772d5405254538c14b58d,comdat
 .Ldebug_macro4:
@@ -25345,25 +25372,25 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0x5
 	.uleb128 0x36
-	.4byte	.LASF539
-	.byte	0x5
-	.uleb128 0x3c
 	.4byte	.LASF540
 	.byte	0x5
-	.uleb128 0x42
+	.uleb128 0x3c
 	.4byte	.LASF541
 	.byte	0x5
-	.uleb128 0x4a
+	.uleb128 0x42
 	.4byte	.LASF542
 	.byte	0x5
-	.uleb128 0x51
+	.uleb128 0x4a
 	.4byte	.LASF543
 	.byte	0x5
-	.uleb128 0x59
+	.uleb128 0x51
 	.4byte	.LASF544
 	.byte	0x5
-	.uleb128 0x63
+	.uleb128 0x59
 	.4byte	.LASF545
+	.byte	0x5
+	.uleb128 0x63
+	.4byte	.LASF546
 	.byte	0
 	.section	.debug_macro,"G",%progbits,wm4.nordic_common.h.45.9c3ae75d2a281e8621d2dc58ab581f4c,comdat
 .Ldebug_macro5:
@@ -25371,163 +25398,163 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0x5
 	.uleb128 0x2d
-	.4byte	.LASF546
-	.byte	0x5
-	.uleb128 0x50
 	.4byte	.LASF547
 	.byte	0x5
-	.uleb128 0x55
+	.uleb128 0x50
 	.4byte	.LASF548
 	.byte	0x5
-	.uleb128 0x57
+	.uleb128 0x55
 	.4byte	.LASF549
 	.byte	0x5
-	.uleb128 0x5b
+	.uleb128 0x57
 	.4byte	.LASF550
 	.byte	0x5
-	.uleb128 0x5d
+	.uleb128 0x5b
 	.4byte	.LASF551
 	.byte	0x5
-	.uleb128 0x61
+	.uleb128 0x5d
 	.4byte	.LASF552
 	.byte	0x5
-	.uleb128 0x64
+	.uleb128 0x61
 	.4byte	.LASF553
 	.byte	0x5
-	.uleb128 0x74
+	.uleb128 0x64
 	.4byte	.LASF554
 	.byte	0x5
-	.uleb128 0x76
+	.uleb128 0x74
 	.4byte	.LASF555
 	.byte	0x5
-	.uleb128 0x87
+	.uleb128 0x76
 	.4byte	.LASF556
 	.byte	0x5
-	.uleb128 0x89
+	.uleb128 0x87
 	.4byte	.LASF557
 	.byte	0x5
-	.uleb128 0x8b
+	.uleb128 0x89
 	.4byte	.LASF558
 	.byte	0x5
-	.uleb128 0x8e
+	.uleb128 0x8b
 	.4byte	.LASF559
 	.byte	0x5
-	.uleb128 0x92
+	.uleb128 0x8e
 	.4byte	.LASF560
 	.byte	0x5
-	.uleb128 0x99
+	.uleb128 0x92
 	.4byte	.LASF561
 	.byte	0x5
-	.uleb128 0xa1
+	.uleb128 0x99
 	.4byte	.LASF562
 	.byte	0x5
-	.uleb128 0xac
+	.uleb128 0xa1
 	.4byte	.LASF563
 	.byte	0x5
-	.uleb128 0xae
+	.uleb128 0xac
 	.4byte	.LASF564
 	.byte	0x5
-	.uleb128 0xaf
+	.uleb128 0xae
 	.4byte	.LASF565
 	.byte	0x5
-	.uleb128 0xb0
+	.uleb128 0xaf
 	.4byte	.LASF566
 	.byte	0x5
-	.uleb128 0xb1
+	.uleb128 0xb0
 	.4byte	.LASF567
 	.byte	0x5
-	.uleb128 0xb2
+	.uleb128 0xb1
 	.4byte	.LASF568
 	.byte	0x5
-	.uleb128 0xb3
+	.uleb128 0xb2
 	.4byte	.LASF569
 	.byte	0x5
-	.uleb128 0xb4
+	.uleb128 0xb3
 	.4byte	.LASF570
 	.byte	0x5
-	.uleb128 0xb5
+	.uleb128 0xb4
 	.4byte	.LASF571
 	.byte	0x5
-	.uleb128 0xb6
+	.uleb128 0xb5
 	.4byte	.LASF572
 	.byte	0x5
-	.uleb128 0xb7
+	.uleb128 0xb6
 	.4byte	.LASF573
 	.byte	0x5
-	.uleb128 0xb8
+	.uleb128 0xb7
 	.4byte	.LASF574
 	.byte	0x5
-	.uleb128 0xb9
+	.uleb128 0xb8
 	.4byte	.LASF575
 	.byte	0x5
-	.uleb128 0xba
+	.uleb128 0xb9
 	.4byte	.LASF576
 	.byte	0x5
-	.uleb128 0xbb
+	.uleb128 0xba
 	.4byte	.LASF577
 	.byte	0x5
-	.uleb128 0xbc
+	.uleb128 0xbb
 	.4byte	.LASF578
 	.byte	0x5
-	.uleb128 0xbd
+	.uleb128 0xbc
 	.4byte	.LASF579
 	.byte	0x5
-	.uleb128 0xbe
+	.uleb128 0xbd
 	.4byte	.LASF580
 	.byte	0x5
-	.uleb128 0xbf
+	.uleb128 0xbe
 	.4byte	.LASF581
 	.byte	0x5
-	.uleb128 0xc0
+	.uleb128 0xbf
 	.4byte	.LASF582
 	.byte	0x5
-	.uleb128 0xc1
+	.uleb128 0xc0
 	.4byte	.LASF583
 	.byte	0x5
-	.uleb128 0xc2
+	.uleb128 0xc1
 	.4byte	.LASF584
 	.byte	0x5
-	.uleb128 0xc3
+	.uleb128 0xc2
 	.4byte	.LASF585
 	.byte	0x5
-	.uleb128 0xc4
+	.uleb128 0xc3
 	.4byte	.LASF586
 	.byte	0x5
-	.uleb128 0xc5
+	.uleb128 0xc4
 	.4byte	.LASF587
 	.byte	0x5
-	.uleb128 0xc6
+	.uleb128 0xc5
 	.4byte	.LASF588
 	.byte	0x5
-	.uleb128 0xc7
+	.uleb128 0xc6
 	.4byte	.LASF589
 	.byte	0x5
-	.uleb128 0xc8
+	.uleb128 0xc7
 	.4byte	.LASF590
 	.byte	0x5
-	.uleb128 0xc9
+	.uleb128 0xc8
 	.4byte	.LASF591
 	.byte	0x5
-	.uleb128 0xca
+	.uleb128 0xc9
 	.4byte	.LASF592
 	.byte	0x5
-	.uleb128 0xcb
+	.uleb128 0xca
 	.4byte	.LASF593
 	.byte	0x5
-	.uleb128 0xcc
+	.uleb128 0xcb
 	.4byte	.LASF594
 	.byte	0x5
-	.uleb128 0xcd
+	.uleb128 0xcc
 	.4byte	.LASF595
 	.byte	0x5
-	.uleb128 0xcf
+	.uleb128 0xcd
 	.4byte	.LASF596
 	.byte	0x5
-	.uleb128 0xd0
+	.uleb128 0xcf
 	.4byte	.LASF597
 	.byte	0x5
-	.uleb128 0xd1
+	.uleb128 0xd0
 	.4byte	.LASF598
+	.byte	0x5
+	.uleb128 0xd1
+	.4byte	.LASF599
 	.byte	0
 	.section	.debug_macro,"G",%progbits,wm4.stdbool.h.45.e4cbe9931a68266e95ea034b4b9fd8bf,comdat
 .Ldebug_macro6:
@@ -25535,19 +25562,19 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0x5
 	.uleb128 0x2d
-	.4byte	.LASF601
-	.byte	0x5
-	.uleb128 0x31
 	.4byte	.LASF602
 	.byte	0x5
-	.uleb128 0x35
+	.uleb128 0x31
 	.4byte	.LASF603
 	.byte	0x5
-	.uleb128 0x36
+	.uleb128 0x35
 	.4byte	.LASF604
 	.byte	0x5
-	.uleb128 0x38
+	.uleb128 0x36
 	.4byte	.LASF605
+	.byte	0x5
+	.uleb128 0x38
+	.4byte	.LASF606
 	.byte	0
 	.section	.debug_macro,"G",%progbits,wm4.LoRaMac.h.111.2ee22f71715591cd49b44de343c96300,comdat
 .Ldebug_macro7:
@@ -25555,22 +25582,22 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0x5
 	.uleb128 0x6f
-	.4byte	.LASF608
-	.byte	0x5
-	.uleb128 0x74
 	.4byte	.LASF609
 	.byte	0x5
-	.uleb128 0x79
+	.uleb128 0x74
 	.4byte	.LASF610
 	.byte	0x5
-	.uleb128 0x7e
+	.uleb128 0x79
 	.4byte	.LASF611
 	.byte	0x5
-	.uleb128 0x84
+	.uleb128 0x7e
 	.4byte	.LASF612
 	.byte	0x5
-	.uleb128 0x8b
+	.uleb128 0x84
 	.4byte	.LASF613
+	.byte	0x5
+	.uleb128 0x8b
+	.4byte	.LASF614
 	.byte	0
 	.section	.debug_macro,"G",%progbits,wm4.Region.h.53.d56133ce9af9c91314196cfe5c51ac52,comdat
 .Ldebug_macro8:
@@ -25578,195 +25605,195 @@ LoRaMacMaxEirpTable:
 	.byte	0
 	.byte	0x5
 	.uleb128 0x35
-	.4byte	.LASF614
-	.byte	0x5
-	.uleb128 0x3e
 	.4byte	.LASF615
 	.byte	0x5
-	.uleb128 0x4e
+	.uleb128 0x3e
 	.4byte	.LASF616
 	.byte	0x5
-	.uleb128 0x5e
+	.uleb128 0x4e
 	.4byte	.LASF617
 	.byte	0x5
-	.uleb128 0x6e
+	.uleb128 0x5e
 	.4byte	.LASF618
 	.byte	0x5
-	.uleb128 0x7e
+	.uleb128 0x6e
 	.4byte	.LASF619
 	.byte	0x5
-	.uleb128 0x8e
+	.uleb128 0x7e
 	.4byte	.LASF620
 	.byte	0x5
-	.uleb128 0x9e
+	.uleb128 0x8e
 	.4byte	.LASF621
 	.byte	0x5
-	.uleb128 0xae
+	.uleb128 0x9e
 	.4byte	.LASF622
 	.byte	0x5
-	.uleb128 0xbe
+	.uleb128 0xae
 	.4byte	.LASF623
 	.byte	0x5
-	.uleb128 0xce
+	.uleb128 0xbe
 	.4byte	.LASF624
 	.byte	0x5
-	.uleb128 0xde
+	.uleb128 0xce
 	.4byte	.LASF625
 	.byte	0x5
-	.uleb128 0xee
+	.uleb128 0xde
 	.4byte	.LASF626
 	.byte	0x5
-	.uleb128 0xfe
+	.uleb128 0xee
 	.4byte	.LASF627
 	.byte	0x5
-	.uleb128 0x10e
+	.uleb128 0xfe
 	.4byte	.LASF628
 	.byte	0x5
-	.uleb128 0x11e
+	.uleb128 0x10e
 	.4byte	.LASF629
 	.byte	0x5
-	.uleb128 0x12e
+	.uleb128 0x11e
 	.4byte	.LASF630
 	.byte	0x5
-	.uleb128 0x13e
+	.uleb128 0x12e
 	.4byte	.LASF631
 	.byte	0x5
-	.uleb128 0x150
+	.uleb128 0x13e
 	.4byte	.LASF632
 	.byte	0x5
-	.uleb128 0x160
+	.uleb128 0x150
 	.4byte	.LASF633
 	.byte	0x5
-	.uleb128 0x170
+	.uleb128 0x160
 	.4byte	.LASF634
 	.byte	0x5
-	.uleb128 0x180
+	.uleb128 0x170
 	.4byte	.LASF635
 	.byte	0x5
-	.uleb128 0x190
+	.uleb128 0x180
 	.4byte	.LASF636
 	.byte	0x5
-	.uleb128 0x1a0
+	.uleb128 0x190
 	.4byte	.LASF637
 	.byte	0x5
-	.uleb128 0x1b0
+	.uleb128 0x1a0
 	.4byte	.LASF638
 	.byte	0x5
-	.uleb128 0x1c0
+	.uleb128 0x1b0
 	.4byte	.LASF639
 	.byte	0x5
-	.uleb128 0x1d0
+	.uleb128 0x1c0
 	.4byte	.LASF640
 	.byte	0x5
-	.uleb128 0x1e0
+	.uleb128 0x1d0
 	.4byte	.LASF641
 	.byte	0x5
-	.uleb128 0x1f0
+	.uleb128 0x1e0
 	.4byte	.LASF642
 	.byte	0x5
-	.uleb128 0x1f5
+	.uleb128 0x1f0
 	.4byte	.LASF643
 	.byte	0x5
-	.uleb128 0x1fa
+	.uleb128 0x1f5
 	.4byte	.LASF644
 	.byte	0x5
-	.uleb128 0x1ff
+	.uleb128 0x1fa
 	.4byte	.LASF645
 	.byte	0x5
-	.uleb128 0x204
+	.uleb128 0x1ff
 	.4byte	.LASF646
 	.byte	0x5
-	.uleb128 0x209
+	.uleb128 0x204
 	.4byte	.LASF647
+	.byte	0x5
+	.uleb128 0x209
+	.4byte	.LASF648
 	.byte	0
 	.section	.debug_line,"",%progbits
 .Ldebug_line0:
 	.section	.debug_str,"MS",%progbits,1
-.LASF781:
+.LASF782:
 	.ascii	"Send\000"
-.LASF793:
+.LASF794:
 	.ascii	"GetWakeupTime\000"
-.LASF1224:
+.LASF1225:
 	.ascii	"MacCommandsBuffer\000"
-.LASF1089:
+.LASF1090:
 	.ascii	"PHY_MAX_RX_DR\000"
-.LASF1189:
+.LASF1190:
 	.ascii	"AggrTimeOff\000"
-.LASF1420:
+.LASF1421:
 	.ascii	"RegionApplyDrOffset\000"
 .LASF402:
 	.ascii	"__ARM_FEATURE_CLZ 1\000"
-.LASF656:
+.LASF657:
 	.ascii	"int8_t\000"
 .LASF254:
 	.ascii	"__DEC128_EPSILON__ 1E-33DL\000"
 .LASF22:
 	.ascii	"__SIZEOF_FLOAT__ 4\000"
-.LASF548:
+.LASF549:
 	.ascii	"MSB_32(a) (((a) & 0xFF000000) >> 24)\000"
-.LASF1079:
+.LASF1080:
 	.ascii	"MacMcpsIndication\000"
-.LASF580:
+.LASF581:
 	.ascii	"BIT_16 0x00010000\000"
-.LASF883:
+.LASF884:
 	.ascii	"MType\000"
-.LASF612:
+.LASF613:
 	.ascii	"LORAMAC_MFR_LEN 4\000"
-.LASF1301:
+.LASF1302:
 	.ascii	"LoRaMacInitialization\000"
 .LASF256:
 	.ascii	"__SFRACT_FBIT__ 7\000"
-.LASF758:
+.LASF759:
 	.ascii	"RF_RX_RUNNING\000"
-.LASF720:
+.LASF721:
 	.ascii	"__locale_s\000"
 .LASF219:
 	.ascii	"__FLT64_HAS_INFINITY__ 1\000"
-.LASF901:
+.LASF902:
 	.ascii	"LORAMAC_EVENT_INFO_STATUS_RX2_ERROR\000"
-.LASF1432:
+.LASF1433:
 	.ascii	"RegionSetBandTxDone\000"
-.LASF828:
-	.ascii	"ReceiveDelay1\000"
 .LASF829:
+	.ascii	"ReceiveDelay1\000"
+.LASF830:
 	.ascii	"ReceiveDelay2\000"
 .LASF202:
 	.ascii	"__FLT32_EPSILON__ 1.1\000"
 .LASF320:
 	.ascii	"__LACCUM_EPSILON__ 0x1P-31LK\000"
-.LASF817:
+.LASF818:
 	.ascii	"RX_SLOT_WIN_1\000"
-.LASF710:
+.LASF711:
 	.ascii	"__towupper\000"
-.LASF714:
+.LASF715:
 	.ascii	"__RAL_locale_codeset_t\000"
 .LASF433:
 	.ascii	"__ARM_ASM_SYNTAX_UNIFIED__ 1\000"
-.LASF632:
+.LASF633:
 	.ascii	"TX_POWER_0 0\000"
 .LASF93:
 	.ascii	"__INTMAX_C(c) c ## LL\000"
 .LASF215:
 	.ascii	"__FLT64_MIN__ 1.1\000"
-.LASF984:
+.LASF985:
 	.ascii	"MlmeRequest\000"
-.LASF497:
+.LASF498:
 	.ascii	"PTRDIFF_MIN INT32_MIN\000"
 .LASF241:
 	.ascii	"__DEC32_SUBNORMAL_MIN__ 0.000001E-95DF\000"
 .LASF345:
 	.ascii	"__TQ_IBIT__ 0\000"
-.LASF1427:
+.LASF1428:
 	.ascii	"RegionRxConfig\000"
 .LASF213:
 	.ascii	"__FLT64_DECIMAL_DIG__ 17\000"
 .LASF118:
 	.ascii	"__INT64_C(c) c ## LL\000"
-.LASF1299:
+.LASF1300:
 	.ascii	"txPower\000"
 .LASF14:
 	.ascii	"__ATOMIC_CONSUME 1\000"
-.LASF945:
+.LASF946:
 	.ascii	"AckReceived\000"
 .LASF77:
 	.ascii	"__WCHAR_MAX__ 0xffffffffU\000"
@@ -25774,55 +25801,57 @@ LoRaMacMaxEirpTable:
 	.ascii	"NRF_SD_BLE_API_VERSION 6\000"
 .LASF308:
 	.ascii	"__ACCUM_MIN__ (-0X1P15K-0X1P15K)\000"
-.LASF1265:
+.LASF1266:
 	.ascii	"LoRaMacTestSetDutyCycleOn\000"
-.LASF1196:
+.LASF1197:
 	.ascii	"sContinuousWaveParams\000"
-.LASF1303:
+.LASF1304:
 	.ascii	"callbacks\000"
-.LASF1029:
+.LASF1030:
 	.ascii	"DevAddr\000"
-.LASF664:
+.LASF665:
 	.ascii	"int32_t\000"
-.LASF1201:
+.LASF1202:
 	.ascii	"LoRaMacAppEui\000"
 .LASF20:
 	.ascii	"__SIZEOF_LONG_LONG__ 8\000"
-.LASF1222:
+.LASF1223:
 	.ascii	"MacCommandsBufferIndex\000"
 .LASF169:
 	.ascii	"__DBL_MAX_10_EXP__ 308\000"
-.LASF948:
+.LASF949:
 	.ascii	"UpLinkCounter\000"
 .LASF268:
 	.ascii	"__FRACT_MIN__ (-0.5R-0.5R)\000"
-.LASF1340:
+.LASF1341:
 	.ascii	"ParseMacCommandsToRepeat\000"
 .LASF334:
 	.ascii	"__ULLACCUM_MAX__ 0XFFFFFFFFFFFFFFFFP-32ULLK\000"
-.LASF768:
+.LASF769:
 	.ascii	"CadDone\000"
-.LASF1334:
+.LASF456:
+	.ascii	"CONFIG_NFCT_PINS_AS_GPIOS 1\000"
+.LASF1335:
 	.ascii	"chParam\000"
 .LASF238:
 	.ascii	"__DEC32_MIN__ 1E-95DF\000"
-.LASF1263:
+.LASF1264:
 	.ascii	"LoRaMacFlags\000"
-.LASF1199:
+.LASF1200:
 	.ascii	"LoRaMacRegion\000"
 .LASF304:
 	.ascii	"__USACCUM_MAX__ 0XFFFFP-8UHK\000"
-.LASF1135:
+.LASF1136:
 	.ascii	"Joined\000"
 .LASF34:
 	.ascii	"__SIZE_TYPE__ unsigned int\000"
 .LASF244:
 	.ascii	"__DEC64_MAX_EXP__ 385\000"
-.LASF1310:
+.LASF1311:
 	.ascii	"SendFrameOnChannel\000"
 .LASF160:
 	.ascii	"__FLT_HAS_DENORM__ 1\000"
-.LASF1382:
+.LASF1383:
 	.ascii	"sequenceCounterDiff\000"
 .LASF407:
 	.ascii	"__ARM_ARCH_PROFILE 77\000"
@@ -25832,7 +25861,7 @@ LoRaMacMaxEirpTable:
 	.ascii	"__FLT32_DECIMAL_DIG__ 9\000"
 .LASF36:
 	.ascii	"__WCHAR_TYPE__ unsigned int\000"
-.LASF1422:
+.LASF1423:
 	.ascii	"RegionRxParamSetupReq\000"
 .LASF184:
 	.ascii	"__DECIMAL_DIG__ 17\000"
@@ -25840,168 +25869,168 @@ LoRaMacMaxEirpTable:
 	.ascii	"__LDBL_MIN_EXP__ (-1021)\000"
 .LASF393:
 	.ascii	"__SIZEOF_PTRDIFF_T__ 4\000"
-.LASF1244:
+.LASF1245:
 	.ascii	"LORAMAC_RX_ABORT\000"
-.LASF929:
+.LASF930:
 	.ascii	"sMcpsReqConfirmed\000"
-.LASF1243:
+.LASF1244:
 	.ascii	"LORAMAC_TX_CONFIG\000"
 .LASF121:
 	.ascii	"__UINT8_C(c) c\000"
 .LASF41:
 	.ascii	"__CHAR32_TYPE__ long unsigned int\000"
-.LASF847:
+.LASF848:
 	.ascii	"eLoRaMacFrameType\000"
-.LASF703:
+.LASF704:
 	.ascii	"time_format\000"
-.LASF603:
+.LASF604:
 	.ascii	"true 1\000"
-.LASF1046:
+.LASF1047:
 	.ascii	"MaxPossiblePayload\000"
-.LASF498:
+.LASF499:
 	.ascii	"PTRDIFF_MAX INT32_MAX\000"
-.LASF521:
+.LASF522:
 	.ascii	"__RAL_SIZE_T unsigned\000"
-.LASF731:
+.LASF732:
 	.ascii	"__RAL_data_utf8_period\000"
-.LASF470:
+.LASF471:
 	.ascii	"INTMAX_MIN (-9223372036854775807LL-1)\000"
-.LASF1118:
+.LASF1119:
 	.ascii	"PhyAttribute_t\000"
-.LASF1406:
+.LASF1407:
 	.ascii	"TimerInit\000"
-.LASF1381:
+.LASF1382:
 	.ascii	"sequenceCounterPrev\000"
 .LASF300:
 	.ascii	"__SACCUM_EPSILON__ 0x1P-7HK\000"
-.LASF1391:
+.LASF1392:
 	.ascii	"OnRadioTxDone\000"
-.LASF1050:
+.LASF1051:
 	.ascii	"LORAMAC_STATUS_OK\000"
-.LASF541:
+.LASF542:
 	.ascii	"NULL 0\000"
-.LASF1095:
+.LASF1096:
 	.ascii	"PHY_DEF_TX_POWER\000"
 .LASF376:
 	.ascii	"__GCC_HAVE_SYNC_COMPARE_AND_SWAP_1 1\000"
-.LASF788:
+.LASF789:
 	.ascii	"Read\000"
 .LASF59:
 	.ascii	"__INT_FAST8_TYPE__ int\000"
-.LASF1146:
+.LASF1147:
 	.ascii	"ApplyCFListParams_t\000"
-.LASF575:
+.LASF576:
 	.ascii	"BIT_11 0x0800\000"
 .LASF4:
 	.ascii	"__STDC_HOSTED__ 1\000"
-.LASF1405:
+.LASF1406:
 	.ascii	"RegionInitDefaults\000"
-.LASF542:
+.LASF543:
 	.ascii	"EXIT_SUCCESS 0\000"
-.LASF699:
+.LASF700:
 	.ascii	"month_names\000"
 .LASF62:
 	.ascii	"__INT_FAST64_TYPE__ long long int\000"
-.LASF1395:
+.LASF1396:
 	.ascii	"memset1\000"
-.LASF1318:
+.LASF1319:
 	.ascii	"ResetMacParameters\000"
-.LASF1357:
+.LASF1358:
 	.ascii	"OnAckTimeoutTimerEvent\000"
-.LASF732:
+.LASF733:
 	.ascii	"__RAL_data_utf8_comma\000"
-.LASF757:
+.LASF758:
 	.ascii	"RF_IDLE\000"
-.LASF1336:
+.LASF1337:
 	.ascii	"txParamSetupReq\000"
-.LASF676:
+.LASF677:
 	.ascii	"int_curr_symbol\000"
-.LASF702:
+.LASF703:
 	.ascii	"date_format\000"
 .LASF48:
 	.ascii	"__UINT16_TYPE__ short unsigned int\000"
-.LASF525:
+.LASF526:
 	.ascii	"__CTYPE_UPPER 0x01\000"
-.LASF1027:
+.LASF1028:
 	.ascii	"AdrEnable\000"
 .LASF264:
 	.ascii	"__USFRACT_MAX__ 0XFFP-8UHR\000"
-.LASF1023:
+.LASF1024:
 	.ascii	"Mib_t\000"
-.LASF1322:
+.LASF1323:
 	.ascii	"nextChan\000"
-.LASF970:
+.LASF971:
 	.ascii	"DevEui\000"
 .LASF425:
 	.ascii	"__ARM_NEON\000"
-.LASF754:
+.LASF755:
 	.ascii	"MODEM_FSK\000"
 .LASF195:
 	.ascii	"__FLT32_MIN_EXP__ (-125)\000"
-.LASF1350:
+.LASF1351:
 	.ascii	"fOptsLen\000"
-.LASF1115:
+.LASF1116:
 	.ascii	"PHY_DEF_MAX_EIRP\000"
-.LASF1136:
+.LASF1137:
 	.ascii	"LastTxDoneTime\000"
 .LASF271:
 	.ascii	"__UFRACT_FBIT__ 16\000"
-.LASF687:
+.LASF688:
 	.ascii	"n_cs_precedes\000"
-.LASF991:
+.LASF992:
 	.ascii	"eMib\000"
 .LASF208:
 	.ascii	"__FLT64_DIG__ 15\000"
-.LASF534:
+.LASF535:
 	.ascii	"__CTYPE_ALNUM (__CTYPE_UPPER | __CTYPE_LOWER | __CT"
 	.ascii	"YPE_DIGIT)\000"
-.LASF458:
+.LASF459:
 	.ascii	"UINT8_MAX 255\000"
-.LASF557:
+.LASF558:
 	.ascii	"CONCAT_3_(p1,p2,p3) p1 ##p2 ##p3\000"
-.LASF1242:
+.LASF1243:
 	.ascii	"LORAMAC_TX_DELAYED\000"
-.LASF708:
+.LASF709:
 	.ascii	"__tolower\000"
-.LASF1202:
+.LASF1203:
 	.ascii	"LoRaMacAppKey\000"
-.LASF637:
+.LASF638:
 	.ascii	"TX_POWER_5 5\000"
 .LASF210:
 	.ascii	"__FLT64_MIN_10_EXP__ (-307)\000"
 .LASF356:
 	.ascii	"__HA_FBIT__ 7\000"
-.LASF460:
+.LASF461:
 	.ascii	"INT8_MIN (-128)\000"
 .LASF135:
 	.ascii	"__INT_FAST64_WIDTH__ 64\000"
 .LASF1:
 	.ascii	"__STDC_VERSION__ 199901L\000"
-.LASF599:
+.LASF600:
 	.ascii	"POW2(n) ( 1 << n )\000"
-.LASF1096:
+.LASF1097:
 	.ascii	"PHY_MAX_PAYLOAD\000"
 .LASF156:
 	.ascii	"__FLT_MAX__ 1.1\000"
-.LASF1127:
+.LASF1128:
 	.ascii	"uPhyParam\000"
-.LASF1191:
+.LASF1192:
 	.ascii	"NextChanParams_t\000"
 .LASF394:
 	.ascii	"__ARM_FEATURE_DSP 1\000"
-.LASF1041:
+.LASF1042:
 	.ascii	"MibParam_t\000"
 .LASF115:
 	.ascii	"__INT32_C(c) c ## L\000"
-.LASF1195:
+.LASF1196:
 	.ascii	"ChannelRemoveParams_t\000"
-.LASF683:
+.LASF684:
 	.ascii	"int_frac_digits\000"
 .LASF68:
 	.ascii	"__UINTPTR_TYPE__ unsigned int\000"
-.LASF1000:
+.LASF1001:
 	.ascii	"MIB_REPEATER_SUPPORT\000"
-.LASF1388:
+.LASF1389:
 	.ascii	"isMicOk\000"
 .LASF382:
 	.ascii	"__GCC_ATOMIC_CHAR32_T_LOCK_FREE 2\000"
@@ -26009,199 +26038,199 @@ LoRaMacMaxEirpTable:
 	.ascii	"__FLT64_MAX__ 1.1\000"
 .LASF370:
 	.ascii	"__UTA_FBIT__ 64\000"
-.LASF964:
+.LASF965:
 	.ascii	"MLME_LINK_CHECK\000"
-.LASF593:
+.LASF594:
 	.ascii	"BIT_29 0x20000000\000"
-.LASF640:
+.LASF641:
 	.ascii	"TX_POWER_8 8\000"
 .LASF348:
 	.ascii	"__UHQ_FBIT__ 16\000"
-.LASF1194:
+.LASF1195:
 	.ascii	"sChannelRemoveParams\000"
-.LASF1291:
+.LASF1292:
 	.ascii	"mibSet\000"
-.LASF938:
+.LASF939:
 	.ascii	"sMcpsReq\000"
 .LASF90:
 	.ascii	"__PTRDIFF_WIDTH__ 32\000"
-.LASF1346:
+.LASF1347:
 	.ascii	"bufLen\000"
 .LASF230:
 	.ascii	"__FLT32X_EPSILON__ 1.1\000"
-.LASF833:
+.LASF834:
 	.ascii	"Rx1DrOffset\000"
-.LASF681:
+.LASF682:
 	.ascii	"positive_sign\000"
 .LASF240:
 	.ascii	"__DEC32_EPSILON__ 1E-6DF\000"
 .LASF218:
 	.ascii	"__FLT64_HAS_DENORM__ 1\000"
-.LASF546:
+.LASF547:
 	.ascii	"NORDIC_COMMON_H__ \000"
 .LASF60:
 	.ascii	"__INT_FAST16_TYPE__ int\000"
-.LASF990:
+.LASF991:
 	.ascii	"MlmeIndication_t\000"
-.LASF518:
+.LASF519:
 	.ascii	"__crossworks_H \000"
-.LASF633:
+.LASF634:
 	.ascii	"TX_POWER_1 1\000"
-.LASF877:
+.LASF878:
 	.ascii	"BAT_LEVEL_EXT_SRC\000"
-.LASF1025:
+.LASF1026:
 	.ascii	"Class\000"
 .LASF131:
 	.ascii	"__INT_FAST16_WIDTH__ 32\000"
-.LASF1186:
+.LASF1187:
 	.ascii	"ElapsedTime\000"
-.LASF1294:
+.LASF1295:
 	.ascii	"mibGet\000"
 .LASF416:
 	.ascii	"__VFP_FP__ 1\000"
-.LASF874:
+.LASF875:
 	.ascii	"SRV_MAC_TX_PARAM_SETUP_REQ\000"
 .LASF288:
 	.ascii	"__LLFRACT_MIN__ (-0.5LLR-0.5LLR)\000"
 .LASF140:
 	.ascii	"__INTPTR_MAX__ 0x7fffffff\000"
-.LASF1384:
+.LASF1385:
 	.ascii	"curMulticastParams\000"
 .LASF137:
 	.ascii	"__UINT_FAST16_MAX__ 0xffffffffU\000"
 .LASF178:
 	.ascii	"__LDBL_MANT_DIG__ 53\000"
-.LASF892:
+.LASF893:
 	.ascii	"uLoRaMacFrameCtrl\000"
-.LASF577:
+.LASF578:
 	.ascii	"BIT_13 0x2000\000"
-.LASF550:
+.LASF551:
 	.ascii	"MSB_16(a) (((a) & 0xFF00) >> 8)\000"
-.LASF1122:
+.LASF1123:
 	.ascii	"INIT_TYPE_APP_DEFAULTS\000"
-.LASF973:
+.LASF974:
 	.ascii	"MlmeReqJoin_t\000"
-.LASF1017:
+.LASF1018:
 	.ascii	"MIB_DOWNLINK_COUNTER\000"
-.LASF846:
+.LASF847:
 	.ascii	"MulticastParams_t\000"
-.LASF1374:
+.LASF1375:
 	.ascii	"applyCFList\000"
 .LASF69:
 	.ascii	"__has_include(STR) __has_include__(STR)\000"
 .LASF273:
 	.ascii	"__UFRACT_MIN__ 0.0UR\000"
-.LASF746:
+.LASF747:
 	.ascii	"Timestamp\000"
 .LASF427:
 	.ascii	"__THUMB_INTERWORK__ 1\000"
-.LASF1016:
+.LASF1017:
 	.ascii	"MIB_UPLINK_COUNTER\000"
-.LASF1038:
+.LASF1039:
 	.ascii	"ChannelsDefaultTxPower\000"
 .LASF98:
 	.ascii	"__SIG_ATOMIC_MIN__ (-__SIG_ATOMIC_MAX__ - 1)\000"
 .LASF233:
 	.ascii	"__FLT32X_HAS_INFINITY__ 1\000"
-.LASF1158:
+.LASF1159:
 	.ascii	"DrOffset\000"
-.LASF958:
+.LASF959:
 	.ascii	"BufferSize\000"
 .LASF258:
 	.ascii	"__SFRACT_MIN__ (-0.5HR-0.5HR)\000"
 .LASF55:
 	.ascii	"__UINT_LEAST8_TYPE__ unsigned char\000"
-.LASF894:
+.LASF895:
 	.ascii	"eLoRaMacEventInfoStatus\000"
-.LASF678:
+.LASF679:
 	.ascii	"mon_decimal_point\000"
 .LASF306:
 	.ascii	"__ACCUM_FBIT__ 15\000"
 .LASF312:
 	.ascii	"__UACCUM_IBIT__ 16\000"
-.LASF671:
+.LASF672:
 	.ascii	"long int\000"
-.LASF821:
+.LASF822:
 	.ascii	"LoRaMacRxSlot_t\000"
-.LASF974:
+.LASF975:
 	.ascii	"sMlmeReqTxCw\000"
-.LASF1292:
+.LASF1293:
 	.ascii	"chanMaskSet\000"
 .LASF134:
 	.ascii	"__INT_FAST64_MAX__ 0x7fffffffffffffffLL\000"
-.LASF935:
+.LASF936:
 	.ascii	"Unconfirmed\000"
-.LASF524:
+.LASF525:
 	.ascii	"__CODE \000"
 .LASF354:
 	.ascii	"__UTQ_FBIT__ 128\000"
 .LASF234:
 	.ascii	"__FLT32X_HAS_QUIET_NAN__ 1\000"
-.LASF1128:
+.LASF1129:
 	.ascii	"fValue\000"
-.LASF636:
+.LASF637:
 	.ascii	"TX_POWER_4 4\000"
 .LASF275:
 	.ascii	"__UFRACT_EPSILON__ 0x1P-16UR\000"
-.LASF740:
+.LASF741:
 	.ascii	"__RAL_error_decoder_s\000"
-.LASF743:
+.LASF744:
 	.ascii	"__RAL_error_decoder_t\000"
-.LASF1233:
+.LASF1234:
 	.ascii	"DutyCycleOn\000"
-.LASF552:
+.LASF553:
 	.ascii	"MIN(a,b) ((a) < (b) ? (a) : (b))\000"
 .LASF278:
 	.ascii	"__LFRACT_MIN__ (-0.5LR-0.5LR)\000"
 .LASF212:
 	.ascii	"__FLT64_MAX_10_EXP__ 308\000"
-.LASF722:
+.LASF723:
 	.ascii	"__RAL_global_locale\000"
 .LASF95:
 	.ascii	"__UINTMAX_C(c) c ## ULL\000"
-.LASF1044:
+.LASF1045:
 	.ascii	"MibRequestConfirm_t\000"
-.LASF1345:
+.LASF1346:
 	.ascii	"AddMacCommand\000"
-.LASF1185:
+.LASF1186:
 	.ascii	"DutyCycleEnabled\000"
 .LASF338:
 	.ascii	"__HQ_FBIT__ 15\000"
-.LASF739:
+.LASF740:
 	.ascii	"__RAL_error_decoder_fn_t\000"
 .LASF340:
 	.ascii	"__SQ_FBIT__ 31\000"
 .LASF317:
 	.ascii	"__LACCUM_IBIT__ 32\000"
-.LASF903:
+.LASF904:
 	.ascii	"LORAMAC_EVENT_INFO_STATUS_DOWNLINK_REPEATED\000"
 .LASF424:
 	.ascii	"__ARM_NEON__\000"
-.LASF1010:
-	.ascii	"MIB_JOIN_ACCEPT_DELAY_1\000"
 .LASF1011:
+	.ascii	"MIB_JOIN_ACCEPT_DELAY_1\000"
+.LASF1012:
 	.ascii	"MIB_JOIN_ACCEPT_DELAY_2\000"
 .LASF362:
 	.ascii	"__TA_FBIT__ 63\000"
-.LASF1205:
+.LASF1206:
 	.ascii	"LoRaMacDevNonce\000"
-.LASF692:
+.LASF693:
 	.ascii	"int_n_cs_precedes\000"
 .LASF211:
 	.ascii	"__FLT64_MAX_EXP__ 1024\000"
-.LASF589:
+.LASF590:
 	.ascii	"BIT_25 0x02000000\000"
-.LASF785:
+.LASF786:
 	.ascii	"SetTxContinuousWave\000"
-.LASF1429:
+.LASF1430:
 	.ascii	"LoRaMacJoinComputeSKeys\000"
 .LASF224:
 	.ascii	"__FLT32X_MIN_10_EXP__ (-307)\000"
 .LASF198:
 	.ascii	"__FLT32_MAX_10_EXP__ 38\000"
-.LASF1347:
+.LASF1348:
 	.ascii	"ScheduleTx\000"
-.LASF1433:
+.LASF1434:
 	.ascii	"GNU C99 7.3.1 20180622 (release) [ARM/embedded-7-br"
 	.ascii	"anch revision 261907] -fmessage-length=0 -mcpu=cort"
 	.ascii	"ex-m4 -mlittle-endian -mfloat-abi=hard -mfpu=fpv4-s"
@@ -26209,15 +26238,15 @@ LoRaMacMaxEirpTable:
 	.ascii	"Os -fomit-frame-pointer -fno-dwarf2-cfi-asm -fno-bu"
 	.ascii	"iltin -ffunction-sections -fdata-sections -fshort-e"
 	.ascii	"nums -fno-common\000"
-.LASF1423:
+.LASF1424:
 	.ascii	"RegionNewChannelReq\000"
 .LASF381:
 	.ascii	"__GCC_ATOMIC_CHAR16_T_LOCK_FREE 2\000"
-.LASF971:
+.LASF972:
 	.ascii	"AppEui\000"
-.LASF1018:
+.LASF1019:
 	.ascii	"MIB_MULTICAST_CHANNEL\000"
-.LASF1151:
+.LASF1152:
 	.ascii	"sAdrNextParams\000"
 .LASF3:
 	.ascii	"__STDC_UTF_32__ 1\000"
@@ -26225,51 +26254,51 @@ LoRaMacMaxEirpTable:
 	.ascii	"__UINT_FAST32_MAX__ 0xffffffffU\000"
 .LASF58:
 	.ascii	"__UINT_LEAST64_TYPE__ long long unsigned int\000"
-.LASF1093:
+.LASF1094:
 	.ascii	"PHY_RX_DR\000"
 .LASF19:
 	.ascii	"__SIZEOF_LONG__ 4\000"
-.LASF634:
+.LASF635:
 	.ascii	"TX_POWER_2 2\000"
-.LASF842:
+.LASF843:
 	.ascii	"Address\000"
-.LASF1110:
+.LASF1111:
 	.ascii	"PHY_CHANNELS_DEFAULT_MASK\000"
-.LASF809:
+.LASF810:
 	.ascii	"DrRange\000"
-.LASF949:
+.LASF950:
 	.ascii	"Channel\000"
-.LASF463:
+.LASF464:
 	.ascii	"INT16_MAX 32767\000"
 .LASF23:
 	.ascii	"__SIZEOF_DOUBLE__ 8\000"
-.LASF1148:
+.LASF1149:
 	.ascii	"ChannelsMaskIn\000"
 .LASF223:
 	.ascii	"__FLT32X_MIN_EXP__ (-1021)\000"
 .LASF126:
 	.ascii	"__UINT_LEAST64_MAX__ 0xffffffffffffffffULL\000"
-.LASF1236:
+.LASF1237:
 	.ascii	"eLoRaMacState\000"
-.LASF840:
+.LASF841:
 	.ascii	"LoRaMacParams_t\000"
 .LASF149:
 	.ascii	"__FLT_MANT_DIG__ 24\000"
 .LASF188:
 	.ascii	"__LDBL_EPSILON__ 1.1\000"
-.LASF1099:
+.LASF1100:
 	.ascii	"PHY_MAX_RX_WINDOW\000"
 .LASF246:
 	.ascii	"__DEC64_MAX__ 9.999999999999999E384DD\000"
-.LASF713:
+.LASF714:
 	.ascii	"__mbtowc\000"
 .LASF279:
 	.ascii	"__LFRACT_MAX__ 0X7FFFFFFFP-31LR\000"
 .LASF181:
 	.ascii	"__LDBL_MIN_10_EXP__ (-307)\000"
-.LASF645:
+.LASF646:
 	.ascii	"TX_POWER_13 13\000"
-.LASF947:
+.LASF948:
 	.ascii	"TxTimeOnAir\000"
 .LASF152:
 	.ascii	"__FLT_MIN_10_EXP__ (-37)\000"
@@ -26277,51 +26306,51 @@ LoRaMacMaxEirpTable:
 	.ascii	"__DEC128_MIN_EXP__ (-6142)\000"
 .LASF155:
 	.ascii	"__FLT_DECIMAL_DIG__ 9\000"
-.LASF1145:
+.LASF1146:
 	.ascii	"Size\000"
-.LASF1150:
+.LASF1151:
 	.ascii	"ChanMaskSetParams_t\000"
-.LASF490:
+.LASF491:
 	.ascii	"INT_FAST16_MAX INT32_MAX\000"
-.LASF1364:
+.LASF1365:
 	.ascii	"SetMlmeScheduleUplinkIndication\000"
-.LASF1372:
-	.ascii	"OnRadioRxDone\000"
-.LASF658:
-	.ascii	"signed char\000"
-.LASF657:
-	.ascii	"uint8_t\000"
-.LASF1240:
-	.ascii	"LORAMAC_ACK_REQ\000"
-.LASF962:
-	.ascii	"eMlme\000"
-.LASF1113:
-	.ascii	"PHY_DEF_UPLINK_DWELL_TIME\000"
-.LASF1223:
-	.ascii	"MacCommandsBufferToRepeatIndex\000"
 .LASF1373:
+	.ascii	"OnRadioRxDone\000"
+.LASF659:
+	.ascii	"signed char\000"
+.LASF658:
+	.ascii	"uint8_t\000"
+.LASF1241:
+	.ascii	"LORAMAC_ACK_REQ\000"
+.LASF963:
+	.ascii	"eMlme\000"
+.LASF1114:
+	.ascii	"PHY_DEF_UPLINK_DWELL_TIME\000"
+.LASF1224:
+	.ascii	"MacCommandsBufferToRepeatIndex\000"
+.LASF1374:
 	.ascii	"rssi\000"
-.LASF712:
+.LASF713:
 	.ascii	"__wctomb\000"
 .LASF266:
 	.ascii	"__FRACT_FBIT__ 15\000"
-.LASF1393:
+.LASF1394:
 	.ascii	"curTime\000"
-.LASF1251:
-	.ascii	"RxWindowTimer1\000"
 .LASF1252:
+	.ascii	"RxWindowTimer1\000"
+.LASF1253:
 	.ascii	"RxWindowTimer2\000"
 .LASF7:
 	.ascii	"__GNUC_PATCHLEVEL__ 1\000"
-.LASF917:
+.LASF918:
 	.ascii	"LoRaMacFlags_t\000"
-.LASF1144:
+.LASF1145:
 	.ascii	"Payload\000"
 .LASF122:
 	.ascii	"__UINT_LEAST16_MAX__ 0xffff\000"
-.LASF619:
+.LASF620:
 	.ascii	"DR_3 3\000"
-.LASF500:
+.LASF501:
 	.ascii	"INTPTR_MIN INT32_MIN\000"
 .LASF444:
 	.ascii	"FLOAT_ABI_HARD 1\000"
@@ -26329,159 +26358,159 @@ LoRaMacMaxEirpTable:
 	.ascii	"__DBL_HAS_QUIET_NAN__ 1\000"
 .LASF316:
 	.ascii	"__LACCUM_FBIT__ 31\000"
-.LASF765:
+.LASF766:
 	.ascii	"RxTimeout\000"
-.LASF487:
+.LASF488:
 	.ascii	"INT_FAST32_MIN INT32_MIN\000"
 .LASF269:
 	.ascii	"__FRACT_MAX__ 0X7FFFP-15R\000"
-.LASF914:
+.LASF915:
 	.ascii	"MlmeInd\000"
-.LASF465:
+.LASF466:
 	.ascii	"INT32_MAX 2147483647L\000"
 .LASF217:
 	.ascii	"__FLT64_DENORM_MIN__ 1.1\000"
-.LASF766:
+.LASF767:
 	.ascii	"RxError\000"
-.LASF946:
+.LASF947:
 	.ascii	"NbRetries\000"
-.LASF848:
+.LASF849:
 	.ascii	"FRAME_TYPE_JOIN_REQ\000"
-.LASF659:
+.LASF660:
 	.ascii	"unsigned char\000"
-.LASF745:
+.LASF746:
 	.ascii	"TimerEvent_s\000"
-.LASF752:
+.LASF753:
 	.ascii	"TimerEvent_t\000"
 .LASF297:
 	.ascii	"__SACCUM_IBIT__ 8\000"
-.LASF1105:
+.LASF1106:
 	.ascii	"PHY_ACK_TIMEOUT\000"
-.LASF1410:
+.LASF1411:
 	.ascii	"TimerStart\000"
-.LASF1129:
+.LASF1130:
 	.ascii	"Channels\000"
 .LASF251:
 	.ascii	"__DEC128_MAX_EXP__ 6145\000"
-.LASF688:
+.LASF689:
 	.ascii	"n_sep_by_space\000"
-.LASF1178:
+.LASF1179:
 	.ascii	"NewChannelReqParams_t\000"
-.LASF1402:
+.LASF1403:
 	.ascii	"RegionChanMaskSet\000"
 .LASF132:
 	.ascii	"__INT_FAST32_MAX__ 0x7fffffff\000"
-.LASF1298:
+.LASF1299:
 	.ascii	"adrNext\000"
-.LASF1216:
+.LASF1217:
 	.ascii	"IsRxWindowsEnabled\000"
-.LASF1220:
+.LASF1221:
 	.ascii	"SrvAckRequested\000"
-.LASF514:
+.LASF515:
 	.ascii	"WCHAR_MAX 2147483647L\000"
-.LASF1124:
+.LASF1125:
 	.ascii	"CHANNELS_MASK\000"
-.LASF467:
+.LASF468:
 	.ascii	"INT64_MIN (-9223372036854775807LL-1)\000"
-.LASF1059:
+.LASF1060:
 	.ascii	"LORAMAC_STATUS_DEVICE_OFF\000"
-.LASF1314:
+.LASF1315:
 	.ascii	"pktHeaderLen\000"
-.LASF511:
+.LASF512:
 	.ascii	"INTMAX_C(x) (x ##LL)\000"
 .LASF105:
 	.ascii	"__UINT16_MAX__ 0xffff\000"
-.LASF992:
+.LASF993:
 	.ascii	"MIB_DEVICE_CLASS\000"
 .LASF344:
 	.ascii	"__TQ_FBIT__ 127\000"
-.LASF581:
+.LASF582:
 	.ascii	"BIT_17 0x00020000\000"
 .LASF413:
 	.ascii	"__THUMBEL__ 1\000"
-.LASF1403:
+.LASF1404:
 	.ascii	"RegionAdrNext\000"
-.LASF1366:
+.LASF1367:
 	.ascii	"OnTxDelayedTimerEvent\000"
-.LASF733:
+.LASF734:
 	.ascii	"__RAL_data_utf8_space\000"
 .LASF350:
 	.ascii	"__USQ_FBIT__ 32\000"
 .LASF174:
 	.ascii	"__DBL_DENORM_MIN__ ((double)1.1)\000"
-.LASF1259:
+.LASF1260:
 	.ascii	"AckTimeoutRetriesCounter\000"
-.LASF1249:
+.LASF1250:
 	.ascii	"RadioEvents\000"
-.LASF1308:
+.LASF1309:
 	.ascii	"power\000"
-.LASF462:
+.LASF463:
 	.ascii	"INT16_MIN (-32767-1)\000"
 .LASF21:
 	.ascii	"__SIZEOF_SHORT__ 2\000"
-.LASF748:
+.LASF749:
 	.ascii	"IsRunning\000"
-.LASF1058:
+.LASF1059:
 	.ascii	"LORAMAC_STATUS_LENGTH_ERROR\000"
-.LASF751:
+.LASF752:
 	.ascii	"_Bool\000"
-.LASF1020:
+.LASF1021:
 	.ascii	"MIB_MIN_RX_SYMBOLS\000"
-.LASF504:
+.LASF505:
 	.ascii	"UINT8_C(x) (x ##U)\000"
-.LASF1160:
+.LASF1161:
 	.ascii	"WindowOffset\000"
-.LASF1149:
+.LASF1150:
 	.ascii	"ChannelsMaskType\000"
-.LASF1330:
+.LASF1331:
 	.ascii	"linkAdrNbBytesParsed\000"
-.LASF925:
+.LASF926:
 	.ascii	"fPort\000"
-.LASF1227:
+.LASF1228:
 	.ascii	"LoRaMacParamsDefaults\000"
 .LASF24:
 	.ascii	"__SIZEOF_LONG_DOUBLE__ 8\000"
-.LASF1321:
+.LASF1322:
 	.ascii	"dutyCycleTimeOff\000"
-.LASF1074:
+.LASF1075:
 	.ascii	"LORAMAC_REGION_US915\000"
 .LASF390:
 	.ascii	"__PRAGMA_REDEFINE_EXTNAME 1\000"
-.LASF897:
+.LASF898:
 	.ascii	"LORAMAC_EVENT_INFO_STATUS_TX_TIMEOUT\000"
 .LASF171:
 	.ascii	"__DBL_MAX__ ((double)1.1)\000"
 .LASF72:
 	.ascii	"__SCHAR_MAX__ 0x7f\000"
-.LASF672:
+.LASF673:
 	.ascii	"char\000"
 .LASF153:
 	.ascii	"__FLT_MAX_EXP__ 128\000"
-.LASF1121:
+.LASF1122:
 	.ascii	"INIT_TYPE_RESTORE\000"
-.LASF1097:
+.LASF1098:
 	.ascii	"PHY_MAX_PAYLOAD_REPEATER\000"
 .LASF423:
 	.ascii	"__ARM_FEATURE_FMA 1\000"
-.LASF539:
+.LASF540:
 	.ascii	"__RAL_SIZE_T_DEFINED \000"
-.LASF1138:
+.LASF1139:
 	.ascii	"sDatarateParams\000"
 .LASF66:
 	.ascii	"__UINT_FAST64_TYPE__ long long unsigned int\000"
-.LASF623:
+.LASF624:
 	.ascii	"DR_7 7\000"
-.LASF1054:
+.LASF1055:
 	.ascii	"LORAMAC_STATUS_FREQUENCY_INVALID\000"
-.LASF986:
+.LASF987:
 	.ascii	"NbGateways\000"
-.LASF1219:
+.LASF1220:
 	.ascii	"NodeAckRequested\000"
-.LASF519:
+.LASF520:
 	.ascii	"__THREAD __thread\000"
-.LASF1012:
+.LASF1013:
 	.ascii	"MIB_CHANNELS_DEFAULT_DATARATE\000"
-.LASF983:
+.LASF984:
 	.ascii	"sMlmeConfirm\000"
 .LASF32:
 	.ascii	"__FLOAT_WORD_ORDER__ __ORDER_LITTLE_ENDIAN__\000"
@@ -26493,313 +26522,313 @@ LoRaMacMaxEirpTable:
 	.ascii	"__UQQ_IBIT__ 0\000"
 .LASF231:
 	.ascii	"__FLT32X_DENORM_MIN__ 1.1\000"
-.LASF1396:
+.LASF1397:
 	.ascii	"RegionGetPhyParam\000"
-.LASF606:
+.LASF607:
 	.ascii	"__TIMER_H__ \000"
-.LASF882:
+.LASF883:
 	.ascii	"Major\000"
-.LASF1100:
-	.ascii	"PHY_RECEIVE_DELAY1\000"
 .LASF1101:
+	.ascii	"PHY_RECEIVE_DELAY1\000"
+.LASF1102:
 	.ascii	"PHY_RECEIVE_DELAY2\000"
-.LASF1032:
+.LASF1033:
 	.ascii	"ChannelList\000"
-.LASF922:
+.LASF923:
 	.ascii	"MCPS_PROPRIETARY\000"
-.LASF1356:
+.LASF1357:
 	.ascii	"maxRxWindow\000"
-.LASF851:
+.LASF852:
 	.ascii	"FRAME_TYPE_DATA_UNCONFIRMED_DOWN\000"
-.LASF690:
+.LASF691:
 	.ascii	"n_sign_posn\000"
 .LASF437:
 	.ascii	"__SIZEOF_WCHAR_T 4\000"
-.LASF1394:
+.LASF1395:
 	.ascii	"RegionVerify\000"
-.LASF998:
+.LASF999:
 	.ascii	"MIB_APP_SKEY\000"
-.LASF864:
+.LASF865:
 	.ascii	"MOTE_MAC_TX_PARAM_SETUP_ANS\000"
-.LASF1436:
+.LASF1437:
 	.ascii	"timeval\000"
 .LASF182:
 	.ascii	"__LDBL_MAX_EXP__ 1024\000"
-.LASF506:
+.LASF507:
 	.ascii	"UINT16_C(x) (x ##U)\000"
-.LASF484:
+.LASF485:
 	.ascii	"UINT_LEAST64_MAX UINT64_MAX\000"
-.LASF1082:
+.LASF1083:
 	.ascii	"LoRaMacPrimitives_t\000"
-.LASF921:
+.LASF922:
 	.ascii	"MCPS_MULTICAST\000"
-.LASF583:
+.LASF584:
 	.ascii	"BIT_19 0x00080000\000"
-.LASF1412:
+.LASF1413:
 	.ascii	"RegionTxConfig\000"
-.LASF1254:
+.LASF1255:
 	.ascii	"RxWindow2Delay\000"
-.LASF975:
+.LASF976:
 	.ascii	"Timeout\000"
-.LASF472:
+.LASF473:
 	.ascii	"UINTMAX_MAX 18446744073709551615ULL\000"
 .LASF257:
 	.ascii	"__SFRACT_IBIT__ 0\000"
-.LASF730:
+.LASF731:
 	.ascii	"__RAL_c_locale_abbrev_month_names\000"
 .LASF71:
 	.ascii	"__GXX_ABI_VERSION 1011\000"
-.LASF1013:
+.LASF1014:
 	.ascii	"MIB_CHANNELS_DATARATE\000"
-.LASF459:
+.LASF460:
 	.ascii	"INT8_MAX 127\000"
-.LASF905:
+.LASF906:
 	.ascii	"LORAMAC_EVENT_INFO_STATUS_DOWNLINK_TOO_MANY_FRAMES_"
 	.ascii	"LOSS\000"
 .LASF111:
 	.ascii	"__INT_LEAST16_MAX__ 0x7fff\000"
 .LASF453:
 	.ascii	"SWI_DISABLE0 1\000"
-.LASF571:
+.LASF572:
 	.ascii	"BIT_7 0x80\000"
-.LASF791:
+.LASF792:
 	.ascii	"SetMaxPayloadLength\000"
-.LASF523:
+.LASF524:
 	.ascii	"__RAL_PTRDIFF_T int\000"
-.LASF979:
+.LASF980:
 	.ascii	"Join\000"
-.LASF679:
+.LASF680:
 	.ascii	"mon_thousands_sep\000"
 .LASF335:
 	.ascii	"__ULLACCUM_EPSILON__ 0x1P-32ULLK\000"
-.LASF777:
+.LASF778:
 	.ascii	"SetRxConfig\000"
-.LASF978:
+.LASF979:
 	.ascii	"uMlmeParam\000"
-.LASF1213:
+.LASF1214:
 	.ascii	"LoRaMacTxPayloadLen\000"
 .LASF99:
 	.ascii	"__SIG_ATOMIC_WIDTH__ 32\000"
 .LASF70:
 	.ascii	"__has_include_next(STR) __has_include_next__(STR)\000"
-.LASF473:
+.LASF474:
 	.ascii	"INT_LEAST8_MIN INT8_MIN\000"
 .LASF125:
 	.ascii	"__UINT32_C(c) c ## UL\000"
-.LASF770:
+.LASF771:
 	.ascii	"Radio_s\000"
-.LASF911:
+.LASF912:
 	.ascii	"McpsInd\000"
-.LASF1386:
+.LASF1387:
 	.ascii	"appSKey\000"
 .LASF293:
 	.ascii	"__ULLFRACT_MIN__ 0.0ULLR\000"
 .LASF313:
 	.ascii	"__UACCUM_MIN__ 0.0UK\000"
-.LASF1313:
+.LASF1314:
 	.ascii	"fCtrl\000"
-.LASF711:
+.LASF712:
 	.ascii	"__towlower\000"
-.LASF1056:
+.LASF1057:
 	.ascii	"LORAMAC_STATUS_FREQ_AND_DR_INVALID\000"
-.LASF648:
+.LASF649:
 	.ascii	"__LORAMAC_CRYPTO_H__ \000"
-.LASF682:
+.LASF683:
 	.ascii	"negative_sign\000"
 .LASF374:
 	.ascii	"__GNUC_STDC_INLINE__ 1\000"
-.LASF916:
+.LASF917:
 	.ascii	"eLoRaMacFlags_t\000"
-.LASF1069:
+.LASF1070:
 	.ascii	"LORAMAC_REGION_CN779\000"
-.LASF912:
+.LASF913:
 	.ascii	"McpsIndSkip\000"
 .LASF443:
 	.ascii	"CONFIG_GPIO_AS_PINRESET 1\000"
-.LASF1390:
+.LASF1391:
 	.ascii	"PrepareRxDoneAbort\000"
-.LASF456:
+.LASF457:
 	.ascii	"__UTILITIES_H__ \000"
-.LASF813:
+.LASF814:
 	.ascii	"Datarate\000"
-.LASF816:
+.LASF817:
 	.ascii	"eLoRaMacRxSlot\000"
-.LASF691:
+.LASF692:
 	.ascii	"int_p_cs_precedes\000"
 .LASF315:
 	.ascii	"__UACCUM_EPSILON__ 0x1P-16UK\000"
-.LASF1226:
+.LASF1227:
 	.ascii	"LoRaMacParams\000"
-.LASF1360:
+.LASF1361:
 	.ascii	"devClass\000"
-.LASF741:
+.LASF742:
 	.ascii	"decode\000"
 .LASF384:
 	.ascii	"__GCC_ATOMIC_SHORT_LOCK_FREE 2\000"
-.LASF805:
+.LASF806:
 	.ascii	"DrRange_t\000"
 .LASF13:
 	.ascii	"__ATOMIC_ACQ_REL 4\000"
-.LASF1119:
+.LASF1120:
 	.ascii	"eInitType\000"
-.LASF1182:
+.LASF1183:
 	.ascii	"DlChannelReqParams_t\000"
 .LASF301:
 	.ascii	"__USACCUM_FBIT__ 8\000"
-.LASF489:
+.LASF490:
 	.ascii	"INT_FAST8_MAX INT8_MAX\000"
 .LASF388:
 	.ascii	"__GCC_ATOMIC_TEST_AND_SET_TRUEVAL 1\000"
-.LASF627:
+.LASF628:
 	.ascii	"DR_11 11\000"
-.LASF605:
+.LASF606:
 	.ascii	"__bool_true_false_are_defined 1\000"
-.LASF1418:
+.LASF1419:
 	.ascii	"RegionCalcBackOff\000"
 .LASF314:
 	.ascii	"__UACCUM_MAX__ 0XFFFFFFFFP-16UK\000"
-.LASF1172:
+.LASF1173:
 	.ascii	"LinkAdrReqParams_t\000"
-.LASF1072:
+.LASF1073:
 	.ascii	"LORAMAC_REGION_KR920\000"
-.LASF491:
+.LASF492:
 	.ascii	"INT_FAST32_MAX INT32_MAX\000"
-.LASF585:
+.LASF586:
 	.ascii	"BIT_21 0x00200000\000"
 .LASF113:
 	.ascii	"__INT_LEAST16_WIDTH__ 16\000"
 .LASF206:
 	.ascii	"__FLT32_HAS_QUIET_NAN__ 1\000"
-.LASF536:
+.LASF537:
 	.ascii	"__CTYPE_PRINT (__CTYPE_BLANK | __CTYPE_PUNCT | __CT"
 	.ascii	"YPE_UPPER | __CTYPE_LOWER | __CTYPE_DIGIT)\000"
 .LASF191:
 	.ascii	"__LDBL_HAS_INFINITY__ 1\000"
-.LASF879:
+.LASF880:
 	.ascii	"BAT_LEVEL_FULL\000"
-.LASF1415:
+.LASF1416:
 	.ascii	"LoRaMacPayloadEncrypt\000"
 .LASF239:
 	.ascii	"__DEC32_MAX__ 9.999999E96DF\000"
-.LASF1295:
+.LASF1296:
 	.ascii	"LoRaMacQueryTxPossible\000"
-.LASF1209:
+.LASF1210:
 	.ascii	"LoRaMacDeviceClass\000"
-.LASF1092:
+.LASF1093:
 	.ascii	"PHY_DEF_TX_DR\000"
-.LASF629:
+.LASF630:
 	.ascii	"DR_13 13\000"
 .LASF226:
 	.ascii	"__FLT32X_MAX_10_EXP__ 308\000"
 .LASF431:
 	.ascii	"__ARM_ARCH_EXT_IDIV__ 1\000"
-.LASF843:
+.LASF844:
 	.ascii	"NwkSKey\000"
-.LASF764:
+.LASF765:
 	.ascii	"RxDone\000"
 .LASF73:
 	.ascii	"__SHRT_MAX__ 0x7fff\000"
-.LASF1234:
+.LASF1235:
 	.ascii	"LastTxChannel\000"
-.LASF1125:
+.LASF1126:
 	.ascii	"CHANNELS_DEFAULT_MASK\000"
 .LASF227:
 	.ascii	"__FLT32X_DECIMAL_DIG__ 17\000"
-.LASF1228:
+.LASF1229:
 	.ascii	"ChannelsNbRepCounter\000"
-.LASF616:
+.LASF617:
 	.ascii	"DR_0 0\000"
-.LASF1143:
+.LASF1144:
 	.ascii	"sApplyCFListParams\000"
 .LASF120:
 	.ascii	"__UINT_LEAST8_MAX__ 0xff\000"
-.LASF1217:
+.LASF1218:
 	.ascii	"IsLoRaMacNetworkJoined\000"
 .LASF386:
 	.ascii	"__GCC_ATOMIC_LONG_LOCK_FREE 2\000"
-.LASF631:
+.LASF632:
 	.ascii	"DR_15 15\000"
 .LASF167:
 	.ascii	"__DBL_MIN_10_EXP__ (-307)\000"
-.LASF522:
+.LASF523:
 	.ascii	"__RAL_SIZE_MAX 4294967295UL\000"
-.LASF724:
+.LASF725:
 	.ascii	"__RAL_codeset_ascii\000"
 .LASF163:
 	.ascii	"__FP_FAST_FMAF 1\000"
-.LASF600:
+.LASF601:
 	.ascii	"__LORAMAC_H__ \000"
-.LASF537:
+.LASF538:
 	.ascii	"__RAL_WCHAR_T unsigned\000"
-.LASF1083:
+.LASF1084:
 	.ascii	"sLoRaMacCallback\000"
-.LASF960:
+.LASF961:
 	.ascii	"RxSlot\000"
-.LASF621:
+.LASF622:
 	.ascii	"DR_5 5\000"
-.LASF544:
+.LASF545:
 	.ascii	"RAND_MAX 32767\000"
-.LASF582:
+.LASF583:
 	.ascii	"BIT_18 0x00040000\000"
-.LASF718:
+.LASF719:
 	.ascii	"__RAL_locale_t\000"
-.LASF1051:
+.LASF1052:
 	.ascii	"LORAMAC_STATUS_BUSY\000"
-.LASF1327:
+.LASF1328:
 	.ascii	"linkAdrDatarate\000"
 .LASF281:
 	.ascii	"__ULFRACT_FBIT__ 32\000"
 .LASF147:
 	.ascii	"__DEC_EVAL_METHOD__ 2\000"
-.LASF479:
+.LASF480:
 	.ascii	"INT_LEAST32_MAX INT32_MAX\000"
-.LASF646:
+.LASF647:
 	.ascii	"TX_POWER_14 14\000"
-.LASF855:
+.LASF856:
 	.ascii	"FRAME_TYPE_PROPRIETARY\000"
-.LASF1067:
+.LASF1068:
 	.ascii	"LORAMAC_REGION_AU915\000"
-.LASF551:
+.LASF552:
 	.ascii	"LSB_16(a) ((a) & 0x00FF)\000"
-.LASF1187:
+.LASF1188:
 	.ascii	"CalcBackOffParams_t\000"
-.LASF1331:
+.LASF1332:
 	.ascii	"rxParamSetupReq\000"
 .LASF248:
 	.ascii	"__DEC64_SUBNORMAL_MIN__ 0.000000000000001E-383DD\000"
-.LASF760:
+.LASF761:
 	.ascii	"RF_CAD\000"
 .LASF341:
 	.ascii	"__SQ_IBIT__ 0\000"
-.LASF560:
+.LASF561:
 	.ascii	"ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))\000"
 .LASF15:
 	.ascii	"__OPTIMIZE_SIZE__ 1\000"
-.LASF1120:
+.LASF1121:
 	.ascii	"INIT_TYPE_INIT\000"
-.LASF700:
+.LASF701:
 	.ascii	"abbrev_month_names\000"
 .LASF329:
 	.ascii	"__LLACCUM_MAX__ 0X7FFFFFFFFFFFFFFFP-31LLK\000"
-.LASF845:
+.LASF846:
 	.ascii	"DownLinkCounter\000"
 .LASF33:
 	.ascii	"__SIZEOF_POINTER__ 4\000"
-.LASF772:
+.LASF773:
 	.ascii	"GetStatus\000"
-.LASF1043:
+.LASF1044:
 	.ascii	"Param\000"
 .LASF185:
 	.ascii	"__LDBL_DECIMAL_DIG__ 17\000"
 .LASF107:
 	.ascii	"__UINT64_MAX__ 0xffffffffffffffffULL\000"
-.LASF717:
+.LASF718:
 	.ascii	"codeset\000"
-.LASF965:
+.LASF966:
 	.ascii	"MLME_TXCW\000"
-.LASF494:
+.LASF495:
 	.ascii	"UINT_FAST16_MAX UINT32_MAX\000"
-.LASF1131:
+.LASF1132:
 	.ascii	"sGetPhyParams\000"
 .LASF108:
 	.ascii	"__INT_LEAST8_MAX__ 0x7f\000"
@@ -26811,141 +26840,141 @@ LoRaMacMaxEirpTable:
 	.ascii	"__ULACCUM_MAX__ 0XFFFFFFFFFFFFFFFFP-32ULK\000"
 .LASF11:
 	.ascii	"__ATOMIC_ACQUIRE 2\000"
-.LASF796:
+.LASF797:
 	.ascii	"SetRxDutyCycle\000"
-.LASF1066:
+.LASF1067:
 	.ascii	"LORAMAC_REGION_AS923\000"
-.LASF1341:
+.LASF1342:
 	.ascii	"cmdBufIn\000"
 .LASF399:
 	.ascii	"__ARM_FEATURE_QRDMX\000"
-.LASF789:
+.LASF790:
 	.ascii	"WriteBuffer\000"
 .LASF429:
 	.ascii	"__ARM_PCS_VFP 1\000"
-.LASF853:
+.LASF854:
 	.ascii	"FRAME_TYPE_DATA_CONFIRMED_DOWN\000"
-.LASF985:
+.LASF986:
 	.ascii	"DemodMargin\000"
-.LASF1033:
+.LASF1034:
 	.ascii	"Rx2DefaultChannel\000"
-.LASF1147:
+.LASF1148:
 	.ascii	"sChanMaskSetParams\000"
 .LASF372:
 	.ascii	"__REGISTER_PREFIX__ \000"
-.LASF997:
+.LASF998:
 	.ascii	"MIB_NWK_SKEY\000"
-.LASF509:
+.LASF510:
 	.ascii	"INT64_C(x) (x ##LL)\000"
-.LASF493:
+.LASF494:
 	.ascii	"UINT_FAST8_MAX UINT8_MAX\000"
 .LASF124:
 	.ascii	"__UINT_LEAST32_MAX__ 0xffffffffUL\000"
 .LASF351:
 	.ascii	"__USQ_IBIT__ 0\000"
-.LASF1246:
+.LASF1247:
 	.ascii	"MacStateCheckTimer\000"
-.LASF1413:
+.LASF1414:
 	.ascii	"memcpyr\000"
-.LASF572:
+.LASF573:
 	.ascii	"BIT_8 0x0100\000"
-.LASF1167:
+.LASF1168:
 	.ascii	"sLinkAdrReqParams\000"
 .LASF119:
 	.ascii	"__INT_LEAST64_WIDTH__ 64\000"
 .LASF161:
 	.ascii	"__FLT_HAS_INFINITY__ 1\000"
-.LASF512:
+.LASF513:
 	.ascii	"UINTMAX_C(x) (x ##ULL)\000"
 .LASF100:
 	.ascii	"__INT8_MAX__ 0x7f\000"
 .LASF339:
 	.ascii	"__HQ_IBIT__ 0\000"
-.LASF1064:
+.LASF1065:
 	.ascii	"LoRaMacStatus_t\000"
-.LASF558:
+.LASF559:
 	.ascii	"STRINGIFY_(val) #val\000"
-.LASF1325:
+.LASF1326:
 	.ascii	"commandsSize\000"
-.LASF670:
+.LASF671:
 	.ascii	"__wchar\000"
-.LASF1248:
+.LASF1249:
 	.ascii	"LoRaMacCallbacks\000"
-.LASF639:
+.LASF640:
 	.ascii	"TX_POWER_7 7\000"
 .LASF359:
 	.ascii	"__SA_IBIT__ 16\000"
 .LASF165:
 	.ascii	"__DBL_DIG__ 15\000"
-.LASF823:
+.LASF824:
 	.ascii	"ChannelsTxPower\000"
-.LASF579:
+.LASF580:
 	.ascii	"BIT_15 0x8000\000"
-.LASF574:
+.LASF575:
 	.ascii	"BIT_10 0x0400\000"
-.LASF744:
+.LASF745:
 	.ascii	"__RAL_error_decoder_head\000"
 .LASF418:
 	.ascii	"__ARM_FP16_FORMAT_IEEE\000"
-.LASF773:
+.LASF774:
 	.ascii	"SetModem\000"
-.LASF957:
+.LASF958:
 	.ascii	"Buffer\000"
-.LASF705:
+.LASF706:
 	.ascii	"__RAL_locale_data_t\000"
-.LASF767:
+.LASF768:
 	.ascii	"FhssChangeChannel\000"
-.LASF928:
+.LASF929:
 	.ascii	"McpsReqUnconfirmed_t\000"
-.LASF1344:
+.LASF1345:
 	.ascii	"cmdCount\000"
-.LASF1005:
+.LASF1006:
 	.ascii	"MIB_CHANNELS_DEFAULT_MASK\000"
-.LASF909:
+.LASF910:
 	.ascii	"sMacFlagBits\000"
-.LASF1275:
+.LASF1276:
 	.ascii	"status\000"
-.LASF886:
+.LASF887:
 	.ascii	"Bits\000"
-.LASF729:
+.LASF730:
 	.ascii	"__RAL_c_locale_month_names\000"
 .LASF146:
 	.ascii	"__FLT_EVAL_METHOD_TS_18661_3__ 0\000"
-.LASF1375:
+.LASF1376:
 	.ascii	"address\000"
-.LASF1006:
+.LASF1007:
 	.ascii	"MIB_CHANNELS_NB_REP\000"
 .LASF83:
 	.ascii	"__SCHAR_WIDTH__ 8\000"
-.LASF1078:
+.LASF1079:
 	.ascii	"MacMcpsConfirm\000"
-.LASF1266:
+.LASF1267:
 	.ascii	"channel\000"
-.LASF923:
+.LASF924:
 	.ascii	"Mcps_t\000"
 .LASF327:
 	.ascii	"__LLACCUM_IBIT__ 32\000"
-.LASF889:
+.LASF890:
 	.ascii	"FOptsLen\000"
 .LASF270:
 	.ascii	"__FRACT_EPSILON__ 0x1P-15R\000"
-.LASF1102:
-	.ascii	"PHY_JOIN_ACCEPT_DELAY1\000"
 .LASF1103:
+	.ascii	"PHY_JOIN_ACCEPT_DELAY1\000"
+.LASF1104:
 	.ascii	"PHY_JOIN_ACCEPT_DELAY2\000"
 .LASF102:
 	.ascii	"__INT32_MAX__ 0x7fffffffL\000"
-.LASF955:
+.LASF956:
 	.ascii	"RxDatarate\000"
 .LASF435:
 	.ascii	"__GXX_TYPEINFO_EQUALITY_INLINE 0\000"
-.LASF510:
+.LASF511:
 	.ascii	"UINT64_C(x) (x ##ULL)\000"
-.LASF876:
+.LASF877:
 	.ascii	"eLoRaMacBatteryLevel\000"
 .LASF175:
 	.ascii	"__DBL_HAS_DENORM__ 1\000"
-.LASF1001:
+.LASF1002:
 	.ascii	"MIB_CHANNELS\000"
 .LASF42:
 	.ascii	"__SIG_ATOMIC_TYPE__ int\000"
@@ -26953,9 +26982,9 @@ LoRaMacMaxEirpTable:
 	.ascii	"__APCS_32__ 1\000"
 .LASF454:
 	.ascii	"REGION_US915 1\000"
-.LASF545:
+.LASF546:
 	.ascii	"MB_CUR_MAX __RAL_mb_max(&__RAL_global_locale)\000"
-.LASF1116:
+.LASF1117:
 	.ascii	"PHY_DEF_ANTENNA_GAIN\000"
 .LASF203:
 	.ascii	"__FLT32_DENORM_MIN__ 1.1\000"
@@ -26964,85 +26993,85 @@ LoRaMacMaxEirpTable:
 	.ascii	"6144DL\000"
 .LASF142:
 	.ascii	"__UINTPTR_MAX__ 0xffffffffU\000"
-.LASF941:
+.LASF942:
 	.ascii	"sMcpsConfirm\000"
 .LASF277:
 	.ascii	"__LFRACT_IBIT__ 0\000"
-.LASF591:
+.LASF592:
 	.ascii	"BIT_27 0x08000000\000"
-.LASF933:
+.LASF934:
 	.ascii	"McpsReqProprietary_t\000"
-.LASF1354:
+.LASF1355:
 	.ascii	"RxWindowSetup\000"
-.LASF1324:
+.LASF1325:
 	.ascii	"macIndex\000"
-.LASF622:
+.LASF623:
 	.ascii	"DR_6 6\000"
 .LASF261:
 	.ascii	"__USFRACT_FBIT__ 8\000"
-.LASF1210:
+.LASF1211:
 	.ascii	"PublicNetwork\000"
-.LASF1272:
+.LASF1273:
 	.ascii	"mcpsRequest\000"
-.LASF1002:
+.LASF1003:
 	.ascii	"MIB_RX2_CHANNEL\000"
-.LASF1300:
+.LASF1301:
 	.ascii	"fOptLen\000"
-.LASF701:
+.LASF702:
 	.ascii	"am_pm_indicator\000"
-.LASF996:
+.LASF997:
 	.ascii	"MIB_DEV_ADDR\000"
-.LASF749:
+.LASF750:
 	.ascii	"Callback\000"
-.LASF620:
+.LASF621:
 	.ascii	"DR_4 4\000"
-.LASF686:
+.LASF687:
 	.ascii	"p_sep_by_space\000"
 .LASF183:
 	.ascii	"__LDBL_MAX_10_EXP__ 308\000"
-.LASF1052:
+.LASF1053:
 	.ascii	"LORAMAC_STATUS_SERVICE_UNKNOWN\000"
-.LASF1133:
+.LASF1134:
 	.ascii	"GetPhyParams_t\000"
-.LASF1431:
+.LASF1432:
 	.ascii	"LoRaMacPayloadDecrypt\000"
 .LASF106:
 	.ascii	"__UINT32_MAX__ 0xffffffffUL\000"
-.LASF952:
+.LASF953:
 	.ascii	"McpsIndication\000"
-.LASF1315:
+.LASF1316:
 	.ascii	"payload\000"
 .LASF53:
 	.ascii	"__INT_LEAST32_TYPE__ long int\000"
-.LASF1352:
+.LASF1353:
 	.ascii	"payloadSize\000"
-.LASF1204:
+.LASF1205:
 	.ascii	"LoRaMacAppSKey\000"
-.LASF1407:
+.LASF1408:
 	.ascii	"TimerSetValue\000"
 .LASF16:
 	.ascii	"__OPTIMIZE__ 1\000"
-.LASF1239:
+.LASF1240:
 	.ascii	"LORAMAC_RX\000"
-.LASF807:
+.LASF808:
 	.ascii	"Frequency\000"
-.LASF1280:
+.LASF1281:
 	.ascii	"LoRaMacMlmeRequest\000"
-.LASF1319:
+.LASF1320:
 	.ascii	"calcBackOff\000"
-.LASF1241:
+.LASF1242:
 	.ascii	"LORAMAC_ACK_RETRY\000"
-.LASF476:
+.LASF477:
 	.ascii	"INT_LEAST64_MIN INT64_MIN\000"
 .LASF318:
 	.ascii	"__LACCUM_MIN__ (-0X1P31LK-0X1P31LK)\000"
 .LASF292:
 	.ascii	"__ULLFRACT_IBIT__ 0\000"
-.LASF1293:
+.LASF1294:
 	.ascii	"LoRaMacMibGetRequestConfirm\000"
 .LASF396:
 	.ascii	"__ARM_FEATURE_SAT 1\000"
-.LASF529:
+.LASF530:
 	.ascii	"__CTYPE_PUNCT 0x10\000"
 .LASF193:
 	.ascii	"__FLT32_MANT_DIG__ 24\000"
@@ -27052,33 +27081,33 @@ LoRaMacMaxEirpTable:
 	.ascii	"__WINT_MIN__ 0U\000"
 .LASF411:
 	.ascii	"__thumb__ 1\000"
-.LASF1257:
+.LASF1258:
 	.ascii	"AckTimeoutTimer\000"
-.LASF1039:
+.LASF1040:
 	.ascii	"MulticastList\000"
-.LASF1037:
+.LASF1038:
 	.ascii	"ChannelsDefaultDatarate\000"
-.LASF694:
+.LASF695:
 	.ascii	"int_n_sep_by_space\000"
 .LASF367:
 	.ascii	"__USA_IBIT__ 16\000"
-.LASF1077:
+.LASF1078:
 	.ascii	"sLoRaMacPrimitives\000"
-.LASF461:
+.LASF462:
 	.ascii	"UINT16_MAX 65535\000"
-.LASF737:
+.LASF738:
 	.ascii	"__user_set_time_of_day\000"
-.LASF1137:
+.LASF1138:
 	.ascii	"SetBandTxDoneParams_t\000"
-.LASF1416:
+.LASF1417:
 	.ascii	"LoRaMacComputeMic\000"
-.LASF943:
+.LASF944:
 	.ascii	"Status\000"
-.LASF786:
+.LASF787:
 	.ascii	"Rssi\000"
-.LASF625:
+.LASF626:
 	.ascii	"DR_9 9\000"
-.LASF1238:
+.LASF1239:
 	.ascii	"LORAMAC_TX_RUNNING\000"
 .LASF104:
 	.ascii	"__UINT8_MAX__ 0xff\000"
@@ -27086,63 +27115,63 @@ LoRaMacMaxEirpTable:
 	.ascii	"__WCHAR_MIN__ 0U\000"
 .LASF452:
 	.ascii	"SOFTDEVICE_PRESENT 1\000"
-.LASF1271:
+.LASF1272:
 	.ascii	"LoRaMacTestRxWindowsOn\000"
-.LASF1171:
+.LASF1172:
 	.ascii	"CurrentNbRep\000"
 .LASF201:
 	.ascii	"__FLT32_MIN__ 1.1\000"
-.LASF1245:
+.LASF1246:
 	.ascii	"LoRaMacState\000"
 .LASF323:
 	.ascii	"__ULACCUM_MIN__ 0.0ULK\000"
-.LASF1159:
+.LASF1160:
 	.ascii	"WindowTimeout\000"
 .LASF265:
 	.ascii	"__USFRACT_EPSILON__ 0x1P-8UHR\000"
-.LASF1370:
+.LASF1371:
 	.ascii	"OnRadioRxError\000"
 .LASF409:
 	.ascii	"__ARM_ARCH 7\000"
 .LASF280:
 	.ascii	"__LFRACT_EPSILON__ 0x1P-31LR\000"
-.LASF1170:
+.LASF1171:
 	.ascii	"CurrentTxPower\000"
-.LASF667:
+.LASF668:
 	.ascii	"long long int\000"
-.LASF719:
+.LASF720:
 	.ascii	"__mbstate_s\000"
-.LASF584:
+.LASF585:
 	.ascii	"BIT_20 0x00100000\000"
 .LASF86:
 	.ascii	"__LONG_WIDTH__ 32\000"
-.LASF1229:
+.LASF1230:
 	.ascii	"MaxDCycle\000"
-.LASF918:
+.LASF919:
 	.ascii	"eMcps\000"
-.LASF838:
+.LASF839:
 	.ascii	"AntennaGain\000"
 .LASF192:
 	.ascii	"__LDBL_HAS_QUIET_NAN__ 1\000"
 .LASF87:
 	.ascii	"__LONG_LONG_WIDTH__ 64\000"
-.LASF1026:
+.LASF1027:
 	.ascii	"IsNetworkJoined\000"
-.LASF1173:
+.LASF1174:
 	.ascii	"sRxParamSetupReqParams\000"
-.LASF908:
+.LASF909:
 	.ascii	"LoRaMacEventInfoStatus_t\000"
-.LASF1181:
+.LASF1182:
 	.ascii	"sDlChannelReqParams\000"
-.LASF1080:
+.LASF1081:
 	.ascii	"MacMlmeConfirm\000"
 .LASF61:
 	.ascii	"__INT_FAST32_TYPE__ int\000"
-.LASF587:
+.LASF588:
 	.ascii	"BIT_23 0x00800000\000"
-.LASF563:
+.LASF564:
 	.ascii	"IS_SET(W,B) (((W) >> (B)) & 1)\000"
-.LASF1157:
+.LASF1158:
 	.ascii	"Bandwidth\000"
 .LASF357:
 	.ascii	"__HA_IBIT__ 8\000"
@@ -27152,77 +27181,77 @@ LoRaMacMaxEirpTable:
 	.ascii	"__DEC32_MIN_EXP__ (-94)\000"
 .LASF438:
 	.ascii	"__SES_ARM 1\000"
-.LASF1365:
+.LASF1366:
 	.ascii	"OnRxWindow2TimerEvent\000"
 .LASF441:
 	.ascii	"NDEBUG 1\000"
 .LASF123:
 	.ascii	"__UINT16_C(c) c\000"
-.LASF953:
+.LASF954:
 	.ascii	"Multicast\000"
-.LASF1417:
+.LASF1418:
 	.ascii	"TimerGetElapsedTime\000"
 .LASF377:
 	.ascii	"__GCC_HAVE_SYNC_COMPARE_AND_SWAP_2 1\000"
-.LASF1399:
+.LASF1400:
 	.ascii	"RegionChannelAdd\000"
-.LASF797:
+.LASF798:
 	.ascii	"Radio\000"
-.LASF937:
+.LASF938:
 	.ascii	"Proprietary\000"
-.LASF564:
+.LASF565:
 	.ascii	"BIT_0 0x01\000"
-.LASF1426:
+.LASF1427:
 	.ascii	"TimerStop\000"
-.LASF888:
+.LASF889:
 	.ascii	"sCtrlBits\000"
-.LASF810:
+.LASF811:
 	.ascii	"Band\000"
 .LASF151:
 	.ascii	"__FLT_MIN_EXP__ (-125)\000"
-.LASF1184:
+.LASF1185:
 	.ascii	"LastTxIsJoinRequest\000"
 .LASF46:
 	.ascii	"__INT64_TYPE__ long long int\000"
 .LASF187:
 	.ascii	"__LDBL_MIN__ 1.1\000"
-.LASF1094:
+.LASF1095:
 	.ascii	"PHY_TX_POWER\000"
 .LASF391:
 	.ascii	"__SIZEOF_WCHAR_T__ 4\000"
-.LASF790:
+.LASF791:
 	.ascii	"ReadBuffer\000"
-.LASF721:
+.LASF722:
 	.ascii	"__category\000"
-.LASF1392:
+.LASF1393:
 	.ascii	"txDone\000"
 .LASF420:
 	.ascii	"__ARM_FP16_ARGS\000"
-.LASF1028:
+.LASF1029:
 	.ascii	"NetID\000"
 .LASF150:
 	.ascii	"__FLT_DIG__ 6\000"
 .LASF148:
 	.ascii	"__FLT_RADIX__ 2\000"
-.LASF969:
+.LASF970:
 	.ascii	"sMlmeReqJoin\000"
-.LASF1278:
+.LASF1279:
 	.ascii	"readyToSend\000"
 .LASF31:
 	.ascii	"__BYTE_ORDER__ __ORDER_LITTLE_ENDIAN__\000"
-.LASF569:
+.LASF570:
 	.ascii	"BIT_5 0x20\000"
-.LASF1053:
+.LASF1054:
 	.ascii	"LORAMAC_STATUS_PARAMETER_INVALID\000"
 .LASF274:
 	.ascii	"__UFRACT_MAX__ 0XFFFFP-16UR\000"
 .LASF57:
 	.ascii	"__UINT_LEAST32_TYPE__ long unsigned int\000"
-.LASF628:
+.LASF629:
 	.ascii	"DR_12 12\000"
-.LASF1333:
+.LASF1334:
 	.ascii	"newChannelReq\000"
-.LASF1421:
+.LASF1422:
 	.ascii	"RegionLinkAdrReq\000"
 .LASF364:
 	.ascii	"__UHA_FBIT__ 8\000"
@@ -27232,39 +27261,39 @@ LoRaMacMaxEirpTable:
 	.ascii	"__LDBL_DENORM_MIN__ 1.1\000"
 .LASF322:
 	.ascii	"__ULACCUM_IBIT__ 32\000"
-.LASF866:
+.LASF867:
 	.ascii	"eLoRaMacSrvCmd\000"
-.LASF1307:
+.LASF1308:
 	.ascii	"frequency\000"
-.LASF704:
+.LASF705:
 	.ascii	"date_time_format\000"
 .LASF375:
 	.ascii	"__CHAR_UNSIGNED__ 1\000"
-.LASF930:
+.LASF931:
 	.ascii	"NbTrials\000"
 .LASF398:
 	.ascii	"__ARM_FEATURE_UNALIGNED 1\000"
-.LASF1306:
+.LASF1307:
 	.ascii	"timeout\000"
-.LASF839:
+.LASF840:
 	.ascii	"float\000"
-.LASF977:
+.LASF978:
 	.ascii	"MlmeReqTxCw_t\000"
-.LASF650:
+.LASF651:
 	.ascii	"LORAMAC_PHY_MAXPAYLOAD 255\000"
-.LASF499:
+.LASF500:
 	.ascii	"SIZE_MAX INT32_MAX\000"
 .LASF373:
 	.ascii	"__USER_LABEL_PREFIX__ \000"
-.LASF1348:
+.LASF1349:
 	.ascii	"ValidatePayloadLength\000"
-.LASF926:
+.LASF927:
 	.ascii	"fBuffer\000"
-.LASF1437:
+.LASF1438:
 	.ascii	"IsStickyMacCommandPending\000"
 .LASF12:
 	.ascii	"__ATOMIC_RELEASE 3\000"
-.LASF881:
+.LASF882:
 	.ascii	"sHdrBits\000"
 .LASF352:
 	.ascii	"__UDQ_FBIT__ 64\000"
@@ -27272,261 +27301,261 @@ LoRaMacMaxEirpTable:
 	.ascii	"__FLT_DENORM_MIN__ 1.1\000"
 .LASF276:
 	.ascii	"__LFRACT_FBIT__ 31\000"
-.LASF592:
+.LASF593:
 	.ascii	"BIT_28 0x10000000\000"
-.LASF1108:
+.LASF1109:
 	.ascii	"PHY_DEF_RX2_DR\000"
 .LASF81:
 	.ascii	"__PTRDIFF_MAX__ 0x7fffffff\000"
-.LASF890:
+.LASF891:
 	.ascii	"FPending\000"
-.LASF642:
+.LASF643:
 	.ascii	"TX_POWER_10 10\000"
-.LASF1197:
+.LASF1198:
 	.ascii	"ContinuousWaveParams_t\000"
-.LASF1221:
+.LASF1222:
 	.ascii	"MacCommandsInNextTx\000"
-.LASF1389:
+.LASF1390:
 	.ascii	"downLinkCounterTmp\000"
-.LASF466:
+.LASF467:
 	.ascii	"INT32_MIN (-2147483647L-1)\000"
-.LASF835:
+.LASF836:
 	.ascii	"UplinkDwellTime\000"
 .LASF228:
 	.ascii	"__FLT32X_MAX__ 1.1\000"
-.LASF617:
+.LASF618:
 	.ascii	"DR_1 1\000"
-.LASF1404:
+.LASF1405:
 	.ascii	"RegionIsActive\000"
-.LASF666:
+.LASF667:
 	.ascii	"unsigned int\000"
-.LASF1419:
+.LASF1420:
 	.ascii	"RegionNextChannel\000"
 .LASF406:
 	.ascii	"__ARM_SIZEOF_WCHAR_T 4\000"
-.LASF1073:
+.LASF1074:
 	.ascii	"LORAMAC_REGION_IN865\000"
-.LASF1376:
+.LASF1377:
 	.ascii	"appPayloadStartIndex\000"
-.LASF485:
+.LASF486:
 	.ascii	"INT_FAST8_MIN INT8_MIN\000"
-.LASF1169:
+.LASF1170:
 	.ascii	"CurrentDatarate\000"
-.LASF1235:
+.LASF1236:
 	.ascii	"LoRaMacInitializationTime\000"
-.LASF756:
+.LASF757:
 	.ascii	"RadioModems_t\000"
-.LASF981:
+.LASF982:
 	.ascii	"sMlmeReq\000"
-.LASF1004:
+.LASF1005:
 	.ascii	"MIB_CHANNELS_MASK\000"
-.LASF1329:
+.LASF1330:
 	.ascii	"linkAdrNbRep\000"
 .LASF428:
 	.ascii	"__ARM_ARCH_7EM__ 1\000"
-.LASF594:
+.LASF595:
 	.ascii	"BIT_30 0x40000000\000"
 .LASF368:
 	.ascii	"__UDA_FBIT__ 32\000"
-.LASF1085:
+.LASF1086:
 	.ascii	"LoRaMacCallback_t\000"
-.LASF1141:
+.LASF1142:
 	.ascii	"DatarateParams\000"
 .LASF39:
 	.ascii	"__UINTMAX_TYPE__ long long unsigned int\000"
-.LASF556:
+.LASF557:
 	.ascii	"CONCAT_3(p1,p2,p3) CONCAT_3_(p1, p2, p3)\000"
-.LASF689:
+.LASF690:
 	.ascii	"p_sign_posn\000"
-.LASF825:
+.LASF826:
 	.ascii	"SystemMaxRxError\000"
-.LASF1203:
+.LASF1204:
 	.ascii	"LoRaMacNwkSKey\000"
 .LASF26:
 	.ascii	"__CHAR_BIT__ 8\000"
-.LASF1218:
+.LASF1219:
 	.ascii	"AdrCtrlOn\000"
 .LASF145:
 	.ascii	"__FLT_EVAL_METHOD__ 0\000"
-.LASF795:
+.LASF796:
 	.ascii	"RxBoosted\000"
-.LASF1206:
+.LASF1207:
 	.ascii	"LoRaMacNetID\000"
-.LASF1048:
+.LASF1049:
 	.ascii	"LoRaMacTxInfo_t\000"
 .LASF129:
 	.ascii	"__INT_FAST8_WIDTH__ 32\000"
 .LASF2:
 	.ascii	"__STDC_UTF_16__ 1\000"
-.LASF769:
+.LASF770:
 	.ascii	"RadioEvents_t\000"
-.LASF1398:
+.LASF1399:
 	.ascii	"RegionChannelsRemove\000"
-.LASF1261:
+.LASF1262:
 	.ascii	"McpsConfirm\000"
 .LASF346:
 	.ascii	"__UQQ_FBIT__ 8\000"
-.LASF1317:
+.LASF1318:
 	.ascii	"OpenContinuousRx2Window\000"
 .LASF37:
 	.ascii	"__WINT_TYPE__ unsigned int\000"
-.LASF1193:
+.LASF1194:
 	.ascii	"ChannelAddParams_t\000"
 .LASF243:
 	.ascii	"__DEC64_MIN_EXP__ (-382)\000"
 .LASF143:
 	.ascii	"__GCC_IEC_559 0\000"
-.LASF762:
+.LASF763:
 	.ascii	"TxDone\000"
-.LASF988:
+.LASF989:
 	.ascii	"sMlmeIndication\000"
-.LASF1104:
+.LASF1105:
 	.ascii	"PHY_MAX_FCNT_GAP\000"
-.LASF738:
+.LASF739:
 	.ascii	"__user_get_time_of_day\000"
 .LASF0:
 	.ascii	"__STDC__ 1\000"
 .LASF439:
 	.ascii	"__ARM_ARCH_FPV4_SP_D16__ 1\000"
-.LASF870:
+.LASF871:
 	.ascii	"SRV_MAC_RX_PARAM_SETUP_REQ\000"
-.LASF1081:
+.LASF1082:
 	.ascii	"MacMlmeIndication\000"
-.LASF1387:
+.LASF1388:
 	.ascii	"multicast\000"
-.LASF1123:
+.LASF1124:
 	.ascii	"eChannelsMask\000"
 .LASF47:
 	.ascii	"__UINT8_TYPE__ unsigned char\000"
 .LASF172:
 	.ascii	"__DBL_MIN__ ((double)1.1)\000"
-.LASF859:
+.LASF860:
 	.ascii	"MOTE_MAC_DUTY_CYCLE_ANS\000"
-.LASF826:
+.LASF827:
 	.ascii	"MinRxSymbols\000"
 .LASF434:
 	.ascii	"__ARM_FEATURE_COPROC 15\000"
 .LASF117:
 	.ascii	"__INT_LEAST64_MAX__ 0x7fffffffffffffffLL\000"
-.LASF976:
+.LASF977:
 	.ascii	"Power\000"
-.LASF1312:
+.LASF1313:
 	.ascii	"PrepareFrame\000"
 .LASF84:
 	.ascii	"__SHRT_WIDTH__ 16\000"
 .LASF30:
 	.ascii	"__ORDER_PDP_ENDIAN__ 3412\000"
-.LASF891:
+.LASF892:
 	.ascii	"AdrAckReq\000"
 .LASF249:
 	.ascii	"__DEC128_MANT_DIG__ 34\000"
 .LASF173:
 	.ascii	"__DBL_EPSILON__ ((double)1.1)\000"
-.LASF939:
+.LASF940:
 	.ascii	"Type\000"
-.LASF725:
+.LASF726:
 	.ascii	"__RAL_codeset_utf8\000"
 .LASF366:
 	.ascii	"__USA_FBIT__ 16\000"
-.LASF723:
+.LASF724:
 	.ascii	"__RAL_c_locale\000"
-.LASF1088:
+.LASF1089:
 	.ascii	"PHY_MIN_TX_DR\000"
-.LASF771:
+.LASF772:
 	.ascii	"Init\000"
-.LASF968:
+.LASF969:
 	.ascii	"Mlme_t\000"
-.LASF1281:
+.LASF1282:
 	.ascii	"mlmeRequest\000"
-.LASF1276:
+.LASF1277:
 	.ascii	"macHdr\000"
 .LASF162:
 	.ascii	"__FLT_HAS_QUIET_NAN__ 1\000"
 .LASF380:
 	.ascii	"__GCC_ATOMIC_CHAR_LOCK_FREE 2\000"
-.LASF1070:
+.LASF1071:
 	.ascii	"LORAMAC_REGION_EU433\000"
-.LASF1438:
+.LASF1439:
 	.ascii	"OnRxWindow1TimerEvent\000"
-.LASF794:
+.LASF795:
 	.ascii	"IrqProcess\000"
-.LASF1286:
+.LASF1287:
 	.ascii	"channelRemove\000"
-.LASF1339:
+.LASF1340:
 	.ascii	"IsFPortAllowed\000"
-.LASF673:
+.LASF674:
 	.ascii	"decimal_point\000"
 .LASF405:
 	.ascii	"__ARM_SIZEOF_MINIMAL_ENUM 1\000"
-.LASF951:
+.LASF952:
 	.ascii	"sMcpsIndication\000"
-.LASF1397:
+.LASF1398:
 	.ascii	"RegionAlternateDr\000"
-.LASF834:
+.LASF835:
 	.ascii	"Rx2Channel\000"
-.LASF1349:
+.LASF1350:
 	.ascii	"lenN\000"
-.LASF578:
+.LASF579:
 	.ascii	"BIT_14 0x4000\000"
-.LASF517:
+.LASF518:
 	.ascii	"__stdlib_H \000"
 .LASF43:
 	.ascii	"__INT8_TYPE__ signed char\000"
-.LASF1132:
+.LASF1133:
 	.ascii	"Attribute\000"
-.LASF1284:
+.LASF1285:
 	.ascii	"LoRaMacMulticastChannelLink\000"
 .LASF196:
 	.ascii	"__FLT32_MIN_10_EXP__ (-37)\000"
-.LASF1214:
+.LASF1215:
 	.ascii	"LoRaMacRxPayload\000"
-.LASF1130:
+.LASF1131:
 	.ascii	"PhyParam_t\000"
 .LASF419:
 	.ascii	"__ARM_FP16_FORMAT_ALTERNATIVE\000"
-.LASF1338:
+.LASF1339:
 	.ascii	"dlChannelReq\000"
-.LASF527:
+.LASF528:
 	.ascii	"__CTYPE_DIGIT 0x04\000"
 .LASF235:
 	.ascii	"__DEC32_MANT_DIG__ 7\000"
-.LASF1380:
+.LASF1381:
 	.ascii	"sequenceCounter\000"
 .LASF360:
 	.ascii	"__DA_FBIT__ 31\000"
-.LASF588:
+.LASF589:
 	.ascii	"BIT_24 0x01000000\000"
-.LASF1269:
+.LASF1270:
 	.ascii	"LoRaMacTestSetMic\000"
 .LASF27:
 	.ascii	"__BIGGEST_ALIGNMENT__ 8\000"
-.LASF1282:
+.LASF1283:
 	.ascii	"LoRaMacMulticastChannelUnlink\000"
-.LASF1176:
+.LASF1177:
 	.ascii	"NewChannel\000"
-.LASF1260:
+.LASF1261:
 	.ascii	"AckTimeoutRetry\000"
-.LASF872:
+.LASF873:
 	.ascii	"SRV_MAC_NEW_CHANNEL_REQ\000"
 .LASF363:
 	.ascii	"__TA_IBIT__ 64\000"
-.LASF1411:
+.LASF1412:
 	.ascii	"RegionSetContinuousWave\000"
 .LASF430:
 	.ascii	"__ARM_EABI__ 1\000"
-.LASF1112:
+.LASF1113:
 	.ascii	"PHY_CHANNELS\000"
 .LASF237:
 	.ascii	"__DEC32_MAX_EXP__ 97\000"
-.LASF1117:
+.LASF1118:
 	.ascii	"PHY_NEXT_LOWER_TX_DR\000"
-.LASF995:
+.LASF996:
 	.ascii	"MIB_NET_ID\000"
-.LASF849:
+.LASF850:
 	.ascii	"FRAME_TYPE_JOIN_ACCEPT\000"
-.LASF1355:
+.LASF1356:
 	.ascii	"rxContinuous\000"
-.LASF1142:
+.LASF1143:
 	.ascii	"VerifyParams_t\000"
 .LASF414:
 	.ascii	"__ARM_ARCH_ISA_THUMB 2\000"
@@ -27534,191 +27563,191 @@ LoRaMacMaxEirpTable:
 	.ascii	"__LONG_LONG_MAX__ 0x7fffffffffffffffLL\000"
 .LASF225:
 	.ascii	"__FLT32X_MAX_EXP__ 1024\000"
-.LASF954:
+.LASF955:
 	.ascii	"Port\000"
 .LASF89:
 	.ascii	"__WINT_WIDTH__ 32\000"
-.LASF1351:
+.LASF1352:
 	.ascii	"maxN\000"
-.LASF1107:
+.LASF1108:
 	.ascii	"PHY_DEF_RX2_FREQUENCY\000"
-.LASF1383:
+.LASF1384:
 	.ascii	"downLinkCounter\000"
-.LASF844:
+.LASF845:
 	.ascii	"AppSKey\000"
-.LASF626:
+.LASF627:
 	.ascii	"DR_10 10\000"
-.LASF1369:
+.LASF1370:
 	.ascii	"OnRadioRxTimeout\000"
-.LASF934:
+.LASF935:
 	.ascii	"uMcpsParam\000"
-.LASF1188:
+.LASF1189:
 	.ascii	"sNextChanParams\000"
 .LASF272:
 	.ascii	"__UFRACT_IBIT__ 0\000"
-.LASF1008:
-	.ascii	"MIB_RECEIVE_DELAY_1\000"
 .LASF1009:
+	.ascii	"MIB_RECEIVE_DELAY_1\000"
+.LASF1010:
 	.ascii	"MIB_RECEIVE_DELAY_2\000"
-.LASF759:
+.LASF760:
 	.ascii	"RF_TX_RUNNING\000"
 .LASF109:
 	.ascii	"__INT8_C(c) c\000"
 .LASF29:
 	.ascii	"__ORDER_BIG_ENDIAN__ 4321\000"
-.LASF528:
+.LASF529:
 	.ascii	"__CTYPE_SPACE 0x08\000"
-.LASF885:
+.LASF886:
 	.ascii	"uLoRaMacHeader\000"
 .LASF262:
 	.ascii	"__USFRACT_IBIT__ 0\000"
-.LASF1290:
+.LASF1291:
 	.ascii	"LoRaMacMibSetRequestConfirm\000"
-.LASF538:
+.LASF539:
 	.ascii	"__MAX_CATEGORY 5\000"
 .LASF166:
 	.ascii	"__DBL_MIN_EXP__ (-1021)\000"
-.LASF920:
+.LASF921:
 	.ascii	"MCPS_CONFIRMED\000"
 .LASF190:
 	.ascii	"__LDBL_HAS_DENORM__ 1\000"
-.LASF1060:
+.LASF1061:
 	.ascii	"LORAMAC_STATUS_REGION_NOT_SUPPORTED\000"
-.LASF1414:
+.LASF1415:
 	.ascii	"LoRaMacJoinComputeMic\000"
-.LASF561:
+.LASF562:
 	.ascii	"SET_BIT(W,B) ((W) |= (uint32_t)(1U << (B)))\000"
 .LASF321:
 	.ascii	"__ULACCUM_FBIT__ 32\000"
-.LASF878:
+.LASF879:
 	.ascii	"BAT_LEVEL_EMPTY\000"
 .LASF242:
 	.ascii	"__DEC64_MANT_DIG__ 16\000"
-.LASF820:
+.LASF821:
 	.ascii	"RX_SLOT_WIN_PING_SLOT\000"
 .LASF168:
 	.ascii	"__DBL_MAX_EXP__ 1024\000"
-.LASF763:
+.LASF764:
 	.ascii	"TxTimeout\000"
 .LASF328:
 	.ascii	"__LLACCUM_MIN__ (-0X1P31LLK-0X1P31LLK)\000"
-.LASF1208:
+.LASF1209:
 	.ascii	"MulticastChannels\000"
-.LASF565:
+.LASF566:
 	.ascii	"BIT_1 0x02\000"
-.LASF1267:
+.LASF1268:
 	.ascii	"enable\000"
-.LASF799:
+.LASF800:
 	.ascii	"CLASS_B\000"
-.LASF856:
+.LASF857:
 	.ascii	"eLoRaMacMoteCmd\000"
-.LASF1152:
+.LASF1153:
 	.ascii	"UpdateChanMask\000"
-.LASF931:
+.LASF932:
 	.ascii	"McpsReqConfirmed_t\000"
-.LASF1215:
+.LASF1216:
 	.ascii	"IsUpLinkCounterFixed\000"
-.LASF1258:
+.LASF1259:
 	.ascii	"AckTimeoutRetries\000"
-.LASF598:
+.LASF599:
 	.ascii	"UNUSED_RETURN_VALUE(X) UNUSED_VARIABLE(X)\000"
-.LASF812:
+.LASF813:
 	.ascii	"sRx2ChannelParams\000"
-.LASF1057:
+.LASF1058:
 	.ascii	"LORAMAC_STATUS_NO_NETWORK_JOINED\000"
 .LASF296:
 	.ascii	"__SACCUM_FBIT__ 7\000"
-.LASF734:
+.LASF735:
 	.ascii	"__RAL_data_utf8_plus\000"
-.LASF507:
+.LASF508:
 	.ascii	"INT32_C(x) (x ##L)\000"
-.LASF1106:
+.LASF1107:
 	.ascii	"PHY_DEF_DR1_OFFSET\000"
 .LASF127:
 	.ascii	"__UINT64_C(c) c ## ULL\000"
-.LASF1003:
+.LASF1004:
 	.ascii	"MIB_RX2_DEFAULT_CHANNEL\000"
-.LASF750:
+.LASF751:
 	.ascii	"Next\000"
 .LASF397:
 	.ascii	"__ARM_FEATURE_CRYPTO\000"
-.LASF1297:
+.LASF1298:
 	.ascii	"txInfo\000"
-.LASF792:
+.LASF793:
 	.ascii	"SetPublicNetwork\000"
-.LASF755:
+.LASF756:
 	.ascii	"MODEM_LORA\000"
-.LASF649:
+.LASF650:
 	.ascii	"__LORAMACTEST_H__ \000"
-.LASF869:
+.LASF870:
 	.ascii	"SRV_MAC_DUTY_CYCLE_REQ\000"
-.LASF1253:
+.LASF1254:
 	.ascii	"RxWindow1Delay\000"
 .LASF139:
 	.ascii	"__UINT_FAST64_MAX__ 0xffffffffffffffffULL\000"
-.LASF865:
+.LASF866:
 	.ascii	"MOTE_MAC_DL_CHANNEL_ANS\000"
 .LASF28:
 	.ascii	"__ORDER_LITTLE_ENDIAN__ 1234\000"
-.LASF1296:
+.LASF1297:
 	.ascii	"size\000"
-.LASF706:
+.LASF707:
 	.ascii	"__isctype\000"
-.LASF950:
+.LASF951:
 	.ascii	"McpsConfirm_t\000"
-.LASF668:
+.LASF669:
 	.ascii	"long long unsigned int\000"
-.LASF647:
+.LASF648:
 	.ascii	"TX_POWER_15 15\000"
-.LASF1288:
+.LASF1289:
 	.ascii	"params\000"
-.LASF1090:
+.LASF1091:
 	.ascii	"PHY_MAX_TX_DR\000"
-.LASF1367:
+.LASF1368:
 	.ascii	"OnMacStateCheckTimerEvent\000"
-.LASF798:
+.LASF799:
 	.ascii	"CLASS_A\000"
-.LASF787:
+.LASF788:
 	.ascii	"Write\000"
-.LASF800:
+.LASF801:
 	.ascii	"CLASS_C\000"
-.LASF496:
+.LASF497:
 	.ascii	"UINT_FAST64_MAX UINT64_MAX\000"
 .LASF35:
 	.ascii	"__PTRDIFF_TYPE__ int\000"
-.LASF693:
+.LASF694:
 	.ascii	"int_p_sep_by_space\000"
-.LASF915:
+.LASF916:
 	.ascii	"MacDone\000"
 .LASF79:
 	.ascii	"__WINT_MAX__ 0xffffffffU\000"
 .LASF302:
 	.ascii	"__USACCUM_IBIT__ 8\000"
-.LASF966:
+.LASF967:
 	.ascii	"MLME_TXCW_1\000"
-.LASF1342:
+.LASF1343:
 	.ascii	"length\000"
-.LASF662:
+.LASF663:
 	.ascii	"uint16_t\000"
 .LASF342:
 	.ascii	"__DQ_FBIT__ 63\000"
-.LASF854:
+.LASF855:
 	.ascii	"FRAME_TYPE_RFU\000"
-.LASF531:
+.LASF532:
 	.ascii	"__CTYPE_BLANK 0x40\000"
 .LASF65:
 	.ascii	"__UINT_FAST32_TYPE__ unsigned int\000"
-.LASF806:
+.LASF807:
 	.ascii	"sChannelParams\000"
-.LASF1401:
+.LASF1402:
 	.ascii	"memcpy1\000"
-.LASF483:
+.LASF484:
 	.ascii	"UINT_LEAST32_MAX UINT32_MAX\000"
-.LASF1320:
+.LASF1321:
 	.ascii	"allowDelayedTx\000"
-.LASF827:
+.LASF828:
 	.ascii	"MaxRxWindow\000"
-.LASF615:
+.LASF616:
 	.ascii	"LC(channelIndex) ( uint16_t )( 1 << ( channelIndex "
 	.ascii	"- 1 ) )\000"
 .LASF448:
@@ -27737,218 +27766,218 @@ LoRaMacMaxEirpTable:
 	.ascii	"__FLT_EPSILON__ 1.1\000"
 .LASF319:
 	.ascii	"__LACCUM_MAX__ 0X7FFFFFFFFFFFFFFFP-31LK\000"
-.LASF924:
+.LASF925:
 	.ascii	"sMcpsReqUnconfirmed\000"
-.LASF1065:
+.LASF1066:
 	.ascii	"eLoRaMacRegion_t\000"
-.LASF1076:
+.LASF1077:
 	.ascii	"LoRaMacRegion_t\000"
 .LASF222:
 	.ascii	"__FLT32X_DIG__ 15\000"
-.LASF608:
+.LASF609:
 	.ascii	"MAC_STATE_CHECK_TIMEOUT 1000\000"
-.LASF936:
+.LASF937:
 	.ascii	"Confirmed\000"
-.LASF611:
+.LASF612:
 	.ascii	"DOWN_LINK 1\000"
-.LASF1156:
+.LASF1157:
 	.ascii	"sRxConfigParams\000"
-.LASF906:
+.LASF907:
 	.ascii	"LORAMAC_EVENT_INFO_STATUS_ADDRESS_FAIL\000"
-.LASF1165:
+.LASF1166:
 	.ascii	"PktLen\000"
-.LASF1302:
+.LASF1303:
 	.ascii	"primitives\000"
-.LASF1068:
+.LASF1069:
 	.ascii	"LORAMAC_REGION_CN470\000"
-.LASF963:
+.LASF964:
 	.ascii	"MLME_JOIN\000"
 .LASF330:
 	.ascii	"__LLACCUM_EPSILON__ 0x1P-31LLK\000"
 .LASF17:
 	.ascii	"__FINITE_MATH_ONLY__ 0\000"
-.LASF613:
+.LASF614:
 	.ascii	"LORA_MAC_FRMPAYLOAD_OVERHEAD 13\000"
 .LASF130:
 	.ascii	"__INT_FAST16_MAX__ 0x7fffffff\000"
-.LASF553:
+.LASF554:
 	.ascii	"MAX(a,b) ((a) < (b) ? (b) : (a))\000"
-.LASF1071:
+.LASF1072:
 	.ascii	"LORAMAC_REGION_EU868\000"
-.LASF513:
+.LASF514:
 	.ascii	"WCHAR_MIN (-2147483647L-1)\000"
-.LASF801:
+.LASF802:
 	.ascii	"DeviceClass_t\000"
-.LASF475:
+.LASF476:
 	.ascii	"INT_LEAST32_MIN INT32_MIN\000"
-.LASF567:
+.LASF568:
 	.ascii	"BIT_3 0x08\000"
-.LASF597:
+.LASF598:
 	.ascii	"UNUSED_PARAMETER(X) UNUSED_VARIABLE(X)\000"
-.LASF959:
+.LASF960:
 	.ascii	"RxData\000"
-.LASF1021:
+.LASF1022:
 	.ascii	"MIB_ANTENNA_GAIN\000"
 .LASF112:
 	.ascii	"__INT16_C(c) c\000"
-.LASF586:
+.LASF587:
 	.ascii	"BIT_22 0x00400000\000"
 .LASF63:
 	.ascii	"__UINT_FAST8_TYPE__ unsigned int\000"
-.LASF1174:
+.LASF1175:
 	.ascii	"RxParamSetupReqParams_t\000"
-.LASF884:
+.LASF885:
 	.ascii	"uDrRange\000"
-.LASF1430:
+.LASF1431:
 	.ascii	"RegionApplyCFList\000"
 .LASF343:
 	.ascii	"__DQ_IBIT__ 0\000"
 .LASF451:
 	.ascii	"S112 1\000"
-.LASF573:
+.LASF574:
 	.ascii	"BIT_9 0x0200\000"
-.LASF526:
+.LASF527:
 	.ascii	"__CTYPE_LOWER 0x02\000"
 .LASF378:
 	.ascii	"__GCC_HAVE_SYNC_COMPARE_AND_SWAP_4 1\000"
-.LASF1154:
+.LASF1155:
 	.ascii	"AdrAckCounter\000"
-.LASF1353:
+.LASF1354:
 	.ascii	"CalculateBackOff\000"
-.LASF1385:
+.LASF1386:
 	.ascii	"nwkSKey\000"
-.LASF1262:
+.LASF1263:
 	.ascii	"MlmeConfirm\000"
-.LASF804:
+.LASF805:
 	.ascii	"Fields\000"
-.LASF898:
+.LASF899:
 	.ascii	"LORAMAC_EVENT_INFO_STATUS_RX1_TIMEOUT\000"
 .LASF449:
 	.ascii	"NRF52_PAN_74 1\000"
-.LASF1368:
+.LASF1369:
 	.ascii	"txTimeout\000"
 .LASF54:
 	.ascii	"__INT_LEAST64_TYPE__ long long int\000"
-.LASF1047:
+.LASF1048:
 	.ascii	"CurrentPayloadSize\000"
-.LASF987:
+.LASF988:
 	.ascii	"MlmeConfirm_t\000"
-.LASF654:
+.LASF655:
 	.ascii	"BACKOFF_DC_10_HOURS 1000\000"
-.LASF1304:
+.LASF1305:
 	.ascii	"region\000"
 .LASF426:
 	.ascii	"__ARM_NEON_FP\000"
-.LASF1022:
+.LASF1023:
 	.ascii	"MIB_DEFAULT_ANTENNA_GAIN\000"
-.LASF913:
+.LASF914:
 	.ascii	"MlmeReq\000"
-.LASF596:
+.LASF597:
 	.ascii	"UNUSED_VARIABLE(X) ((void)(X))\000"
 .LASF408:
 	.ascii	"__arm__ 1\000"
-.LASF1161:
+.LASF1162:
 	.ascii	"RepeaterSupport\000"
 .LASF355:
 	.ascii	"__UTQ_IBIT__ 0\000"
-.LASF1040:
+.LASF1041:
 	.ascii	"DefaultAntennaGain\000"
 .LASF358:
 	.ascii	"__SA_FBIT__ 15\000"
-.LASF469:
+.LASF470:
 	.ascii	"UINT64_MAX 18446744073709551615ULL\000"
-.LASF601:
+.LASF602:
 	.ascii	"__stdbool_h \000"
-.LASF1015:
+.LASF1016:
 	.ascii	"MIB_CHANNELS_DEFAULT_TX_POWER\000"
-.LASF932:
+.LASF933:
 	.ascii	"sMcpsReqProprietary\000"
-.LASF862:
+.LASF863:
 	.ascii	"MOTE_MAC_NEW_CHANNEL_ANS\000"
-.LASF1212:
+.LASF1213:
 	.ascii	"LoRaMacBufferPktLen\000"
-.LASF860:
+.LASF861:
 	.ascii	"MOTE_MAC_RX_PARAM_SETUP_ANS\000"
-.LASF478:
+.LASF479:
 	.ascii	"INT_LEAST16_MAX INT16_MAX\000"
 .LASF436:
 	.ascii	"__ELF__ 1\000"
-.LASF1162:
+.LASF1163:
 	.ascii	"RxContinuous\000"
-.LASF576:
+.LASF577:
 	.ascii	"BIT_12 0x1000\000"
-.LASF644:
+.LASF645:
 	.ascii	"TX_POWER_12 12\000"
-.LASF1435:
+.LASF1436:
 	.ascii	"/Users/russ/nRF5_SDK_15.2.0_9412b96/examples/ble_pe"
 	.ascii	"ripheral/flightSketch/pca10040/s112/ses\000"
-.LASF618:
+.LASF619:
 	.ascii	"DR_2 2\000"
 .LASF92:
 	.ascii	"__INTMAX_MAX__ 0x7fffffffffffffffLL\000"
-.LASF1362:
+.LASF1363:
 	.ascii	"ackTimeoutRetriesCounter\000"
-.LASF652:
+.LASF653:
 	.ascii	"LORA_MAC_COMMAND_MAX_FOPTS_LENGTH 15\000"
-.LASF464:
+.LASF465:
 	.ascii	"UINT32_MAX 4294967295UL\000"
-.LASF1155:
+.LASF1156:
 	.ascii	"AdrNextParams_t\000"
-.LASF1086:
+.LASF1087:
 	.ascii	"ePhyAttribute\000"
-.LASF482:
+.LASF483:
 	.ascii	"UINT_LEAST16_MAX UINT16_MAX\000"
-.LASF1036:
+.LASF1037:
 	.ascii	"ChannelNbRep\000"
-.LASF1031:
+.LASF1032:
 	.ascii	"EnableRepeaterSupport\000"
-.LASF1225:
+.LASF1226:
 	.ascii	"MacCommandsBufferToRepeat\000"
-.LASF1049:
+.LASF1050:
 	.ascii	"eLoRaMacStatus\000"
-.LASF753:
+.LASF754:
 	.ascii	"TimerTime_t\000"
-.LASF815:
+.LASF816:
 	.ascii	"eDeviceClass\000"
-.LASF1311:
+.LASF1312:
 	.ascii	"txConfig\000"
 .LASF6:
 	.ascii	"__GNUC_MINOR__ 3\000"
-.LASF875:
+.LASF876:
 	.ascii	"SRV_MAC_DL_CHANNEL_REQ\000"
-.LASF698:
+.LASF699:
 	.ascii	"abbrev_day_names\000"
-.LASF530:
+.LASF531:
 	.ascii	"__CTYPE_CNTRL 0x20\000"
-.LASF1055:
+.LASF1056:
 	.ascii	"LORAMAC_STATUS_DATARATE_INVALID\000"
-.LASF1045:
+.LASF1046:
 	.ascii	"sLoRaMacTxInfo\000"
 .LASF38:
 	.ascii	"__INTMAX_TYPE__ long long int\000"
 .LASF385:
 	.ascii	"__GCC_ATOMIC_INT_LOCK_FREE 2\000"
-.LASF1378:
+.LASF1379:
 	.ascii	"frameLen\000"
-.LASF1166:
+.LASF1167:
 	.ascii	"TxConfigParams_t\000"
-.LASF1305:
+.LASF1306:
 	.ascii	"SetTxContinuousWave1\000"
-.LASF1230:
-	.ascii	"AggregatedDCycle\000"
-.LASF852:
-	.ascii	"FRAME_TYPE_DATA_CONFIRMED_UP\000"
-.LASF1014:
-	.ascii	"MIB_CHANNELS_TX_POWER\000"
 .LASF1231:
+	.ascii	"AggregatedDCycle\000"
+.LASF853:
+	.ascii	"FRAME_TYPE_DATA_CONFIRMED_UP\000"
+.LASF1015:
+	.ascii	"MIB_CHANNELS_TX_POWER\000"
+.LASF1232:
 	.ascii	"AggregatedLastTxDoneTime\000"
-.LASF726:
+.LASF727:
 	.ascii	"__RAL_ascii_ctype_map\000"
 .LASF229:
 	.ascii	"__FLT32X_MIN__ 1.1\000"
-.LASF902:
+.LASF903:
 	.ascii	"LORAMAC_EVENT_INFO_STATUS_JOIN_FAIL\000"
-.LASF674:
+.LASF675:
 	.ascii	"thousands_sep\000"
 .LASF103:
 	.ascii	"__INT64_MAX__ 0x7fffffffffffffffLL\000"
@@ -27956,9 +27985,9 @@ LoRaMacMaxEirpTable:
 	.ascii	"__USACCUM_EPSILON__ 0x1P-8UHK\000"
 .LASF97:
 	.ascii	"__SIG_ATOMIC_MAX__ 0x7fffffff\000"
-.LASF780:
+.LASF781:
 	.ascii	"TimeOnAir\000"
-.LASF944:
+.LASF945:
 	.ascii	"TxPower\000"
 .LASF220:
 	.ascii	"__FLT64_HAS_QUIET_NAN__ 1\000"
@@ -27966,164 +27995,164 @@ LoRaMacMaxEirpTable:
 	.ascii	"__LLFRACT_MAX__ 0X7FFFFFFFFFFFFFFFP-63LLR\000"
 .LASF204:
 	.ascii	"__FLT32_HAS_DENORM__ 1\000"
-.LASF893:
+.LASF894:
 	.ascii	"LoRaMacFrameCtrl_t\000"
-.LASF873:
+.LASF874:
 	.ascii	"SRV_MAC_RX_TIMING_SETUP_REQ\000"
-.LASF635:
+.LASF636:
 	.ascii	"TX_POWER_3 3\000"
-.LASF474:
+.LASF475:
 	.ascii	"INT_LEAST16_MIN INT16_MIN\000"
-.LASF1323:
+.LASF1324:
 	.ascii	"ProcessMacCommands\000"
 .LASF299:
 	.ascii	"__SACCUM_MAX__ 0X7FFFP-7HK\000"
 .LASF67:
 	.ascii	"__INTPTR_TYPE__ int\000"
-.LASF707:
+.LASF708:
 	.ascii	"__toupper\000"
 .LASF5:
 	.ascii	"__GNUC__ 7\000"
-.LASF610:
+.LASF611:
 	.ascii	"UP_LINK 0\000"
-.LASF1316:
+.LASF1317:
 	.ascii	"framePort\000"
-.LASF1400:
+.LASF1401:
 	.ascii	"RegionComputeRxWindowParameters\000"
-.LASF1030:
+.LASF1031:
 	.ascii	"EnablePublicNetwork\000"
 .LASF255:
 	.ascii	"__DEC128_SUBNORMAL_MIN__ 0.000000000000000000000000"
 	.ascii	"000000001E-6143DL\000"
-.LASF1309:
+.LASF1310:
 	.ascii	"continuousWave\000"
 .LASF285:
 	.ascii	"__ULFRACT_EPSILON__ 0x1P-32ULR\000"
-.LASF1361:
+.LASF1362:
 	.ascii	"ackReceived\000"
-.LASF1268:
+.LASF1269:
 	.ascii	"verify\000"
 .LASF25:
 	.ascii	"__SIZEOF_SIZE_T__ 4\000"
-.LASF715:
+.LASF716:
 	.ascii	"name\000"
 .LASF50:
 	.ascii	"__UINT64_TYPE__ long long unsigned int\000"
 .LASF252:
 	.ascii	"__DEC128_MIN__ 1E-6143DL\000"
-.LASF907:
+.LASF908:
 	.ascii	"LORAMAC_EVENT_INFO_STATUS_MIC_FAIL\000"
-.LASF982:
+.LASF983:
 	.ascii	"MlmeReq_t\000"
 .LASF8:
 	.ascii	"__VERSION__ \"7.3.1 20180622 (release) [ARM/embedde"
 	.ascii	"d-7-branch revision 261907]\"\000"
-.LASF863:
+.LASF864:
 	.ascii	"MOTE_MAC_RX_TIMING_SETUP_ANS\000"
-.LASF1377:
+.LASF1378:
 	.ascii	"port\000"
-.LASF850:
+.LASF851:
 	.ascii	"FRAME_TYPE_DATA_UNCONFIRMED_UP\000"
-.LASF480:
+.LASF481:
 	.ascii	"INT_LEAST64_MAX INT64_MAX\000"
-.LASF993:
+.LASF994:
 	.ascii	"MIB_NETWORK_JOINED\000"
-.LASF638:
+.LASF639:
 	.ascii	"TX_POWER_6 6\000"
-.LASF655:
+.LASF656:
 	.ascii	"BACKOFF_DC_24_HOURS 10000\000"
 .LASF307:
 	.ascii	"__ACCUM_IBIT__ 16\000"
-.LASF880:
+.LASF881:
 	.ascii	"BAT_LEVEL_NO_MEASURE\000"
-.LASF684:
+.LASF685:
 	.ascii	"frac_digits\000"
 .LASF267:
 	.ascii	"__FRACT_IBIT__ 0\000"
-.LASF677:
+.LASF678:
 	.ascii	"currency_symbol\000"
-.LASF1024:
+.LASF1025:
 	.ascii	"uMibParam\000"
-.LASF457:
+.LASF458:
 	.ascii	"__stdint_H \000"
-.LASF488:
+.LASF489:
 	.ascii	"INT_FAST64_MIN INT64_MIN\000"
-.LASF661:
+.LASF662:
 	.ascii	"short int\000"
-.LASF1335:
+.LASF1336:
 	.ascii	"delay\000"
 .LASF455:
 	.ascii	"ISP4520_US 1\000"
-.LASF940:
+.LASF941:
 	.ascii	"McpsReq_t\000"
-.LASF841:
+.LASF842:
 	.ascii	"sMulticastParams\000"
-.LASF774:
+.LASF775:
 	.ascii	"SetChannel\000"
 .LASF209:
 	.ascii	"__FLT64_MIN_EXP__ (-1021)\000"
-.LASF818:
+.LASF819:
 	.ascii	"RX_SLOT_WIN_2\000"
 .LASF369:
 	.ascii	"__UDA_IBIT__ 32\000"
-.LASF824:
+.LASF825:
 	.ascii	"ChannelsDatarate\000"
-.LASF1019:
+.LASF1020:
 	.ascii	"MIB_SYSTEM_MAX_RX_ERROR\000"
 .LASF9:
 	.ascii	"__ATOMIC_RELAXED 0\000"
-.LASF669:
+.LASF670:
 	.ascii	"__state\000"
-.LASF1250:
+.LASF1251:
 	.ascii	"TxDelayedTimer\000"
-.LASF1283:
+.LASF1284:
 	.ascii	"channelParam\000"
 .LASF176:
 	.ascii	"__DBL_HAS_INFINITY__ 1\000"
-.LASF1061:
+.LASF1062:
 	.ascii	"LORAMAC_STATUS_DUTYCYCLE_RESTRICTED\000"
-.LASF660:
+.LASF661:
 	.ascii	"int16_t\000"
 .LASF207:
 	.ascii	"__FLT64_MANT_DIG__ 53\000"
-.LASF896:
+.LASF897:
 	.ascii	"LORAMAC_EVENT_INFO_STATUS_ERROR\000"
-.LASF811:
+.LASF812:
 	.ascii	"ChannelParams_t\000"
 .LASF263:
 	.ascii	"__USFRACT_MIN__ 0.0UHR\000"
-.LASF471:
+.LASF472:
 	.ascii	"INTMAX_MAX 9223372036854775807LL\000"
 .LASF379:
 	.ascii	"__GCC_ATOMIC_BOOL_LOCK_FREE 2\000"
-.LASF802:
+.LASF803:
 	.ascii	"sFields\000"
 .LASF245:
 	.ascii	"__DEC64_MIN__ 1E-383DD\000"
-.LASF927:
+.LASF928:
 	.ascii	"fBufferSize\000"
-.LASF680:
+.LASF681:
 	.ascii	"mon_grouping\000"
 .LASF170:
 	.ascii	"__DBL_DECIMAL_DIG__ 17\000"
-.LASF1255:
+.LASF1256:
 	.ascii	"RxWindow1Config\000"
-.LASF910:
+.LASF911:
 	.ascii	"McpsReq\000"
-.LASF832:
+.LASF833:
 	.ascii	"ChannelsNbRep\000"
-.LASF1434:
+.LASF1435:
 	.ascii	"/Users/russ/nRF5_SDK_15.2.0_9412b96/examples/ble_pe"
 	.ascii	"ripheral/flightSketch/lora/mac/LoRaMac.c\000"
 .LASF349:
 	.ascii	"__UHQ_IBIT__ 0\000"
-.LASF858:
+.LASF859:
 	.ascii	"MOTE_MAC_LINK_ADR_ANS\000"
-.LASF1207:
+.LASF1208:
 	.ascii	"LoRaMacDevAddr\000"
 .LASF154:
 	.ascii	"__FLT_MAX_10_EXP__ 38\000"
-.LASF515:
+.LASF516:
 	.ascii	"WINT_MIN (-2147483647L-1)\000"
 .LASF101:
 	.ascii	"__INT16_MAX__ 0x7fff\000"
@@ -28131,9 +28160,9 @@ LoRaMacMaxEirpTable:
 	.ascii	"__ULLFRACT_EPSILON__ 0x1P-64ULLR\000"
 .LASF403:
 	.ascii	"__ARM_FEATURE_NUMERIC_MAXMIN\000"
-.LASF651:
+.LASF652:
 	.ascii	"LORA_MAC_COMMAND_MAX_LENGTH 128\000"
-.LASF1062:
+.LASF1063:
 	.ascii	"LORAMAC_STATUS_NO_CHANNEL_FOUND\000"
 .LASF85:
 	.ascii	"__INT_WIDTH__ 32\000"
@@ -28141,184 +28170,184 @@ LoRaMacMaxEirpTable:
 	.ascii	"__ARM_FEATURE_SIMD32 1\000"
 .LASF200:
 	.ascii	"__FLT32_MAX__ 1.1\000"
-.LASF630:
+.LASF631:
 	.ascii	"DR_14 14\000"
-.LASF784:
+.LASF785:
 	.ascii	"StartCad\000"
-.LASF554:
+.LASF555:
 	.ascii	"CONCAT_2(p1,p2) CONCAT_2_(p1, p2)\000"
-.LASF1164:
+.LASF1165:
 	.ascii	"sTxConfigParams\000"
 .LASF144:
 	.ascii	"__GCC_IEC_559_COMPLEX 0\000"
-.LASF697:
+.LASF698:
 	.ascii	"day_names\000"
-.LASF1425:
+.LASF1426:
 	.ascii	"RegionDlChannelReq\000"
-.LASF857:
+.LASF858:
 	.ascii	"MOTE_MAC_LINK_CHECK_REQ\000"
 .LASF421:
 	.ascii	"__ARM_FEATURE_FP16_SCALAR_ARITHMETIC\000"
-.LASF1424:
+.LASF1425:
 	.ascii	"RegionTxParamSetupReq\000"
-.LASF735:
+.LASF736:
 	.ascii	"__RAL_data_utf8_minus\000"
-.LASF543:
+.LASF544:
 	.ascii	"EXIT_FAILURE 1\000"
 .LASF294:
 	.ascii	"__ULLFRACT_MAX__ 0XFFFFFFFFFFFFFFFFP-64ULLR\000"
-.LASF836:
+.LASF837:
 	.ascii	"DownlinkDwellTime\000"
 .LASF332:
 	.ascii	"__ULLACCUM_IBIT__ 32\000"
 .LASF197:
 	.ascii	"__FLT32_MAX_EXP__ 128\000"
-.LASF1192:
+.LASF1193:
 	.ascii	"sChannelAddParams\000"
-.LASF695:
+.LASF696:
 	.ascii	"int_p_sign_posn\000"
-.LASF942:
+.LASF943:
 	.ascii	"McpsRequest\000"
-.LASF604:
+.LASF605:
 	.ascii	"false 0\000"
-.LASF1190:
+.LASF1191:
 	.ascii	"LastAggrTx\000"
-.LASF1153:
+.LASF1154:
 	.ascii	"AdrEnabled\000"
 .LASF392:
 	.ascii	"__SIZEOF_WINT_T__ 4\000"
-.LASF1371:
+.LASF1372:
 	.ascii	"OnRadioTxTimeout\000"
-.LASF972:
+.LASF973:
 	.ascii	"AppKey\000"
-.LASF1363:
+.LASF1364:
 	.ascii	"ackTimeoutRetries\000"
-.LASF994:
+.LASF995:
 	.ascii	"MIB_ADR\000"
-.LASF1075:
+.LASF1076:
 	.ascii	"LORAMAC_REGION_US915_HYBRID\000"
-.LASF1091:
+.LASF1092:
 	.ascii	"PHY_TX_DR\000"
-.LASF1274:
+.LASF1275:
 	.ascii	"phyParam\000"
-.LASF822:
+.LASF823:
 	.ascii	"sLoRaMacParams\000"
-.LASF861:
+.LASF862:
 	.ascii	"MOTE_MAC_DEV_STATUS_ANS\000"
 .LASF194:
 	.ascii	"__FLT32_DIG__ 6\000"
-.LASF837:
+.LASF838:
 	.ascii	"MaxEirp\000"
 .LASF128:
 	.ascii	"__INT_FAST8_MAX__ 0x7fffffff\000"
-.LASF709:
+.LASF710:
 	.ascii	"__iswctype\000"
 .LASF232:
 	.ascii	"__FLT32X_HAS_DENORM__ 1\000"
-.LASF1168:
+.LASF1169:
 	.ascii	"PayloadSize\000"
 .LASF333:
 	.ascii	"__ULLACCUM_MIN__ 0.0ULLK\000"
 .LASF133:
 	.ascii	"__INT_FAST32_WIDTH__ 32\000"
-.LASF895:
+.LASF896:
 	.ascii	"LORAMAC_EVENT_INFO_STATUS_OK\000"
-.LASF1183:
+.LASF1184:
 	.ascii	"sCalcBackOffParams\000"
 .LASF383:
 	.ascii	"__GCC_ATOMIC_WCHAR_T_LOCK_FREE 2\000"
-.LASF532:
+.LASF533:
 	.ascii	"__CTYPE_XDIGIT 0x80\000"
-.LASF783:
+.LASF784:
 	.ascii	"Standby\000"
-.LASF547:
+.LASF548:
 	.ascii	"NRF_MODULE_ENABLED(module) ((defined(module ## _ENA"
 	.ascii	"BLED) && (module ## _ENABLED)) ? 1 : 0)\000"
-.LASF956:
+.LASF957:
 	.ascii	"FramePending\000"
-.LASF1175:
+.LASF1176:
 	.ascii	"sNewChannelReqParams\000"
-.LASF1063:
+.LASF1064:
 	.ascii	"LORAMAC_STATUS_NO_FREE_CHANNEL_FOUND\000"
-.LASF989:
+.LASF990:
 	.ascii	"MlmeIndication\000"
-.LASF727:
+.LASF728:
 	.ascii	"__RAL_c_locale_day_names\000"
-.LASF1237:
+.LASF1238:
 	.ascii	"LORAMAC_IDLE\000"
 .LASF49:
 	.ascii	"__UINT32_TYPE__ long unsigned int\000"
 .LASF412:
 	.ascii	"__thumb2__ 1\000"
-.LASF540:
+.LASF541:
 	.ascii	"__RAL_WCHAR_T_DEFINED \000"
-.LASF887:
+.LASF888:
 	.ascii	"LoRaMacHeader_t\000"
-.LASF1098:
+.LASF1099:
 	.ascii	"PHY_DUTY_CYCLE\000"
-.LASF1256:
+.LASF1257:
 	.ascii	"RxWindow2Config\000"
-.LASF1328:
+.LASF1329:
 	.ascii	"linkAdrTxPower\000"
-.LASF1408:
+.LASF1409:
 	.ascii	"TimerGetCurrentTime\000"
-.LASF559:
+.LASF560:
 	.ascii	"STRINGIFY(val) STRINGIFY_(val)\000"
-.LASF1084:
+.LASF1085:
 	.ascii	"GetBatteryLevel\000"
-.LASF775:
+.LASF776:
 	.ascii	"IsChannelFree\000"
-.LASF761:
+.LASF762:
 	.ascii	"RadioState_t\000"
-.LASF830:
-	.ascii	"JoinAcceptDelay1\000"
 .LASF831:
+	.ascii	"JoinAcceptDelay1\000"
+.LASF832:
 	.ascii	"JoinAcceptDelay2\000"
-.LASF653:
+.LASF654:
 	.ascii	"BACKOFF_DC_1_HOUR 100\000"
 .LASF353:
 	.ascii	"__UDQ_IBIT__ 0\000"
-.LASF803:
+.LASF804:
 	.ascii	"Value\000"
 .LASF18:
 	.ascii	"__SIZEOF_INT__ 4\000"
-.LASF643:
+.LASF644:
 	.ascii	"TX_POWER_11 11\000"
 .LASF287:
 	.ascii	"__LLFRACT_IBIT__ 0\000"
-.LASF1359:
+.LASF1360:
 	.ascii	"nodeAckRequested\000"
-.LASF520:
+.LASF521:
 	.ascii	"__RAL_SIZE_T\000"
-.LASF665:
+.LASF666:
 	.ascii	"uint32_t\000"
-.LASF468:
+.LASF469:
 	.ascii	"INT64_MAX 9223372036854775807LL\000"
-.LASF1034:
+.LASF1035:
 	.ascii	"ChannelsMask\000"
-.LASF696:
+.LASF697:
 	.ascii	"int_n_sign_posn\000"
 .LASF96:
 	.ascii	"__INTMAX_WIDTH__ 64\000"
-.LASF501:
+.LASF502:
 	.ascii	"INTPTR_MAX INT32_MAX\000"
-.LASF508:
+.LASF509:
 	.ascii	"UINT32_C(x) (x ##UL)\000"
-.LASF778:
+.LASF779:
 	.ascii	"SetTxConfig\000"
-.LASF1285:
+.LASF1286:
 	.ascii	"LoRaMacChannelRemove\000"
-.LASF1279:
+.LASF1280:
 	.ascii	"LoRaMacMcpsRequest\000"
-.LASF961:
+.LASF962:
 	.ascii	"McpsIndication_t\000"
 .LASF311:
 	.ascii	"__UACCUM_FBIT__ 16\000"
 .LASF417:
 	.ascii	"__ARM_FP 4\000"
-.LASF477:
+.LASF478:
 	.ascii	"INT_LEAST8_MAX INT8_MAX\000"
-.LASF819:
+.LASF820:
 	.ascii	"RX_SLOT_WIN_CLASS_C\000"
 .LASF10:
 	.ascii	"__ATOMIC_SEQ_CST 5\000"
@@ -28326,110 +28355,110 @@ LoRaMacMaxEirpTable:
 	.ascii	"__UINT_FAST16_TYPE__ unsigned int\000"
 .LASF365:
 	.ascii	"__UHA_IBIT__ 8\000"
-.LASF1126:
+.LASF1127:
 	.ascii	"ChannelsMask_t\000"
-.LASF736:
+.LASF737:
 	.ascii	"__RAL_data_empty_string\000"
 .LASF310:
 	.ascii	"__ACCUM_EPSILON__ 0x1P-15K\000"
 .LASF325:
 	.ascii	"__ULACCUM_EPSILON__ 0x1P-32ULK\000"
-.LASF1087:
+.LASF1088:
 	.ascii	"PHY_MIN_RX_DR\000"
 .LASF179:
 	.ascii	"__LDBL_DIG__ 15\000"
 .LASF337:
 	.ascii	"__QQ_IBIT__ 0\000"
-.LASF568:
+.LASF569:
 	.ascii	"BIT_4 0x10\000"
 .LASF91:
 	.ascii	"__SIZE_WIDTH__ 32\000"
-.LASF1007:
+.LASF1008:
 	.ascii	"MIB_MAX_RX_WINDOW_DURATION\000"
-.LASF549:
+.LASF550:
 	.ascii	"LSB_32(a) ((a) & 0x000000FF)\000"
-.LASF1287:
+.LASF1288:
 	.ascii	"LoRaMacChannelAdd\000"
-.LASF999:
+.LASF1000:
 	.ascii	"MIB_PUBLIC_NETWORK\000"
-.LASF1179:
+.LASF1180:
 	.ascii	"sTxParamSetupReqParams\000"
-.LASF609:
+.LASF610:
 	.ascii	"MAX_ACK_RETRIES 8\000"
-.LASF919:
+.LASF920:
 	.ascii	"MCPS_UNCONFIRMED\000"
 .LASF247:
 	.ascii	"__DEC64_EPSILON__ 1E-15DD\000"
-.LASF1163:
+.LASF1164:
 	.ascii	"RxConfigParams_t\000"
-.LASF505:
+.LASF506:
 	.ascii	"INT16_C(x) (x)\000"
-.LASF814:
+.LASF815:
 	.ascii	"Rx2ChannelParams_t\000"
 .LASF110:
 	.ascii	"__INT_LEAST8_WIDTH__ 8\000"
 .LASF447:
 	.ascii	"NRF52 1\000"
-.LASF1139:
+.LASF1140:
 	.ascii	"uVerifyParams\000"
-.LASF868:
+.LASF869:
 	.ascii	"SRV_MAC_LINK_ADR_REQ\000"
-.LASF685:
+.LASF686:
 	.ascii	"p_cs_precedes\000"
 .LASF336:
 	.ascii	"__QQ_FBIT__ 7\000"
-.LASF555:
+.LASF556:
 	.ascii	"CONCAT_2_(p1,p2) p1 ##p2\000"
 .LASF186:
 	.ascii	"__LDBL_MAX__ 1.1\000"
-.LASF663:
+.LASF664:
 	.ascii	"short unsigned int\000"
 .LASF286:
 	.ascii	"__LLFRACT_FBIT__ 63\000"
 .LASF205:
 	.ascii	"__FLT32_HAS_INFINITY__ 1\000"
-.LASF980:
+.LASF981:
 	.ascii	"TxCw\000"
-.LASF1409:
+.LASF1410:
 	.ascii	"srand1\000"
-.LASF1042:
+.LASF1043:
 	.ascii	"eMibRequestConfirm\000"
-.LASF1289:
+.LASF1290:
 	.ascii	"channelAdd\000"
-.LASF535:
+.LASF536:
 	.ascii	"__CTYPE_GRAPH (__CTYPE_PUNCT | __CTYPE_UPPER | __CT"
 	.ascii	"YPE_LOWER | __CTYPE_DIGIT)\000"
 .LASF415:
 	.ascii	"__ARMEL__ 1\000"
-.LASF614:
+.LASF615:
 	.ascii	"__REGION_H__ \000"
 .LASF116:
 	.ascii	"__INT_LEAST32_WIDTH__ 32\000"
-.LASF1109:
+.LASF1110:
 	.ascii	"PHY_CHANNELS_MASK\000"
-.LASF1247:
+.LASF1248:
 	.ascii	"LoRaMacPrimitives\000"
-.LASF1232:
+.LASF1233:
 	.ascii	"AggregatedTimeOff\000"
-.LASF779:
+.LASF780:
 	.ascii	"CheckRfFrequency\000"
 .LASF82:
 	.ascii	"__SIZE_MAX__ 0xffffffffU\000"
-.LASF967:
+.LASF968:
 	.ascii	"MLME_SCHEDULE_UPLINK\000"
-.LASF1035:
+.LASF1036:
 	.ascii	"ChannelsDefaultMask\000"
-.LASF595:
+.LASF596:
 	.ascii	"BIT_31 0x80000000\000"
-.LASF1343:
+.LASF1344:
 	.ascii	"cmdBufOut\000"
-.LASF1332:
+.LASF1333:
 	.ascii	"batteryLevel\000"
 .LASF331:
 	.ascii	"__ULLACCUM_FBIT__ 32\000"
 .LASF75:
 	.ascii	"__LONG_MAX__ 0x7fffffffL\000"
-.LASF570:
+.LASF571:
 	.ascii	"BIT_6 0x40\000"
 .LASF446:
 	.ascii	"NO_VTOR_CONFIG 1\000"
@@ -28437,27 +28466,27 @@ LoRaMacMaxEirpTable:
 	.ascii	"__SES_VERSION 35201\000"
 .LASF157:
 	.ascii	"__FLT_MIN__ 1.1\000"
-.LASF1198:
+.LASF1199:
 	.ascii	"LoRaMacMaxEirpTable\000"
-.LASF1358:
+.LASF1359:
 	.ascii	"CheckToDisableAckTimeout\000"
-.LASF776:
+.LASF777:
 	.ascii	"Random\000"
 .LASF432:
 	.ascii	"__ARM_FEATURE_IDIV 1\000"
-.LASF1270:
+.LASF1271:
 	.ascii	"txPacketCounter\000"
 .LASF422:
 	.ascii	"__ARM_FEATURE_FP16_VECTOR_ARITHMETIC\000"
 .LASF401:
 	.ascii	"__ARM_FEATURE_LDREX 7\000"
-.LASF1337:
+.LASF1338:
 	.ascii	"eirpDwellTime\000"
-.LASF1428:
+.LASF1429:
 	.ascii	"LoRaMacJoinDecrypt\000"
-.LASF871:
+.LASF872:
 	.ascii	"SRV_MAC_DEV_STATUS_REQ\000"
-.LASF899:
+.LASF900:
 	.ascii	"LORAMAC_EVENT_INFO_STATUS_RX2_TIMEOUT\000"
 .LASF290:
 	.ascii	"__LLFRACT_EPSILON__ 0x1P-63LLR\000"
@@ -28469,112 +28498,112 @@ LoRaMacMaxEirpTable:
 	.ascii	"__SFRACT_MAX__ 0X7FP-7HR\000"
 .LASF221:
 	.ascii	"__FLT32X_MANT_DIG__ 53\000"
-.LASF503:
+.LASF504:
 	.ascii	"INT8_C(x) (x)\000"
 .LASF88:
 	.ascii	"__WCHAR_WIDTH__ 32\000"
-.LASF900:
+.LASF901:
 	.ascii	"LORAMAC_EVENT_INFO_STATUS_RX1_ERROR\000"
-.LASF1114:
+.LASF1115:
 	.ascii	"PHY_DEF_DOWNLINK_DWELL_TIME\000"
-.LASF516:
+.LASF517:
 	.ascii	"WINT_MAX 2147483647L\000"
-.LASF675:
+.LASF676:
 	.ascii	"grouping\000"
-.LASF1326:
+.LASF1327:
 	.ascii	"linkAdrReq\000"
 .LASF361:
 	.ascii	"__DA_IBIT__ 32\000"
-.LASF1180:
+.LASF1181:
 	.ascii	"TxParamSetupReqParams_t\000"
 .LASF52:
 	.ascii	"__INT_LEAST16_TYPE__ short int\000"
-.LASF566:
+.LASF567:
 	.ascii	"BIT_2 0x04\000"
 .LASF400:
 	.ascii	"__ARM_32BIT_STATE 1\000"
-.LASF624:
+.LASF625:
 	.ascii	"DR_8 8\000"
-.LASF1177:
+.LASF1178:
 	.ascii	"ChannelId\000"
-.LASF533:
+.LASF534:
 	.ascii	"__CTYPE_ALPHA (__CTYPE_UPPER | __CTYPE_LOWER)\000"
 .LASF51:
 	.ascii	"__INT_LEAST8_TYPE__ signed char\000"
 .LASF45:
 	.ascii	"__INT32_TYPE__ long int\000"
-.LASF486:
+.LASF487:
 	.ascii	"INT_FAST16_MIN INT32_MIN\000"
-.LASF742:
+.LASF743:
 	.ascii	"next\000"
-.LASF1111:
+.LASF1112:
 	.ascii	"PHY_MAX_NB_CHANNELS\000"
-.LASF590:
+.LASF591:
 	.ascii	"BIT_26 0x04000000\000"
-.LASF716:
+.LASF717:
 	.ascii	"data\000"
 .LASF291:
 	.ascii	"__ULLFRACT_FBIT__ 64\000"
-.LASF867:
+.LASF868:
 	.ascii	"SRV_MAC_LINK_CHECK_ANS\000"
 .LASF44:
 	.ascii	"__INT16_TYPE__ short int\000"
-.LASF495:
+.LASF496:
 	.ascii	"UINT_FAST32_MAX UINT32_MAX\000"
-.LASF747:
+.LASF748:
 	.ascii	"ReloadValue\000"
-.LASF1273:
+.LASF1274:
 	.ascii	"getPhy\000"
-.LASF1200:
+.LASF1201:
 	.ascii	"LoRaMacDevEui\000"
-.LASF1277:
+.LASF1278:
 	.ascii	"datarate\000"
 .LASF260:
 	.ascii	"__SFRACT_EPSILON__ 0x1P-7HR\000"
-.LASF602:
+.LASF603:
 	.ascii	"bool _Bool\000"
 .LASF283:
 	.ascii	"__ULFRACT_MIN__ 0.0ULR\000"
-.LASF1379:
+.LASF1380:
 	.ascii	"micRx\000"
 .LASF216:
 	.ascii	"__FLT64_EPSILON__ 1.1\000"
-.LASF641:
+.LASF642:
 	.ascii	"TX_POWER_9 9\000"
-.LASF492:
+.LASF493:
 	.ascii	"INT_FAST64_MAX INT64_MAX\000"
 .LASF94:
 	.ascii	"__UINTMAX_MAX__ 0xffffffffffffffffULL\000"
-.LASF782:
+.LASF783:
 	.ascii	"Sleep\000"
 .LASF164:
 	.ascii	"__DBL_MANT_DIG__ 53\000"
 .LASF282:
 	.ascii	"__ULFRACT_IBIT__ 0\000"
-.LASF607:
+.LASF608:
 	.ascii	"__RADIO_H__ \000"
-.LASF1264:
+.LASF1265:
 	.ascii	"LoRaMacTestSetChannel\000"
-.LASF808:
+.LASF809:
 	.ascii	"Rx1Frequency\000"
 .LASF326:
 	.ascii	"__LLACCUM_FBIT__ 31\000"
 .LASF74:
 	.ascii	"__INT_MAX__ 0x7fffffff\000"
-.LASF1140:
+.LASF1141:
 	.ascii	"DutyCycle\000"
-.LASF502:
+.LASF503:
 	.ascii	"UINTPTR_MAX UINT32_MAX\000"
-.LASF562:
+.LASF563:
 	.ascii	"CLR_BIT(W,B) ((W) &= (~(uint32_t)(1U << (B))))\000"
-.LASF1134:
+.LASF1135:
 	.ascii	"sSetBandTxDoneParams\000"
-.LASF1211:
+.LASF1212:
 	.ascii	"LoRaMacBuffer\000"
-.LASF728:
+.LASF729:
 	.ascii	"__RAL_c_locale_abbrev_day_names\000"
-.LASF904:
+.LASF905:
 	.ascii	"LORAMAC_EVENT_INFO_STATUS_TX_DR_PAYLOAD_SIZE_ERROR\000"
-.LASF481:
+.LASF482:
 	.ascii	"UINT_LEAST8_MAX UINT8_MAX\000"
 	.ident	"GCC: (GNU) 7.3.1 20180622 (release) [ARM/embedded-7-branch revision 261907]"
