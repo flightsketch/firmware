@@ -58,8 +58,8 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="14" y="2603" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="103" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="22" y="2943" useTextEdit="1" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="2882" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="2670" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="2638" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="22" y="2983" useTextEdit="1" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="2964" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="1509" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../BMA2x2_driver/bma2x2.c" selected="0" top="1500" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="738" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../modules/nrfx/hal/nrf_gpio.h" selected="0" top="727" codecName="Default"/>
  </Files>

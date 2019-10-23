@@ -123,9 +123,9 @@
 
 #define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(MAIN_LOOP_PERIOD)                /**< Main loop interval (ticks). */
 
-#define CS_BARO   20
-#define CS_FLASH  5
-#define CS_ACC    12
+#define CS_BARO   29
+#define CS_FLASH  9
+#define CS_ACC    10
 
 float dt = MAIN_LOOP_PERIOD/1000.0;
 
@@ -2129,7 +2129,7 @@ void send_data(void){ // download data
 
 
 
-    int num_packets = ceil(num_vals/data_length);
+    int num_packets = ceil(((float) num_vals)/((float) data_length));
     int j = 0;
     int index = 0;
     int remainder = 0;
@@ -2143,8 +2143,10 @@ void send_data(void){ // download data
       chk = packet[4];
       remainder = num_vals - i*data_length;
       if (remainder < data_length){
-        //data_length = remainder;
+        data_length = remainder;
       }
+      packet[2] = data_length + 1;
+      packet[3] = 0xf5 + 0x07 + data_length + 1;
       for (j=0; j<data_length; j++){
         data.data = read_float(index*4);
 
@@ -2337,7 +2339,7 @@ void read_accel(void){
 
     com_rslt += bma2x2_read_accel_x(&accel_x_s16);
 
-    //vehicle_state.temp = accel_x_s16;
+    vehicle_state.temp = accel_x_s16;
     NRF_LOG_INFO("Accel: %d", accel_x_s16);
     //vehicle_state.acceleration = accel_x_s16;
 }
@@ -2525,11 +2527,12 @@ int main(void)
     // Enter main loop.
 
     uint8_t led1_period = 200;
-    uint8_t led1_dc = 5;
+    uint8_t led1_dc = 1;
     uint8_t led1_counter = 0;
     bool led1_on = false;
 
     nrf_gpio_cfg_input(14, NRF_GPIO_PIN_PULLDOWN);
+    nrf_gpio_cfg_input(16, NRF_GPIO_PIN_PULLDOWN);
     nrf_gpio_cfg_sense_input(14, NRF_GPIO_PIN_PULLDOWN, NRF_GPIO_PIN_SENSE_HIGH);
 
 
@@ -2540,31 +2543,8 @@ int main(void)
             int count = 0;
             while (nrf_gpio_pin_read(14)){
                 nrf_delay_ms(1);
-                nrf_drv_spi_uninit(&spi);
-                nrf_gpio_cfg_input(CS_BARO,NRF_GPIO_PIN_PULLDOWN);
-                nrf_gpio_cfg_input(CS_FLASH,NRF_GPIO_PIN_PULLDOWN);
-                nrf_gpio_cfg_input(CS_ACC,NRF_GPIO_PIN_PULLDOWN);
-                nrf_gpio_cfg_input(3,NRF_GPIO_PIN_PULLDOWN);
-                nrf_gpio_cfg_input(4,NRF_GPIO_PIN_PULLDOWN);
-                nrf_gpio_cfg_input(28,NRF_GPIO_PIN_PULLDOWN);
-                
-                
-                nrf_gpio_pin_set(15);
-
-//                nrf_gpio_pin_clear(CS_BARO);
-//                nrf_gpio_pin_clear(CS_FLASH);
-//                nrf_gpio_pin_clear(CS_ACC);
-
-//                NRF_SPIM0->ENABLE = (SPIM_ENABLE_ENABLE_Disabled << SPIM_ENABLE_ENABLE_Pos);
-//                nrf_gpio_cfg_output(3);
-//                nrf_gpio_cfg_output(4);
-//                nrf_gpio_cfg_output(28);
-
-//                nrf_gpio_pin_clear(3);
-//                nrf_gpio_pin_clear(4);
-//                nrf_gpio_pin_clear(28);
-
                 count++;
+
                 if (count == 3000){
                     nrf_gpio_pin_clear(17);
                     nrf_delay_ms(50);
@@ -2580,6 +2560,15 @@ int main(void)
                 }
             }
             if (count >= 3000){
+                nrf_drv_spi_uninit(&spi);
+                nrf_gpio_cfg_input(CS_BARO,NRF_GPIO_PIN_PULLDOWN);
+                nrf_gpio_cfg_input(CS_FLASH,NRF_GPIO_PIN_PULLDOWN);
+                nrf_gpio_cfg_input(CS_ACC,NRF_GPIO_PIN_PULLDOWN);
+                nrf_gpio_cfg_input(3,NRF_GPIO_PIN_PULLDOWN);
+                nrf_gpio_cfg_input(4,NRF_GPIO_PIN_PULLDOWN);
+                nrf_gpio_cfg_input(28,NRF_GPIO_PIN_PULLDOWN);
+                
+                nrf_gpio_pin_set(15);
                 sd_power_system_off();
             }
         }
@@ -2587,6 +2576,7 @@ int main(void)
         if (download_request){
             download_request = false;
             parsePacket_typeF4();
+            //send_data();
         }
 
         if (arm_request){
@@ -2627,7 +2617,7 @@ int main(void)
                 vehicle_state.ref_altitude = vehicle_state.ref_altitude * 145366.45;
             }
 
-            if ((vehicle_state.velocity > 30.0) && (vehicle_state.altitude > 10.0) && (!record_data) && (file_length == 0)){
+            if ((vehicle_state.velocity > 30.0) && (vehicle_state.altitude > 50.0) && (!record_data) && (file_length == 0)){
                 armedForLaunch = false;
                 nrf_gpio_pin_set(17);
                 led1_on = false;
