@@ -2776,7 +2776,7 @@ void read_gps(void){
 int main(void)
 {
 
-
+    NRF_LOG_INFO("Main Start...");
     
 
     bool erase_bonds;
@@ -2786,7 +2786,9 @@ int main(void)
     // Initialize.
 //    uart_init();
     log_init();
+    NRF_LOG_INFO("Log init...");
     timers_init();
+    NRF_LOG_INFO("Timer init...");
 
     uint64_t dev_id = *((uint64_t*) NRF_FICR->DEVICEADDR);
     char dev_str[10];
@@ -2805,15 +2807,20 @@ int main(void)
     DEVICE_NAME[23] = dev_str[9];
     DEVICE_NAME[24] = dev_str[10];
 
+    NRF_LOG_INFO("Device Name init...");
+
     Adc12bitPolledInitialise();
     uint16_t batt_v;
     bool batt_read = false;
     batt_v = GetBatteryVoltage1();
     batt_read = true;
 
+    NRF_LOG_INFO("Battery Read init...");
+
 //    buttons_leds_init(&erase_bonds);
     power_management_init();
     ble_stack_init();
+    NRF_LOG_INFO("BLE Stack init...");
     sd_power_dcdc_mode_set(NRF_POWER_DCDC_ENABLE);
     gap_params_init();
     gatt_init();
@@ -2821,12 +2828,16 @@ int main(void)
     advertising_init();
     conn_params_init();
 
+    NRF_LOG_INFO("Params init...");
+
     // Start execution.
 //    printf("\r\nUART started.\r\n");
 //    NRF_LOG_INFO("Debug logging for UART over RTT started.");
-    //advertising_start();
+    advertising_start();
     uint32_t result = 0;
     result = sd_ble_gap_tx_power_set(BLE_GAP_TX_POWER_ROLE_ADV,0,4);
+
+    NRF_LOG_INFO("TX power init...");
 
     nrf_gpio_cfg_output(29);
     nrf_gpio_pin_set(29);
@@ -2836,7 +2847,11 @@ int main(void)
     nrf_gpio_pin_set(10);
     spi_init();
 
+    NRF_LOG_INFO("SPI init...");
+
     gps_init();
+
+    NRF_LOG_INFO("GPS init...");
 
     //bmp280_config();
 
@@ -2850,6 +2865,8 @@ int main(void)
     rslt = bmp388_set_forced_mode_with_osr(&bmp388);
     nrf_delay_ms(100);
     bmp388_read();
+
+    NRF_LOG_INFO("BMP init...");
 
     vehicle_init();
     vehicle_state.max_altitude = 0.0;
@@ -2887,6 +2904,8 @@ int main(void)
         read_file_length();
     }
 
+    NRF_LOG_INFO("Flash init...");
+
     application_timers_start();
 
     
@@ -2908,12 +2927,15 @@ int main(void)
     uint8_t led1_counter = 0;
     bool led1_on = false;
 
+    NRF_LOG_INFO("Pwr sense init...");
 
     nrf_gpio_cfg_input(16, NRF_GPIO_PIN_PULLUP);
     nrf_gpio_cfg_sense_input(16, BUTTON_PULL, NRF_GPIO_PIN_SENSE_LOW);
 
     // Initialize LoRa chip.
     lora_hardware_init();
+
+    NRF_LOG_INFO("LoRa init...");
 
     // Initialize LoRa driver.
     RadioEvents.RxDone      = OnRadioRxdone;
@@ -2927,7 +2949,7 @@ int main(void)
 
     // start Rx
 
-    bool rx = false;
+    bool rx = true;
 
     if (rx){
 
@@ -2948,6 +2970,8 @@ int main(void)
 
 
     }
+
+    NRF_LOG_INFO("Init complete...");
 
     while(1){   
 
