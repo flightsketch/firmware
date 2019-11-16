@@ -2593,7 +2593,7 @@ int main(void)
         if (main_loop_update){
             main_loop_update = false;
 
-            //read_accel();
+            read_accel();
 
             if (armedForLaunch) {
                 uint8_t index = 0;
