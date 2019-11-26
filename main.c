@@ -2344,6 +2344,7 @@ void OnRadioRxdone (uint8_t *payload, uint16_t size, int16_t rssi, int8_t snr)
             gps_packet.bytes[i] = payload[i];
         }
         gps = gps_packet.state;
+        
     }
     vehicle_state.altitude = rssi;
     vehicle_state.max_altitude = snr;
