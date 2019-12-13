@@ -2040,7 +2040,7 @@ void send_update_packet(void){
     data_packet.data.head_chk =     0x02;
 
     data_packet.data.alt = vehicle_state.altitude;
-    data_packet.data.maxAlt = vehicle_state.acc_x;
+    data_packet.data.maxAlt = vehicle_state.max_altitude;
     data_packet.data.temp = vehicle_state.temp;
     data_packet.data.data_chk = 0;
 
