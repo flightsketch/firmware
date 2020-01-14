@@ -2950,7 +2950,7 @@ int main(void)
 
     // start Rx
 
-    bool rx = true;
+    bool rx = false;
 
     if (rx){
 
