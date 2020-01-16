@@ -122,6 +122,10 @@
 
 #define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(MAIN_LOOP_PERIOD)                /**< Main loop interval (ticks). */
 
+#define CS_BARO   20
+#define CS_FLASH  9
+#define CS_ACC    12
+#define CS_GYRO   13
 
 
 float dt = MAIN_LOOP_PERIOD/1000.0;
@@ -994,13 +998,13 @@ int8_t BMP_280_read(uint8_t dev_id, uint8_t reg_addr, uint8_t *data, uint16_t le
     tx_buffer[0] = reg_addr|SPI_READ;
     uint8_t i;
     
-    nrf_gpio_pin_clear(29);
+    nrf_gpio_pin_clear(CS_BARO);
     nrf_drv_spi_transfer(&spi, tx_buffer, len+1, rx_buffer, len+1);
     
     while (!spi_xfer_done){
         __WFE();
     }
-    nrf_gpio_pin_set(29);
+    nrf_gpio_pin_set(CS_BARO);
     for(i=0; i<len; i++){
         *(data+i) = rx_buffer[i+1];
     }
@@ -1018,13 +1022,13 @@ int8_t BMP_280_write(uint8_t dev_id, uint8_t reg_addr, uint8_t *data, uint16_t l
     for(i=0; i<len; i++){
         tx_buffer[i+1] = *(data+i);
     }
-    nrf_gpio_pin_clear(29);
+    nrf_gpio_pin_clear(CS_BARO);
     nrf_drv_spi_transfer(&spi, tx_buffer, len+1, NULL, len+1);
     
     while (!spi_xfer_done){
         __WFE();
     }
-    nrf_gpio_pin_set(29);
+    nrf_gpio_pin_set(CS_BARO);
     return BMP280_OK;
 }
 
@@ -1596,12 +1600,12 @@ struct bmp280_data bmp280_read(){
     tx_buffer[0] = 0xD0;
     tx_buffer[1] = 0xF5;
     
-    nrf_gpio_pin_clear(29);
+    nrf_gpio_pin_clear(CS_BARO);
     nrf_drv_spi_transfer(&spi, tx_buffer, 2, rx_buffer, 2);
     while (!spi_xfer_done){
         __WFE();
     }
-    nrf_gpio_pin_set(29);
+    nrf_gpio_pin_set(CS_BARO);
 
     if (rx_buffer[1] == 0x58){
 
@@ -1618,12 +1622,12 @@ struct bmp280_data bmp280_read(){
         tx_buffer[0] = 0x60;
         tx_buffer[1] = 0xB6;
 
-        nrf_gpio_pin_clear(29);
+        nrf_gpio_pin_clear(CS_BARO);
         nrf_drv_spi_transfer(&spi, tx_buffer, 2, rx_buffer, 2);
         while (!spi_xfer_done){
             __WFE();
         }
-        nrf_gpio_pin_set(29);
+        nrf_gpio_pin_set(CS_BARO);
 
         baro_error = true;
         data.temp = -999.999;
@@ -2176,8 +2180,8 @@ int main(void)
     uint32_t result = 0;
     result = sd_ble_gap_tx_power_set(BLE_GAP_TX_POWER_ROLE_ADV,0,4);
 
-    nrf_gpio_cfg_output(29);
-    nrf_gpio_pin_set(29);
+    nrf_gpio_cfg_output(CS_BARO);
+    nrf_gpio_pin_set(CS_BARO);
     nrf_gpio_cfg_output(9);
     nrf_gpio_pin_set(9);
     spi_init();
