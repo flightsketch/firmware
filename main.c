@@ -2759,7 +2759,8 @@ void read_gps(void){
     
 
     //vehicle_state.altitude = gps.lat * 0.0000001;
-    vehicle_state.altitude = ((float)gps.alt)*39.37/12000.0;
+    vehicle_state.altitude = vehicle_state.altitude + 1.0;
+    //vehicle_state.altitude = ((float)gps.alt)*39.37/12000.0;
     vehicle_state.max_altitude = gps.lon * 0.0000001;
     vehicle_state.temp = (5.0/9.0) * (gps.num_sats - 32.0);
 
@@ -2840,13 +2841,9 @@ int main(void)
 
     NRF_LOG_INFO("TX power init...");
 
-    nrf_gpio_cfg_output(29);
-    nrf_gpio_pin_set(29);
-    nrf_gpio_cfg_output(9);
-    nrf_gpio_pin_set(9);
     nrf_gpio_cfg_output(10);
     nrf_gpio_pin_set(10);
-    spi_init();
+    //spi_init();
 
     NRF_LOG_INFO("SPI init...");
 
@@ -2854,32 +2851,13 @@ int main(void)
 
     NRF_LOG_INFO("GPS init...");
 
-    //bmp280_config();
 
-    bmp388.dev_id = 0;
-    bmp388.intf = BMP3_SPI_INTF;
-    bmp388.read = BMP_280_read;
-    bmp388.write = BMP_280_write;
-    bmp388.delay_ms = nrf_delay_ms;
-
-    rslt = bmp3_init(&bmp388);
-    rslt = bmp388_set_forced_mode_with_osr(&bmp388);
-    nrf_delay_ms(100);
-    bmp388_read();
-
-    NRF_LOG_INFO("BMP init...");
 
     vehicle_init();
     vehicle_state.max_altitude = 0.0;
     nrf_delay_ms(100);
-    read_baro();
-    nrf_delay_ms(100);
-    vehicle_state.ref_pressure = vehicle_state.pressure;
 
-    vehicle_state.ref_altitude = vehicle_state.ref_pressure/101.325;
-    vehicle_state.ref_altitude = pow(vehicle_state.ref_altitude,0.190284);
-    vehicle_state.ref_altitude = 1.0 - vehicle_state.ref_altitude;
-    vehicle_state.ref_altitude = vehicle_state.ref_altitude * 145366.45;
+
 
     K1 = K1_boost;
     K2 = K2_boost;
@@ -2895,15 +2873,6 @@ int main(void)
     uint8_t finished;
     unsigned int tmp_file_length;
 
-    started = read_rec_start();
-    finished = read_rec_finished();
-
-    if (started == 0x01 && finished == 0xFF){
-      scan_for_eof();
-    }
-    else {
-        read_file_length();
-    }
 
     NRF_LOG_INFO("Flash init...");
 
@@ -2915,13 +2884,12 @@ int main(void)
 
     nrf_gpio_pin_set(17);
 
-    nrf_gpio_cfg_output(8);
-    nrf_gpio_cfg_output(7);
+
     
+    nrf_gpio_cfg_output(22);
+    nrf_gpio_pin_set(22);
 
-    idle_state_handle();
 
-    // Enter main loop.
 
     uint8_t led1_period = 200;
     uint8_t led1_dc = 5;
@@ -2976,44 +2944,6 @@ int main(void)
 
     while(1){   
 
-        if(0)
-        {
-            int count = 0;
-            while (!nrf_gpio_pin_read(16)){
-                nrf_delay_ms(1);
-                count++;
-                if (count == 3000){
-                    nrf_gpio_pin_clear(17);
-                    nrf_delay_ms(50);
-                    nrf_gpio_pin_set(17);
-                    nrf_delay_ms(50);
-                    nrf_gpio_pin_clear(17);
-                    nrf_delay_ms(50);
-                    nrf_gpio_pin_set(17);
-                    nrf_delay_ms(50);
-                    nrf_gpio_pin_clear(17);
-                    nrf_delay_ms(50);
-                    nrf_gpio_pin_set(17);
-                }
-            }
-            if (count >= 3000){
-                sd_power_system_off();
-            }
-        }
-
-        if (download_request){
-            download_request = false;
-            send_data();
-        }
-
-        if (arm_request){
-            arm_request = false;
-            arm_system();
-            nrf_gpio_pin_clear(17);
-            led1_on = true;
-            
-
-        }
 
         if (main_loop_update){
 
@@ -3025,7 +2955,7 @@ int main(void)
                 union gps_bytes gps_packet;
                 read_gps();
                 gps_packet.state = gps;
-                Radio.Send(gps_packet.bytes, sizeof(gps_packet.bytes));
+                //Radio.Send(gps_packet.bytes, sizeof(gps_packet.bytes));
             }
 
 
@@ -3034,65 +2964,13 @@ int main(void)
             Radio.IrqProcess();
 
             main_loop_update = false;
-
-            if (armedForLaunch) {
-                uint8_t index = 0;
-                uint8_t buffer_address;
-
-                vehicle_state.ref_pressure = 0;
-
-                for (index=0; index<10; index++){
-                    buffer_address = bufferStart + 1 + index;
-                    if (buffer_address > 63) {
-                        buffer_address = 0;
-                    }
-                    vehicle_state.ref_pressure = vehicle_state.ref_pressure + buffer[buffer_address].pressure;
-                }
-
-                vehicle_state.ref_pressure = vehicle_state.ref_pressure * 0.1;
-
-
-                vehicle_state.ref_pressure = buffer[buffer_address].pressure;
-                vehicle_state.ref_altitude = vehicle_state.ref_pressure/101.325;
-                vehicle_state.ref_altitude = pow(vehicle_state.ref_altitude,0.190284);
-                vehicle_state.ref_altitude = 1.0 - vehicle_state.ref_altitude;
-                vehicle_state.ref_altitude = vehicle_state.ref_altitude * 145366.45;
-            }
-
-            if ((vehicle_state.velocity > 30.0) && (vehicle_state.altitude > 10.0) && (!record_data) && (file_length == 0)){
-                armedForLaunch = false;
-                nrf_gpio_pin_set(17);
-                led1_on = false;
-                launchDetect = true;
-                boost = true;
-                start_data_recording();
-                write_buffer();
-            }
-
-            if (data_time > 540.0){
-                record_data = false;
-            }
-
-            if (landed) {
-                isIdle = true;
-                record_data = false;
-                landed = false;
-                store_file_length();
-                nrf_delay_us(700);
-                store_recording_finished();
-            }
+            
 
             send_update++;
             save_update++;
             batt_update++;
 
-            if (!isIdle){
-                read_baro();
-                if (baro_error){
-                    vehicle_state.max_altitude = vehicle_state.max_altitude + 1.0;
-                }
-                update_state();
-            }
+           
 
             if (send_update > send_update_int){
                 NRF_LOG_INFO("send update");
@@ -3101,16 +2979,7 @@ int main(void)
                 send_status_packet();
                 send_gps_packet();
             }
-            
-            if (save_update > save_update_int){
-                save_update = 0;
-                if (record_data){
-                    write_data(file_length);
-                }
-                else{
-                    buffer_data();
-                }
-            }
+
 
             if (batt_update > batt_update_int){
                 batt_update = 0;
