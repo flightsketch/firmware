@@ -123,9 +123,9 @@
 
 #define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(MAIN_LOOP_PERIOD)                /**< Main loop interval (ticks). */
 
-#define CS_BARO   29
-#define CS_FLASH  9
-#define CS_ACC    10
+#define CS_BARO   20
+#define CS_FLASH  5
+#define CS_ACC    12
 
 float dt = MAIN_LOOP_PERIOD/1000.0;
 
@@ -246,6 +246,10 @@ struct state {
   float velocity_filt;
   float max_velocity;
   float acceleration;
+  float acc_x;
+  float acc_y;
+  float acc_z;
+  float acc_total;
   float temp;
 };
 
@@ -258,6 +262,10 @@ struct dataPt {
   float pressure;
   float altitude;
   float velocity;
+  float acc_x;
+  float acc_y;
+  float acc_z;
+  float acc_total;
 };
 
 struct dataPt buffer[64];
@@ -1286,8 +1294,8 @@ void store_file_length(void){
 void write_data(unsigned int address){
 
     spi_xfer_done = false;
-    uint8_t tx_buffer[20] = {0}; //write cmd, 3 byte address, 16 bytes data
-    uint8_t rx_buffer[20] = {0};
+    uint8_t tx_buffer[36] = {0}; //write cmd, 3 byte address, 32 bytes data
+    uint8_t rx_buffer[36] = {0};
     tx_buffer[0] = 0x06;
 
     uint8_t i;
@@ -1312,6 +1320,15 @@ void write_data(unsigned int address){
     union float_bytes vel_bytes;
     vel_bytes.data = vehicle_state.velocity;
 
+    union float_bytes acc_x_bytes;
+    acc_x_bytes.data = vehicle_state.acc_x;
+    union float_bytes acc_y_bytes;
+    acc_y_bytes.data = vehicle_state.acc_y;
+    union float_bytes acc_z_bytes;
+    acc_z_bytes.data = vehicle_state.acc_z;
+    union float_bytes acc_total_bytes;
+    acc_total_bytes.data = vehicle_state.acc_total;
+
     tx_buffer[0] = 0x02;
 
     tx_buffer[1] = address_bytes.address_string[2];
@@ -1334,9 +1351,22 @@ void write_data(unsigned int address){
         tx_buffer[16+i] = vel_bytes.float_string[i];
     }
 
+    for (i=0; i<4; i++){
+        tx_buffer[20+i] = acc_x_bytes.float_string[i];
+    }
+    for (i=0; i<4; i++){
+        tx_buffer[24+i] = acc_y_bytes.float_string[i];
+    }
+    for (i=0; i<4; i++){
+        tx_buffer[28+i] = acc_z_bytes.float_string[i];
+    }
+    for (i=0; i<4; i++){
+        tx_buffer[32+i] = acc_total_bytes.float_string[i];
+    }
+
     spi_xfer_done = false;
     nrf_gpio_pin_clear(CS_FLASH);
-    nrf_drv_spi_transfer(&spi, tx_buffer, 20, rx_buffer, 20);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 36, rx_buffer, 36);
     
     while (!spi_xfer_done){
         __WFE();
@@ -1344,7 +1374,7 @@ void write_data(unsigned int address){
     nrf_gpio_pin_set(CS_FLASH);
 
 
-    file_length = file_length + 16;
+    file_length = file_length + 32;
     data_time = data_time + log_dt;
 
 }
@@ -1354,22 +1384,23 @@ void write_buffer(void){
     int j = 0;
     int k = 0;
     int buffer_position;
-
-    
-    uint8_t tx_buffer[132] = {0}; //write cmd, 3 byte address, 16 bytes data
+    uint8_t tx_buffer[132] = {0}; //write cmd, 3 byte address, 128 bytes data
     uint8_t rx_buffer[132] = {0};
     
-
     int i;
     
-    
-
     union float_bytes time_bytes;
     union float_bytes press_bytes;
     union float_bytes alt_bytes;
     union float_bytes vel_bytes;
+    union float_bytes acc_x_bytes;
+    union float_bytes acc_y_bytes;
+    union float_bytes acc_z_bytes;
+    union float_bytes acc_total_bytes;
     nrf_delay_us(700);
-    for (k=0; k<8; k++){
+
+    // write data pages of buffer
+    for (k=0; k<16; k++){
       spi_xfer_done = false;
       tx_buffer[0] = 0x06;
       nrf_gpio_pin_clear(CS_FLASH);
@@ -1391,10 +1422,10 @@ void write_buffer(void){
       
       spi_xfer_done = false;
       nrf_gpio_pin_clear(CS_FLASH);
-
-      for (j=0; j<8; j++){
+      // write number of data points in page
+      for (j=0; j<4; j++){
         
-        buffer_position = bufferStart + 8*k+j;
+        buffer_position = bufferStart + 4*k+j;
         if (buffer_position >= 64){
           buffer_position = buffer_position - 64;
         }
@@ -1402,21 +1433,41 @@ void write_buffer(void){
         press_bytes.data = buffer[buffer_position].pressure;
         alt_bytes.data = buffer[buffer_position].altitude;
         vel_bytes.data = buffer[buffer_position].velocity;
+        acc_x_bytes.data = buffer[buffer_position].acc_x;
+        acc_y_bytes.data = buffer[buffer_position].acc_y;
+        acc_z_bytes.data = buffer[buffer_position].acc_z;
+        acc_total_bytes.data = buffer[buffer_position].acc_total;
 
         for (i=0; i<4; i++){
-            tx_buffer[j*16+4+i] = time_bytes.float_string[i];
+            tx_buffer[j*32+4+i] = time_bytes.float_string[i];
         }
 
         for (i=0; i<4; i++){
-            tx_buffer[j*16+8+i] = press_bytes.float_string[i];
+            tx_buffer[j*32+8+i] = press_bytes.float_string[i];
         }
 
         for (i=0; i<4; i++){
-            tx_buffer[j*16+12+i] = alt_bytes.float_string[i];
+            tx_buffer[j*32+12+i] = alt_bytes.float_string[i];
         }
 
         for (i=0; i<4; i++){
-            tx_buffer[j*16+16+i] = vel_bytes.float_string[i];
+            tx_buffer[j*32+16+i] = vel_bytes.float_string[i];
+        }
+
+        for (i=0; i<4; i++){
+            tx_buffer[j*32+20+i] = acc_x_bytes.float_string[i];
+        }
+
+        for (i=0; i<4; i++){
+            tx_buffer[j*32+24+i] = acc_y_bytes.float_string[i];
+        }
+
+        for (i=0; i<4; i++){
+            tx_buffer[j*32+28+i] = acc_z_bytes.float_string[i];
+        }
+
+        for (i=0; i<4; i++){
+            tx_buffer[j*32+32+i] = acc_total_bytes.float_string[i];
         }
       
         data_time = data_time + log_dt;
@@ -1885,6 +1936,10 @@ void vehicle_init(void){
     vehicle_state.velocity_filt = 0.0;
     vehicle_state.max_velocity = 0.0;
     vehicle_state.acceleration = 0.0;
+    vehicle_state.acc_x = 0.0;
+    vehicle_state.acc_y = 0.0;
+    vehicle_state.acc_z = 0.0;
+    vehicle_state.acc_total = 0.0;
     vehicle_state.temp = 59.0;
 }
 
@@ -1896,6 +1951,10 @@ void vehicle_reset(void){
     vehicle_state.velocity_filt = 0.0;
     vehicle_state.max_velocity = 0.0;
     vehicle_state.acceleration = 0.0;
+    vehicle_state.acc_x = 0.0;
+    vehicle_state.acc_y = 0.0;
+    vehicle_state.acc_z = 0.0;
+    vehicle_state.acc_total = 0.0;
 }
 
 void send_file_header(void){
@@ -1983,7 +2042,6 @@ void send_update_packet(void){
     data_packet.data.alt = vehicle_state.altitude;
     data_packet.data.maxAlt = vehicle_state.max_altitude;
     data_packet.data.temp = vehicle_state.temp;
-
     data_packet.data.data_chk = 0;
 
     int i;
@@ -2091,7 +2149,7 @@ void send_data(void){ // download data
 
     int num_vals = file_length / 4;
     unsigned int i = 0;
-    unsigned int data_length = floor(m_ble_nus_max_data_len/4 - 5);
+    unsigned int data_length = floor(m_ble_nus_max_data_len/4 - 7);
     unsigned char packet[532] = {0};
     unsigned char chk = 0;
 
@@ -2124,12 +2182,12 @@ void send_data(void){ // download data
 
     packet[0] = 0xf5;
     packet[1] = 0x07;
-    packet[2] = data_length + 1;
-    packet[3] = 0xf5 + 0x07 + data_length + 1;
+    packet[2] = data_length + 2;
+    packet[3] = 0xf5 + 0x07 + data_length + 2;
 
 
 
-    int num_packets = ceil(num_vals/data_length);
+    int num_packets = ceil(((float) num_vals)/((float) data_length));
     int j = 0;
     int index = 0;
     int remainder = 0;
@@ -2141,20 +2199,24 @@ void send_data(void){ // download data
     for (i=0; i<num_packets; i++){
       packet[4] = i;
       chk = packet[4];
+      packet[5] = i>>8;
+      chk = chk + packet[5];
       remainder = num_vals - i*data_length;
       if (remainder < data_length){
-        //data_length = remainder;
+        data_length = remainder;
       }
+      packet[2] = data_length + 2;
+      packet[3] = 0xf5 + 0x07 + data_length + 1;
       for (j=0; j<data_length; j++){
         data.data = read_float(index*4);
 
-        packet[5+j*4] = data.float_string[0];
+        packet[6+j*4] = data.float_string[0];
         chk = chk + packet[5+j*4];
-        packet[6+j*4] = data.float_string[1];
+        packet[7+j*4] = data.float_string[1];
         chk = chk + packet[6+j*4];
-        packet[7+j*4] = data.float_string[2];
+        packet[8+j*4] = data.float_string[2];
         chk = chk + packet[7+j*4];
-        packet[8+j*4] = data.float_string[3];
+        packet[9+j*4] = data.float_string[3];
         chk = chk + packet[8+j*4];
 
         index = index + 1;
@@ -2162,11 +2224,11 @@ void send_data(void){ // download data
 
       }
 
-        packet[5+4*data_length] = chk;
+        packet[6+4*data_length] = chk;
 
 
         int err_code = 0;
-        uint16_t length = 6+4*data_length;
+        uint16_t length = 7+4*data_length;
         err_code = ble_nus_data_send(&m_nus, &packet[0], &length, m_conn_handle);
         //APP_ERROR_CHECK(err_code);
 
@@ -2318,6 +2380,11 @@ void buffer_data(void){
     buffer[bufferStart].altitude = vehicle_state.altitude;
     buffer[bufferStart].velocity = vehicle_state.velocity;
 
+    buffer[bufferStart].acc_x = vehicle_state.acc_x;
+    buffer[bufferStart].acc_y = vehicle_state.acc_y;
+    buffer[bufferStart].acc_z = vehicle_state.acc_z;
+    buffer[bufferStart].acc_total = vehicle_state.acc_total;
+
     bufferStart = bufferStart + 1;
 
     if (bufferStart == 64){
@@ -2336,10 +2403,16 @@ void read_accel(void){
     struct bma2x2_accel_data_temp sample_xyzt;
 
     com_rslt += bma2x2_read_accel_x(&accel_x_s16);
+    com_rslt += bma2x2_read_accel_y(&accel_y_s16);
+    com_rslt += bma2x2_read_accel_z(&accel_z_s16);
 
-    vehicle_state.temp = accel_x_s16;
+    vehicle_state.acc_x = 32.2*(0.707106781*(accel_x_s16 * 0.001953125) + 0.707106781*(accel_y_s16 * 0.001953125));
+    vehicle_state.acc_y = 32.2*(0.707106781*(accel_x_s16 * 0.001953125) - 0.707106781*(accel_y_s16 * 0.001953125));
+    vehicle_state.acc_z = 32.2*(accel_z_s16 * 0.001953125);
+    vehicle_state.acc_total = pow((pow(vehicle_state.acc_x,2) + pow(vehicle_state.acc_y,2) + pow(vehicle_state.acc_z,2)),0.5);
     NRF_LOG_INFO("Accel: %d", accel_x_s16);
-    vehicle_state.acceleration = accel_x_s16;
+    //vehicle_state.acceleration = accel_x_s16;
+    //vehicle_state.altitude = vehicle_state.acc_total;
 }
 
 void readAccID(void){
@@ -2461,9 +2534,11 @@ int main(void)
     rslt += bma2x2_set_power_mode(BMA2x2_MODE_NORMAL);
     NRF_LOG_INFO("Result: %d", rslt);
     u8 bw_value_u8 = BMA2x2_INIT_VALUE;
-    bw_value_u8 = 0x08;/* set bandwidth of 7.81Hz*/
+    bw_value_u8 = 0x0f;/* set bandwidth of 1000Hz*/
     rslt += bma2x2_set_bw(bw_value_u8);
     NRF_LOG_INFO("Result: %d", rslt);
+
+    bma2x2_set_range(0x0c);
 
     u8 banwid = BMA2x2_INIT_VALUE;
     rslt += bma2x2_get_bw(&banwid);
@@ -2525,46 +2600,25 @@ int main(void)
     // Enter main loop.
 
     uint8_t led1_period = 200;
-    uint8_t led1_dc = 5;
+    uint8_t led1_dc = 1;
     uint8_t led1_counter = 0;
     bool led1_on = false;
 
     nrf_gpio_cfg_input(14, NRF_GPIO_PIN_PULLDOWN);
+    nrf_gpio_cfg_input(16, NRF_GPIO_PIN_PULLDOWN);
     nrf_gpio_cfg_sense_input(14, NRF_GPIO_PIN_PULLDOWN, NRF_GPIO_PIN_SENSE_HIGH);
 
 
     while(1){   
-
+        // if power putton pressed
         if(nrf_gpio_pin_read(14) == 1)
         {
             int count = 0;
+            //loop to time button press
             while (nrf_gpio_pin_read(14)){
                 nrf_delay_ms(1);
-                nrf_drv_spi_uninit(&spi);
-                nrf_gpio_cfg_input(CS_BARO,NRF_GPIO_PIN_PULLDOWN);
-                nrf_gpio_cfg_input(CS_FLASH,NRF_GPIO_PIN_PULLDOWN);
-                nrf_gpio_cfg_input(CS_ACC,NRF_GPIO_PIN_PULLDOWN);
-                nrf_gpio_cfg_input(3,NRF_GPIO_PIN_PULLDOWN);
-                nrf_gpio_cfg_input(4,NRF_GPIO_PIN_PULLDOWN);
-                nrf_gpio_cfg_input(28,NRF_GPIO_PIN_PULLDOWN);
-                
-                
-                nrf_gpio_pin_set(15);
-
-//                nrf_gpio_pin_clear(CS_BARO);
-//                nrf_gpio_pin_clear(CS_FLASH);
-//                nrf_gpio_pin_clear(CS_ACC);
-
-//                NRF_SPIM0->ENABLE = (SPIM_ENABLE_ENABLE_Disabled << SPIM_ENABLE_ENABLE_Pos);
-//                nrf_gpio_cfg_output(3);
-//                nrf_gpio_cfg_output(4);
-//                nrf_gpio_cfg_output(28);
-
-//                nrf_gpio_pin_clear(3);
-//                nrf_gpio_pin_clear(4);
-//                nrf_gpio_pin_clear(28);
-
                 count++;
+                // flash led to indicate 3s elapsed
                 if (count == 3000){
                     nrf_gpio_pin_clear(17);
                     nrf_delay_ms(50);
@@ -2579,36 +2633,51 @@ int main(void)
                     nrf_gpio_pin_set(17);
                 }
             }
+            // if power button released after more than 3s trigger shutdown
             if (count >= 3000){
+                // uninit spi & set CS as inputs
+                nrf_drv_spi_uninit(&spi);
+                nrf_gpio_cfg_input(CS_BARO,NRF_GPIO_PIN_PULLDOWN);
+                nrf_gpio_cfg_input(CS_FLASH,NRF_GPIO_PIN_PULLDOWN);
+                nrf_gpio_cfg_input(CS_ACC,NRF_GPIO_PIN_PULLDOWN);
+                nrf_gpio_cfg_input(3,NRF_GPIO_PIN_PULLDOWN);
+                nrf_gpio_cfg_input(4,NRF_GPIO_PIN_PULLDOWN);
+                nrf_gpio_cfg_input(28,NRF_GPIO_PIN_PULLDOWN);
+                
+                // turn off sensor power
+                nrf_gpio_pin_set(15);
+                // enter system off
                 sd_power_system_off();
             }
         }
 
         if (download_request){
+            // clear flag
             download_request = false;
-            parsePacket_typeF4();
+            // begin download
+            send_data();
         }
 
         if (arm_request){
+            // clear flag
             arm_request = false;
             arm_system();
+            // start led flash
             nrf_gpio_pin_clear(17);
             led1_on = true;
-            
-
         }
 
+        // main loop
         if (main_loop_update){
-            main_loop_update = false;
-
-            read_accel();
-
+            // clear flag
+            main_loop_update = false;            
+            // recalculate pad ref. pressure from buffer
             if (armedForLaunch) {
                 uint8_t index = 0;
                 uint8_t buffer_address;
 
+                // average buffer data
                 vehicle_state.ref_pressure = 0;
-
                 for (index=0; index<10; index++){
                     buffer_address = bufferStart + 1 + index;
                     if (buffer_address > 63) {
@@ -2616,10 +2685,9 @@ int main(void)
                     }
                     vehicle_state.ref_pressure = vehicle_state.ref_pressure + buffer[buffer_address].pressure;
                 }
-
                 vehicle_state.ref_pressure = vehicle_state.ref_pressure * 0.1;
 
-
+                // conver ref pressure to ref altitude
                 vehicle_state.ref_pressure = buffer[buffer_address].pressure;
                 vehicle_state.ref_altitude = vehicle_state.ref_pressure/101.325;
                 vehicle_state.ref_altitude = pow(vehicle_state.ref_altitude,0.190284);
@@ -2627,49 +2695,64 @@ int main(void)
                 vehicle_state.ref_altitude = vehicle_state.ref_altitude * 145366.45;
             }
 
-            if ((vehicle_state.velocity > 30.0) && (vehicle_state.altitude > 10.0) && (!record_data) && (file_length == 0)){
+            // launch detect
+            if ((vehicle_state.velocity > 30.0) && (vehicle_state.altitude > 50.0) && (!record_data) && (file_length == 0)){
+                // clear armed flag
                 armedForLaunch = false;
+                // stop status LED
                 nrf_gpio_pin_set(17);
                 led1_on = false;
+                // set launch & boost flag
                 launchDetect = true;
                 boost = true;
+                // start recording & save buffer
                 start_data_recording();
                 write_buffer();
             }
 
+            // stop recording if flash is full
             if (data_time > 540.0){
                 record_data = false;
             }
 
+            // clean up after landing detect
             if (landed) {
+                // set idle state
                 isIdle = true;
+                // stop recording
                 record_data = false;
+                // clear landing flag
                 landed = false;
+                // save file status & length to flash
                 store_file_length();
                 nrf_delay_us(700);
                 store_recording_finished();
             }
-
+            // increment interval counters
             send_update++;
             save_update++;
             batt_update++;
 
+
+            // data loop
             if (!isIdle){
                 read_baro();
+                read_accel();
                 if (baro_error){
-                    vehicle_state.max_altitude = vehicle_state.max_altitude + 1.0;
                 }
-                
                 update_state();
             }
 
+            // BLE data update
             if (send_update > send_update_int){
                 NRF_LOG_INFO("send update");
+                // reset interval counter
                 send_update = 0;
                 send_update_packet();
                 send_status_packet();
             }
             
+            // write data to flash
             if (save_update > save_update_int){
                 save_update = 0;
                 if (record_data){
@@ -2680,11 +2763,13 @@ int main(void)
                 }
             }
 
+            // send BLE battery update
             if (batt_update > batt_update_int){
                 batt_update = 0;
                 update_batt();
             }
 
+            // flash stetus LED
             if (led1_on) {
                 led1_counter = led1_counter + 1;
                 if (led1_counter > led1_dc){
@@ -2696,11 +2781,11 @@ int main(void)
                 }
             }
 
-        }
+        } // end main loop
 
         idle_state_handle();
-    }
-}
+    } // end program loop
+} // end program
 
 
 /**
