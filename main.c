@@ -123,9 +123,11 @@
 
 #define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(MAIN_LOOP_PERIOD)                /**< Main loop interval (ticks). */
 
-#define CS_BARO   20
-#define CS_FLASH  5
-#define CS_ACC    12
+#define CS_BARO   29
+#define CS_FLASH  9
+#define CS_ACC    10
+
+#define BOOTLOADER_DFU_START 0xB1
 
 float dt = MAIN_LOOP_PERIOD/1000.0;
 
@@ -217,6 +219,8 @@ void parsePacket_typeF2(void);
 void parsePacket_typeF3(void);
 
 void parsePacket_typeF4(void);
+
+void parsePacket_typeF5(void);
 
 static void main_loop_timeout_handler(void * p_context)
 {
@@ -385,6 +389,8 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
                     case 0xF3: parsePacket_typeF3();
                     break;
                     case 0xF4: download_request = true;
+                    break;
+                    case 0xF5: parsePacket_typeF5();
                     break;
                     }
               }
@@ -1964,9 +1970,9 @@ void send_file_header(void){
     unsigned char chk = 0;
 
     packet[0] = 0xf5;
-    packet[1] = 0x03;
+    packet[1] = 0x09;
     packet[2] = 0x04;
-    packet[3] = 0xfc;
+    packet[3] = 0x02;
 
     union data_address file_length_tx;
     file_length_tx.address_int = file_length;
@@ -2013,6 +2019,38 @@ void send_file_eof(void){
         }
 
     }
+
+}
+
+void send_firmware_ID(void){
+
+    
+    unsigned char packet[9] = {0};
+    unsigned char chk = 0;
+
+    packet[0] = 0xf5;
+    packet[1] = 0x0A;
+    packet[2] = 0x04;
+    packet[3] = 0x03;
+
+    union data_address firmware_id;
+    firmware_id.address_int = 23;
+
+    packet[4] = firmware_id.address_string[0];
+    chk = packet[4];
+    packet[5] = firmware_id.address_string[1];
+    chk = chk + packet[5];
+    packet[6] = firmware_id.address_string[2];
+    chk = chk + packet[6];
+    packet[7] = firmware_id.address_string[3];
+    chk = chk + packet[7];
+
+    packet[8] = chk;
+
+
+    int err_code = 0;
+    uint16_t length = 9;
+    err_code = ble_nus_data_send(&m_nus, &packet[0], &length, m_conn_handle);
 
 }
 
@@ -2141,6 +2179,11 @@ void parsePacket_typeF4(void){ // download data
 
     
 
+}
+
+void parsePacket_typeF5(void){
+    sd_power_gpregret_set(0, BOOTLOADER_DFU_START);
+    sd_nvic_SystemReset();
 }
 
 void send_data(void){ // download data
@@ -2665,6 +2708,8 @@ int main(void)
             // start led flash
             nrf_gpio_pin_clear(17);
             led1_on = true;
+
+            
         }
 
         // main loop
@@ -2767,6 +2812,7 @@ int main(void)
             if (batt_update > batt_update_int){
                 batt_update = 0;
                 update_batt();
+                send_firmware_ID();
             }
 
             // flash stetus LED
