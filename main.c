@@ -170,13 +170,13 @@ float log_dt = 0.0;
 
 float E = 0.0;
 
-float K1_boost = 0.197584269677409;
-float K2_boost = 1.086251556999431;
-float K3_boost = 2.985922024587661;
+float K1_boost =  0.3776485834097217;
+float K2_boost =  4.4566365843151580;
+float K3_boost = 26.2964175124521100;
 
-float K1_coast = 0.077894859154768;
-float K2_coast = 0.157902454768786;
-float K3_coast = 0.160043843024796;
+float K1_coast = 0.2720187094947407;
+float K2_coast = 2.154489789607763;
+float K3_coast = 8.532181963045907;
 
 float K1 = 0.0;
 float K2 = 0.0;
@@ -2034,7 +2034,7 @@ void send_firmware_ID(void){
     packet[3] = 0x03;
 
     union data_address firmware_id;
-    firmware_id.address_int = 23;
+    firmware_id.address_int = 24;
 
     packet[4] = firmware_id.address_string[0];
     chk = packet[4];
