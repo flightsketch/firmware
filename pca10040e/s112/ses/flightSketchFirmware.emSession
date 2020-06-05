@@ -58,8 +58,8 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="32" y="2036" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="2006" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="23" y="2943" useTextEdit="1" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="2933" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="40" y="396" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="2710" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="2943" useTextEdit="1" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="2933" codecName="Default"/>
  </Files>
- <ARMCrossStudioWindow activeProject="flightSketchFirmware" fileDialogDefaultFilter="*.h" autoConnectTarget="J-Link" buildConfiguration="Release" debugSearchFileMap="" fileDialogInitialDirectory="/Users/russ/nRF5_SDK_15.2.0_9412b96/examples/ble_peripheral/flightSketch/bmp388_driver" debugSearchPath="" autoConnectCapabilities="3711"/>
+ <ARMCrossStudioWindow activeProject="flightSketchFirmware" fileDialogDefaultFilter="*.h" autoConnectTarget="J-Link" buildConfiguration="Release" debugSearchFileMap="" fileDialogInitialDirectory="/Users/russ/nRF5_SDK_15.2.0_9412b96/examples/ble_peripheral/flightSketch/bmp388_driver" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>

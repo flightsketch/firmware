@@ -210,6 +210,9 @@ bool download_request = false;
 unsigned int file_length = 0;
 float data_time = 0;
 
+uint64_t powerOffInt = 720000;
+uint64_t powerCount = 0;
+
 bool baro_error = false;
 
 void parsePacket_typeF1(void);
@@ -221,6 +224,8 @@ void parsePacket_typeF3(void);
 void parsePacket_typeF4(void);
 
 void parsePacket_typeF5(void);
+
+void power_off(void);
 
 static void main_loop_timeout_handler(void * p_context)
 {
@@ -380,6 +385,7 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
               chk = p_evt->params.rx_data.p_data[0] + p_evt->params.rx_data.p_data[1];
               if (chk == p_evt->params.rx_data.p_data[3]){
                   //valid command packet
+                  powerCount = 0;
                   unsigned char packet_type = p_evt->params.rx_data.p_data[1];
                   switch (packet_type){
                     case 0xF1: parsePacket_typeF1();
@@ -391,6 +397,8 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
                     case 0xF4: download_request = true;
                     break;
                     case 0xF5: parsePacket_typeF5();
+                    break;
+                    case 0xF6: power_off();
                     break;
                     }
               }
@@ -2034,7 +2042,7 @@ void send_firmware_ID(void){
     packet[3] = 0x03;
 
     union data_address firmware_id;
-    firmware_id.address_int = 24;
+    firmware_id.address_int = 25;
 
     packet[4] = firmware_id.address_string[0];
     chk = packet[4];
@@ -2481,9 +2489,34 @@ void readAccID(void){
     }
     nrf_gpio_pin_set(CS_ACC);
     NRF_LOG_INFO("read ID: %d",rx_buffer[1]);
+}
 
+void power_off(void){
 
-
+    nrf_gpio_pin_clear(17);
+    nrf_delay_ms(50);
+    nrf_gpio_pin_set(17);
+    nrf_delay_ms(50);
+    nrf_gpio_pin_clear(17);
+    nrf_delay_ms(50);
+    nrf_gpio_pin_set(17);
+    nrf_delay_ms(50);
+    nrf_gpio_pin_clear(17);
+    nrf_delay_ms(50);
+    nrf_gpio_pin_set(17);
+    // uninit spi & set CS as inputs
+    nrf_drv_spi_uninit(&spi);
+    nrf_gpio_cfg_input(CS_BARO,NRF_GPIO_PIN_PULLDOWN);
+    nrf_gpio_cfg_input(CS_FLASH,NRF_GPIO_PIN_PULLDOWN);
+    nrf_gpio_cfg_input(CS_ACC,NRF_GPIO_PIN_PULLDOWN);
+    nrf_gpio_cfg_input(3,NRF_GPIO_PIN_PULLDOWN);
+    nrf_gpio_cfg_input(4,NRF_GPIO_PIN_PULLDOWN);
+    nrf_gpio_cfg_input(28,NRF_GPIO_PIN_PULLDOWN);
+                
+    // turn off sensor power
+    nrf_gpio_pin_set(15);
+    // enter system off
+    sd_power_system_off();
 }
 
 
@@ -2678,19 +2711,7 @@ int main(void)
             }
             // if power button released after more than 3s trigger shutdown
             if (count >= 3000){
-                // uninit spi & set CS as inputs
-                nrf_drv_spi_uninit(&spi);
-                nrf_gpio_cfg_input(CS_BARO,NRF_GPIO_PIN_PULLDOWN);
-                nrf_gpio_cfg_input(CS_FLASH,NRF_GPIO_PIN_PULLDOWN);
-                nrf_gpio_cfg_input(CS_ACC,NRF_GPIO_PIN_PULLDOWN);
-                nrf_gpio_cfg_input(3,NRF_GPIO_PIN_PULLDOWN);
-                nrf_gpio_cfg_input(4,NRF_GPIO_PIN_PULLDOWN);
-                nrf_gpio_cfg_input(28,NRF_GPIO_PIN_PULLDOWN);
-                
-                // turn off sensor power
-                nrf_gpio_pin_set(15);
-                // enter system off
-                sd_power_system_off();
+                power_off();
             }
         }
 
@@ -2715,7 +2736,11 @@ int main(void)
         // main loop
         if (main_loop_update){
             // clear flag
-            main_loop_update = false;            
+            main_loop_update = false;     
+            powerCount++;
+            if (powerCount > powerOffInt) {
+              power_off();
+            }
             // recalculate pad ref. pressure from buffer
             if (armedForLaunch) {
                 uint8_t index = 0;
@@ -2744,6 +2769,8 @@ int main(void)
             if ((vehicle_state.velocity > 30.0) && (vehicle_state.altitude > 50.0) && (!record_data) && (file_length == 0)){
                 // clear armed flag
                 armedForLaunch = false;
+                // reset power off timer
+                powerCount = 0;
                 // stop status LED
                 nrf_gpio_pin_set(17);
                 led1_on = false;
