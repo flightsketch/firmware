@@ -99,6 +99,8 @@
       <file file_name="../../../bmp280_config.c" />
       <file file_name="../../../bmp388_driver/bmp3.c" />
       <file file_name="../../../BMA2x2_driver/bma2x2.c" />
+      <file file_name="../../../BMI08x_driver/bmi08a.c" />
+      <file file_name="../../../BMI08x_driver/bmi08g.c" />
     </folder>
     <folder Name="nRF_Segger_RTT">
       <file file_name="../../../../../../external/segger_rtt/SEGGER_RTT.c" />

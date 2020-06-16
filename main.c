@@ -82,6 +82,9 @@
 
 #include "BMA2x2_driver/bma2x2.h"
 
+#include "BMI08x_driver/bmi08x.h"
+#include "BMI08x_driver/bmi08x_defs.h"
+
 
 
 #if defined (UART_PRESENT)
@@ -123,9 +126,15 @@
 
 #define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(MAIN_LOOP_PERIOD)                /**< Main loop interval (ticks). */
 
-#define CS_BARO   29
+#define CS_BARO   20
 #define CS_FLASH  9
-#define CS_ACC    10
+#define CS_ACC    12
+#define CS_GYRO   13
+
+#define OUT_1     8
+#define OUT_2     7
+
+#define CONT_TEST 6
 
 #define BOOTLOADER_DFU_START 0xB1
 
@@ -160,12 +169,14 @@ static ble_uuid_t m_adv_uuids[]          =                                      
 char DEVICE_NAME[24];
 
 bool main_loop_update = false;
+bool led1_on = false;
 int send_update = 0;
 int send_update_int = 5;
 int save_update = 0;
 int save_update_int = 0;
 int batt_update = 0;
-int batt_update_int = 250;
+//int batt_update_int = 250;
+int batt_update_int = 5;
 float log_dt = 0.0;
 
 float E = 0.0;
@@ -181,6 +192,11 @@ float K3_coast = 8.532181963045907;
 float K1 = 0.0;
 float K2 = 0.0;
 float K3 = 0.0;
+
+float minEventAlt = 100.0;
+float mainAlt = 350.0;
+float mainDuration = 2.0;
+float apogeeDuration = 2.0;
 
 
 
@@ -199,7 +215,12 @@ bool armedForLaunch = false;
 bool launchDetect = false;
 bool boost = false;
 
+bool apogeeDetect = false;
+bool mainDetect = false;
+
 float timeToBurnout = 0.0;
+float timeToApogee = 0.0;
+float timeToMain = 0.0;
 
 bool armedForLanding = false;
 float minLandingTime = 30.0;
@@ -212,6 +233,9 @@ float data_time = 0;
 
 uint64_t powerOffInt = 720000;
 uint64_t powerCount = 0;
+
+int16_t out1ResOffset = 0;
+int16_t out2ResOffset = 0;
 
 bool baro_error = false;
 
@@ -260,6 +284,8 @@ struct state {
   float acc_z;
   float acc_total;
   float temp;
+  int16_t out1_res;
+  int16_t out2_res;
 };
 
 struct status {
@@ -924,7 +950,7 @@ void Adc12bitPolledInitialise(void)
         .acq_time   = NRF_SAADC_ACQTIME_40US,
         .mode       = NRF_SAADC_MODE_SINGLE_ENDED,
         .burst      = NRF_SAADC_BURST_ENABLED,
-        .pin_p      = NRF_SAADC_INPUT_VDD,
+        .pin_p      = NRF_SAADC_INPUT_AIN0,
         .pin_n      = NRF_SAADC_INPUT_DISABLED
     };
 
@@ -953,6 +979,7 @@ void Adc12bitPolledInitialise(void)
  */
 uint16_t GetBatteryVoltage1(void)
 {
+    NRF_SAADC->CH[1].PSELP = NRF_SAADC_INPUT_VDD;
     uint16_t result = 9999;         // Some recognisable dummy value
     uint32_t timeout = 10000;       // Trial and error
     volatile int16_t buffer[8];
@@ -980,8 +1007,79 @@ uint16_t GetBatteryVoltage1(void)
     return result;
 }
 
+uint16_t readOut1Res(void)
+{   
+    nrf_gpio_pin_set(CONT_TEST);
+    NRF_SAADC->CH[1].PSELP = NRF_SAADC_INPUT_AIN0;
+    uint16_t result = 9999;         // Some recognisable dummy value
+    uint32_t timeout = 10000;       // Trial and error
+    volatile int16_t buffer[8];
+    // Enable command
+    nrf_saadc_enable();
+    NRF_SAADC->RESULT.PTR = (uint32_t)buffer;
+    NRF_SAADC->RESULT.MAXCNT = 1;
+    nrf_saadc_event_clear(NRF_SAADC_EVENT_END);
+    nrf_saadc_task_trigger(NRF_SAADC_TASK_START);
+    nrf_saadc_task_trigger(NRF_SAADC_TASK_SAMPLE);
 
+    while (0 == nrf_saadc_event_check(NRF_SAADC_EVENT_END) && timeout > 0)
+    {
+        timeout--;
+    }
+    nrf_saadc_task_trigger(NRF_SAADC_TASK_STOP);
+    nrf_saadc_event_clear(NRF_SAADC_EVENT_STARTED);
+    nrf_saadc_event_clear(NRF_SAADC_EVENT_END);
+    // Disable command to reduce power consumption
+    nrf_saadc_disable();
+    if (timeout != 0)
+    {
+        result = ((buffer[0] * 1000L)+(ADC12_COUNTS_PER_VOLT/2)) / ADC12_COUNTS_PER_VOLT;
+        result = result/0.159310345;
+    }
+    nrf_gpio_pin_clear(CONT_TEST);
+    return result;
+}
 
+uint16_t readOut2Res(void)
+{   
+    nrf_gpio_pin_set(CONT_TEST);
+    NRF_SAADC->CH[1].PSELP = NRF_SAADC_INPUT_AIN3;
+    uint16_t result = 9999;         // Some recognisable dummy value
+    uint32_t timeout = 10000;       // Trial and error
+    volatile int16_t buffer[8];
+    // Enable command
+    nrf_saadc_enable();
+    NRF_SAADC->RESULT.PTR = (uint32_t)buffer;
+    NRF_SAADC->RESULT.MAXCNT = 1;
+    nrf_saadc_event_clear(NRF_SAADC_EVENT_END);
+    nrf_saadc_task_trigger(NRF_SAADC_TASK_START);
+    nrf_saadc_task_trigger(NRF_SAADC_TASK_SAMPLE);
+
+    while (0 == nrf_saadc_event_check(NRF_SAADC_EVENT_END) && timeout > 0)
+    {
+        timeout--;
+    }
+    nrf_saadc_task_trigger(NRF_SAADC_TASK_STOP);
+    nrf_saadc_event_clear(NRF_SAADC_EVENT_STARTED);
+    nrf_saadc_event_clear(NRF_SAADC_EVENT_END);
+    // Disable command to reduce power consumption
+    nrf_saadc_disable();
+    if (timeout != 0)
+    {
+        result = ((buffer[0] * 1000L)+(ADC12_COUNTS_PER_VOLT/2)) / ADC12_COUNTS_PER_VOLT;
+        result = result/0.159310345;
+    }
+    nrf_gpio_pin_clear(CONT_TEST);
+    return result;
+}
+
+void checkCont(){
+
+    nrf_gpio_pin_clear(CONT_TEST);
+
+    vehicle_state.out1_res = readOut1Res() - out1ResOffset;
+    vehicle_state.out2_res = readOut2Res() - out2ResOffset;
+}
 
 void spi_event_handler(nrf_drv_spi_evt_t const * p_event,
                        void *                    p_context)
@@ -1066,6 +1164,7 @@ int8_t BMP_280_write(uint8_t dev_id, uint8_t reg_addr, uint8_t *data, uint16_t l
  *	will be used for write the value into the register
  * \param cnt : The no of byte of data to be write
  */
+
 s8 BMA2x2_SPI_bus_write(u8 dev_addr, u8 reg_addr, u8 *reg_data, u8 cnt){
     spi_xfer_done = false;
     uint8_t tx_buffer[30] = {0};
@@ -1882,6 +1981,8 @@ void read_baro(void){
 
 void update_state(void){
 
+    checkCont();
+
     float accelLimit = 5.0*32.2;
 
     vehicle_state.altitude = vehicle_state.altitude + t1*vehicle_state.velocity + t2*vehicle_state.acceleration;
@@ -1935,6 +2036,26 @@ void update_state(void){
     if (armedForLanding && (vehicle_state.velocity_filt > -2.0) && (data_time > minLandingTime) && (vehicle_state.altitude < 50.0)) {
         landed = true;
     }
+
+    if (!apogeeDetect && launchDetect && (vehicle_state.velocity<0) && (vehicle_state.max_altitude > minEventAlt)){
+        nrf_gpio_pin_set(OUT_1);
+        apogeeDetect = true;
+        timeToApogee = data_time;
+    }
+
+    if (!mainDetect && apogeeDetect && (vehicle_state.altitude < mainAlt) && (vehicle_state.max_altitude > minEventAlt)){
+        nrf_gpio_pin_set(OUT_2);
+        mainDetect = true;
+        timeToMain = data_time;
+    }
+
+    if ((data_time > timeToApogee + apogeeDuration) || landed) {
+        nrf_gpio_pin_clear(OUT_1);
+     }
+
+     if ((data_time > timeToMain + mainDuration) || landed) {
+        nrf_gpio_pin_clear(OUT_2);
+     }
         
 
 }
@@ -1955,6 +2076,9 @@ void vehicle_init(void){
     vehicle_state.acc_z = 0.0;
     vehicle_state.acc_total = 0.0;
     vehicle_state.temp = 59.0;
+    vehicle_state.out1_res = 0;
+    vehicle_state.out2_res = 0;
+
 }
 
 void vehicle_reset(void){
@@ -1969,6 +2093,8 @@ void vehicle_reset(void){
     vehicle_state.acc_y = 0.0;
     vehicle_state.acc_z = 0.0;
     vehicle_state.acc_total = 0.0;
+    vehicle_state.out1_res = 0.0;
+    vehicle_state.out2_res = 0.0;
 }
 
 void send_file_header(void){
@@ -2042,7 +2168,7 @@ void send_firmware_ID(void){
     packet[3] = 0x03;
 
     union data_address firmware_id;
-    firmware_id.address_int = 25;
+    firmware_id.address_int = 1025;
 
     packet[4] = firmware_id.address_string[0];
     chk = packet[4];
@@ -2305,44 +2431,58 @@ void send_data(void){ // download data
 
 void arm_system(void){
 
+    if (armedForLaunch) {
+        armedForLaunch = false;
+        nrf_gpio_pin_clear(OUT_1);
+        nrf_gpio_pin_clear(OUT_2);
+        led1_on = false;
 
-    record_data = false;
-    erase_data();
-    nrf_delay_ms(100);
-    read_baro();
-    vehicle_init();
-    nrf_delay_ms(100);
-    read_baro();
-    vehicle_state.ref_pressure = vehicle_state.pressure;
+    } 
+    else {
+        record_data = false;
+        erase_data();
+        nrf_delay_ms(100);
+        read_baro();
+        vehicle_init();
+        nrf_delay_ms(100);
+        read_baro();
+        vehicle_state.ref_pressure = vehicle_state.pressure;
+        vehicle_state.ref_altitude = vehicle_state.ref_pressure/101.325;
+        vehicle_state.ref_altitude = pow(vehicle_state.ref_altitude,0.190284);
+        vehicle_state.ref_altitude = 1.0 - vehicle_state.ref_altitude;
+        vehicle_state.ref_altitude = vehicle_state.ref_altitude * 145366.45;
 
-    vehicle_state.ref_altitude = vehicle_state.ref_pressure/101.325;
-    vehicle_state.ref_altitude = pow(vehicle_state.ref_altitude,0.190284);
-    vehicle_state.ref_altitude = 1.0 - vehicle_state.ref_altitude;
-    vehicle_state.ref_altitude = vehicle_state.ref_altitude * 145366.45;
+        uint8_t index = 0;
 
-    uint8_t index = 0;
+        for (index=0; index<64; index++){
+            buffer[index].altitude = vehicle_state.altitude;
+            buffer[index].pressure = vehicle_state.pressure;
+            buffer[index].velocity = 0;
+        }
+        bufferStart = 0;
 
-    for (index=0; index<64; index++){
-        buffer[index].altitude = vehicle_state.altitude;
-        buffer[index].pressure = vehicle_state.pressure;
-        buffer[index].velocity = 0;
+    //    vehicle_state.raw_altitude = 0.0;
+        file_length = 0;
+        data_time = 0.0;
+        timeToBurnout = 0.0;
+        armedForLaunch = true;
+        launchDetect = false;
+        armedForLanding = false;
+        landed = false;
+        isIdle = false;
+
+        apogeeDetect = false;
+        mainDetect = false;
+
+        K1 = K1_boost;
+        K2 = K2_boost;
+        K3 = K3_boost;
+    //    nrf_delay_ms(MAIN_LOOP_PERIOD);
+
+        // start led flash
+        nrf_gpio_pin_clear(17);
+        led1_on = true;
     }
-    bufferStart = 0;
-
-//    vehicle_state.raw_altitude = 0.0;
-    file_length = 0;
-    data_time = 0.0;
-    timeToBurnout = 0.0;
-    armedForLaunch = true;
-    launchDetect = false;
-    armedForLanding = false;
-    landed = false;
-    isIdle = false;
-
-    K1 = K1_boost;
-    K2 = K2_boost;
-    K3 = K3_boost;
-//    nrf_delay_ms(MAIN_LOOP_PERIOD);
 
 
 }
@@ -2369,6 +2509,41 @@ void update_batt(void){
 
     int err_code = 0;
     uint16_t length = 7;
+    err_code = ble_nus_data_send(&m_nus, &packet[0], &length, m_conn_handle);
+
+}
+
+void send_cont(void){
+    unsigned char packet[9] = {0};
+    unsigned char chk = 0;
+
+    packet[0] = 0xf5;
+    packet[1] = 0x0B;
+    packet[2] = 0x04;
+    packet[3] = 0x04;
+
+    int16_t ch1;
+    ch1 = vehicle_state.out1_res;
+
+    packet[5] = ch1 >> 8;
+    packet[4] = ch1;
+
+    chk = packet[4];
+    chk = chk + packet[5];
+
+    int16_t ch2;
+    ch2 = vehicle_state.out2_res;
+
+    packet[7] = ch2 >> 8;
+    packet[6] = ch2;
+
+    chk = chk + packet[6];
+    chk = chk + packet[7];
+
+    packet[8] = chk;
+
+    int err_code = 0;
+    uint16_t length = 9;
     err_code = ble_nus_data_send(&m_nus, &packet[0], &length, m_conn_handle);
 
 }
@@ -2602,25 +2777,25 @@ int main(void)
 
     SPI_routine();
     nrf_delay_ms(100);
-    bma2x2_reset();
-    readAccID();
+    //bma2x2_reset();
+    //readAccID();
 
-    rslt = bma2x2_init(&bma2x2);
-    NRF_LOG_INFO("Result: %d", rslt);
-    rslt += bma2x2_set_power_mode(BMA2x2_MODE_NORMAL);
-    NRF_LOG_INFO("Result: %d", rslt);
-    u8 bw_value_u8 = BMA2x2_INIT_VALUE;
-    bw_value_u8 = 0x0f;/* set bandwidth of 1000Hz*/
-    rslt += bma2x2_set_bw(bw_value_u8);
-    NRF_LOG_INFO("Result: %d", rslt);
+    //rslt = bma2x2_init(&bma2x2);
+    //NRF_LOG_INFO("Result: %d", rslt);
+    //rslt += bma2x2_set_power_mode(BMA2x2_MODE_NORMAL);
+    //NRF_LOG_INFO("Result: %d", rslt);
+    //u8 bw_value_u8 = BMA2x2_INIT_VALUE;
+    //bw_value_u8 = 0x0f;/* set bandwidth of 1000Hz*/
+    //rslt += bma2x2_set_bw(bw_value_u8);
+    //NRF_LOG_INFO("Result: %d", rslt);
 
-    bma2x2_set_range(0x0c);
+    //bma2x2_set_range(0x0c);
 
-    u8 banwid = BMA2x2_INIT_VALUE;
-    rslt += bma2x2_get_bw(&banwid);
-    NRF_LOG_INFO("Result: %d", rslt);
+    //u8 banwid = BMA2x2_INIT_VALUE;
+    //rslt += bma2x2_get_bw(&banwid);
+    //NRF_LOG_INFO("Result: %d", rslt);
 
-    NRF_LOG_INFO("BW: %d", banwid);
+    //NRF_LOG_INFO("BW: %d", banwid);
 
     vehicle_init();
     vehicle_state.max_altitude = 0.0;
@@ -2642,7 +2817,7 @@ int main(void)
     t1 = dt;
     t2 = 0.5*dt*dt;
 
-    isIdle = true;
+    isIdle = false;
 
     uint8_t started;
     uint8_t finished;
@@ -2669,6 +2844,9 @@ int main(void)
 
     nrf_gpio_cfg_output(8);
     nrf_gpio_cfg_output(7);
+
+    nrf_gpio_cfg_output(CONT_TEST);
+    nrf_gpio_pin_clear(CONT_TEST);
     
 
     idle_state_handle();
@@ -2678,7 +2856,7 @@ int main(void)
     uint8_t led1_period = 200;
     uint8_t led1_dc = 1;
     uint8_t led1_counter = 0;
-    bool led1_on = false;
+
 
     nrf_gpio_cfg_input(14, NRF_GPIO_PIN_PULLDOWN);
     nrf_gpio_cfg_input(16, NRF_GPIO_PIN_PULLDOWN);
@@ -2726,9 +2904,7 @@ int main(void)
             // clear flag
             arm_request = false;
             arm_system();
-            // start led flash
-            nrf_gpio_pin_clear(17);
-            led1_on = true;
+            
 
             
         }
@@ -2737,10 +2913,7 @@ int main(void)
         if (main_loop_update){
             // clear flag
             main_loop_update = false;     
-            powerCount++;
-            if (powerCount > powerOffInt) {
-              power_off();
-            }
+            
             // recalculate pad ref. pressure from buffer
             if (armedForLaunch) {
                 uint8_t index = 0;
@@ -2766,7 +2939,7 @@ int main(void)
             }
 
             // launch detect
-            if ((vehicle_state.velocity > 30.0) && (vehicle_state.altitude > 50.0) && (!record_data) && (file_length == 0)){
+            if (armedForLaunch && (vehicle_state.velocity > 30.0) && (vehicle_state.altitude > 50.0) && (!record_data) && (file_length == 0)){
                 // clear armed flag
                 armedForLaunch = false;
                 // reset power off timer
@@ -2790,7 +2963,7 @@ int main(void)
             // clean up after landing detect
             if (landed) {
                 // set idle state
-                isIdle = true;
+                isIdle = false;
                 // stop recording
                 record_data = false;
                 // clear landing flag
@@ -2822,6 +2995,7 @@ int main(void)
                 send_update = 0;
                 send_update_packet();
                 send_status_packet();
+                send_cont();
             }
             
             // write data to flash
