@@ -128,7 +128,7 @@
 
 #define CS_BARO   20
 #define CS_FLASH  9
-#define CS_ACC    12
+#define CS_ACC    10
 #define CS_GYRO   13
 
 #define OUT_1     8
@@ -137,6 +137,15 @@
 #define CONT_TEST 6
 
 #define BOOTLOADER_DFU_START 0xB1
+
+uint32_t acc_add = CS_ACC;
+uint32_t gyro_add = CS_GYRO;
+
+/*! @brief variable to hold the bmi08x accel data */
+struct bmi08x_sensor_data bmi08x_accel;
+
+/*! @brief variable to hold the bmi08x gyro data */
+struct bmi08x_sensor_data bmi08x_gyro;
 
 float dt = MAIN_LOOP_PERIOD/1000.0;
 
@@ -314,9 +323,76 @@ union status_bytes {
 
 };
 
-
-
 struct state vehicle_state;
+
+
+
+
+int8_t bmi08x_spi_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t length, void *intf_ptr){
+
+    /* Implement the SPI read routine according to the target machine. */
+        //NRF_LOG_INFO("read");
+    spi_xfer_done = false;
+    uint8_t tx_buffer[30] = {0};
+    uint8_t rx_buffer[30] = {0};
+    uint8_t rx_buffer_out[30];
+    tx_buffer[0] = reg_addr;
+    uint8_t i;
+    
+    nrf_gpio_pin_clear(*(uint32_t *)intf_ptr);
+    nrf_drv_spi_transfer(&spi, tx_buffer, length+1, rx_buffer, length+1);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(*(uint32_t *)intf_ptr);
+    for(i=0; i<length; i++){
+        *(reg_data+i) = rx_buffer[i+1];
+    }
+    return (int8_t)BMI08X_OK;
+}
+
+int8_t bmi08x_spi_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t length, void *intf_ptr){
+    //NRF_LOG_INFO("write");
+    spi_xfer_done = false;
+    uint8_t tx_buffer[30] = {0};
+    tx_buffer[0] = reg_addr;
+    uint8_t i;
+
+    for(i=0; i<length; i++){
+        tx_buffer[i+1] = *(reg_data+i);
+    }
+    nrf_gpio_pin_clear(*(uint32_t *)intf_ptr);
+    nrf_drv_spi_transfer(&spi, tx_buffer, length+1, NULL, length+1);
+    
+    while (!spi_xfer_done){
+        __WFE();
+    }
+    nrf_gpio_pin_set(*(uint32_t *)intf_ptr);
+    return BMI08X_OK;
+    /* Implement the SPI write routine according to the target machine. */
+}
+
+void bmi08x_delay(uint32_t period_us, void *intf_ptr)
+{
+    /* Implement the delay routine according to the target machine. */
+    nrf_delay_us(period_us);
+}
+
+
+
+
+
+struct bmi08x_dev imu_dev = {
+
+    .intf_ptr_accel = &acc_add,
+    .intf_ptr_gyro = &gyro_add,
+    .intf = BMI08X_SPI_INTF,  
+    .read = bmi08x_spi_read,  
+    .write = bmi08x_spi_write,  
+    .delay_us = bmi08x_delay,
+    .variant = BMI088_VARIANT 
+};
 
 /**@brief Function for assert macro callback.
  *
@@ -1077,8 +1153,14 @@ void checkCont(){
 
     nrf_gpio_pin_clear(CONT_TEST);
 
+    bmi08g_get_data(&bmi08x_gyro, &imu_dev);
+    float half_scale = 32767;
+    float rate = (2000 / ((half_scale) + BMI08X_GYRO_RANGE_2000_DPS)) * (bmi08x_gyro.z);
+    //vehicle_state.temp = vehicle_state.temp + (rate * 0.02);
+
     vehicle_state.out1_res = readOut1Res() - out1ResOffset;
     vehicle_state.out2_res = readOut2Res() - out2ResOffset;
+
 }
 
 void spi_event_handler(nrf_drv_spi_evt_t const * p_event,
@@ -2075,7 +2157,7 @@ void vehicle_init(void){
     vehicle_state.acc_y = 0.0;
     vehicle_state.acc_z = 0.0;
     vehicle_state.acc_total = 0.0;
-    vehicle_state.temp = 59.0;
+    vehicle_state.temp = 15.0;
     vehicle_state.out1_res = 0;
     vehicle_state.out2_res = 0;
 
@@ -2695,6 +2777,16 @@ void power_off(void){
 }
 
 
+
+
+
+
+
+
+
+
+
+
 /**@brief Application main function.
  */
 int main(void)
@@ -2743,9 +2835,7 @@ int main(void)
     advertising_init();
     conn_params_init();
 
-    // Start execution.
-//    printf("\r\nUART started.\r\n");
-//    NRF_LOG_INFO("Debug logging for UART over RTT started.");
+
     advertising_start();
     uint32_t result = 0;
     result = sd_ble_gap_tx_power_set(BLE_GAP_TX_POWER_ROLE_ADV,0,4);
@@ -2760,6 +2850,8 @@ int main(void)
     nrf_gpio_pin_set(CS_FLASH);
     nrf_gpio_cfg_output(CS_ACC);
     nrf_gpio_pin_set(CS_ACC);
+    nrf_gpio_cfg_output(CS_GYRO);
+    nrf_gpio_pin_set(CS_GYRO);
     spi_init();
 
     //bmp280_config();
@@ -2798,6 +2890,33 @@ int main(void)
     //NRF_LOG_INFO("BW: %d", banwid);
 
     vehicle_init();
+
+    rslt = bmi08a_init(&imu_dev);
+    rslt = bmi08g_init(&imu_dev);
+
+    imu_dev.accel_cfg.odr = BMI08X_ACCEL_ODR_1600_HZ;
+    imu_dev.accel_cfg.range = BMI088_ACCEL_RANGE_24G;
+
+    imu_dev.accel_cfg.power = BMI08X_ACCEL_PM_ACTIVE;
+    imu_dev.accel_cfg.bw = BMI08X_ACCEL_BW_NORMAL;
+
+    rslt = bmi08a_set_power_mode(&imu_dev);
+    imu_dev.delay_us(10, imu_dev.intf_ptr_accel);
+    rslt = bmi08a_set_meas_conf(&imu_dev);
+    imu_dev.delay_us(10, imu_dev.intf_ptr_accel);
+
+    imu_dev.gyro_cfg.odr = BMI08X_GYRO_BW_230_ODR_2000_HZ;
+    imu_dev.gyro_cfg.range = BMI08X_GYRO_RANGE_2000_DPS;
+    imu_dev.gyro_cfg.bw = BMI08X_GYRO_BW_230_ODR_2000_HZ;
+    imu_dev.gyro_cfg.power = BMI08X_GYRO_PM_NORMAL;
+
+    rslt = bmi08g_set_power_mode(&imu_dev);
+    imu_dev.delay_us(10, imu_dev.intf_ptr_gyro);
+
+    rslt = bmi08g_set_meas_conf(&imu_dev);
+    imu_dev.delay_us(10, imu_dev.intf_ptr_gyro);
+
+    
     vehicle_state.max_altitude = 0.0;
     nrf_delay_ms(100);
     read_baro();
@@ -2982,7 +3101,7 @@ int main(void)
             // data loop
             if (!isIdle){
                 read_baro();
-                read_accel();
+                //read_accel();
                 if (baro_error){
                 }
                 update_state();
