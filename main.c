@@ -129,6 +129,8 @@
 
 #define BOOTLOADER_DFU_START 0xB1
 
+#define BUFFER_LENGTH 256
+
 float dt = MAIN_LOOP_PERIOD/1000.0;
 
 BLE_NUS_DEF(m_nus, NRF_SDH_BLE_TOTAL_LINK_COUNT);                                   /**< BLE NUS service instance. */
@@ -165,12 +167,13 @@ int send_update_int = 5;
 int save_update = 0;
 int save_update_int = 0;
 int batt_update = 0;
-int batt_update_int = 250;
+int batt_update_int = 50;
 float log_dt = 0.0;
+
 
 float E = 0.0;
 
-float K1_boost =  0.3776485834097217;
+float K1_boost =  0.37785834097217;
 float K2_boost =  4.4566365843151580;
 float K3_boost = 26.2964175124521100;
 
@@ -274,11 +277,13 @@ struct dataPt {
   float acc_x;
   float acc_y;
   float acc_z;
-  float acc_total;
 };
 
-struct dataPt buffer[64];
+struct dataPt buffer[BUFFER_LENGTH];
 int bufferStart = 0;
+int buffer_pages = (BUFFER_LENGTH * 8 * 4)/128;
+int buffer_pages_written = 0;
+
 
 
 union status_bytes {
@@ -1413,8 +1418,10 @@ void write_buffer(void){
     union float_bytes acc_total_bytes;
     nrf_delay_us(700);
 
+    
+
     // write data pages of buffer
-    for (k=0; k<16; k++){
+    
       spi_xfer_done = false;
       tx_buffer[0] = 0x06;
       nrf_gpio_pin_clear(CS_FLASH);
@@ -1427,7 +1434,7 @@ void write_buffer(void){
 
       tx_buffer[0] = 0x02;
       union data_address address_bytes;
-      address_bytes.address_int = file_length + 0x008100;
+      address_bytes.address_int = (128 * buffer_pages_written) + 0x008100;
       tx_buffer[1] = address_bytes.address_string[2];
       tx_buffer[2] = address_bytes.address_string[1];
       tx_buffer[3] = address_bytes.address_string[0];
@@ -1439,18 +1446,18 @@ void write_buffer(void){
       // write number of data points in page
       for (j=0; j<4; j++){
         
-        buffer_position = bufferStart + 4*k+j;
-        if (buffer_position >= 64){
-          buffer_position = buffer_position - 64;
+        buffer_position = bufferStart + 4*buffer_pages_written+j;
+        if (buffer_position >= BUFFER_LENGTH){
+          buffer_position = buffer_position - BUFFER_LENGTH;
         }
-        time_bytes.data = data_time;
+        time_bytes.data = log_dt * (-BUFFER_LENGTH + buffer_pages_written * 4 + j);
         press_bytes.data = buffer[buffer_position].pressure;
         alt_bytes.data = buffer[buffer_position].altitude;
         vel_bytes.data = buffer[buffer_position].velocity;
         acc_x_bytes.data = buffer[buffer_position].acc_x;
         acc_y_bytes.data = buffer[buffer_position].acc_y;
         acc_z_bytes.data = buffer[buffer_position].acc_z;
-        acc_total_bytes.data = buffer[buffer_position].acc_total;
+        acc_total_bytes.data = pow((pow(buffer[buffer_position].acc_x,2) + pow(buffer[buffer_position].acc_y,2) + pow(buffer[buffer_position].acc_z,2)),0.5);
 
         for (i=0; i<4; i++){
             tx_buffer[j*32+4+i] = time_bytes.float_string[i];
@@ -1483,8 +1490,6 @@ void write_buffer(void){
         for (i=0; i<4; i++){
             tx_buffer[j*32+32+i] = acc_total_bytes.float_string[i];
         }
-      
-        data_time = data_time + log_dt;
       }
 
       nrf_drv_spi_transfer(&spi, tx_buffer, 132, rx_buffer, 132);
@@ -1494,9 +1499,8 @@ void write_buffer(void){
       }
       nrf_gpio_pin_set(CS_FLASH);
 
-      file_length = file_length + 128;
       nrf_delay_us(700);
-    }
+      buffer_pages_written = buffer_pages_written + 1;
 
 }
 
@@ -1708,6 +1712,7 @@ void erase_data(void){
         __WFE();
     }
     nrf_gpio_pin_set(CS_FLASH);
+    buffer_pages_written = 0;
 
 }
 
@@ -2042,7 +2047,7 @@ void send_firmware_ID(void){
     packet[3] = 0x03;
 
     union data_address firmware_id;
-    firmware_id.address_int = 25;
+    firmware_id.address_int = 26;
 
     packet[4] = firmware_id.address_string[0];
     chk = packet[4];
@@ -2114,7 +2119,7 @@ void parsePacket_typeF1(void){ // set zero alt
 void start_data_recording(void){
 
     record_data = true;
-    file_length = 0;
+    file_length = BUFFER_LENGTH * 8 * 4;
     data_time = 0.0;
     store_recording_started();
 
@@ -2320,9 +2325,9 @@ void arm_system(void){
     vehicle_state.ref_altitude = 1.0 - vehicle_state.ref_altitude;
     vehicle_state.ref_altitude = vehicle_state.ref_altitude * 145366.45;
 
-    uint8_t index = 0;
+    uint16_t index = 0;
 
-    for (index=0; index<64; index++){
+    for (index=0; index<BUFFER_LENGTH; index++){
         buffer[index].altitude = vehicle_state.altitude;
         buffer[index].pressure = vehicle_state.pressure;
         buffer[index].velocity = 0;
@@ -2330,8 +2335,6 @@ void arm_system(void){
     bufferStart = 0;
 
 //    vehicle_state.raw_altitude = 0.0;
-    file_length = 0;
-    data_time = 0.0;
     timeToBurnout = 0.0;
     armedForLaunch = true;
     launchDetect = false;
@@ -2434,11 +2437,10 @@ void buffer_data(void){
     buffer[bufferStart].acc_x = vehicle_state.acc_x;
     buffer[bufferStart].acc_y = vehicle_state.acc_y;
     buffer[bufferStart].acc_z = vehicle_state.acc_z;
-    buffer[bufferStart].acc_total = vehicle_state.acc_total;
 
     bufferStart = bufferStart + 1;
 
-    if (bufferStart == 64){
+    if (bufferStart == BUFFER_LENGTH){
       bufferStart = 0;
     }
 }
@@ -2750,7 +2752,7 @@ int main(void)
                 vehicle_state.ref_pressure = 0;
                 for (index=0; index<10; index++){
                     buffer_address = bufferStart + 1 + index;
-                    if (buffer_address > 63) {
+                    if (buffer_address > (BUFFER_LENGTH-1)) {
                         buffer_address = 0;
                     }
                     vehicle_state.ref_pressure = vehicle_state.ref_pressure + buffer[buffer_address].pressure;
@@ -2766,7 +2768,7 @@ int main(void)
             }
 
             // launch detect
-            if ((vehicle_state.velocity > 30.0) && (vehicle_state.altitude > 50.0) && (!record_data) && (file_length == 0)){
+            if ((vehicle_state.velocity > 30.0) && (vehicle_state.altitude > 50.0) && (!record_data) && (armedForLaunch)){
                 // clear armed flag
                 armedForLaunch = false;
                 // reset power off timer
@@ -2779,7 +2781,7 @@ int main(void)
                 boost = true;
                 // start recording & save buffer
                 start_data_recording();
-                write_buffer();
+                
             }
 
             // stop recording if flash is full
@@ -2828,6 +2830,9 @@ int main(void)
             if (save_update > save_update_int){
                 save_update = 0;
                 if (record_data){
+                    if (buffer_pages_written < buffer_pages){
+                        write_buffer();
+                    }
                     write_data(file_length);
                 }
                 else{
