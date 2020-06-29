@@ -1395,6 +1395,7 @@ void write_data(unsigned int address){
 
     file_length = file_length + 32;
     data_time = data_time + log_dt;
+    nrf_delay_us(185);
 
 }
 
@@ -1416,7 +1417,6 @@ void write_buffer(void){
     union float_bytes acc_y_bytes;
     union float_bytes acc_z_bytes;
     union float_bytes acc_total_bytes;
-    nrf_delay_us(700);
 
     
 
@@ -1499,7 +1499,6 @@ void write_buffer(void){
       }
       nrf_gpio_pin_set(CS_FLASH);
 
-      nrf_delay_us(700);
       buffer_pages_written = buffer_pages_written + 1;
 
 }
@@ -1898,7 +1897,7 @@ void update_state(void){
     vinst_last = vinst;
     araw_last = vehicle_state.raw_altitude;
     
-    if (!baro_error && (abs(ainst) < 32000.0)){
+    if (!baro_error && (abs(ainst) < 64000.0)){
         E = vehicle_state.raw_altitude - vehicle_state.altitude;
     
         vehicle_state.altitude = vehicle_state.altitude + K1 * E;
@@ -1934,11 +1933,14 @@ void update_state(void){
 
     if (!armedForLanding && (vehicle_state.velocity_filt < -2.0)) {
         armedForLanding = true;
-        minLandingTime = data_time + 15.0;
+        if ((data_time + 15.0) > minLandingTime){
+            minLandingTime = data_time + 15.0;
+        }
     }
 
     if (armedForLanding && (vehicle_state.velocity_filt > -2.0) && (data_time > minLandingTime) && (vehicle_state.altitude < 50.0)) {
         landed = true;
+        armedForLanding = false;
     }
         
 
@@ -1959,7 +1961,7 @@ void vehicle_init(void){
     vehicle_state.acc_y = 0.0;
     vehicle_state.acc_z = 0.0;
     vehicle_state.acc_total = 0.0;
-    vehicle_state.temp = 59.0;
+    vehicle_state.temp = 15.0;
 }
 
 void vehicle_reset(void){
@@ -2319,16 +2321,17 @@ void arm_system(void){
     nrf_delay_ms(100);
     read_baro();
     vehicle_state.ref_pressure = vehicle_state.pressure;
-
     vehicle_state.ref_altitude = vehicle_state.ref_pressure/101.325;
     vehicle_state.ref_altitude = pow(vehicle_state.ref_altitude,0.190284);
     vehicle_state.ref_altitude = 1.0 - vehicle_state.ref_altitude;
     vehicle_state.ref_altitude = vehicle_state.ref_altitude * 145366.45;
 
+    vehicle_state.raw_altitude = 0;
+
     uint16_t index = 0;
 
     for (index=0; index<BUFFER_LENGTH; index++){
-        buffer[index].altitude = vehicle_state.altitude;
+        buffer[index].altitude = 0;
         buffer[index].pressure = vehicle_state.pressure;
         buffer[index].velocity = 0;
     }
@@ -2636,6 +2639,8 @@ int main(void)
     vehicle_state.ref_altitude = 1.0 - vehicle_state.ref_altitude;
     vehicle_state.ref_altitude = vehicle_state.ref_altitude * 145366.45;
 
+    vehicle_state.raw_altitude = 0;
+
     K1 = K1_boost;
     K2 = K2_boost;
     K3 = K3_boost;
@@ -2745,8 +2750,8 @@ int main(void)
             }
             // recalculate pad ref. pressure from buffer
             if (armedForLaunch) {
-                uint8_t index = 0;
-                uint8_t buffer_address;
+                uint16_t index = 0;
+                uint16_t buffer_address;
 
                 // average buffer data
                 vehicle_state.ref_pressure = 0;
@@ -2765,6 +2770,13 @@ int main(void)
                 vehicle_state.ref_altitude = pow(vehicle_state.ref_altitude,0.190284);
                 vehicle_state.ref_altitude = 1.0 - vehicle_state.ref_altitude;
                 vehicle_state.ref_altitude = vehicle_state.ref_altitude * 145366.45;
+                
+                vehicle_state.raw_altitude = vehicle_state.pressure/101.325;
+                vehicle_state.raw_altitude = pow(vehicle_state.raw_altitude,0.190284);
+                vehicle_state.raw_altitude = 1.0 - vehicle_state.raw_altitude;
+                vehicle_state.raw_altitude = vehicle_state.raw_altitude * 145366.45;
+                vehicle_state.raw_altitude = vehicle_state.raw_altitude - vehicle_state.ref_altitude;
+
             }
 
             // launch detect
@@ -2779,6 +2791,7 @@ int main(void)
                 // set launch & boost flag
                 launchDetect = true;
                 boost = true;
+                minLandingTime = data_time + 45.0;
                 // start recording & save buffer
                 start_data_recording();
                 
@@ -2830,10 +2843,10 @@ int main(void)
             if (save_update > save_update_int){
                 save_update = 0;
                 if (record_data){
+                    write_data(file_length);
                     if (buffer_pages_written < buffer_pages){
                         write_buffer();
                     }
-                    write_data(file_length);
                 }
                 else{
                     buffer_data();
