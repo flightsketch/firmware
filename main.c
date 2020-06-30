@@ -85,6 +85,8 @@
 #include "BMI08x_driver/bmi08x.h"
 #include "BMI08x_driver/bmi08x_defs.h"
 
+#include "nrf_drv_pwm.h"
+
 
 
 #if defined (UART_PRESENT)
@@ -171,6 +173,8 @@ static const uint8_t m_length = sizeof(m_tx_buf)-1;        /**< Transfer length.
 
 #define	SPI_READ	0x80
 #define SPI_WRITE	0x7F
+
+static nrf_drv_pwm_t m_pwm0 = NRF_DRV_PWM_INSTANCE(0);
 
 static uint16_t   m_conn_handle          = BLE_CONN_HANDLE_INVALID;                 /**< Handle of the current connection. */
 static uint16_t   m_ble_nus_max_data_len = BLE_GATT_ATT_MTU_DEFAULT - 3;            /**< Maximum length of data (in bytes) that can be transmitted to the peer by the Nordic UART service module. */
@@ -332,6 +336,49 @@ union status_bytes {
 };
 
 struct state vehicle_state;
+
+// Declare variables holding PWM sequence values.
+nrf_pwm_values_individual_t seq_values[] = {0, 0, 0, 0};
+nrf_pwm_sequence_t const seq =
+{
+    .values.p_individual = seq_values,
+    .length          = NRF_PWM_VALUES_LENGTH(seq_values),
+    .repeats         = 0,
+    .end_delay       = 0
+};
+
+
+// Set duty cycle between 0 and 100%
+void pwm_update_duty_cycle(uint16_t duty_cycle)
+{
+    
+    seq_values->channel_0 = 20000 - (duty_cycle + 135);
+     
+    nrf_drv_pwm_simple_playback(&m_pwm0, &seq, 1, NRF_DRV_PWM_FLAG_LOOP);
+}
+
+static void pwm_init(void)
+{
+    nrf_drv_pwm_config_t const config0 =
+    {
+        .output_pins =
+        {
+            OUT_2, // channel 0
+            NRF_DRV_PWM_PIN_NOT_USED,             // channel 1
+            NRF_DRV_PWM_PIN_NOT_USED,             // channel 2
+            NRF_DRV_PWM_PIN_NOT_USED,             // channel 3
+        },
+        .irq_priority = APP_IRQ_PRIORITY_LOWEST,
+        .base_clock   = NRF_PWM_CLK_1MHz,
+        .count_mode   = NRF_PWM_MODE_UP,
+        .top_value    = 20000,
+        .load_mode    = NRF_PWM_LOAD_INDIVIDUAL,
+        .step_mode    = NRF_PWM_STEP_AUTO
+    };
+    // Init PWM without error handler
+    APP_ERROR_CHECK(nrf_drv_pwm_init(&m_pwm0, &config0, NULL));
+    
+}
 
 
 
@@ -2052,8 +2099,6 @@ struct bmp388_data bmp388_read()
 
 void read_baro(void){
 
-  nrf_gpio_pin_set(OUT_1);
-
   //struct bmp280_data data;
   //data = bmp280_read();
 
@@ -2072,12 +2117,11 @@ void read_baro(void){
 
   vehicle_state.raw_altitude = raw_alt - vehicle_state.ref_altitude;
 
-  nrf_gpio_pin_clear(OUT_1);
 }
 
 void update_state(void){
 
-    checkCont();
+    //checkCont();
 
     float accelLimit = 5.0*32.2;
 
@@ -2139,6 +2183,7 @@ void update_state(void){
 
     if (!apogeeDetect && launchDetect && (vehicle_state.velocity<0) && (vehicle_state.max_altitude > minEventAlt)){
         nrf_gpio_pin_set(OUT_1);
+        pwm_update_duty_cycle(2000);
         apogeeDetect = true;
         timeToApogee = data_time;
     }
@@ -2878,6 +2923,26 @@ int main(void)
     nrf_gpio_pin_set(CS_ACC);
     nrf_gpio_cfg_output(CS_GYRO);
     nrf_gpio_pin_set(CS_GYRO);
+
+    nrf_gpio_cfg_output(OUT_1);
+    nrf_gpio_pin_clear(OUT_1);
+    nrf_gpio_cfg_output(OUT_2);
+    nrf_gpio_pin_clear(OUT_2);
+
+    // Start clock for accurate frequencies
+    NRF_CLOCK->TASKS_HFCLKSTART = 1; 
+    // Wait for clock to start
+    while(NRF_CLOCK->EVENTS_HFCLKSTARTED == 0) 
+        ;
+    sd_clock_hfclk_request();
+    pwm_init();
+
+
+    pwm_update_duty_cycle(1000);
+
+
+
+
     spi_init();
 
     //bmp280_config();
@@ -3069,7 +3134,6 @@ int main(void)
 
         // main loop
         if (main_loop_update){
-        nrf_gpio_pin_set(OUT_2);
             // clear flag
             main_loop_update = false;     
             
@@ -3213,10 +3277,9 @@ int main(void)
                     nrf_gpio_pin_clear(17);
                 }
             }
-        nrf_gpio_pin_clear(OUT_2);
         } // end main loop
         
-        idle_state_handle();
+        //idle_state_handle();
         
     } // end program loop
     

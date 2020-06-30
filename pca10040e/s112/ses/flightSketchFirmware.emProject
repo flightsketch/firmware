@@ -87,6 +87,7 @@
       <file file_name="../../../../../../modules/nrfx/drivers/src/nrfx_spi.c" />
       <file file_name="../../../../../../integration/nrfx/legacy/nrf_drv_spi.c" />
       <file file_name="../../../../../../modules/nrfx/drivers/src/nrfx_saadc.c" />
+      <file file_name="../../../../../../modules/nrfx/drivers/src/nrfx_pwm.c" />
     </folder>
     <folder Name="Board Support">
       <file file_name="../../../../../../components/libraries/bsp/bsp.c" />
