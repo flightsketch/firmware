@@ -150,7 +150,7 @@ struct bmi08x_sensor_data bmi08x_accel;
 /*! @brief variable to hold the bmi08x gyro data */
 struct bmi08x_sensor_data bmi08x_gyro;
 
-#define BUFFER_LENGTH 256
+#define BUFFER_LENGTH 128
 
 
 float dt = MAIN_LOOP_PERIOD/1000.0;
@@ -216,6 +216,9 @@ float minEventAlt = 100.0;
 float mainAlt = 350.0;
 float mainDuration = 2.0;
 float apogeeDuration = 2.0;
+
+float gyro_scale = (2000.0 / ((32767.0) + BMI08X_GYRO_RANGE_2000_DPS));
+float acc_scale = (32.2*24 / 32767);
 
 
 
@@ -287,6 +290,16 @@ union float_bytes {
     float data;
 };
 
+union int_16_bytes {
+    unsigned char int_string[2];
+    int16_t data;
+};
+
+union uint_32_bytes {
+    unsigned char int_string[4];
+    uint32_t data;
+};
+
 struct state {
   float ref_pressure;
   float pressure;
@@ -302,9 +315,14 @@ struct state {
   float acc_y;
   float acc_z;
   float acc_total;
+  float gyro_x;
+  float gyro_y;
+  float gyro_z;
+  float tilt;
   float temp;
   int16_t out1_res;
   int16_t out2_res;
+  int16_t batt_v;
 };
 
 struct status {
@@ -319,11 +337,19 @@ struct dataPt {
   float acc_x;
   float acc_y;
   float acc_z;
+  int16_t out1_res;
+  int16_t out2_res; 
+  int16_t batt_v;
+  uint32_t status;
+  float gyro_x;
+  float gyro_y;
+  float gyro_z;
+  float tilt;
 };
 
 struct dataPt buffer[BUFFER_LENGTH];
 int bufferStart = 0;
-int buffer_pages = (BUFFER_LENGTH * 8 * 4)/128;
+int buffer_pages = (BUFFER_LENGTH * 16 * 4)/128;
 int buffer_pages_written = 0;
 
 
@@ -448,6 +474,8 @@ struct bmi08x_dev imu_dev = {
     .delay_us = bmi08x_delay,
     .variant = BMI088_VARIANT 
 };
+
+struct bmi08x_data_sync_cfg sync_cfg;
 
 /**@brief Function for assert macro callback.
  *
@@ -1207,14 +1235,8 @@ uint16_t readOut2Res(void)
 void checkCont(){
 
     nrf_gpio_pin_clear(CONT_TEST);
-
-    bmi08g_get_data(&bmi08x_gyro, &imu_dev);
-    float half_scale = 32767;
-    float rate = (2000 / ((half_scale) + BMI08X_GYRO_RANGE_2000_DPS)) * (bmi08x_gyro.z);
-    //vehicle_state.temp = vehicle_state.temp + (rate * 0.02);
     
     vehicle_state.out1_res = readOut1Res() - out1ResOffset;
-
     vehicle_state.out2_res = readOut2Res() - out2ResOffset;
 
 }
@@ -1545,8 +1567,8 @@ void store_file_length(void){
 void write_data(unsigned int address){
 
     spi_xfer_done = false;
-    uint8_t tx_buffer[36] = {0}; //write cmd, 3 byte address, 32 bytes data
-    uint8_t rx_buffer[36] = {0};
+    uint8_t tx_buffer[68] = {0}; //write cmd, 3 byte address, 32 bytes data
+    uint8_t rx_buffer[68] = {0};
     tx_buffer[0] = 0x06;
 
     uint8_t i;
@@ -1579,6 +1601,26 @@ void write_data(unsigned int address){
     acc_z_bytes.data = vehicle_state.acc_z;
     union float_bytes acc_total_bytes;
     acc_total_bytes.data = vehicle_state.acc_total;
+
+    union int_16_bytes out1_res_bytes;
+    out1_res_bytes.data = vehicle_state.out1_res;
+    union int_16_bytes out2_res_bytes;
+    out2_res_bytes.data = vehicle_state.out2_res;
+    union int_16_bytes batt_v_bytes;
+    batt_v_bytes.data = vehicle_state.batt_v;
+    union int_16_bytes space_bytes;
+    space_bytes.data = 0;
+    union uint_32_bytes status_bytes;
+    status_bytes.data = 0;
+
+    union float_bytes gyro_x_bytes;
+    gyro_x_bytes.data = vehicle_state.gyro_x;
+    union float_bytes gyro_y_bytes;
+    gyro_y_bytes.data = vehicle_state.gyro_y;
+    union float_bytes gyro_z_bytes;
+    gyro_z_bytes.data = vehicle_state.gyro_z;
+    union float_bytes tilt_bytes;
+    tilt_bytes.data = vehicle_state.tilt;
 
     tx_buffer[0] = 0x02;
 
@@ -1615,9 +1657,45 @@ void write_data(unsigned int address){
         tx_buffer[32+i] = acc_total_bytes.float_string[i];
     }
 
+    for (i=0; i<2; i++){
+        tx_buffer[36+i] = out1_res_bytes.int_string[i];
+    }
+
+    for (i=0; i<2; i++){
+        tx_buffer[38+i] = out2_res_bytes.int_string[i];
+    }
+
+    for (i=0; i<2; i++){
+        tx_buffer[40+i] = batt_v_bytes.int_string[i];
+    }
+
+    for (i=0; i<2; i++){
+        tx_buffer[42+i] = space_bytes.int_string[i];
+    }
+
+    for (i=0; i<4; i++){
+        tx_buffer[44+i] = status_bytes.int_string[i];
+    }
+
+    for (i=0; i<4; i++){
+        tx_buffer[52+i] = gyro_x_bytes.float_string[i];
+    }
+
+    for (i=0; i<4; i++){
+        tx_buffer[56+i] = gyro_y_bytes.float_string[i];
+    }
+
+    for (i=0; i<4; i++){
+        tx_buffer[60+i] = gyro_z_bytes.float_string[i];
+    }
+
+    for (i=0; i<4; i++){
+        tx_buffer[64+i] = tilt_bytes.float_string[i];
+    }
+
     spi_xfer_done = false;
     nrf_gpio_pin_clear(CS_FLASH);
-    nrf_drv_spi_transfer(&spi, tx_buffer, 36, rx_buffer, 36);
+    nrf_drv_spi_transfer(&spi, tx_buffer, 68, rx_buffer, 68);
     
     while (!spi_xfer_done){
         __WFE();
@@ -1625,9 +1703,9 @@ void write_data(unsigned int address){
     nrf_gpio_pin_set(CS_FLASH);
 
 
-    file_length = file_length + 32;
+    file_length = file_length + 64;
     data_time = data_time + log_dt;
-    nrf_delay_us(185);
+    nrf_delay_us(345);
 
 }
 
@@ -1649,9 +1727,18 @@ void write_buffer(void){
     union float_bytes acc_y_bytes;
     union float_bytes acc_z_bytes;
     union float_bytes acc_total_bytes;
-    nrf_delay_us(700);
 
-    
+    union int_16_bytes out1_res_bytes;
+    union int_16_bytes out2_res_bytes;
+    union int_16_bytes batt_v_bytes;
+    union int_16_bytes space_bytes;
+    space_bytes.data = 0;
+    union uint_32_bytes status_bytes;
+
+    union float_bytes gyro_x_bytes;
+    union float_bytes gyro_y_bytes;
+    union float_bytes gyro_z_bytes;
+    union float_bytes tilt_bytes;
 
     // write data pages of buffer
     
@@ -1677,13 +1764,13 @@ void write_buffer(void){
       spi_xfer_done = false;
       nrf_gpio_pin_clear(CS_FLASH);
       // write number of data points in page
-      for (j=0; j<4; j++){
+      for (j=0; j<2; j++){
         
-        buffer_position = bufferStart + 4*buffer_pages_written+j;
+        buffer_position = bufferStart + 2*buffer_pages_written+j;
         if (buffer_position >= BUFFER_LENGTH){
           buffer_position = buffer_position - BUFFER_LENGTH;
         }
-        time_bytes.data = log_dt * (-BUFFER_LENGTH + buffer_pages_written * 4 + j);
+        time_bytes.data = log_dt * (-BUFFER_LENGTH + buffer_pages_written * 2 + j);
         press_bytes.data = buffer[buffer_position].pressure;
         alt_bytes.data = buffer[buffer_position].altitude;
         vel_bytes.data = buffer[buffer_position].velocity;
@@ -1692,36 +1779,84 @@ void write_buffer(void){
         acc_z_bytes.data = buffer[buffer_position].acc_z;
         acc_total_bytes.data = pow((pow(buffer[buffer_position].acc_x,2) + pow(buffer[buffer_position].acc_y,2) + pow(buffer[buffer_position].acc_z,2)),0.5);
 
+        out1_res_bytes.data = buffer[buffer_position].out1_res;
+        out2_res_bytes.data = buffer[buffer_position].out2_res;
+
+        batt_v_bytes.data = buffer[buffer_position].batt_v;
+
+        status_bytes.data = buffer[buffer_position].status;
+
+        gyro_x_bytes.data = buffer[buffer_position].gyro_x;
+        gyro_y_bytes.data = buffer[buffer_position].gyro_y;
+        gyro_z_bytes.data = buffer[buffer_position].gyro_z;
+        tilt_bytes.data = buffer[buffer_position].tilt;
+
         for (i=0; i<4; i++){
-            tx_buffer[j*32+4+i] = time_bytes.float_string[i];
+            tx_buffer[j*64+4+i] = time_bytes.float_string[i];
         }
 
         for (i=0; i<4; i++){
-            tx_buffer[j*32+8+i] = press_bytes.float_string[i];
+            tx_buffer[j*64+8+i] = press_bytes.float_string[i];
         }
 
         for (i=0; i<4; i++){
-            tx_buffer[j*32+12+i] = alt_bytes.float_string[i];
+            tx_buffer[j*64+12+i] = alt_bytes.float_string[i];
         }
 
         for (i=0; i<4; i++){
-            tx_buffer[j*32+16+i] = vel_bytes.float_string[i];
+            tx_buffer[j*64+16+i] = vel_bytes.float_string[i];
         }
 
         for (i=0; i<4; i++){
-            tx_buffer[j*32+20+i] = acc_x_bytes.float_string[i];
+            tx_buffer[j*64+20+i] = acc_x_bytes.float_string[i];
         }
 
         for (i=0; i<4; i++){
-            tx_buffer[j*32+24+i] = acc_y_bytes.float_string[i];
+            tx_buffer[j*64+24+i] = acc_y_bytes.float_string[i];
         }
 
         for (i=0; i<4; i++){
-            tx_buffer[j*32+28+i] = acc_z_bytes.float_string[i];
+            tx_buffer[j*64+28+i] = acc_z_bytes.float_string[i];
         }
 
         for (i=0; i<4; i++){
-            tx_buffer[j*32+32+i] = acc_total_bytes.float_string[i];
+            tx_buffer[j*64+32+i] = acc_total_bytes.float_string[i];
+        }
+
+        for (i=0; i<2; i++){
+            tx_buffer[j*64+36+i] = out1_res_bytes.int_string[i];
+        }
+
+        for (i=0; i<2; i++){
+            tx_buffer[j*64+38+i] = out2_res_bytes.int_string[i];
+        }
+
+        for (i=0; i<2; i++){
+            tx_buffer[j*64+40+i] = batt_v_bytes.int_string[i];
+        }
+
+        for (i=0; i<2; i++){
+            tx_buffer[j*64+42+i] = space_bytes.int_string[i];
+        }
+
+        for (i=0; i<4; i++){
+            tx_buffer[j*64+44+i] = status_bytes.int_string[i];
+        }
+
+        for (i=0; i<4; i++){
+            tx_buffer[j*64+52+i] = gyro_x_bytes.float_string[i];
+        }
+
+        for (i=0; i<4; i++){
+            tx_buffer[j*64+56+i] = gyro_y_bytes.float_string[i];
+        }
+
+        for (i=0; i<4; i++){
+            tx_buffer[j*64+60+i] = gyro_z_bytes.float_string[i];
+        }
+
+        for (i=0; i<4; i++){
+            tx_buffer[j*64+64+i] = tilt_bytes.float_string[i];
         }
       }
 
@@ -2121,7 +2256,7 @@ void read_baro(void){
 
 void update_state(void){
 
-    //checkCont();
+    checkCont();
 
     float accelLimit = 5.0*32.2;
 
@@ -2183,7 +2318,7 @@ void update_state(void){
 
     if (!apogeeDetect && launchDetect && (vehicle_state.velocity<0) && (vehicle_state.max_altitude > minEventAlt)){
         nrf_gpio_pin_set(OUT_1);
-        pwm_update_duty_cycle(2000);
+        //pwm_update_duty_cycle(2000);
         apogeeDetect = true;
         timeToApogee = data_time;
     }
@@ -2249,9 +2384,9 @@ void send_file_header(void){
     unsigned char chk = 0;
 
     packet[0] = 0xf5;
-    packet[1] = 0x09;
+    packet[1] = 0x0C;
     packet[2] = 0x04;
-    packet[3] = 0x02;
+    packet[3] = 0x05;
 
     union data_address file_length_tx;
     file_length_tx.address_int = file_length;
@@ -2386,7 +2521,7 @@ void parsePacket_typeF1(void){ // set zero alt
 void start_data_recording(void){
 
     record_data = true;
-    file_length = BUFFER_LENGTH * 8 * 4;
+    file_length = BUFFER_LENGTH * 16 * 4;
     data_time = 0.0;
     store_recording_started();
 
@@ -2764,6 +2899,20 @@ void buffer_data(void){
     buffer[bufferStart].acc_y = vehicle_state.acc_y;
     buffer[bufferStart].acc_z = vehicle_state.acc_z;
 
+    buffer[bufferStart].out1_res = vehicle_state.out1_res;
+    buffer[bufferStart].out2_res = vehicle_state.out2_res;
+
+    buffer[bufferStart].batt_v = vehicle_state.batt_v;
+
+    buffer[bufferStart].status = 0;
+
+    buffer[bufferStart].gyro_x = vehicle_state.gyro_x;
+    buffer[bufferStart].gyro_y = vehicle_state.gyro_y;
+    buffer[bufferStart].gyro_z = vehicle_state.gyro_z;
+
+    buffer[bufferStart].tilt = vehicle_state.tilt;
+
+
     bufferStart = bufferStart + 1;
 
     if (bufferStart == BUFFER_LENGTH){
@@ -2772,26 +2921,23 @@ void buffer_data(void){
 }
 
 void read_accel(void){
-    s32 com_rslt;
-    s16	accel_x_s16, accel_y_s16, accel_z_s16 = BMA2x2_INIT_VALUE;
-
-	/* bma2x2acc_data structure used to read accel xyz data*/
-    struct bma2x2_accel_data sample_xyz;
-	/* bma2x2acc_data_temp structure used to read
-		accel xyz and temperature data*/
-    struct bma2x2_accel_data_temp sample_xyzt;
-
-    com_rslt += bma2x2_read_accel_x(&accel_x_s16);
-    com_rslt += bma2x2_read_accel_y(&accel_y_s16);
-    com_rslt += bma2x2_read_accel_z(&accel_z_s16);
-
-    vehicle_state.acc_x = 32.2*(0.707106781*(accel_x_s16 * 0.001953125) + 0.707106781*(accel_y_s16 * 0.001953125));
-    vehicle_state.acc_y = 32.2*(0.707106781*(accel_x_s16 * 0.001953125) - 0.707106781*(accel_y_s16 * 0.001953125));
-    vehicle_state.acc_z = 32.2*(accel_z_s16 * 0.001953125);
+    
+    bmi08a_get_data(&bmi08x_accel, &imu_dev);
+    vehicle_state.acc_x = acc_scale * bmi08x_accel.x;
+    vehicle_state.acc_y = acc_scale * bmi08x_accel.y;
+    vehicle_state.acc_z = acc_scale * bmi08x_accel.z;
     vehicle_state.acc_total = pow((pow(vehicle_state.acc_x,2) + pow(vehicle_state.acc_y,2) + pow(vehicle_state.acc_z,2)),0.5);
-    NRF_LOG_INFO("Accel: %d", accel_x_s16);
-    //vehicle_state.acceleration = accel_x_s16;
-    //vehicle_state.altitude = vehicle_state.acc_total;
+
+    
+    bmi08g_get_data(&bmi08x_gyro, &imu_dev);
+    vehicle_state.gyro_x = gyro_scale * bmi08x_gyro.x;
+    vehicle_state.gyro_y = gyro_scale * bmi08x_gyro.y;
+    vehicle_state.gyro_z = gyro_scale * bmi08x_gyro.z;
+    //vehicle_state.gyro_x = 1.0;
+    //vehicle_state.gyro_y = 2.0;
+    //vehicle_state.gyro_z = 3.0;
+
+    vehicle_state.tilt = acos(42.0);
 }
 
 void readAccID(void){
@@ -2935,10 +3081,10 @@ int main(void)
     while(NRF_CLOCK->EVENTS_HFCLKSTARTED == 0) 
         ;
     sd_clock_hfclk_request();
-    pwm_init();
+    //pwm_init();
 
 
-    pwm_update_duty_cycle(1000);
+    //pwm_update_duty_cycle(1000);
 
 
 
@@ -3221,7 +3367,7 @@ int main(void)
                     baro_update = 0;
                     read_baro();
                 }
-                //read_accel();
+                read_accel();
                 if (baro_error){
                 }
                 update_state();
