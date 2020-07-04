@@ -140,6 +140,8 @@
 
 #define BOOTLOADER_DFU_START 0xB1
 
+#define FLASH_SIZE 491008
+
 
 uint32_t acc_add = CS_ACC;
 uint32_t gyro_add = CS_GYRO;
@@ -3284,7 +3286,7 @@ int main(void)
             main_loop_update = false;     
             
             // recalculate pad ref. pressure from buffer
-            if (1) {
+            if (0) {
             
                 uint16_t index = 0;
                 uint16_t buffer_address;
@@ -3319,8 +3321,7 @@ int main(void)
             
             
             // launch detect
-            if (armedForLaunch && (vehicle_state.velocity > 30.0) && (vehicle_state.altitude > 50.0) && (!record_data)){
-
+            if (armedForLaunch && (!record_data) && (( (vehicle_state.velocity>30.0) && (vehicle_state.altitude>50.0)) || (vehicle_state.acc_total > 96.6))){
                 // clear armed flag
                 armedForLaunch = false;
                 // reset power off timer
@@ -3333,11 +3334,10 @@ int main(void)
                 boost = true;
                 // start recording & save buffer
                 start_data_recording();
-                
             }
 
             // stop recording if flash is full
-            if (data_time > 540.0){
+            if (file_length > FLASH_SIZE){
                 record_data = false;
             }
 
