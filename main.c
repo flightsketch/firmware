@@ -2049,7 +2049,7 @@ void send_firmware_ID(void){
     packet[3] = 0x03;
 
     union data_address firmware_id;
-    firmware_id.address_int = 26;
+    firmware_id.address_int = 27;
 
     packet[4] = firmware_id.address_string[0];
     chk = packet[4];
