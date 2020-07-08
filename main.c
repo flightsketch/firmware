@@ -2791,7 +2791,7 @@ int main(void)
                 // set launch & boost flag
                 launchDetect = true;
                 boost = true;
-                minLandingTime = data_time + 45.0;
+                minLandingTime = 45.0;
                 // start recording & save buffer
                 start_data_recording();
                 
