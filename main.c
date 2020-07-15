@@ -123,9 +123,9 @@
 
 #define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(MAIN_LOOP_PERIOD)                /**< Main loop interval (ticks). */
 
-#define CS_BARO   20
-#define CS_FLASH  5
-#define CS_ACC    12
+#define CS_BARO   29
+#define CS_FLASH  9
+#define CS_ACC    10
 
 #define BOOTLOADER_DFU_START 0xB1
 
