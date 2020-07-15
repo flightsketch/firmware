@@ -123,9 +123,9 @@
 
 #define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(MAIN_LOOP_PERIOD)                /**< Main loop interval (ticks). */
 
-#define CS_BARO   20
-#define CS_FLASH  5
-#define CS_ACC    12
+#define CS_BARO   29
+#define CS_FLASH  9
+#define CS_ACC    10
 
 #define BOOTLOADER_DFU_START 0xB1
 
@@ -2049,7 +2049,7 @@ void send_firmware_ID(void){
     packet[3] = 0x03;
 
     union data_address firmware_id;
-    firmware_id.address_int = 26;
+    firmware_id.address_int = 27;
 
     packet[4] = firmware_id.address_string[0];
     chk = packet[4];
@@ -2791,7 +2791,7 @@ int main(void)
                 // set launch & boost flag
                 launchDetect = true;
                 boost = true;
-                minLandingTime = data_time + 45.0;
+                minLandingTime = 45.0;
                 // start recording & save buffer
                 start_data_recording();
                 
