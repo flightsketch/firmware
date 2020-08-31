@@ -194,7 +194,7 @@ int send_update_int = 49;
 int baro_update = 0;
 int baro_update_int = 9;
 int save_update = 0;
-int save_update_int = 0;
+int save_update_int = 9;
 int batt_update = 0;
 int batt_update_int = 499;
 float log_dt = 0.0;
@@ -274,6 +274,10 @@ void parsePacket_typeF4(void);
 void parsePacket_typeF5(void);
 
 void power_off(void);
+
+void test_CH1(void);
+void test_CH2(void);
+
 
 static void main_loop_timeout_handler(void * p_context)
 {
@@ -586,6 +590,10 @@ static void nus_data_handler(ble_nus_evt_t * p_evt)
                     case 0xF5: parsePacket_typeF5();
                     break;
                     case 0xF6: power_off();
+                    break;
+                    case 0xF7: test_CH1();
+                    break;
+                    case 0xF8: test_CH2();
                     break;
                     }
               }
@@ -1140,7 +1148,7 @@ void Adc12bitPolledInitialise(void)
  */
 uint16_t GetBatteryVoltage1(void)
 {
-    NRF_SAADC->CH[1].PSELP = NRF_SAADC_INPUT_VDD;
+    NRF_SAADC->CH[1].PSELP = NRF_SAADC_INPUT_AIN6;
     uint16_t result = 9999;         // Some recognisable dummy value
     uint32_t timeout = 10000;       // Trial and error
     volatile int16_t buffer[8];
@@ -1164,6 +1172,7 @@ uint16_t GetBatteryVoltage1(void)
     if (timeout != 0)
     {
         result = ((buffer[0] * 1000L)+(ADC12_COUNTS_PER_VOLT/2)) / ADC12_COUNTS_PER_VOLT;
+        result = result * 4.92481203;
     }
     return result;
 }
@@ -1172,7 +1181,7 @@ uint16_t readOut1Res(void)
 {   
     nrf_gpio_pin_set(CONT_TEST);
     NRF_SAADC->CH[1].PSELP = NRF_SAADC_INPUT_AIN0;
-    uint16_t result = 9999;         // Some recognisable dummy value
+    int16_t result = 5555;         // Some recognisable dummy value
     uint32_t timeout = 10000;       // Trial and error
     volatile int16_t buffer[8];
     // Enable command
@@ -1193,7 +1202,7 @@ uint16_t readOut1Res(void)
     // Disable command to reduce power consumption
     nrf_saadc_disable();
     if (timeout != 0)
-    {
+    {  
         result = ((buffer[0] * 1000L)+(ADC12_COUNTS_PER_VOLT/2)) / ADC12_COUNTS_PER_VOLT;
         result = result/0.159310345;
     }
@@ -1201,11 +1210,11 @@ uint16_t readOut1Res(void)
     return result;
 }
 
-uint16_t readOut2Res(void)
+int16_t readOut2Res(void)
 {   
     nrf_gpio_pin_set(CONT_TEST);
     NRF_SAADC->CH[1].PSELP = NRF_SAADC_INPUT_AIN3;
-    uint16_t result = 9999;         // Some recognisable dummy value
+    int16_t result = 5555;         // Some recognisable dummy value
     uint32_t timeout = 10000;       // Trial and error
     volatile int16_t buffer[8];
     // Enable command
@@ -1226,7 +1235,7 @@ uint16_t readOut2Res(void)
     // Disable command to reduce power consumption
     nrf_saadc_disable();
     if (timeout != 0)
-    {
+    {  
         result = ((buffer[0] * 1000L)+(ADC12_COUNTS_PER_VOLT/2)) / ADC12_COUNTS_PER_VOLT;
         result = result/0.159310345;
     }
@@ -1239,7 +1248,9 @@ void checkCont(){
     nrf_gpio_pin_clear(CONT_TEST);
     
     vehicle_state.out1_res = readOut1Res() - out1ResOffset;
+
     vehicle_state.out2_res = readOut2Res() - out2ResOffset;
+
 
 }
 
@@ -2995,10 +3006,18 @@ void power_off(void){
     sd_power_system_off();
 }
 
+void test_CH1(void){
+    nrf_gpio_pin_set(OUT_1);
+    nrf_delay_ms(3000);
+    nrf_gpio_pin_clear(OUT_1);
+}
 
 
-
-
+void test_CH2(void){
+    nrf_gpio_pin_set(OUT_2);
+    nrf_delay_ms(3000);
+    nrf_gpio_pin_clear(OUT_2);
+}
 
 
 
