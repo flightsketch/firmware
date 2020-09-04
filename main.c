@@ -1102,7 +1102,7 @@ static void advertising_start(void)
 
 // Input range of internal Vdd measurement = (0.6 V)/(1/6) = 3.6 V
 // 3.0 volts -> 14486 ADC counts with 14-bit sampling: 4828.8 counts per volt
-#define ADC12_COUNTS_PER_VOLT 4551
+#define ADC14_COUNTS_PER_VOLT 4551
 
 /**
  * @brief Function for 14-bit adc init in polled mode
@@ -1116,7 +1116,7 @@ void Adc12bitPolledInitialise(void)
         .resistor_n = NRF_SAADC_RESISTOR_DISABLED,
         .gain       = NRF_SAADC_GAIN1_6,
         .reference  = NRF_SAADC_REFERENCE_INTERNAL,
-        .acq_time   = NRF_SAADC_ACQTIME_40US,
+        .acq_time   = NRF_SAADC_ACQTIME_10US,
         .mode       = NRF_SAADC_MODE_SINGLE_ENDED,
         .burst      = NRF_SAADC_BURST_ENABLED,
         .pin_p      = NRF_SAADC_INPUT_AIN0,
@@ -1171,7 +1171,7 @@ uint16_t GetBatteryVoltage1(void)
     nrf_saadc_disable();
     if (timeout != 0)
     {
-        result = ((buffer[0] * 1000L)+(ADC12_COUNTS_PER_VOLT/2)) / ADC12_COUNTS_PER_VOLT;
+        result = ((buffer[0] * 1000L)+(ADC14_COUNTS_PER_VOLT/2)) / ADC14_COUNTS_PER_VOLT;
         result = result * 4.92481203;
     }
     return result;
@@ -1179,10 +1179,10 @@ uint16_t GetBatteryVoltage1(void)
 
 uint16_t readOut1Res(void)
 {   
-    nrf_gpio_pin_set(CONT_TEST);
     NRF_SAADC->CH[1].PSELP = NRF_SAADC_INPUT_AIN0;
     int16_t result = 5555;         // Some recognisable dummy value
     uint32_t timeout = 10000;       // Trial and error
+    float res = 0;
     volatile int16_t buffer[8];
     // Enable command
     nrf_saadc_enable();
@@ -1202,20 +1202,22 @@ uint16_t readOut1Res(void)
     // Disable command to reduce power consumption
     nrf_saadc_disable();
     if (timeout != 0)
-    {  
-        result = ((buffer[0] * 1000L)+(ADC12_COUNTS_PER_VOLT/2)) / ADC12_COUNTS_PER_VOLT;
-        result = result/0.159310345;
+    {   
+        res = ((float) buffer[0]) / ((float) ADC14_COUNTS_PER_VOLT);
+        res = res/126.0;
+        res = 0.001164587/res - 0.004;
+        res = 1000/res;
+        result = (int) res;
     }
-    nrf_gpio_pin_clear(CONT_TEST);
     return result;
 }
 
 int16_t readOut2Res(void)
 {   
-    nrf_gpio_pin_set(CONT_TEST);
     NRF_SAADC->CH[1].PSELP = NRF_SAADC_INPUT_AIN3;
     int16_t result = 5555;         // Some recognisable dummy value
     uint32_t timeout = 10000;       // Trial and error
+    float res = 0.0;
     volatile int16_t buffer[8];
     // Enable command
     nrf_saadc_enable();
@@ -1236,20 +1238,25 @@ int16_t readOut2Res(void)
     nrf_saadc_disable();
     if (timeout != 0)
     {  
-        result = ((buffer[0] * 1000L)+(ADC12_COUNTS_PER_VOLT/2)) / ADC12_COUNTS_PER_VOLT;
-        result = result/0.159310345;
+        res = ((float) buffer[0]) / ((float) ADC14_COUNTS_PER_VOLT);
+        res = res/126.0;
+        res = 0.001164587/res - 0.004;
+        res = 1000/res;
+        result = (int) res;
     }
-    nrf_gpio_pin_clear(CONT_TEST);
     return result;
 }
 
 void checkCont(){
-
-    nrf_gpio_pin_clear(CONT_TEST);
     
+
+    nrf_gpio_pin_set(CONT_TEST);
+    nrf_delay_us(300);
+    vehicle_state.out2_res = readOut2Res() - out2ResOffset;
+
     vehicle_state.out1_res = readOut1Res() - out1ResOffset;
 
-    vehicle_state.out2_res = readOut2Res() - out2ResOffset;
+    nrf_gpio_pin_clear(CONT_TEST);
 
 
 }
@@ -3234,7 +3241,14 @@ int main(void)
     nrf_gpio_cfg_output(8);
     nrf_gpio_cfg_output(7);
 
-    nrf_gpio_cfg_output(CONT_TEST);
+    nrf_gpio_cfg(CONT_TEST, 
+                 NRF_GPIO_PIN_DIR_OUTPUT,
+                 NRF_GPIO_PIN_INPUT_DISCONNECT,
+                 NRF_GPIO_PIN_NOPULL,
+                 NRF_GPIO_PIN_H0H1,
+                 NRF_GPIO_PIN_NOSENSE);
+
+    //nrf_gpio_cfg_output(CONT_TEST);
     nrf_gpio_pin_clear(CONT_TEST);
     
 

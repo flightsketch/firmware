@@ -59,9 +59,10 @@
   <Watches active="0" update="Never"/>
  </Watch4>
  <Files>
-  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="2700" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="2612" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="37" y="1251" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="0" top="1235" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="6056" useTextEdit="1" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="6048" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="99" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/libraries/util/app_error_weak.c" selected="0" top="54" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="119" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../integration/nrfx/legacy/nrf_drv_spi.h" selected="1" top="91" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="ble_app_uart_pca10040_s112" fileDialogDefaultFilter="*.h" autoConnectTarget="J-Link" buildConfiguration="Release" debugSearchFileMap="" fileDialogInitialDirectory="/Users/russ/nRF5_SDK_15.2.0_9412b96/examples/ble_peripheral/flightSketch/bmp388_driver" debugSearchPath="" autoConnectCapabilities="3199"/>
 </session>
