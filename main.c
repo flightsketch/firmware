@@ -1177,7 +1177,7 @@ uint16_t GetBatteryVoltage1(void)
     return result;
 }
 
-uint16_t readOut1Res(void)
+int16_t readOut1Res(void)
 {   
     NRF_SAADC->CH[1].PSELP = NRF_SAADC_INPUT_AIN0;
     int16_t result = 5555;         // Some recognisable dummy value
@@ -1204,10 +1204,10 @@ uint16_t readOut1Res(void)
     if (timeout != 0)
     {   
         res = ((float) buffer[0]) / ((float) ADC14_COUNTS_PER_VOLT);
-        res = res/126.0;
-        res = 0.001164587/res - 0.004;
-        res = 1000/res;
-        result = (int) res;
+        res = res/21.0;
+        res = 0.001164587/res - 0.0045;
+        res = 100/res;
+        result = (int16_t) res;
     }
     return result;
 }

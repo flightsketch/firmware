@@ -62,7 +62,7 @@
  <Files>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="4142" useTextEdit="1" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="4117" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../BMA2x2_driver/bma2x2.c" selected="0" top="148" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="19" y="136" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="118" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="37" y="1207" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="1188" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="72" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../modules/nrfx/drivers/include/nrfx_pwm.h" selected="0" top="48" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="496" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../modules/nrfx/drivers/src/nrfx_pwm.c" selected="0" top="468" codecName="Default"/>
  </Files>
