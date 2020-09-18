@@ -71,6 +71,7 @@
 #include "nrf_pwr_mgmt.h"
 
 #include "nrf_drv_spi.h"
+#include "nrf_spim.h"
 #include "nrf_gpio.h"
 #include "nrf_delay.h"
 
@@ -127,6 +128,12 @@
 #define MAIN_LOOP_PERIOD                2
 
 #define MAIN_LOOP_INTERVAL         APP_TIMER_TICKS(MAIN_LOOP_PERIOD)                /**< Main loop interval (ticks). */
+
+#define SPI_SCK_PIN 14
+#define SPI_MISO_PIN 18
+#define SPI_MOSI_PIN 15
+
+#define SPI_SS_PIN 20
 
 #define CS_BARO   20
 #define CS_FLASH  9
@@ -2944,7 +2951,7 @@ void read_accel(void){
     
     bmi08a_get_data(&bmi08x_accel, &imu_dev);
     vehicle_state.acc_x = acc_scale * bmi08x_accel.x;
-    vehicle_state.acc_y = acc_scale * bmi08x_accel.y;
+    vehicle_state.temp = acc_scale * bmi08x_accel.y;
     vehicle_state.acc_z = acc_scale * bmi08x_accel.z;
     vehicle_state.acc_total = pow((pow(vehicle_state.acc_x,2) + pow(vehicle_state.acc_y,2) + pow(vehicle_state.acc_z,2)),0.5);
 

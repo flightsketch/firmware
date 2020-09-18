@@ -3,6 +3,7 @@
  <Bookmarks/>
  <Breakpoints groups="Breakpoints" active_group="Breakpoints">
   <BreakpointListItem trigger="" line="1410" counter="0" hardwareBreakpoint="" isFunctionBreakpoint="false" action="" expression="" group="Breakpoints" type="Breakpoint" state="4" filename="../../../main.c" useHWbreakpoint="false"/>
+  <BreakpointListItem trigger="" line="3424" counter="0" hardwareBreakpoint="" isFunctionBreakpoint="false" action="" expression="" group="Breakpoints" type="Breakpoint" state="2" filename="../../../main.c" useHWbreakpoint="false"/>
  </Breakpoints>
  <ExecutionProfileWindow/>
  <FrameBufferWindow>
@@ -62,9 +63,10 @@
  <Files>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="4142" useTextEdit="1" useBinaryEdit="0" left="0" path="../config/sdk_config.h" selected="0" top="4117" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../BMA2x2_driver/bma2x2.c" selected="0" top="148" codecName="Default"/>
-  <SessionOpenFile windowGroup="DockEditLeft" x="37" y="1207" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="1188" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="2" y="135" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../main.c" selected="1" top="113" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="72" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../modules/nrfx/drivers/include/nrfx_pwm.h" selected="0" top="48" codecName="Default"/>
   <SessionOpenFile windowGroup="DockEditLeft" x="0" y="496" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../modules/nrfx/drivers/src/nrfx_pwm.c" selected="0" top="468" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="395" useTextEdit="1" useBinaryEdit="0" left="0" path="../../../../../../components/toolchain/cmsis/include/cmsis_gcc.h" selected="0" top="356" codecName="Default"/>
  </Files>
  <ARMCrossStudioWindow activeProject="flightSketchFirmware" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" debugSearchFileMap="" fileDialogInitialDirectory="/Users/russ/nRF5_SDK_15.2.0_9412b96/modules/nrfx/drivers/src" debugSearchPath="" autoConnectCapabilities="3711"/>
 </session>
